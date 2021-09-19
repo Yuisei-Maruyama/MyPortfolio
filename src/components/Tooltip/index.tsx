@@ -7,7 +7,10 @@ type Props = Record<string, string>
 const Tooltip: React.FC<Props> = (props) => {
   return (
     <TooltipUI title={props.title}>
-      <Button><img src={props.icon} alt={props.title} className={classes.tooltip_icon} />{props.btnName}</Button>
+      <Button>
+        <img src={props.icon} alt={props.title} className={classes.tooltip_icon} />
+        {props.btnName}
+      </Button>
     </TooltipUI>
   )
 }
