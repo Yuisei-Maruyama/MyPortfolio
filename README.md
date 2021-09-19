@@ -3,14 +3,50 @@
 ## パッケージインストール
 
 ```bash
-npm i -D @material-ui/icons @material-ui/core @types/react react-app-rewired
-npm i -S react-router-dom
+npm i -D @material-ui/icons @material-ui/core @types/react react-app-rewired @types/react-vertical-timeline-component eslint eslint-config-prettier prettier husky@4.3.8 lint-staged
+npm i -S react-router-dom react-vertical-timeline-component
 ```
 
 ## 使用パッケージ
+| パッケージ名 | 説明 |
+| --- | --- |
+| [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) | webpack の設定を上書きしてエイリアス設定しているパスの解決を行うライブラリ |
+| [vertical-timeline-component-react](https://www.npmjs.com/package/react-vertical-timeline-component) | タイムライムの表示 |
+| eslint | コードの解析 |
+| eslint-config-prettier | ESLint と Prettierを併用する |
+| prettier | コードの整形 |
+| @typescript-eslint/parser | ESLintをTypescriptで解析できるようにする |
+| @typescript-eslint/eslint-plugin | ESLintでTypescriptのチェックを行う |
+| husky | Gitコマンドフックに別のコマンドを呼び出せる |
+| lint-staged | commitしたファイル(Stagingにあるファイル)にlintを実行する |
+| | |
+| | |
+| | |
+| | |
+| | |
 
-- react-app-rewired : webpack の設定を上書きしてエイリアス設定しているパスの解決を行うライブラリ
+## ESLint の設定方法
 
+```
+$ npm i eslint
+$ npx eslint --init
+```
+
+## Husky の動作確認
+
+下記のコマンドを実行した時に、`pre-commit`や`pre-rebase`が存在していることを確認する。
+
+```
+$ ls -la .git/hooks/ls -la .git/hooks/
+```
+
+なかったら、
+
+```
+$ npm uni husky
+```
+を実行し、  
+[npm husky version list](https://www.npmjs.com/package/husky)から、一番ダウンロード数が多いものをダウンロードする。
 ## react-app-rewired の導入理由
 
 ### 目的
