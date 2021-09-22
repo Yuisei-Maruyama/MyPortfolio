@@ -4,14 +4,14 @@
 
 ```bash
 npm i -D @material-ui/icons @material-ui/core @types/react react-app-rewired @types/react-vertical-timeline-component eslint eslint-config-prettier prettier husky@4.3.8 lint-staged
-npm i -S react-router-dom react-vertical-timeline-component
+npm i -S react-router-dom react-vertical-timeline-component react-icons @mui/material@next @emotion/react @emotion/styled
 ```
 
 ## 使用パッケージ
 | パッケージ名 | 説明 |
 | --- | --- |
-| [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) | webpack の設定を上書きしてエイリアス設定しているパスの解決を行うライブラリ |
-| [vertical-timeline-component-react](https://www.npmjs.com/package/react-vertical-timeline-component) | タイムライムの表示 |
+| [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) | webpack の設定を上書きしてエイリアス設定しているパスの解決を行う |
+| [vertical-timeline-component-react](https://stephane-monnot.github.io/react-vertical-timeline/#/) | タイムライムの表示 |
 | eslint | コードの解析 |
 | eslint-config-prettier | ESLint と Prettierを併用する |
 | prettier | コードの整形 |
@@ -19,11 +19,40 @@ npm i -S react-router-dom react-vertical-timeline-component
 | @typescript-eslint/eslint-plugin | ESLintでTypescriptのチェックを行う |
 | husky | Gitコマンドフックに別のコマンドを呼び出せる |
 | lint-staged | commitしたファイル(Stagingにあるファイル)にlintを実行する |
+| [react-icons](https://react-icons.github.io/react-icons) | `Ant Design` や `Material Design`などを集めたアイコンの宝庫 |
 | | |
 | | |
 | | |
 | | |
-| | |
+
+## tsx ファイルの作成方法
+
+ 1. 対象のディレクトリを作成し、`~.tsx`を作成する。
+
+ 2. 対象の`~.tsx`で`rafce`と入力し、入力補完を使う。
+
+ 3. エントリーポイントファイル(src/components.ts)に設定するファイルは下記のように`React.FC`をつける。
+
+ ```ts
+ const XXX:React.FC = () => {
+  return (
+    ...
+  )
+ }
+ ```
+
+ 4. Propsは下記のような形で定義する。
+
+ ```ts
+  type Props = Record<string, string>
+
+  const XXX: React.FC<Props> = (props: Props) => {
+    return (
+      <XXX title={props.title}>
+      ...
+    )
+  }
+ ```
 
 ## ESLint の設定方法
 
