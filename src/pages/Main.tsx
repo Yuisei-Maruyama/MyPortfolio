@@ -1,12 +1,12 @@
-import ProfileCard from "../components/ProfileCard/index"
+import React from 'react'
+import { ProfileCard, History } from '@/components'
 
 const Main = () => {
-
   return (
     <div>
       Main
-      {/* <zsets/myimage.png" alt="" /> */}
       <ProfileCard />
+      <History />
     </div>
   )
 }
