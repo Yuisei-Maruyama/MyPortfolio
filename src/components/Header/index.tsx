@@ -1,9 +1,8 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import React, { useState } from 'react'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
+import { ModeSwitch, ThemeProvider } from '@/components'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,11 +15,12 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
-  }),
-);
+  })
+)
 
-export default function Header() {
-  const classes = useStyles();
+const Header: React.FC = () => {
+  const classes = useStyles()
+  const [darkMode, setDarkMode] = useState<boolean>(false)
 
   return (
     <div className={classes.root}>
@@ -32,8 +32,12 @@ export default function Header() {
           <Typography variant="h6" className={classes.title}>
             MyPortfolio
           </Typography>
+          <ModeSwitch darkMode={darkMode} setDarkMode={setDarkMode}></ModeSwitch>
+          <ThemeProvider mode={darkMode} />
         </Toolbar>
       </AppBar>
     </div>
-  );
+  )
 }
+
+export default Header
