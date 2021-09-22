@@ -4,7 +4,7 @@ import classes from './Tooltip.module.scss'
 
 type Props = Record<string, string>
 
-const Tooltip: React.FC<Props> = (props) => {
+const Tooltip: React.FC<Props> = (props: Props) => {
   return (
     <TooltipUI title={props.title}>
       <Button>

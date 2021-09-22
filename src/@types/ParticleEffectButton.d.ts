@@ -1,1 +1,1 @@
-declare module 'react-particle-effect-button';
+declare module 'react-particle-effect-button'
