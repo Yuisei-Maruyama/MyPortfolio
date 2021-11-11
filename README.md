@@ -11,6 +11,7 @@ npm i -S react-router-dom react-vertical-timeline-component react-icons @mui/mat
 | パッケージ名 | 説明 |
 | --- | --- |
 | [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) | webpack の設定を上書きしてエイリアス設定しているパスの解決を行う |
+| [styled-components](https://styled-components.com/docs/basics) | JavaScriptでstyleを記述するCSS in JSのライブラリ |
 | [vertical-timeline-component-react](https://stephane-monnot.github.io/react-vertical-timeline/#/) | タイムライムの表示 |
 | eslint | コードの解析 |
 | eslint-config-prettier | ESLint と Prettierを併用する |
