@@ -3,7 +3,7 @@
 ## パッケージインストール
 
 ```bash
-npm i -D @material-ui/icons @material-ui/core @types/react react-app-rewired @types/react-vertical-timeline-component eslint eslint-config-prettier prettier husky@4.3.8 lint-staged
+npm i -D @material-ui/icons @material-ui/core @types/react react-app-rewired @types/react-vertical-timeline-component eslint eslint-config-prettier prettier husky@4.3.8 lint-staged dts-gen
 npm i -S react-router-dom react-vertical-timeline-component react-icons @mui/material@next @emotion/react @emotion/styled
 ```
 
@@ -20,7 +20,7 @@ npm i -S react-router-dom react-vertical-timeline-component react-icons @mui/mat
 | husky | Gitコマンドフックに別のコマンドを呼び出せる |
 | lint-staged | commitしたファイル(Stagingにあるファイル)にlintを実行する |
 | [react-icons](https://react-icons.github.io/react-icons) | `Ant Design` や `Material Design`などを集めたアイコンの宝庫 |
-| | |
+| [dts-gen](https://github.com/microsoft/dts-gen) | ライブラリで型定義ファイルがない場合に `XXX.d.ts` を生成する |
 | | |
 | | |
 | | |
@@ -154,3 +154,12 @@ module.exports = (config) => {
 ```
 
 `npm-scripts` を `react-scripts` から `react-app-rewired` を変更して設定の上書きを読み込むように変更する。
+
+## dts-genの使い方
+以下で `XXX.d.ts` を生成する。
+
+```terminal
+$ npx dts-gen -m XXX
+```
+
+
