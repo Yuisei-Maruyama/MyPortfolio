@@ -80,9 +80,9 @@ const ModeSwitch: React.FC<Props> = (props: Props) => {
   return (
     <div>
       {props.darkMode ? (
-        <MaterialUISwitch onClick={handleDarkModeOff} />
+        <MaterialUISwitch onClick={handleDarkModeOff} checked={!props.darkMode} value={!props.darkMode ? !props.darkMode : props.darkMode  } />
       ) : (
-        <MaterialUISwitch onClick={handleDarkModeOn} checked={!props.darkMode} />
+          <MaterialUISwitch onClick={handleDarkModeOn} checked={!props.darkMode} value={props.darkMode ? props.darkMode : !props.darkMode  } />
       )}
     </div>
   )
