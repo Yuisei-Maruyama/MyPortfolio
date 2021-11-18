@@ -84,7 +84,7 @@ $ npm uni husky
 
 ### 問題
 
-`tsconfig.json`は `react-scripts` が実行されたタイミングで自動的に `tsconfig.json` の内容を書き換えてしまうことで、記述した`paths`が消えてしまう。
+`tsconfig.json`は `react-scripts` が実行されたタイミングで自動的に `tsconfig.json` の内容を書き換えてしまうので、記述した`paths`が消えてしまう。
 
 ```json
 "scripts": {
@@ -93,11 +93,11 @@ $ npm uni husky
 
 ### 方針
 1. extends を使って別ファイルから paths のオプションを読み込ませる
-2. webpack の設定を上書きしてパスの解決を行う
+2. webpack の設定を上書きしてパスの解決を行う。
 
 ### 検証
 
-> 1. extends を使って別ファイルから paths のオプションを読み込ませる
+> 1. extends を使って別ファイルから paths のオプションを読み込ませる。
 
 `tsconfig.paths.json`を作成し、`compilerOptions`の設定を書く。  
 
