@@ -1,0 +1,27 @@
+.stage {
+  perspective: 1000px;
+}
+
+.circle {
+  position: relative;
+  transform: translateZ(-650px);
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.item {
+  position: absolute;
+  width: 450px;
+  left: 50%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+@keyframes circle-animation {
+  from {
+    transform: translateZ(-650px) rotateY(0);
+  }
+  to {
+    transform: translateZ(-650px) rotateY(-360deg);
+  }
+}
