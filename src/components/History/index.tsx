@@ -10,22 +10,22 @@ const History: React.FC = () => {
       <VerticalTimeline>
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
-          contentStyle={{ background: 'rgb(189, 9, 219)', color: '#fff' }}
-          contentArrowStyle={{ borderRight: '7px solid  rgb(189, 9, 219)' }}
+          contentStyle={{ background: 'rgb(63,81,181)', color: '#fff' }}
+          contentArrowStyle={{ borderRight: '7px solid  rgb(63,81,181)' }}
           date="2020 - present"
-          iconStyle={{ background: 'rgb(189, 9, 219)', color: '#fff' }}
+          iconStyle={{ background: 'rgb(63,81,181)', color: '#fff' }}
           icon={<AccessibilityNewIcon />}
         >
           <h3 className="vertical-timeline-element-title">FrontEnd Engineer</h3>
           <h4 className="vertical-timeline-element-subtitle">Shibuya, Tokyo</h4>
-          <p>Creative Web Service, User Experience, Visual Design</p>
+          <p>Refurbishment of application management services for government employees.</p>
         </VerticalTimelineElement>
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
-          contentStyle={{ background: 'rgb(189, 9, 219)', color: '#fff' }}
-          contentArrowStyle={{ borderRight: '7px solid  rgb(189, 9, 219)' }}
+          contentStyle={{ background: 'rgb(63,81,181)', color: '#fff' }}
+          contentArrowStyle={{ borderRight: '7px solid  rgb(63,81,181)' }}
           date="2016 - 2020"
-          iconStyle={{ background: 'rgb(189, 9, 219)', color: '#fff' }}
+          iconStyle={{ background: 'rgb(63,81,181)', color: '#fff' }}
           icon={<SchoolIcon />}
         >
           <h3 className="vertical-timeline-element-title">University Student</h3>
