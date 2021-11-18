@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card, CardContent, CardMedia, Typography, Box } from '@material-ui/core'
 import { Tooltip } from '@/components'
-// import Tooltip from '../Tooltip'
 
 const ProfileCard: React.FC = () => {
   return (
