@@ -1,0 +1,5 @@
+export { default as Main } from './Main'
+export { default as Board } from './Board'
+export { default as Technology } from './Technology'
+export { default as Art } from './Art'
+export { default as Travel } from './Travel'
