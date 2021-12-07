@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES6",
     "module": "esnext",
     "lib": [
       "ES2020",
@@ -15,6 +15,10 @@
         "src/*"
       ]
     },
+    "typeRoots" : [
+      "./node_modules/@types",
+      "src/types"
+    ],
     "outDir": "./lib",
     "importHelpers": true,
     "allowJs": true,
