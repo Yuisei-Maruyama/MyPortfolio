@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,OAAO,EAAE,SAAS;EAClB,gBAAgB,EAAE,kBAAkB;EACpC,aAAa,EAAE,IAAI;CACpB",
+    "sources": [
+        "MessageArea.module.scss"
+    ],
+    "names": [],
+    "file": "MessageArea.module.css"
+}

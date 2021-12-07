@@ -22,9 +22,9 @@ const Circular: React.FC<Props> = (props: Props) => {
   const [selected, setSelect] = useState<number>(props.value)
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Button onClick={() => { prev(selected, props.length, setSelect) } }><MdChevronLeft /></Button>
-      <Box sx={{ width: '750px' }} className={classes.stage}>
-        <Box sx={{ display: 'flex', height: '250px' }} style={{ transform: `translateZ(-650px) rotateY(${(360 / props.length) * selected}deg)` }} className={classes.circle}>
+      <Button onClick={() => { prev(selected, props.length, setSelect) }}><MdChevronLeft /></Button>
+      <Box sx={{ width: '950px' }} className={classes.stage}>
+        <Box sx={{ display: 'flex', height: '350px' }} style={{ transform: `translateZ(-650px) rotateY(${(360 / props.length) * selected}deg)` }} className={classes.circle}>
           {
             [1, 2, 3, 4, 5, 6].map((position) => {
               return (

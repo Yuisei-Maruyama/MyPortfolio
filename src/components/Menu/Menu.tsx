@@ -3,7 +3,7 @@ import { Drawer } from '@material-ui/core'
 import { MenuList, MenuItem, ListItemIcon, ListItemText } from '@mui/material'
 import { FaPlane } from "react-icons/fa"
 import { AiTwotoneHome, AiOutlineBgColors } from 'react-icons/ai'
-import { BiCodeAlt } from 'react-icons/bi'
+import { BiCodeAlt, BiTask } from 'react-icons/bi'
 import { useHistory, withRouter, RouteComponentProps } from 'react-router-dom'
 
 interface Props extends RouteComponentProps {
@@ -23,9 +23,10 @@ const Menu: React.FC<Props> = (props: Props) => {
 
   const itemList: Nav[] = [
     { text: 'Home', icon: <AiTwotoneHome />, nav: '' },
+    { text: 'GitHub Board', icon: <BiTask />, nav: 'board' },
     { text: 'Technology', icon: <BiCodeAlt />, nav: 'technology' },
     { text: 'Art', icon: <AiOutlineBgColors />, nav: 'art' },
-    { text: 'Travel', icon: <FaPlane />, nav: 'travel' }
+    { text: 'Travel', icon: <FaPlane />, nav: 'travel' },
   ]
 
   const handleDrawerToggle= (toggle: boolean) => {
@@ -38,7 +39,7 @@ const Menu: React.FC<Props> = (props: Props) => {
   }
 
   return (
-    <Drawer open={props.toggle}>
+    <Drawer open={props.toggle} onClose={() => handleDrawerToggle(props.toggle)}>
       <MenuList>
         {itemList.map((item, index) => (
           <MenuItem key={index} onClick={ () => handleToPage(item, props.toggle)}>

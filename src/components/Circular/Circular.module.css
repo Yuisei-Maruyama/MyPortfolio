@@ -1,0 +1,47 @@
+.stage {
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+}
+
+.circle {
+  position: relative;
+  -webkit-transform: translateZ(-650px);
+          transform: translateZ(-650px);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
+}
+
+.item {
+  position: absolute;
+  width: 550px;
+  left: 50%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+@-webkit-keyframes circle-animation {
+  from {
+    -webkit-transform: translateZ(-650px) rotateY(0);
+            transform: translateZ(-650px) rotateY(0);
+  }
+  to {
+    -webkit-transform: translateZ(-650px) rotateY(-360deg);
+            transform: translateZ(-650px) rotateY(-360deg);
+  }
+}
+
+@keyframes circle-animation {
+  from {
+    -webkit-transform: translateZ(-650px) rotateY(0);
+            transform: translateZ(-650px) rotateY(0);
+  }
+  to {
+    -webkit-transform: translateZ(-650px) rotateY(-360deg);
+            transform: translateZ(-650px) rotateY(-360deg);
+  }
+}
+/*# sourceMappingURL=Circular.module.css.map */
