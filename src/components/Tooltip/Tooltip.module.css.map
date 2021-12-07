@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACG,AAAD,aAAM,CAAC;EACL,KAAK,EAAE,GAAG;CACX",
+    "sources": [
+        "Tooltip.module.scss"
+    ],
+    "names": [],
+    "file": "Tooltip.module.css"
+}
