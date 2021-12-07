@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Hobby = () => {
-  return <div>Hobby</div>
+const Technology = () => {
+  return <div>Technology</div>
 }
 
-export default Hobby
+export default Technology
