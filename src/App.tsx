@@ -10,7 +10,7 @@ const App: React.FC = () => {
     <div className="App">
       <Router>
         <Header></Header>
-        <Container fixed>
+        <Container maxWidth="xl">
             <Switch>
               <Route exact path="/" component={Main} />
               <Route exact path="/board" component={Board} />
