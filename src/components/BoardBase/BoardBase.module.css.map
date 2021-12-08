@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,MAAM;EACb,MAAM,EAAE,GAAG;EACX,OAAO,EAAE,SAAS;EAClB,gBAAgB,EAAE,mBAAmB;EACrC,aAAa,EAAE,IAAI;CACpB",
+    "sources": [
+        "BoardBase.module.scss"
+    ],
+    "names": [],
+    "file": "BoardBase.module.css"
+}
