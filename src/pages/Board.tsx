@@ -1,5 +1,11 @@
+import { BoardBase } from "@/components"
+
 const Board = () => {
-  return <div>Board</div>
+  return (
+    <>
+      <BoardBase />
+    </>
+  )
 }
 
 export default Board
