@@ -1,4 +1,4 @@
-import { BoardBase } from "@/components"
+import { BoardBase } from '@/components'
 
 const Board = () => {
   return (
