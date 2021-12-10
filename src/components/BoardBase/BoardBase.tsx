@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import classes from './BoardBase.module.scss'
-import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd"
-import { rgba } from "polished"
-import {v4 as uuid} from 'uuid'
-
+import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd'
+import { rgba } from 'polished'
+import { v4 as uuid } from 'uuid'
 
 // const reorder = (
 //   list: any[],
@@ -18,40 +17,41 @@ import {v4 as uuid} from 'uuid'
 // };
 
 const BoardBase: React.FC = () => {
-
   const itemsFromBackend: Record<string, string>[] = [
     { id: uuid(), content: 'First tasks' },
-    { id: uuid(), content: 'Second tasks' }
+    { id: uuid(), content: 'Second tasks' },
   ]
 
-  const columnsFromBackend =
-    {
-      [uuid()]: {
-        name: 'Todo',
-        items: itemsFromBackend
-      }
-    }
+  const columnsFromBackend = {
+    [uuid()]: {
+      name: 'Todo',
+      items: itemsFromBackend,
+    },
+  }
 
-  const [columns, setColumns] = useState<Record<string, { name: string, items: Record<string, string>[]}>>(columnsFromBackend)
+  const [columns, setColumns] =
+    useState<Record<string, { name: string; items: Record<string, string>[] }>>(columnsFromBackend)
 
   const aaa = () => {
-    setColumns({ '1': { name: 'Todo', items: [{ id: '1234', content: 'First tasks' }] }})
+    setColumns({ '1': { name: 'Todo', items: [{ id: '1234', content: 'First tasks' }] } })
   }
 
   console.log(aaa)
 
-  const onDragEnd = (result: DropResult) => {
+  const onDragEnd = (result: DropResult, columns: any, setColumns: any) => {
     if (!result.destination) return
-    console.log(result)
-    // const { source, destination } = result
-    // const column = columns[source.droppableId]
-    // const copiedItems = [...column.items]
-    // const [removed] = copiedItems.splice(source.index, 1)
-    // copiedItems.splice(destination.index, 0, removed)
-    // setColumns({
-    //   ...column,
-    //   items: copiedItems
-    // })
+    const { source, destination } = result
+    const column = columns[source.droppableId]
+    const copiedItems = [...column.items]
+    const [removed] = copiedItems.splice(source.index, 1)
+    copiedItems.splice(destination.index, 0, removed)
+    setColumns({
+      ...columns,
+      [source.droppableId]: {
+        ...column,
+        items: copiedItems,
+      },
+    })
   }
 
   // const onDragEnd = (result: any) => {
@@ -69,7 +69,7 @@ const BoardBase: React.FC = () => {
   //     result.destination.index
   //   );
 
-  //   setState({ items });
+  //   setColumns({ items });
   // };
 
   // darkFontColor: #C38FFF
@@ -77,8 +77,10 @@ const BoardBase: React.FC = () => {
   return (
     <div className={classes.area}>
       <h2>TaskBoard of GitHub Issue</h2>
-      <a href="https://docs.github.com/ja/rest/reference/users"><p>GitHub API</p></a>
-      <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
+      <a href="https://docs.github.com/ja/rest/reference/users">
+        <p>GitHub API</p>
+      </a>
+      <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
         {Object.entries(columns).map(([id, column]) => {
           return (
             <Droppable droppableId={id} key={id}>
@@ -88,11 +90,11 @@ const BoardBase: React.FC = () => {
                     {...provided.droppableProps}
                     ref={provided.innerRef}
                     style={{
-                      background: snapshot.isDraggingOver ? rgba(0, 255, 255, 0.5) : '#000107',
+                      background: snapshot.isDraggingOver ? rgba(63, 81, 181, 1.0) : '#000107',
                       padding: 4,
                       width: 400,
                       minHeight: 400,
-                      borderRadius: 5
+                      borderRadius: 5,
                     }}
                   >
                     {column.items.map((item, index) => {
@@ -107,12 +109,12 @@ const BoardBase: React.FC = () => {
                                 style={{
                                   userSelect: 'none',
                                   padding: 10,
-                                  borderRadius: 5,
+                                  borderRadius: 10,
                                   margin: '10px 5px 0 5px',
                                   minHeight: '120px',
                                   backgroundColor: snapshot.isDragging ? '#263B4A' : '#161C22',
                                   color: 'white',
-                                  ...provided.draggableProps.style
+                                  ...provided.draggableProps.style,
                                 }}
                               >
                                 {item.content}
@@ -129,7 +131,11 @@ const BoardBase: React.FC = () => {
           )
         })}
       </DragDropContext>
-      <img src={`${process.env.PUBLIC_URL}/assets/BoardDesign.png`} alt="BoardDesign" style={{ marginTop: 20, width: 1400}} />
+      <img
+        src={`${process.env.PUBLIC_URL}/assets/BoardDesign.png`}
+        alt="BoardDesign"
+        style={{ marginTop: 20, width: 1400 }}
+      />
     </div>
   )
 }
