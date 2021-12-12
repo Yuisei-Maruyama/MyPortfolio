@@ -14,20 +14,20 @@ jobs:
         if: github.event.action == 'labeled' && github.event.label.name == 'Todo'
         uses: alex-page/github-project-automation-plus@v0.8.1
         with:
-          project: MyPortfolio
+          project: MyPortfolio-TaskBoard
           column: Todo
           repo-token: ${{ secrets.PERSONAL_TOKEN_FOR_KANBAN }}
       - name: Move labeled issues into Doing
         if: github.event.action == 'labeled' && github.event.label.name == 'Doing'
         uses: alex-page/github-project-automation-plus@v0.8.1
         with:
-          project: MyPortfolio
+          project: MyPortfolio-TaskBoard
           column: Doing
           repo-token: ${{ secrets.PERSONAL_TOKEN_FOR_KANBAN }}
       - name: Move labeled issues into Closed
         if: github.event.action == 'labeled' && github.event.label.name == 'Closed'
         uses: alex-page/github-project-automation-plus@v0.8.1
         with:
-          project: MyPortfolio
+          project: MyPortfolio-TaskBoard
           column: Closed
           repo-token: ${{ secrets.PERSONAL_TOKEN_FOR_KANBAN }}
