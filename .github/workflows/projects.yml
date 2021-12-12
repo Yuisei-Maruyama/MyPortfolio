@@ -17,3 +17,17 @@ jobs:
           project: MyPortfolio
           column: Todo
           repo-token: ${{ secrets.PERSONAL_TOKEN_FOR_KANBAN }}
+      - name: Move labeled issues into Doing
+        if: github.event.action == 'labeled' && github.event.label.name == 'Doing'
+        uses: alex-page/github-project-automation-plus@master
+        with:
+          project: MyPortfolio
+          column: Doing
+          repo-token: ${{ secrets.PERSONAL_TOKEN_FOR_KANBAN }}
+      - name: Move labeled issues into Closed
+        if: github.event.action == 'labeled' && github.event.label.name == 'Closed'
+        uses: alex-page/github-project-automation-plus@master
+        with:
+          project: MyPortfolio
+          column: Closed
+          repo-token: ${{ secrets.PERSONAL_TOKEN_FOR_KANBAN }}
