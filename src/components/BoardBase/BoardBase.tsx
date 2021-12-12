@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import classes from './BoardBase.module.scss'
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd'
 import { rgba } from 'polished'
@@ -6,6 +6,7 @@ import { v4 as uuid } from 'uuid'
 import { Avatar, IconButton } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
 import RefreshIcon from '@mui/icons-material/Refresh'
+import axios from 'axios'
 
 // const reorder = (
 //   list: any[],
@@ -43,11 +44,40 @@ const BoardBase: React.FC = () => {
   const [columns, setColumns] =
     useState<Record<string, { title: string; items: Record<string, string>[] }>>(columnsFromBackend)
 
-  // const aaa = () => {
-  //   setColumns({ '1': { title: 'Todo', items: [{ id: '1234', content: 'First tasks' }] } })
-  // }
+  const [issueItems, setIssues] = useState<Record<string, unknown>[]>([])
 
-  // console.log(aaa)
+  const request = axios.create({
+    baseURL: 'https://api.github.com',
+  })
+
+  useEffect(() => {
+    request.get('/repos/Yuisei-Maruyama/MyPortfolio/issues').then((res: any) => {
+      setIssues(res.data)
+    })
+  }, [])
+
+  // [
+  //   {
+  //     labels: [
+  //       {
+  //         name: 'Todo'
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     labels: [
+  //       {
+  //         name: 'Doing'
+  //       }
+  //     ]
+  //   }
+  // ]
+  console.log(issueItems)
+
+  // const todoList = issueItems.filter((item: { labels: { name: string }[] }) => {
+  //   console.log(item.labels.map(label => console.log(label))
+  //   return item
+  // })
 
   const onDragEnd = (result: DropResult, columns: any, setColumns: any) => {
     // ドラッグしている要素のid
@@ -89,13 +119,14 @@ const BoardBase: React.FC = () => {
     }
   }
 
-  // darkFontColor: #C38FFF
-
   return (
     <div className={classes.area}>
       <h1>TaskBoard of GitHub Issue</h1>
       <a href="https://docs.github.com/ja/rest/reference/users">
-        <p>GitHub API</p>
+        <p style={{ color: '#C38FFF' }}>GitHub API</p>
+      </a>
+      <a href="https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md">
+        <p style={{ color: '#C38FFF' }}>react-beautiful-dnd</p>
       </a>
       <div style={{ display: 'flex' }}>
         <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
