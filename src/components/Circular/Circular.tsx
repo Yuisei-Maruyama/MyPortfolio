@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MdChevronLeft, MdChevronRight } from "react-icons/md"
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import { Box, Button } from '@material-ui/core'
 import classes from './Circular.module.scss'
 
@@ -22,22 +22,42 @@ const Circular: React.FC<Props> = (props: Props) => {
   const [selected, setSelect] = useState<number>(props.value)
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Button onClick={() => { prev(selected, props.length, setSelect) }}><MdChevronLeft /></Button>
+      <Button
+        onClick={() => {
+          prev(selected, props.length, setSelect)
+        }}
+      >
+        <MdChevronLeft />
+      </Button>
       <Box sx={{ width: '950px' }} className={classes.stage}>
-        <Box sx={{ display: 'flex', height: '350px' }} style={{ transform: `translateZ(-650px) rotateY(${(360 / props.length) * selected}deg)` }} className={classes.circle}>
-          {
-            [1, 2, 3, 4, 5, 6].map((position) => {
-              return (
-                <div key={position - 1} style={{ transform: `translateX(-50%) rotateY(${(360 / props.length) * (position - 1)}deg) translateZ(550px)` }} className={classes.item}>
-                  { position }
-                  {props.value}
-                </div>
-              )
-            })
-          }
+        <Box
+          sx={{ display: 'flex', height: '350px' }}
+          style={{ transform: `translateZ(-650px) rotateY(${(360 / props.length) * selected}deg)` }}
+          className={classes.circle}
+        >
+          {[1, 2, 3, 4, 5, 6].map((position) => {
+            return (
+              <div
+                key={position - 1}
+                style={{
+                  transform: `translateX(-50%) rotateY(${(360 / props.length) * (position - 1)}deg) translateZ(550px)`,
+                }}
+                className={classes.item}
+              >
+                {position}
+                {props.value}
+              </div>
+            )
+          })}
         </Box>
       </Box>
-      <Button onClick={() => { next(selected, props.length, setSelect) }} ><MdChevronRight /></Button>
+      <Button
+        onClick={() => {
+          next(selected, props.length, setSelect)
+        }}
+      >
+        <MdChevronRight />
+      </Button>
     </Box>
   )
 }

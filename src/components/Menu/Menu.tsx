@@ -1,24 +1,23 @@
 import React from 'react'
 import { Drawer } from '@material-ui/core'
 import { MenuList, MenuItem, ListItemIcon, ListItemText } from '@mui/material'
-import { FaPlane } from "react-icons/fa"
+import { FaPlane } from 'react-icons/fa'
 import { AiTwotoneHome, AiOutlineBgColors } from 'react-icons/ai'
 import { BiCodeAlt, BiTask } from 'react-icons/bi'
 import { useHistory, withRouter, RouteComponentProps } from 'react-router-dom'
 
 interface Props extends RouteComponentProps {
-  toggle: boolean,
+  toggle: boolean
   changeToggle: (toggle: boolean) => void
 }
 
 interface Nav {
-  text: string,
-  icon: any,
+  text: string
+  icon: any
   nav: string
 }
 
 const Menu: React.FC<Props> = (props: Props) => {
-
   const history = useHistory()
 
   const itemList: Nav[] = [
@@ -29,7 +28,7 @@ const Menu: React.FC<Props> = (props: Props) => {
     { text: 'Travel', icon: <FaPlane />, nav: 'travel' },
   ]
 
-  const handleDrawerToggle= (toggle: boolean) => {
+  const handleDrawerToggle = (toggle: boolean) => {
     props.changeToggle(!toggle) // Drawer の開閉状態を反転
   }
 
@@ -42,10 +41,8 @@ const Menu: React.FC<Props> = (props: Props) => {
     <Drawer open={props.toggle} onClose={() => handleDrawerToggle(props.toggle)}>
       <MenuList>
         {itemList.map((item, index) => (
-          <MenuItem key={index} onClick={ () => handleToPage(item, props.toggle)}>
-            <ListItemIcon>
-              { item.icon }
-            </ListItemIcon>
+          <MenuItem key={index} onClick={() => handleToPage(item, props.toggle)}>
+            <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </MenuItem>
         ))}
@@ -55,4 +52,3 @@ const Menu: React.FC<Props> = (props: Props) => {
 }
 
 export default withRouter(Menu)
-
