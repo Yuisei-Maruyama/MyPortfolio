@@ -20,6 +20,10 @@ import axios from 'axios'
 //   return result;
 // };
 
+const request = axios.create({
+  baseURL: 'https://api.github.com',
+})
+
 const BoardBase: React.FC = () => {
   const itemsFromBackend: Record<string, string>[] = [
     { id: uuid(), content: 'First tasks' },
@@ -44,40 +48,30 @@ const BoardBase: React.FC = () => {
   const [columns, setColumns] =
     useState<Record<string, { title: string; items: Record<string, string>[] }>>(columnsFromBackend)
 
-  const [issueItems, setIssues] = useState<Record<string, unknown>[]>([])
+  const [issueItems, setIssues] = useState<{ labels: { name: string }[] }[]>([])
+  const [todoItems, setTodo] = useState<{ labels: { name: string }[] }[]>([])
+  const [doingItems, setDoing] = useState<{ labels: { name: string }[] }[]>([])
+  const [closedItems, setClosed] = useState<{ labels: { name: string }[] }[]>([])
 
-  const request = axios.create({
-    baseURL: 'https://api.github.com',
-  })
+  const labelNames = ['Todo', 'Doing', 'Closed']
 
   useEffect(() => {
     request.get('/repos/Yuisei-Maruyama/MyPortfolio/issues').then((res: any) => {
       setIssues(res.data)
     })
+    labelNames.forEach(async (labelName) => {
+      await request.get(`/repos/Yuisei-Maruyama/MyPortfolio/issues?labels=${labelName}&state=open`).then((res: any) => {
+        if (labelName === 'Todo') setTodo(res.data)
+        if (labelName === 'Doing') setDoing(res.data)
+        if (labelName === 'Closed') setClosed(res.data)
+      })
+    })
   }, [])
 
-  // [
-  //   {
-  //     labels: [
-  //       {
-  //         name: 'Todo'
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     labels: [
-  //       {
-  //         name: 'Doing'
-  //       }
-  //     ]
-  //   }
-  // ]
   console.log(issueItems)
-
-  // const todoList = issueItems.filter((item: { labels: { name: string }[] }) => {
-  //   console.log(item.labels.map(label => console.log(label))
-  //   return item
-  // })
+  console.log('todoItems', todoItems)
+  console.log('doingItems', doingItems)
+  console.log('closedItems', closedItems)
 
   const onDragEnd = (result: DropResult, columns: any, setColumns: any) => {
     // ドラッグしている要素のid
