@@ -20,58 +20,117 @@ import axios from 'axios'
 //   return result;
 // };
 
+const userName = process.env.REACT_APP_USER_NAME
+
+const project = process.env.REACT_APP_PROJECT
+
 const request = axios.create({
   baseURL: 'https://api.github.com',
 })
 
+interface Issue {
+  id: string
+  title: string
+  body: string
+  labels: {
+    name: string
+  }[]
+}
+
+type Issues = Issue[] | undefined
+
 const BoardBase: React.FC = () => {
-  const itemsFromBackend: Record<string, string>[] = [
-    { id: uuid(), content: 'First tasks' },
-    { id: uuid(), content: 'Second tasks' },
-  ]
+  const [issueItems, setIssues] = useState<Issues>([])
+  const [todoItems, setTodo] = useState<Issues>([])
+  const [doingItems, setDoing] = useState<Issues>([])
+  const [closedItems, setClosed] = useState<Issues>([])
+  const [columns, setColumns] = useState<Record<string, { title: string; items: Issues }>>({})
 
-  const columnsFromBackend = {
-    [uuid()]: {
-      title: 'Todo',
-      items: itemsFromBackend,
-    },
-    [uuid()]: {
-      title: 'Doing',
-      items: [],
-    },
-    [uuid()]: {
-      title: 'Closed',
-      items: [],
-    },
-  }
-
-  const [columns, setColumns] =
-    useState<Record<string, { title: string; items: Record<string, string>[] }>>(columnsFromBackend)
-
-  const [issueItems, setIssues] = useState<{ labels: { name: string }[] }[]>([])
-  const [todoItems, setTodo] = useState<{ labels: { name: string }[] }[]>([])
-  const [doingItems, setDoing] = useState<{ labels: { name: string }[] }[]>([])
-  const [closedItems, setClosed] = useState<{ labels: { name: string }[] }[]>([])
-
-  const labelNames = ['Todo', 'Doing', 'Closed']
+  // const columnsFromBackend = {
+  //   [uuid()]: {
+  //     title: 'Todo',
+  //     items: todoItems,
+  //   },
+  //   [uuid()]: {
+  //     title: 'Doing',
+  //     items: doingItems,
+  //   },
+  //   [uuid()]: {
+  //     title: 'Closed',
+  //     items: closedItems,
+  //   },
+  // };
 
   useEffect(() => {
-    request.get('/repos/Yuisei-Maruyama/MyPortfolio/issues').then((res: any) => {
-      setIssues(res.data)
-    })
-    labelNames.forEach(async (labelName) => {
-      await request.get(`/repos/Yuisei-Maruyama/MyPortfolio/issues?labels=${labelName}&state=open`).then((res: any) => {
-        if (labelName === 'Todo') setTodo(res.data)
-        if (labelName === 'Doing') setDoing(res.data)
-        if (labelName === 'Closed') setClosed(res.data)
+    ;(async () => {
+      await request.get(`/repos/${userName}/${project}/issues`).then((res: { data: any }) => {
+        if (!issueItems?.length) return
+        setIssues(res.data)
       })
-    })
-  }, [])
 
-  console.log(issueItems)
-  console.log('todoItems', todoItems)
-  console.log('doingItems', doingItems)
-  console.log('closedItems', closedItems)
+      const labelNames = ['Todo', 'Doing', 'Closed']
+
+      await labelNames.forEach(async (labelName: string) => {
+        await request
+          .get(`/repos/${userName}/${project}/issues?labels=${labelName}&state=open`)
+          .then((res: { data: any }) => {
+            console.log(todoItems)
+            if (labelName === 'Todo' && !todoItems?.length) {
+              setTodo(res.data)
+            }
+            if (labelName === 'Doing' && !doingItems?.length) {
+              setDoing(res.data)
+            }
+            if (labelName === 'Closed' && !closedItems?.length) {
+              setClosed(res.data)
+            }
+          })
+      })
+      const initializeColumns = async () => {
+        if ((todoItems || doingItems || closedItems) === []) return
+        console.log('Todo', todoItems)
+        const columnsFromBackend = {
+          [uuid()]: {
+            title: 'Todo',
+            items: todoItems,
+          },
+          [uuid()]: {
+            title: 'Doing',
+            items: doingItems,
+          },
+          [uuid()]: {
+            title: 'Closed',
+            items: closedItems,
+          },
+        }
+        await setColumns(columnsFromBackend)
+      }
+      await initializeColumns()
+    })()
+  }, [issueItems, todoItems, doingItems, closedItems])
+
+  console.log('All', issueItems)
+  // console.log('Todo', todoItems)
+  console.log('Doing', doingItems)
+  console.log('Closed', closedItems)
+
+  // const columnsFromBackend = {
+  //   [uuid()]: {
+  //     title: 'Todo',
+  //     items: todoItems,
+  //   },
+  //   [uuid()]: {
+  //     title: 'Doing',
+  //     items: doingItems,
+  //   },
+  //   [uuid()]: {
+  //     title: 'Closed',
+  //     items: closedItems,
+  //   },
+  // };
+  // console.log('columnsFromBackend', columnsFromBackend)
+
+  // setColumns(columnsFromBackend)
 
   const onDragEnd = (result: DropResult, columns: any, setColumns: any) => {
     // ドラッグしている要素のid
@@ -143,14 +202,14 @@ const BoardBase: React.FC = () => {
                     >
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Avatar sx={{ width: 24, height: 24, bgcolor: deepPurple[500], margin: '10px' }}>
-                          {column.items.length}
+                          {column.items ? column.items.length : '0'}
                         </Avatar>
                         <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
                         <IconButton>
                           <RefreshIcon style={{ color: 'white', width: '30px' }}></RefreshIcon>
                         </IconButton>
                       </div>
-                      {column.items.map((item, index) => {
+                      {column.items?.map((item, index) => {
                         return (
                           <Draggable key={item.id} draggableId={item.id} index={index}>
                             {(provided, snapshot) => {
@@ -170,7 +229,7 @@ const BoardBase: React.FC = () => {
                                     ...provided.draggableProps.style,
                                   }}
                                 >
-                                  {item.content}
+                                  {item.title}
                                 </div>
                               )
                             }}
