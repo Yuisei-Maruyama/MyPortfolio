@@ -48,6 +48,13 @@ const BoardBase: React.FC = () => {
   const [closedItems, setClosed] = useState<Issues>([])
   const [columns, setColumns] = useState<Record<string, { title: string; items: Issues }>>({})
 
+  const convertIssueType = (data: any) => {
+    const payload = data.map((item: { id: number }) => {
+      return { ...item, id: item.id.toString() }
+    })
+    return payload
+  }
+
   useEffect(() => {
     ;(async () => {
       await request.get(`/repos/${userName}/${project}/issues`).then((res: { data: any }) => {
@@ -61,23 +68,16 @@ const BoardBase: React.FC = () => {
         await request
           .get(`/repos/${userName}/${project}/issues?labels=${labelName}&state=open`)
           .then((res: { data: any }) => {
-            console.log(todoItems)
             if (labelName === 'Todo' && !todoItems?.length) {
-              const payload = res.data.map((item: { id: number }) => {
-                return { ...item, id: item.id.toString() }
-              })
+              const payload = convertIssueType(res.data)
               setTodo(payload)
             }
             if (labelName === 'Doing' && !doingItems?.length) {
-              const payload = res.data.map((item: { id: number }) => {
-                return { ...item, id: item.id.toString() }
-              })
+              const payload = convertIssueType(res.data)
               setDoing(payload)
             }
             if (labelName === 'Closed' && !closedItems?.length) {
-              const payload = res.data.map((item: { id: number }) => {
-                return { ...item, id: item.id.toString() }
-              })
+              const payload = convertIssueType(res.data)
               setClosed(payload)
             }
           })
