@@ -39,27 +39,14 @@ interface Issue {
 
 type Issues = Issue[] | undefined
 
+// ここに関数定義することで、レンダリングを抑える
+
 const BoardBase: React.FC = () => {
   const [issueItems, setIssues] = useState<Issues>([])
   const [todoItems, setTodo] = useState<Issues>([])
   const [doingItems, setDoing] = useState<Issues>([])
   const [closedItems, setClosed] = useState<Issues>([])
   const [columns, setColumns] = useState<Record<string, { title: string; items: Issues }>>({})
-
-  // const columnsFromBackend = {
-  //   [uuid()]: {
-  //     title: 'Todo',
-  //     items: todoItems,
-  //   },
-  //   [uuid()]: {
-  //     title: 'Doing',
-  //     items: doingItems,
-  //   },
-  //   [uuid()]: {
-  //     title: 'Closed',
-  //     items: closedItems,
-  //   },
-  // };
 
   useEffect(() => {
     ;(async () => {
@@ -76,13 +63,22 @@ const BoardBase: React.FC = () => {
           .then((res: { data: any }) => {
             console.log(todoItems)
             if (labelName === 'Todo' && !todoItems?.length) {
-              setTodo(res.data)
+              const payload = res.data.map((item: { id: number }) => {
+                return { ...item, id: item.id.toString() }
+              })
+              setTodo(payload)
             }
             if (labelName === 'Doing' && !doingItems?.length) {
-              setDoing(res.data)
+              const payload = res.data.map((item: { id: number }) => {
+                return { ...item, id: item.id.toString() }
+              })
+              setDoing(payload)
             }
             if (labelName === 'Closed' && !closedItems?.length) {
-              setClosed(res.data)
+              const payload = res.data.map((item: { id: number }) => {
+                return { ...item, id: item.id.toString() }
+              })
+              setClosed(payload)
             }
           })
       })
@@ -110,27 +106,11 @@ const BoardBase: React.FC = () => {
   }, [issueItems, todoItems, doingItems, closedItems])
 
   console.log('All', issueItems)
-  // console.log('Todo', todoItems)
+  console.log('Todo', todoItems)
   console.log('Doing', doingItems)
   console.log('Closed', closedItems)
 
-  // const columnsFromBackend = {
-  //   [uuid()]: {
-  //     title: 'Todo',
-  //     items: todoItems,
-  //   },
-  //   [uuid()]: {
-  //     title: 'Doing',
-  //     items: doingItems,
-  //   },
-  //   [uuid()]: {
-  //     title: 'Closed',
-  //     items: closedItems,
-  //   },
-  // };
-  // console.log('columnsFromBackend', columnsFromBackend)
-
-  // setColumns(columnsFromBackend)
+  console.log(columns)
 
   const onDragEnd = (result: DropResult, columns: any, setColumns: any) => {
     // ドラッグしている要素のid
