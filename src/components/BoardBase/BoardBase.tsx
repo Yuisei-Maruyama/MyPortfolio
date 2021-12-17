@@ -41,6 +41,13 @@ type Issues = Issue[] | undefined
 
 // ここに関数定義することで、レンダリングを抑える
 
+const convertIssueType = (data: any) => {
+  const payload = data.map((item: { id: number }) => {
+    return { ...item, id: item.id.toString() }
+  })
+  return payload
+}
+
 const BoardBase: React.FC = () => {
   const [issueItems, setIssues] = useState<Issues>([])
   const [todoItems, setTodo] = useState<Issues>([])
@@ -48,18 +55,12 @@ const BoardBase: React.FC = () => {
   const [closedItems, setClosed] = useState<Issues>([])
   const [columns, setColumns] = useState<Record<string, { title: string; items: Issues }>>({})
 
-  const convertIssueType = (data: any) => {
-    const payload = data.map((item: { id: number }) => {
-      return { ...item, id: item.id.toString() }
-    })
-    return payload
-  }
-
   useEffect(() => {
     ;(async () => {
       await request.get(`/repos/${userName}/${project}/issues`).then((res: { data: any }) => {
-        if (!issueItems?.length) return
-        setIssues(res.data)
+        if (issueItems?.length) return
+        const payload = convertIssueType(res.data)
+        setIssues(payload)
       })
 
       const labelNames = ['Todo', 'Doing', 'Closed']
@@ -84,7 +85,6 @@ const BoardBase: React.FC = () => {
       })
       const initializeColumns = async () => {
         if ((todoItems || doingItems || closedItems) === []) return
-        console.log('Todo', todoItems)
         const columnsFromBackend = {
           [uuid()]: {
             title: 'Todo',
@@ -109,8 +109,6 @@ const BoardBase: React.FC = () => {
   console.log('Todo', todoItems)
   console.log('Doing', doingItems)
   console.log('Closed', closedItems)
-
-  console.log(columns)
 
   const onDragEnd = (result: DropResult, columns: any, setColumns: any) => {
     // ドラッグしている要素のid
@@ -226,7 +224,7 @@ const BoardBase: React.FC = () => {
         </DragDropContext>
       </div>
       <img
-        src={`${process.env.PUBLIC_URL}/assets/BoardDesign.png`}
+        src={`${process.env.PUBLIC_URL}/assets/BoardDesign_PC.png`}
         alt="BoardDesign"
         style={{ marginTop: 20, width: 1400 }}
       />
