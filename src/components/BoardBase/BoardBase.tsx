@@ -31,6 +31,11 @@ interface Issue {
   number: number
   /* eslint-disable camelcase */
   html_url: string
+  user: {
+    url: string
+    login: string
+    avatar_url: string
+  }
   labels: Label[]
 }
 
@@ -254,12 +259,22 @@ const BoardBase: React.FC = () => {
                                   }}
                                 >
                                   <CardContent style={{ padding: 0 }}>
-                                    <Typography sx={{ fontSize: 15 }} component="div">
-                                      <a href={item.html_url} style={{ color: 'white', textDecoration: 'none' }}>
-                                        {item.title}
-                                      </a>
-                                    </Typography>
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                                      <Avatar
+                                        alt={item.user.login}
+                                        src={item.user.avatar_url}
+                                        sx={{ width: 35, height: 35 }}
+                                      />
+                                      <Typography sx={{ fontSize: 16, marginLeft: 2 }} component="div">
+                                        <a href={item.html_url} style={{ color: 'white', textDecoration: 'none' }}>
+                                          {item.title}#{item.number}
+                                        </a>
+                                      </Typography>
+                                    </div>
                                   </CardContent>
+                                  {/* <CardActions disableSpacing style={{ display: 'flex', justifyContent: 'flex-end'}}>
+                                    <Avatar alt={item.user.login} src={item.user.avatar_url} sx={{ width: 35, height: 35 }} />
+                                  </CardActions> */}
                                 </Card>
                               )
                             }}
