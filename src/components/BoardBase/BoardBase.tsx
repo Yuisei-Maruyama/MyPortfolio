@@ -1,45 +1,37 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import classes from './BoardBase.module.scss'
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd'
 import { rgba } from 'polished'
-import { v4 as uuid } from 'uuid'
 import { Avatar, IconButton } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import axios from 'axios'
 
-// const reorder = (
-//   list: any[],
-//   startIndex: number,
-//   endIndex: number
-// ): any[] => {
-//   const result = Array.from(list);
-//   const [removed] = result.splice(startIndex, 1);
-//   result.splice(endIndex, 0, removed);
+const owner = process.env.REACT_APP_USER_NAME
 
-//   return result;
-// };
+const repo = process.env.REACT_APP_PROJECT
 
-const userName = process.env.REACT_APP_USER_NAME
-
-const project = process.env.REACT_APP_PROJECT
+const token = 'token'
 
 const request = axios.create({
   baseURL: 'https://api.github.com',
 })
 
+interface Label {
+  description?: string
+  id?: number
+  name?: string
+  url?: string
+}
+
 interface Issue {
   id: string
   title: string
   body: string
-  labels: {
-    name: string
-  }[]
+  labels: Label[]
 }
 
-type Issues = Issue[] | undefined
-
-// ここに関数定義することで、レンダリングを抑える
+type Issues = Issue[]
 
 const convertIssueType = (data: any) => {
   const payload = data.map((item: { id: number }) => {
@@ -48,83 +40,128 @@ const convertIssueType = (data: any) => {
   return payload
 }
 
+const getHeaders = async (): Promise<{ authorization?: string }> => {
+  const authorization = `bearer ${token}`
+  const headers = authorization ? { authorization } : {}
+  return headers
+}
+
 const BoardBase: React.FC = () => {
   const [issueItems, setIssues] = useState<Issues>([])
   const [todoItems, setTodo] = useState<Issues>([])
   const [doingItems, setDoing] = useState<Issues>([])
   const [closedItems, setClosed] = useState<Issues>([])
-  const [columns, setColumns] = useState<Record<string, { title: string; items: Issues }>>({})
+  const [columns, setColumns] = useState<Record<string, { title: string; items: Issues; label: Label }>>({})
+
+  const fetchIssues = useCallback(async () => {
+    const headers = await getHeaders()
+    await request.get(`/repos/${owner}/${repo}/issues`, { headers }).then((res: { data: any }) => {
+      if (issueItems?.length) return
+      const payload = convertIssueType(res.data)
+      setIssues(payload)
+    })
+  }, [issueItems])
+
+  const eachIssues = useCallback(async () => {
+    const labelNames = ['Todo', 'Doing', 'Closed']
+
+    await labelNames.forEach(async (labelName: string) => {
+      const headers = await getHeaders()
+      await request
+        .get(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=open`, { headers })
+        .then((res: { data: any }) => {
+          if (labelName === 'Todo' && !todoItems?.length) {
+            const payload = convertIssueType(res.data)
+            setTodo(payload)
+          }
+          if (labelName === 'Doing' && !doingItems?.length) {
+            const payload = convertIssueType(res.data)
+            setDoing(payload)
+          }
+          if (labelName === 'Closed' && !closedItems?.length) {
+            const payload = convertIssueType(res.data)
+            setClosed(payload)
+          }
+        })
+    })
+  }, [todoItems, doingItems, closedItems])
+
+  const convertLabel = (items: Issues): Label => {
+    const labels = { ...items[0].labels }
+    let label
+    Object.entries(labels).forEach(([key, value]) => {
+      label = value
+      return value
+    })
+    return label as unknown as Label
+  }
+
+  const initializeColumns = useCallback(async () => {
+    if (!(todoItems || doingItems || closedItems)?.length) return
+
+    const columnsFromBackend: Record<string, { title: string; items: Issues; label: Label }> = {
+      todo: {
+        title: 'Todo',
+        items: todoItems,
+        label: todoItems ? convertLabel(todoItems) : {},
+      },
+      doing: {
+        title: 'Doing',
+        items: doingItems,
+        label: doingItems ? convertLabel(doingItems) : {},
+      },
+      closed: {
+        title: 'Closed',
+        items: closedItems,
+        label: closedItems ? convertLabel(closedItems) : {},
+      },
+    }
+    await setColumns(columnsFromBackend)
+  }, [todoItems, doingItems, closedItems])
 
   useEffect(() => {
-    ;(async () => {
-      await request.get(`/repos/${userName}/${project}/issues`).then((res: { data: any }) => {
-        if (issueItems?.length) return
-        const payload = convertIssueType(res.data)
-        setIssues(payload)
-      })
-
-      const labelNames = ['Todo', 'Doing', 'Closed']
-
-      await labelNames.forEach(async (labelName: string) => {
-        await request
-          .get(`/repos/${userName}/${project}/issues?labels=${labelName}&state=open`)
-          .then((res: { data: any }) => {
-            if (labelName === 'Todo' && !todoItems?.length) {
-              const payload = convertIssueType(res.data)
-              setTodo(payload)
-            }
-            if (labelName === 'Doing' && !doingItems?.length) {
-              const payload = convertIssueType(res.data)
-              setDoing(payload)
-            }
-            if (labelName === 'Closed' && !closedItems?.length) {
-              const payload = convertIssueType(res.data)
-              setClosed(payload)
-            }
-          })
-      })
-      const initializeColumns = async () => {
-        if ((todoItems || doingItems || closedItems) === []) return
-        const columnsFromBackend = {
-          [uuid()]: {
-            title: 'Todo',
-            items: todoItems,
-          },
-          [uuid()]: {
-            title: 'Doing',
-            items: doingItems,
-          },
-          [uuid()]: {
-            title: 'Closed',
-            items: closedItems,
-          },
-        }
-        await setColumns(columnsFromBackend)
+    const orderProcess = async () => {
+      if (!issueItems?.length) {
+        await fetchIssues()
       }
-      await initializeColumns()
-    })()
-  }, [issueItems, todoItems, doingItems, closedItems])
 
-  console.log('All', issueItems)
-  console.log('Todo', todoItems)
-  console.log('Doing', doingItems)
-  console.log('Closed', closedItems)
+      await eachIssues()
 
-  const onDragEnd = (result: DropResult, columns: any, setColumns: any) => {
-    // ドラッグしている要素のid
+      if (todoItems?.length && doingItems?.length && closedItems?.length) {
+        await initializeColumns()
+      }
+    }
+
+    orderProcess()
+    // eslint-disable-next-line
+  }, [todoItems, doingItems, closedItems])
+
+  const changeLabel = async (issueNum: number, payload: { label: Label; owner: string; repo: string }) => {
+    console.log('labels', payload.label.name)
+    const headers = await getHeaders()
+    const { data } = await request.put(
+      `/repos/${owner}/${repo}/issues/${issueNum}/labels`,
+      { labels: [payload.label.name] },
+      { headers }
+    )
+    console.log(data)
+  }
+
+  const onDragEnd = async (result: DropResult, columns: any, setColumns: any) => {
+    // droppableId: ドラッグしている要素のid
     // source: ドロップ元
     // destination: ドロップ先
     const { source, destination } = result
     if (!destination) return
     if (destination.droppableId === source.droppableId && destination.index === source.index) return
     if (source.droppableId !== destination.droppableId) {
-      const sourceColumn = columns[source.droppableId]
-      const destColumn = columns[destination.droppableId]
+      const sourceColumn = columns[source.droppableId] // ドロップ元のカラム
+      const destColumn = columns[destination.droppableId] // ドロップ先のカラム
       const sourceItems = [...sourceColumn.items]
       const destItems = [...destColumn.items]
-      const [removed] = sourceItems.splice(source.index, 1)
-      destItems.splice(destination.index, 0, removed)
-      setColumns({
+      const [targetItem] = sourceItems.splice(source.index, 1)
+      destItems.splice(destination.index, 0, targetItem)
+      await setColumns({
         ...columns,
         [source.droppableId]: {
           ...sourceColumn,
@@ -135,12 +172,16 @@ const BoardBase: React.FC = () => {
           items: destItems,
         },
       })
+      const destLabel = destColumn.label
+      console.log('destLabel', destLabel)
+      if (!(owner && repo)) return
+      await changeLabel(targetItem.number, { label: destLabel, owner, repo })
     } else {
       const column = columns[source.droppableId]
       const copiedItems = [...column.items]
-      const [removed] = copiedItems.splice(source.index, 1)
-      copiedItems.splice(destination.index, 0, removed)
-      setColumns({
+      const [targetItem] = copiedItems.splice(source.index, 1)
+      copiedItems.splice(destination.index, 0, targetItem)
+      await setColumns({
         ...columns,
         [source.droppableId]: {
           ...column,
@@ -149,6 +190,8 @@ const BoardBase: React.FC = () => {
       })
     }
   }
+
+  console.log('Check relender')
 
   return (
     <div className={classes.area}>
