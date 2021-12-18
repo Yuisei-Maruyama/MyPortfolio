@@ -2,16 +2,16 @@ import React, { useState, useEffect, useCallback } from 'react'
 import classes from './BoardBase.module.scss'
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd'
 import { rgba } from 'polished'
-import { Avatar, IconButton } from '@mui/material'
+import { Avatar, IconButton, Card, CardContent, Typography } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
-import RefreshIcon from '@mui/icons-material/Refresh'
+import { AiOutlinePlus } from 'react-icons/ai'
 import axios from 'axios'
 
 const owner = process.env.REACT_APP_USER_NAME
 
 const repo = process.env.REACT_APP_PROJECT
 
-const token = 'token'
+const token = ''
 
 const request = axios.create({
   baseURL: 'https://api.github.com',
@@ -28,6 +28,9 @@ interface Issue {
   id: string
   title: string
   body: string
+  number: number
+  /* eslint-disable camelcase */
+  html_url: string
   labels: Label[]
 }
 
@@ -227,7 +230,7 @@ const BoardBase: React.FC = () => {
                         </Avatar>
                         <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
                         <IconButton>
-                          <RefreshIcon style={{ color: 'white', width: '30px' }}></RefreshIcon>
+                          <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
                         </IconButton>
                       </div>
                       {column.items?.map((item, index) => {
@@ -235,7 +238,7 @@ const BoardBase: React.FC = () => {
                           <Draggable key={item.id} draggableId={item.id} index={index}>
                             {(provided, snapshot) => {
                               return (
-                                <div
+                                <Card
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
@@ -250,8 +253,14 @@ const BoardBase: React.FC = () => {
                                     ...provided.draggableProps.style,
                                   }}
                                 >
-                                  {item.title}
-                                </div>
+                                  <CardContent style={{ padding: 0 }}>
+                                    <Typography sx={{ fontSize: 15 }} component="div">
+                                      <a href={item.html_url} style={{ color: 'white', textDecoration: 'none' }}>
+                                        {item.title}
+                                      </a>
+                                    </Typography>
+                                  </CardContent>
+                                </Card>
                               )
                             }}
                           </Draggable>
