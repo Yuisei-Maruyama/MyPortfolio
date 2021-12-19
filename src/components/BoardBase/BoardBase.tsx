@@ -2,9 +2,23 @@ import React, { useState, useEffect, useCallback } from 'react'
 import classes from './BoardBase.module.scss'
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd'
 import { rgba } from 'polished'
-import { Avatar, IconButton, Card, CardContent, Typography } from '@mui/material'
+import {
+  Avatar,
+  IconButton,
+  Card,
+  CardContent,
+  Typography,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Button,
+  TextField,
+  TextareaAutosize,
+} from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
-import { AiOutlinePlus } from 'react-icons/ai'
+import { AiOutlinePlus, AiOutlineClose } from 'react-icons/ai'
 import axios from 'axios'
 
 const owner = process.env.REACT_APP_USER_NAME
@@ -60,6 +74,8 @@ const BoardBase: React.FC = () => {
   const [doingItems, setDoing] = useState<Issues>([])
   const [closedItems, setClosed] = useState<Issues>([])
   const [columns, setColumns] = useState<Record<string, { title: string; items: Issues; label: Label }>>({})
+  const [open, setOpen] = useState<boolean>(false)
+  const [title, setTitle] = useState<string | undefined>(undefined)
 
   const fetchIssues = useCallback(async () => {
     const headers = await getHeaders()
@@ -201,6 +217,18 @@ const BoardBase: React.FC = () => {
 
   console.log('Check relender')
 
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClickClose = () => {
+    setOpen(false)
+  }
+
+  const handleChangeTitle = (e: { target: HTMLInputElement | HTMLTextAreaElement }) => {
+    setTitle(e.target.value)
+  }
+
   return (
     <div className={classes.area}>
       <h1>TaskBoard of GitHub Issue</h1>
@@ -234,9 +262,54 @@ const BoardBase: React.FC = () => {
                           {column.items ? column.items.length : '0'}
                         </Avatar>
                         <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
-                        <IconButton>
+                        <IconButton onClick={handleClickOpen}>
                           <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
                         </IconButton>
+                        <Dialog open={open} onClose={handleClickClose} fullWidth maxWidth="md">
+                          <DialogTitle
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              paddingRight: 13,
+                              backgroundColor: '#3F51B5',
+                            }}
+                          >
+                            <Typography sx={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>
+                              Create a new GitHub Issue
+                            </Typography>
+                            <IconButton onClick={handleClickClose} sx={{ color: 'white' }}>
+                              <AiOutlineClose />
+                            </IconButton>
+                          </DialogTitle>
+                          <DialogContent dividers>
+                            <DialogContentText>Create a new issue with {column.title} label.</DialogContentText>
+                            <TextField
+                              autoFocus
+                              margin="dense"
+                              id="title"
+                              label="Issue Title"
+                              type="text"
+                              color="primary"
+                              error={title === ''}
+                              required
+                              fullWidth
+                              variant="standard"
+                              value={title}
+                              onChange={handleChangeTitle}
+                            />
+                            <TextareaAutosize
+                              placeholder="Issue Description"
+                              minRows={12}
+                              style={{ width: '100%', marginTop: 15 }}
+                            />
+                          </DialogContent>
+                          <DialogActions>
+                            <Button onClick={handleClickClose} style={{ backgroundColor: '#3F51B5', color: 'white' }}>
+                              Submit
+                            </Button>
+                          </DialogActions>
+                        </Dialog>
                       </div>
                       {column.items?.map((item, index) => {
                         return (
@@ -263,18 +336,20 @@ const BoardBase: React.FC = () => {
                                       <Avatar
                                         alt={item.user.login}
                                         src={item.user.avatar_url}
-                                        sx={{ width: 35, height: 35 }}
+                                        sx={{ width: 35, height: 35, marginRight: 2 }}
                                       />
-                                      <Typography sx={{ fontSize: 16, marginLeft: 2 }} component="div">
-                                        <a href={item.html_url} style={{ color: 'white', textDecoration: 'none' }}>
-                                          {item.title}#{item.number}
-                                        </a>
-                                      </Typography>
+                                      <div style={{ flexDirection: 'column' }}>
+                                        <Typography sx={{ fontSize: 16, fontWeight: 'bold' }} component="div">
+                                          <a href={item.html_url} style={{ color: 'white', textDecoration: 'none' }}>
+                                            {item.title}
+                                          </a>
+                                        </Typography>
+                                        <Typography sx={{ mb: 1.0, margin: 0 }}>
+                                          #{item.number} opened by {item.user.login}
+                                        </Typography>
+                                      </div>
                                     </div>
                                   </CardContent>
-                                  {/* <CardActions disableSpacing style={{ display: 'flex', justifyContent: 'flex-end'}}>
-                                    <Avatar alt={item.user.login} src={item.user.avatar_url} sx={{ width: 35, height: 35 }} />
-                                  </CardActions> */}
                                 </Card>
                               )
                             }}
@@ -290,11 +365,6 @@ const BoardBase: React.FC = () => {
           })}
         </DragDropContext>
       </div>
-      <img
-        src={`${process.env.PUBLIC_URL}/assets/BoardDesign_PC.png`}
-        alt="BoardDesign"
-        style={{ marginTop: 20, width: 1400 }}
-      />
     </div>
   )
 }
