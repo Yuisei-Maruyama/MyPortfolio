@@ -68,7 +68,7 @@ const BoardBase: React.FC = () => {
   const [closedItems, setClosed] = useState<Issues>([])
   const [columns, setColumns] = useState<Record<string, { title: string; items: Issues; label: Label }>>({})
   const [open, setOpen] = useState<boolean>(false)
-  // const [inputError, setInputError] = useState(false)
+  const [selectedLabel, setSelectLabel] = useState<string>('')
 
   const fetchIssues = useCallback(async () => {
     const headers = await getHeaders()
@@ -209,7 +209,8 @@ const BoardBase: React.FC = () => {
 
   console.log('Check relender')
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (id: string) => {
+    setSelectLabel(id)
     setOpen(true)
   }
 
@@ -246,10 +247,10 @@ const BoardBase: React.FC = () => {
                           {column.items ? column.items.length : '0'}
                         </Avatar>
                         <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
-                        <IconButton onClick={handleClickOpen}>
+                        <IconButton onClick={() => handleClickOpen(id)}>
                           <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
                         </IconButton>
-                        <IssueDialog column={column} open={open} setOpen={(open) => setOpen(open)} />
+                        <IssueDialog selectedLabel={selectedLabel} open={open} setOpen={(open) => setOpen(open)} />
                       </div>
                       {column.items?.map((item, index) => {
                         return (

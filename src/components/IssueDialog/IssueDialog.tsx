@@ -12,7 +12,6 @@ import {
   TextareaAutosize,
 } from '@mui/material'
 import { AiOutlineClose } from 'react-icons/ai'
-import { Column } from '@/types'
 // import axios from 'axios'
 
 // const request = axios.create({
@@ -26,16 +25,15 @@ import { Column } from '@/types'
 // const token = process.env.REACT_APP_TOKEN
 
 type Props = {
-  column: Column
+  selectedLabel: string
   open: boolean
   setOpen: (open: boolean) => void
 }
 
 const IssueDialog: React.FC<Props> = (props: Props) => {
 
-  const { column, open, setOpen } = props
+  const { selectedLabel, open, setOpen } = props
 
-  // const [open, setOpen] = useState<boolean>(false)
   const [inputError, setInputError] = useState(false)
 
   const inputTitleRef = useRef<any>(null)
@@ -51,7 +49,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
     }
   }
 
-  const handleClickSubmit = async(labelName: Column) => {
+  const handleClickSubmit = async(labelName: string) => {
     console.log(inputTitleRef.current.value)
     console.log(inputDeskRef.current.value)
     console.log('labelName', labelName)
@@ -60,7 +58,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
     // await request.post(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=open`, { title: ${title}, body: ${description} }, { headers })
   }
 
-  console.log(column)
+  console.log(props)
 
   return (
     <>
@@ -82,7 +80,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
           </IconButton>
         </DialogTitle>
         <DialogContent dividers>
-          <DialogContentText>Create a new issue with label.</DialogContentText>
+          <DialogContentText>Create a new issue with <span style={{ fontWeight: 'bold'}}>{ selectedLabel.charAt(0).toUpperCase() + selectedLabel.slice(1) }</span> label.</DialogContentText>
           <TextField
             autoFocus
             margin="dense"
@@ -105,7 +103,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleClickSubmit(column)} style={{ backgroundColor: '#3F51B5', color: 'white' }}>
+          <Button onClick={() => handleClickSubmit(selectedLabel)} style={{ backgroundColor: '#3F51B5', color: 'white' }}>
             Submit
           </Button>
         </DialogActions>
