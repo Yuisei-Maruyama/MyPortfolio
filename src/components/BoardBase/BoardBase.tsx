@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import classes from './BoardBase.module.scss'
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd'
 import { rgba } from 'polished'
@@ -7,18 +7,11 @@ import {
   IconButton,
   Card,
   CardContent,
-  Typography,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Button,
-  TextField,
-  TextareaAutosize,
+  Typography
 } from '@mui/material'
+import { IssueDialog } from '@/components'
 import { deepPurple } from '@mui/material/colors'
-import { AiOutlinePlus, AiOutlineClose } from 'react-icons/ai'
+import { AiOutlinePlus } from 'react-icons/ai'
 import axios from 'axios'
 
 const owner = process.env.REACT_APP_USER_NAME
@@ -75,10 +68,7 @@ const BoardBase: React.FC = () => {
   const [closedItems, setClosed] = useState<Issues>([])
   const [columns, setColumns] = useState<Record<string, { title: string; items: Issues; label: Label }>>({})
   const [open, setOpen] = useState<boolean>(false)
-  const [inputError, setInputError] = useState(false)
-
-  const inputTitleRef = useRef<any>(null)
-  const inputDeskRef = useRef<any>(null)
+  // const [inputError, setInputError] = useState(false)
 
   const fetchIssues = useCallback(async () => {
     const headers = await getHeaders()
@@ -223,24 +213,6 @@ const BoardBase: React.FC = () => {
     setOpen(true)
   }
 
-  const handleClickClose = () => {
-    setOpen(false)
-  }
-
-  const handleInputTitle = () => {
-    if (inputTitleRef.current) {
-      inputTitleRef.current.value === '' ? setInputError(true) : setInputError(false)
-    }
-  }
-
-  const handleClickSubmit = async() => {
-    console.log(inputTitleRef.current.value)
-    console.log(inputDeskRef.current.value)
-    // const title = inputTitleRef.current.value
-    // const description = inputDeskRef.current.value
-    // await request.post(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=open`, { title: ${title}, body: ${description} }, { headers })
-  }
-
   return (
     <div className={classes.area}>
       <h1>TaskBoard of GitHub Issue</h1>
@@ -277,52 +249,7 @@ const BoardBase: React.FC = () => {
                         <IconButton onClick={handleClickOpen}>
                           <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
                         </IconButton>
-                        <Dialog open={open} onClose={handleClickClose} fullWidth maxWidth="md">
-                          <DialogTitle
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'space-between',
-                              paddingRight: 13,
-                              backgroundColor: '#3F51B5',
-                            }}
-                          >
-                            <Typography sx={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>
-                              Create a new GitHub Issue
-                            </Typography>
-                            <IconButton onClick={handleClickClose} sx={{ color: 'white' }}>
-                              <AiOutlineClose />
-                            </IconButton>
-                          </DialogTitle>
-                          <DialogContent dividers>
-                            <DialogContentText>Create a new issue with <span style={{ fontWeight: 'bold'}}>{column.title}</span> label.</DialogContentText>
-                            <TextField
-                              autoFocus
-                              margin="dense"
-                              id="title"
-                              label="Title"
-                              type="text"
-                              color="primary"
-                              error={inputError}
-                              helperText={inputError ? "Title is required." : ""}
-                              inputRef={inputTitleRef}
-                              fullWidth
-                              variant="standard"
-                              onChange={handleInputTitle}
-                            />
-                            <TextareaAutosize
-                              placeholder="Description"
-                              minRows={12}
-                              style={{ width: '100%', marginTop: 15 }}
-                              ref={inputDeskRef}
-                            />
-                          </DialogContent>
-                          <DialogActions>
-                            <Button onClick={handleClickSubmit} style={{ backgroundColor: '#3F51B5', color: 'white' }}>
-                              Submit
-                            </Button>
-                          </DialogActions>
-                        </Dialog>
+                        <IssueDialog column={column} open={open} setOpen={(open) => setOpen(open)} />
                       </div>
                       {column.items?.map((item, index) => {
                         return (

@@ -9,4 +9,11 @@ export { default as Circular } from './Circular/Circular'
 export { default as Menu } from './Menu/Menu'
 export { default as MessageArea } from './MessageArea/MessageArea'
 export { default as BoardBase } from './BoardBase/BoardBase'
+export { default as IssueDialog } from './IssueDialog/IssueDialog'
 // export { default as Baffle } from './components/Baffle'
+
+export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
+  const authorization = `bearer ${token}`
+  const headers = authorization ? { authorization } : {}
+  return headers
+}
