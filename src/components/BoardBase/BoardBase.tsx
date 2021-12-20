@@ -9,7 +9,7 @@ import {
   CardContent,
   Typography
 } from '@mui/material'
-import { IssueDialog } from '@/components'
+import { IssueDialog, getHeaders } from '@/components'
 import { deepPurple } from '@mui/material/colors'
 import { AiOutlinePlus } from 'react-icons/ai'
 import axios from 'axios'
@@ -55,12 +55,6 @@ const convertIssueType = (data: any) => {
   return payload
 }
 
-const getHeaders = async (): Promise<{ authorization?: string }> => {
-  const authorization = `bearer ${token}`
-  const headers = authorization ? { authorization } : {}
-  return headers
-}
-
 const BoardBase: React.FC = () => {
   const [issueItems, setIssues] = useState<Issues>([])
   const [todoItems, setTodo] = useState<Issues>([])
@@ -71,19 +65,19 @@ const BoardBase: React.FC = () => {
   const [selectedLabel, setSelectLabel] = useState<string>('')
 
   const fetchIssues = useCallback(async () => {
-    const headers = await getHeaders()
-    await request.get(`/repos/${owner}/${repo}/issues`, { headers }).then((res: { data: any }) => {
-      if (issueItems?.length) return
-      const payload = convertIssueType(res.data)
-      setIssues(payload)
-    })
+    if (!token) return
+    const headers = await getHeaders(token)
+    const { data } = await request.get(`/repos/${owner}/${repo}/issues`, { headers })
+    const payload = convertIssueType(data)
+    await setIssues(payload)
   }, [issueItems])
 
   const eachIssues = useCallback(async () => {
     const labelNames = ['Todo', 'Doing', 'Closed']
 
     await labelNames.forEach(async (labelName: string) => {
-      const headers = await getHeaders()
+      if (!token) return
+      const headers = await getHeaders(token)
       await request
         .get(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=open`, { headers })
         .then((res: { data: any }) => {
@@ -136,25 +130,27 @@ const BoardBase: React.FC = () => {
     await setColumns(columnsFromBackend)
   }, [todoItems, doingItems, closedItems])
 
-  useEffect(() => {
-    const orderProcess = async () => {
-      if (!issueItems?.length) {
-        await fetchIssues()
-      }
-
-      await eachIssues()
-
-      if (todoItems?.length && doingItems?.length && closedItems?.length) {
-        await initializeColumns()
-      }
+  const orderProcess = async () => {
+    if (!issueItems?.length) {
+      await fetchIssues()
     }
+
+    await eachIssues()
+
+    if (todoItems?.length && doingItems?.length && closedItems?.length) {
+      await initializeColumns()
+    }
+  }
+
+  useEffect(() => {
 
     orderProcess()
     // eslint-disable-next-line
   }, [todoItems, doingItems, closedItems])
 
   const changeLabel = async (issueNum: number, payload: { label: Label; owner: string; repo: string }) => {
-    const headers = await getHeaders()
+    if (!token) return
+    const headers = await getHeaders(token)
     const { data } = await request.put(
       `/repos/${owner}/${repo}/issues/${issueNum}/labels`,
       { labels: [payload.label.name] },
@@ -250,7 +246,7 @@ const BoardBase: React.FC = () => {
                         <IconButton onClick={() => handleClickOpen(id)}>
                           <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
                         </IconButton>
-                        <IssueDialog selectedLabel={selectedLabel} open={open} setOpen={(open) => setOpen(open)} />
+                        <IssueDialog selectedLabel={selectedLabel} open={open} setOpen={(open) => setOpen(open)} fetchIssues={fetchIssues} />
                       </div>
                       {column.items?.map((item, index) => {
                         return (

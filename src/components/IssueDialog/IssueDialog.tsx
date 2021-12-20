@@ -12,27 +12,29 @@ import {
   TextareaAutosize,
 } from '@mui/material'
 import { AiOutlineClose } from 'react-icons/ai'
-// import axios from 'axios'
+import axios from 'axios'
+import { getHeaders } from '@/components'
 
-// const request = axios.create({
-//   baseURL: 'https://api.github.com',
-// })
+const request = axios.create({
+  baseURL: 'https://api.github.com',
+})
 
-// const owner = process.env.REACT_APP_USER_NAME
+const owner = process.env.REACT_APP_USER_NAME
 
-// const repo = process.env.REACT_APP_PROJECT
+const repo = process.env.REACT_APP_PROJECT
 
-// const token = process.env.REACT_APP_TOKEN
+const token = process.env.REACT_APP_TOKEN
 
 type Props = {
   selectedLabel: string
   open: boolean
   setOpen: (open: boolean) => void
+  fetchIssues: () => void
 }
 
 const IssueDialog: React.FC<Props> = (props: Props) => {
 
-  const { selectedLabel, open, setOpen } = props
+  const { selectedLabel, open, setOpen, fetchIssues } = props
 
   const [inputError, setInputError] = useState(false)
 
@@ -50,15 +52,18 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
   }
 
   const handleClickSubmit = async(labelName: string) => {
-    console.log(inputTitleRef.current.value)
-    console.log(inputDeskRef.current.value)
-    console.log('labelName', labelName)
-    // const title = inputTitleRef.current.value
-    // const description = inputDeskRef.current.value
-    // await request.post(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=open`, { title: ${title}, body: ${description} }, { headers })
+    if (!token) return
+    const headers = await getHeaders(token)
+    const title = inputTitleRef.current.value
+    const description = inputDeskRef.current.value
+    await request.post(`/repos/${owner}/${repo}/issues`, { title: title, body: description, labels: [labelName] }, { headers })
+    await handleClickClose()
+    await fetchIssues()
   }
 
-  console.log(props)
+  const convertToUpperCase = (name: string) => {
+    return name.charAt(0).toUpperCase() + name.slice(1)
+  }
 
   return (
     <>
@@ -80,7 +85,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
           </IconButton>
         </DialogTitle>
         <DialogContent dividers>
-          <DialogContentText>Create a new issue with <span style={{ fontWeight: 'bold'}}>{ selectedLabel.charAt(0).toUpperCase() + selectedLabel.slice(1) }</span> label.</DialogContentText>
+          <DialogContentText>Create a new issue with <span style={{ fontWeight: 'bold'}}>{ convertToUpperCase(selectedLabel) }</span> label.</DialogContentText>
           <TextField
             autoFocus
             margin="dense"
@@ -103,7 +108,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleClickSubmit(selectedLabel)} style={{ backgroundColor: '#3F51B5', color: 'white' }}>
+          <Button onClick={() => handleClickSubmit(convertToUpperCase(selectedLabel))} style={{ backgroundColor: '#3F51B5', color: 'white' }}>
             Submit
           </Button>
         </DialogActions>
