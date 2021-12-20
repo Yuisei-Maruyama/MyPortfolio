@@ -7,10 +7,9 @@ import {
   IconButton,
   Card,
   CardContent,
-  Typography,
-  Switch
+  Typography
 } from '@mui/material'
-import { IssueDialog, getHeaders } from '@/components'
+import { IssueDialog, getHeaders, IconSwitch } from '@/components'
 import { deepPurple } from '@mui/material/colors'
 import { AiOutlinePlus } from 'react-icons/ai'
 import axios from 'axios'
@@ -216,11 +215,24 @@ const BoardBase: React.FC = () => {
     setToggle((event.target as unknown as { checked: boolean }).checked)
   }
 
+  const switchProps = {
+    checked: toggle,
+    color: {
+      checkedColor: '#F70A24',
+      unCheckColor: '#3F51B5'
+    },
+    // svg: {
+    //   checkedSvg: "M20.37, 8.91L19.37, 10.64L7.24, 3.64L8.24, 1.91L11.28, 3.66L12.64, 3.29L16.97, 5.79L17.34, 7.16L20.37, 8.91M6, 19V7H11.07L18, 11V19A2, 2 0 0, 1 16, 21H8A2, 2 0 0, 1 6, 19Z",
+    //   unCheckedSvg: "M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
+    // },
+    onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => handleClickToggle(e)
+  }
+
   return (
     <div className={classes.area}>
       <div style={{ display: 'flex', alignItems: 'center'}}>
         <h1 style={{ flexGrow: 1 }}>TaskBoard of GitHub Issue</h1>
-        <Switch size='medium' checked={toggle} onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => handleClickToggle(e)}></Switch>
+        <IconSwitch {...switchProps} />
       </div>
       <a onClick={() => window.open('https://docs.github.com/ja/rest/reference/users', '_blank')} style={{ cursor: 'pointer' }}>
         <p style={{ color: '#C38FFF' }}>GitHub API</p>

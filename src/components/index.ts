@@ -11,6 +11,7 @@ export { default as MessageArea } from './MessageArea/MessageArea'
 export { default as BoardBase } from './BoardBase/BoardBase'
 export { default as IssueDialog } from './IssueDialog/IssueDialog'
 // export { default as Baffle } from './components/Baffle'
+export { default as IconSwitch} from './SvgIconSwitch/SvgIconSwitch'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`
