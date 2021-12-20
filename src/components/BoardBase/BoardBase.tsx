@@ -7,7 +7,8 @@ import {
   IconButton,
   Card,
   CardContent,
-  Typography
+  Typography,
+  Switch
 } from '@mui/material'
 import { IssueDialog, getHeaders } from '@/components'
 import { deepPurple } from '@mui/material/colors'
@@ -63,6 +64,7 @@ const BoardBase: React.FC = () => {
   const [columns, setColumns] = useState<Record<string, { title: string; items: Issues; label: Label }>>({})
   const [open, setOpen] = useState<boolean>(false)
   const [selectedLabel, setSelectLabel] = useState<string>('')
+  const [toggle, setToggle] = useState<boolean>(false)
 
   const fetchIssues = useCallback(async () => {
     if (!token) return
@@ -70,7 +72,7 @@ const BoardBase: React.FC = () => {
     const { data } = await request.get(`/repos/${owner}/${repo}/issues`, { headers })
     const payload = convertIssueType(data)
     await setIssues(payload)
-  }, [issueItems])
+  }, [])
 
   const eachIssues = useCallback(async () => {
     const labelNames = ['Todo', 'Doing', 'Closed']
@@ -210,13 +212,20 @@ const BoardBase: React.FC = () => {
     setOpen(true)
   }
 
+  const handleClickToggle = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    setToggle((event.target as unknown as { checked: boolean }).checked)
+  }
+
   return (
     <div className={classes.area}>
-      <h1>TaskBoard of GitHub Issue</h1>
-      <a onClick={() => window.open('https://docs.github.com/ja/rest/reference/users', '_blank')} style={{ cursor: 'pointer'}}>
+      <div style={{ display: 'flex', alignItems: 'center'}}>
+        <h1 style={{ flexGrow: 1 }}>TaskBoard of GitHub Issue</h1>
+        <Switch size='medium' checked={toggle} onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => handleClickToggle(e)}></Switch>
+      </div>
+      <a onClick={() => window.open('https://docs.github.com/ja/rest/reference/users', '_blank')} style={{ cursor: 'pointer' }}>
         <p style={{ color: '#C38FFF' }}>GitHub API</p>
       </a>
-      <a onClick={() => window.open('https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md', '_blank')} style={{ cursor: 'pointer'}}>
+      <a onClick={() => window.open('https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md', '_blank')} style={{ cursor: 'pointer' }}>
         <p style={{ color: '#C38FFF' }}>react-beautiful-dnd</p>
       </a>
       <div style={{ display: 'flex' }}>
@@ -239,7 +248,7 @@ const BoardBase: React.FC = () => {
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <Avatar sx={{ width: 24, height: 24, bgcolor: deepPurple[500], margin: '10px' }}>
+                        <Avatar sx={{ width: 30, height: 30, bgcolor: deepPurple[500], margin: '10px' }}>
                           {column.items ? column.items.length : '0'}
                         </Avatar>
                         <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
@@ -275,11 +284,9 @@ const BoardBase: React.FC = () => {
                                         src={item.user.avatar_url}
                                         sx={{ width: 35, height: 35, marginRight: 2 }}
                                       />
-                                      <div style={{ flexDirection: 'column' }}>
-                                        <Typography sx={{ fontSize: 16, fontWeight: 'bold' }} component="div">
-                                          <a href={item.html_url} style={{ color: 'white', textDecoration: 'none' }}>
-                                            {item.title}
-                                          </a>
+                                      <div style={{ flexDirection: 'column' }} >
+                                        <Typography sx={{ fontSize: 16, fontWeight: 'bold', color: 'white', cursor: 'pointer' }} component="div" onClick={() => window.open(`${item.html_url}`, '_blank')}>
+                                          {item.title}
                                         </Typography>
                                         <Typography sx={{ mb: 1.0, margin: 0 }}>
                                           #{item.number} opened by {item.user.login}
