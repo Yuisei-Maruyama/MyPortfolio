@@ -14,6 +14,8 @@ import {
 import { AiOutlineClose } from 'react-icons/ai'
 import axios from 'axios'
 import { getHeaders } from '@/components'
+import { Issues, Issue } from '@/types'
+import { convertIssueId } from '@/data/utils'
 
 const request = axios.create({
   baseURL: 'https://api.github.com',
@@ -30,11 +32,13 @@ type Props = {
   open: boolean
   setOpen: (open: boolean) => void
   fetchIssues: () => void
+  todoItems: Issues
+  setTodo: React.Dispatch<React.SetStateAction<Issues>>
 }
 
 const IssueDialog: React.FC<Props> = (props: Props) => {
 
-  const { selectedLabel, open, setOpen, fetchIssues } = props
+  const { selectedLabel, open, setOpen, fetchIssues, todoItems, setTodo } = props
 
   const [inputError, setInputError] = useState(false)
 
@@ -51,14 +55,21 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
     }
   }
 
+  // Issues内をIDで降順で並べ替え
+  const sortIssues = (before: Issue, after: Issue) => {
+    return before.id < after.id ? 1 : -1
+  }
+
   const handleClickSubmit = async(labelName: string) => {
     if (!token) return
     const headers = await getHeaders(token)
     const title = inputTitleRef.current.value
     const description = inputDeskRef.current.value
-    await request.post(`/repos/${owner}/${repo}/issues`, { title: title, body: description, labels: [labelName] }, { headers })
+    const { data } = await request.post(`/repos/${owner}/${repo}/issues`, { title: title, body: description, labels: [labelName] }, { headers })
+    const payload = convertIssueId(data)
     await handleClickClose()
     await fetchIssues()
+    await setTodo([...todoItems, payload].sort(sortIssues))
   }
 
   const convertToUpperCase = (name: string) => {

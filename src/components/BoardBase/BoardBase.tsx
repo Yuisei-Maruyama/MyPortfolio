@@ -13,6 +13,8 @@ import { IssueDialog, getHeaders, IconSwitch } from '@/components'
 import { deepPurple } from '@mui/material/colors'
 import { AiOutlinePlus } from 'react-icons/ai'
 import axios from 'axios'
+import { Label, Issues } from '@/types'
+import { convertIssueId, convertLabel } from '@/data/utils'
 
 const owner = process.env.REACT_APP_USER_NAME
 
@@ -23,37 +25,6 @@ const token = process.env.REACT_APP_TOKEN
 const request = axios.create({
   baseURL: 'https://api.github.com',
 })
-
-interface Label {
-  description?: string
-  id?: number
-  name?: string
-  url?: string
-}
-
-interface Issue {
-  id: string
-  title: string
-  body: string
-  number: number
-  /* eslint-disable camelcase */
-  html_url: string
-  user: {
-    url: string
-    login: string
-    avatar_url: string
-  }
-  labels: Label[]
-}
-
-type Issues = Issue[]
-
-const convertIssueType = (data: any) => {
-  const payload = data.map((item: { id: number }) => {
-    return { ...item, id: item.id.toString() }
-  })
-  return payload
-}
 
 const BoardBase: React.FC = () => {
   const [issueItems, setIssues] = useState<Issues>([])
@@ -69,7 +40,7 @@ const BoardBase: React.FC = () => {
     if (!token) return
     const headers = await getHeaders(token)
     const { data } = await request.get(`/repos/${owner}/${repo}/issues`, { headers })
-    const payload = convertIssueType(data)
+    const payload = convertIssueId(data)
     await setIssues(payload)
   }, [])
 
@@ -83,30 +54,20 @@ const BoardBase: React.FC = () => {
         .get(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=open`, { headers })
         .then((res: { data: any }) => {
           if (labelName === 'Todo' && !todoItems?.length) {
-            const payload = convertIssueType(res.data)
+            const payload = convertIssueId(res.data)
             setTodo(payload)
           }
           if (labelName === 'Doing' && !doingItems?.length) {
-            const payload = convertIssueType(res.data)
+            const payload = convertIssueId(res.data)
             setDoing(payload)
           }
           if (labelName === 'Closed' && !closedItems?.length) {
-            const payload = convertIssueType(res.data)
+            const payload = convertIssueId(res.data)
             setClosed(payload)
           }
         })
     })
   }, [todoItems, doingItems, closedItems])
-
-  const convertLabel = (items: Issues): Label => {
-    const labels = { ...items[0].labels }
-    let label
-    Object.entries(labels).forEach(([key, value]) => {
-      label = value
-      return value
-    })
-    return label as unknown as Label
-  }
 
   const initializeColumns = useCallback(async () => {
     if (!(todoItems || doingItems || closedItems)?.length) return
@@ -152,12 +113,11 @@ const BoardBase: React.FC = () => {
   const changeLabel = async (issueNum: number, payload: { label: Label; owner: string; repo: string }) => {
     if (!token) return
     const headers = await getHeaders(token)
-    const { data } = await request.put(
+    await request.put(
       `/repos/${owner}/${repo}/issues/${issueNum}/labels`,
       { labels: [payload.label.name] },
       { headers }
     )
-    console.log(data)
   }
 
   const onDragEnd = async (result: DropResult, columns: any, setColumns: any) => {
@@ -267,7 +227,7 @@ const BoardBase: React.FC = () => {
                         <IconButton onClick={() => handleClickOpen(id)}>
                           <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
                         </IconButton>
-                        <IssueDialog selectedLabel={selectedLabel} open={open} setOpen={(open) => setOpen(open)} fetchIssues={fetchIssues} />
+                        <IssueDialog selectedLabel={selectedLabel} open={open} setOpen={(open) => setOpen(open)} fetchIssues={fetchIssues} todoItems={todoItems} setTodo={setTodo} />
                       </div>
                       {column.items?.map((item, index) => {
                         return (
