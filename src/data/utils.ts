@@ -1,5 +1,3 @@
-import { Issues, Label} from '@/types'
-
 /** 2 つの値の間のランダムな整数を取得 */
 export function getRandomInt(min: number, max: number): number {
   const minInt = Math.ceil(min)
