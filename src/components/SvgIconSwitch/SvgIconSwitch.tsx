@@ -1,10 +1,8 @@
 import React from 'react'
-// import React from 'react'
 import Switch from '@mui/material/Switch'
 import { styled } from '@mui/material/styles'
 
-const MaterialUISwitch = styled(Switch)(({ checked, checkedColor, unCheckColor }: { checked: boolean, checkedColor: string, unCheckColor: string  }) => ({
-// const MaterialUISwitch = styled(Switch)(({ checked, checkedColor, unCheckColor, checkedSvg, unCheckedSvg }: { checked: boolean, checkedColor: string, unCheckColor: string, checkedSvg: string, unCheckedSvg: string  }) => ({
+const MaterialUISwitch = styled(Switch)(({ checked, checkedcolor, uncheckcolor }: { checked: boolean, checkedcolor: string, uncheckcolor: string }) => ({
   width: 62,
   height: 34,
   padding: 7,
@@ -28,7 +26,7 @@ const MaterialUISwitch = styled(Switch)(({ checked, checkedColor, unCheckColor }
     },
   },
   '& .MuiSwitch-thumb': {
-    backgroundColor:  checked ? checkedColor : unCheckColor,
+    backgroundColor:  checked ? checkedcolor : uncheckcolor,
     width: 32,
     height: 32,
     '&:before': {
@@ -56,8 +54,8 @@ const MaterialUISwitch = styled(Switch)(({ checked, checkedColor, unCheckColor }
 // type Props = {
 //   checked: boolean
 //   color: {
-//     checkedColor: string
-//     unCheckColor: string
+//     checkedcolor: string
+//     uncheckcolor: string
 //   },
 //   svg: {
 //     checkedSvg: string
@@ -69,25 +67,27 @@ const MaterialUISwitch = styled(Switch)(({ checked, checkedColor, unCheckColor }
 type Props = {
   checked: boolean
   color: {
-    checkedColor: string
-    unCheckColor: string
+    checkedcolor: string
+    uncheckcolor: string
   },
   onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
 const IconSwitch: React.FC<Props> = (props: Props) => {
+
+
   const { checked, onClick, color } = props
   // const { checked, onClick, color, svg } = props
-  const { checkedColor, unCheckColor } = color
+  const { checkedcolor, uncheckcolor } = color
   // const { checkedSvg, unCheckedSvg } = svg
   return (
     <>
       <MaterialUISwitch
         sx={{ m: 1 }}
-        defaultChecked={checked}
+        // defaultChecked={checked}
         checked={checked}
-        checkedColor={checkedColor}
-        unCheckColor={unCheckColor}
+        checkedcolor={checkedcolor}
+        uncheckcolor={uncheckcolor}
         // checkedSvg={checkedSvg}
         // unCheckedSvg={unCheckedSvg}
         onClick={onClick}
