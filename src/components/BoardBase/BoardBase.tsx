@@ -9,12 +9,11 @@ import {
   CardContent,
   Typography
 } from '@mui/material'
-import { IssueDialog, getHeaders, IconSwitch } from '@/components'
+import { IssueDialog, getHeaders, IconSwitch, convertIssueId, convertLabel } from '@/components'
 import { deepPurple } from '@mui/material/colors'
 import { AiOutlinePlus } from 'react-icons/ai'
 import axios from 'axios'
 import { Label, Issues } from '@/types'
-import { convertIssueId, convertLabel } from '@/data/utils'
 
 const owner = process.env.REACT_APP_USER_NAME
 
@@ -181,10 +180,10 @@ const BoardBase: React.FC = () => {
       checkedcolor: '#3F51B5',
       uncheckcolor: deepPurple[500]
     },
-    // svg: {
-    //   checkedSvg: "M20.37, 8.91L19.37, 10.64L7.24, 3.64L8.24, 1.91L11.28, 3.66L12.64, 3.29L16.97, 5.79L17.34, 7.16L20.37, 8.91M6, 19V7H11.07L18, 11V19A2, 2 0 0, 1 16, 21H8A2, 2 0 0, 1 6, 19Z",
-    //   unCheckedSvg: "M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
-    // },
+    svg: {
+      checkedsvg: "M20.37, 8.91L19.37, 10.64L7.24, 3.64L8.24, 1.91L11.28, 3.66L12.64, 3.29L16.97, 5.79L17.34, 7.16L20.37, 8.91M6, 19V7H11.07L18, 11V19A2, 2 0 0, 1 16, 21H8A2, 2 0 0, 1 6, 19Z",
+      unchecksvg: "M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
+    },
     onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => handleClickToggle(e)
   }
 
@@ -220,7 +219,7 @@ const BoardBase: React.FC = () => {
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <Avatar sx={{ width: 30, height: 30, bgcolor: deepPurple[500], margin: '10px' }}>
+                        <Avatar sx={{ width: 30, height: 30, bgcolor: deepPurple[500], margin: '10px', fontWeight: 'bold', fontSize: 16 }}>
                           {column.items ? column.items.length : '0'}
                         </Avatar>
                         <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
