@@ -112,9 +112,20 @@ const BoardBase: React.FC = () => {
   const changeLabel = async (issueNum: number, payload: { label: Label; owner: string; repo: string }) => {
     if (!token) return
     const headers = await getHeaders(token)
-    await request.put(
-      `/repos/${owner}/${repo}/issues/${issueNum}/labels`,
-      { labels: [payload.label.name] },
+    const { label } = payload
+    if (label.name === 'Closed') {
+      await request.patch(
+        `/repos/${owner}/${repo}/issues/${issueNum}`,
+        {
+          state: 'closed',
+          labels: [payload.label.name]
+        },
+        { headers }
+      )
+    }
+    await request.patch(
+      `/repos/${owner}/${repo}/issues/${issueNum}`,
+      { labels: [label.name] },
       { headers }
     )
   }
