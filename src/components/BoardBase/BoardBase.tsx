@@ -34,7 +34,7 @@ const BoardBase: React.FC = () => {
   const [columns, setColumns] = useState<Record<string, { title: string; items: Issues; label: Label }>>({})
   const [open, setOpen] = useState<boolean>(false)
   const [selectedLabel, setSelectLabel] = useState<string>('')
-  const [toggle, setToggle] = useState<boolean>(false)
+  const [toggleDelete, setDelete] = useState<boolean>(false)
 
   const fetchIssues = useCallback(async () => {
     if (!token) return
@@ -178,16 +178,17 @@ const BoardBase: React.FC = () => {
   console.log('Check relender')
 
   const handleClickOpen = (id: string) => {
+    console.log(id)
     setSelectLabel(id)
     setOpen(true)
   }
 
   const handleClickToggle = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    setToggle((event.target as unknown as { checked: boolean }).checked)
+    setDelete((event.target as unknown as { checked: boolean }).checked)
   }
 
   const switchProps = {
-    checked: toggle,
+    checked: toggleDelete,
     color: {
       checkedcolor: '#3F51B5',
       uncheckcolor: deepPurple[500]
@@ -235,9 +236,13 @@ const BoardBase: React.FC = () => {
                           {column.items ? column.items.length : '0'}
                         </Avatar>
                         <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
-                        <IconButton onClick={() => handleClickOpen(id)}>
-                          <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
-                        </IconButton>
+                        {
+                          id === 'todo'
+                            ? <IconButton onClick={() => handleClickOpen(id)}>
+                                <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
+                              </IconButton>
+                            : <></>
+                        }
                         <IssueDialog selectedLabel={selectedLabel} open={open} setOpen={(open) => setOpen(open)} fetchIssues={fetchIssues} todoItems={todoItems} setTodo={setTodo} />
                       </div>
                       {column.items?.map((item, index) => {
@@ -268,7 +273,7 @@ const BoardBase: React.FC = () => {
                                         sx={{ width: 35, height: 35, marginRight: 2 }}
                                       />
                                       <div style={{ flexDirection: 'column', flexGrow: 1 }} >
-                                        <Typography sx={{ fontSize: 16, fontWeight: 'bold', color: 'white', cursor: 'pointer' }} component="div" onClick={() => window.open(`${item.html_url}`, '_blank')}>
+                                        <Typography sx={{ fontSize: 16, fontWeight: 'bold', color: 'white', cursor: 'pointer', width: 260 }} component="div" onClick={() => window.open(`${item.html_url}`, '_blank')}>
                                           {item.title}
                                         </Typography>
                                         <Typography sx={{ mb: 1.0, margin: 0 }}>
@@ -276,7 +281,7 @@ const BoardBase: React.FC = () => {
                                         </Typography>
                                       </div>
                                       {
-                                        toggle ? <IconButton onClick={() => handleClickOpen(id)} style={{ color: 'white', marginLeft: 5 }}>
+                                        toggleDelete ? <IconButton onClick={() => handleClickOpen(id)} style={{ color: 'white', marginLeft: 5 }}>
                                             <DeleteForeverIcon fontSize='large' />
                                           </IconButton>
                                         : <></>
