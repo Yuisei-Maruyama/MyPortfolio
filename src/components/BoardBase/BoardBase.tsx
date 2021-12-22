@@ -12,6 +12,7 @@ import {
 import { IssueDialog, getHeaders, IconSwitch, convertIssueId, convertLabel } from '@/components'
 import { deepPurple } from '@mui/material/colors'
 import { AiOutlinePlus } from 'react-icons/ai'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import axios from 'axios'
 import { Label, Issues } from '@/types'
 
@@ -266,7 +267,7 @@ const BoardBase: React.FC = () => {
                                         src={item.user.avatar_url}
                                         sx={{ width: 35, height: 35, marginRight: 2 }}
                                       />
-                                      <div style={{ flexDirection: 'column' }} >
+                                      <div style={{ flexDirection: 'column', flexGrow: 1 }} >
                                         <Typography sx={{ fontSize: 16, fontWeight: 'bold', color: 'white', cursor: 'pointer' }} component="div" onClick={() => window.open(`${item.html_url}`, '_blank')}>
                                           {item.title}
                                         </Typography>
@@ -274,6 +275,12 @@ const BoardBase: React.FC = () => {
                                           #{item.number} opened by {item.user.login}
                                         </Typography>
                                       </div>
+                                      {
+                                        toggle ? <IconButton onClick={() => handleClickOpen(id)} style={{ color: 'white', marginLeft: 5 }}>
+                                            <DeleteForeverIcon fontSize='large' />
+                                          </IconButton>
+                                        : <></>
+                                      }
                                     </div>
                                   </CardContent>
                                 </Card>
