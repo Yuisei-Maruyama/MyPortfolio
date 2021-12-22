@@ -52,7 +52,7 @@ const BoardBase: React.FC = () => {
       if (!token) return
       const headers = await getHeaders(token)
       await request
-        .get(`/repos/${owner}/${repo}/issues?labels=${labelName}`, { headers })
+        .get(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=all`, { headers })
         .then((res: { data: any }) => {
           if (labelName === 'Todo' && !todoItems?.length) {
             const payload = convertIssueId(res.data)
@@ -315,7 +315,7 @@ const BoardBase: React.FC = () => {
                                           {item.title}
                                         </Typography>
                                         <Typography sx={{ mb: 1.0, margin: 0 }}>
-                                          #{item.number} opened by {item.user.login}
+                                          #{item.number} {item.state} by {item.user.login}
                                         </Typography>
                                       </div>
                                       {
