@@ -13,9 +13,8 @@ import {
 } from '@mui/material'
 import { AiOutlineClose } from 'react-icons/ai'
 import axios from 'axios'
-import { getHeaders } from '@/components'
+import { getHeaders, convertIssueId } from '@/components'
 import { Issues, Issue } from '@/types'
-import { convertIssueId } from '@/data/utils'
 
 const request = axios.create({
   baseURL: 'https://api.github.com',
