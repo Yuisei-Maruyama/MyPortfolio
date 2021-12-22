@@ -35,6 +35,7 @@ const BoardBase: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false)
   const [selectedLabel, setSelectLabel] = useState<string>('')
   const [toggleDelete, setDelete] = useState<boolean>(false)
+  const [id, setId] = useState<string | undefined>(undefined)
 
   const fetchIssues = useCallback(async () => {
     if (!token) return
@@ -177,9 +178,12 @@ const BoardBase: React.FC = () => {
 
   console.log('Check relender')
 
-  const handleClickOpen = (id: string) => {
-    setSelectLabel(id)
+  const handleClickOpen = (label: string, id?: string) => {
+    setSelectLabel(label)
     setOpen(true)
+    if (id) {
+      setId(id)
+    }
   }
 
   const handleClickToggle = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -215,9 +219,9 @@ const BoardBase: React.FC = () => {
       </div>
       <div style={{ display: 'flex' }}>
         <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
-          {Object.entries(columns).map(([id, column], index) => {
+          {Object.entries(columns).map(([label, column]) => {
             return (
-              <Droppable droppableId={id} key={id}>
+              <Droppable droppableId={label} key={label}>
                 {(provided, snapshot) => {
                   return (
                     <div
@@ -238,21 +242,38 @@ const BoardBase: React.FC = () => {
                         </Avatar>
                         <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
                         {
-                          id === 'todo'
-                            ? <IconButton onClick={() => handleClickOpen(id)}>
+                          label === 'todo'
+                            ? <IconButton onClick={() => handleClickOpen(label)}>
                                 <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
                               </IconButton>
                             : <></>
                         }
-                        <IssueDialog
-                          dialogTitle='Create a new GitHub Issue'
-                          selectedLabel={selectedLabel}
-                          open={open}
-                          setOpen={(open) => setOpen(open)}
-                          fetchIssues={fetchIssues}
-                          todoItems={todoItems}
-                          setTodo={setTodo}
-                        />
+                        {
+                          id
+                            ? <IssueDialog
+                                issueId={id}
+                                dialogTitle='Delete a GitHub Issue'
+                                dialogDesc={['Delete a issue with <span style={{ fontWeight: "bold"}}>{ convertToUpperCase(selectedLabel) }</span> label.']}
+                                selectedLabel={selectedLabel}
+                                open={open}
+                                todoItems={todoItems}
+                                setOpen={(open) => setOpen(open)}
+                                fetchIssues={fetchIssues}
+                                setTodo={setTodo}
+                                setId={setId}
+                              />
+                            : <IssueDialog
+                                dialogTitle='Create a new GitHub Issue'
+                                dialogDesc={['Create a new issue with <span style={{ fontWeight: "bold"}}>{ convertToUpperCase(selectedLabel) }</span> label.']}
+                                selectedLabel={selectedLabel}
+                                open={open}
+                                todoItems={todoItems}
+                                setOpen={(open) => setOpen(open)}
+                                fetchIssues={fetchIssues}
+                                setTodo={setTodo}
+                                setId={setId}
+                              />
+                        }
                       </div>
                       {column.items?.map((item, index) => {
                         return (
@@ -291,7 +312,7 @@ const BoardBase: React.FC = () => {
                                       </div>
                                       {
                                         toggleDelete
-                                          ? <IconButton onClick={() => handleClickOpen(id)} style={{ color: 'white', marginLeft: 5 }}>
+                                          ? <IconButton onClick={() => handleClickOpen(label, item.id)} style={{ color: 'white', marginLeft: 5 }}>
                                             <DeleteForeverIcon fontSize='large' />
                                           </IconButton>
                                         : <></>

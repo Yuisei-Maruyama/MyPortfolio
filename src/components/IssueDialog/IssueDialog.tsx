@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, ElementType } from 'react'
 import {
   IconButton,
   Typography,
@@ -27,17 +27,23 @@ const repo = process.env.REACT_APP_PROJECT
 const token = process.env.REACT_APP_TOKEN
 
 type Props = {
+  issueId?: string
+  dialogTitle: string
+  dialogDesc: string | Array<string | ElementType>
   selectedLabel: string
   open: boolean
+  todoItems: Issues
   setOpen: (open: boolean) => void
   fetchIssues: () => void
-  todoItems: Issues
   setTodo: React.Dispatch<React.SetStateAction<Issues>>
+  setId: (id: string | undefined) => void
 }
 
 const IssueDialog: React.FC<Props> = (props: Props) => {
 
-  const { selectedLabel, open, setOpen, fetchIssues, todoItems, setTodo } = props
+  console.log(props)
+
+  const { dialogTitle, dialogDesc, selectedLabel, open, todoItems, setOpen, fetchIssues, setTodo, setId } = props
 
   const [inputError, setInputError] = useState(false)
 
@@ -46,6 +52,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
 
   const handleClickClose = () => {
     setOpen(false)
+    setId(undefined)
   }
 
   const handleInputTitle = () => {
@@ -88,14 +95,14 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
           }}
         >
           <Typography sx={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>
-            Create a new GitHub Issue
+            { dialogTitle }
           </Typography>
           <IconButton onClick={handleClickClose} sx={{ color: 'white' }}>
             <AiOutlineClose />
           </IconButton>
         </DialogTitle>
         <DialogContent dividers>
-          <DialogContentText>Create a new issue with <span style={{ fontWeight: 'bold'}}>{ convertToUpperCase(selectedLabel) }</span> label.</DialogContentText>
+          <DialogContentText>{ dialogDesc }</DialogContentText>
           <TextField
             autoFocus
             margin="dense"
