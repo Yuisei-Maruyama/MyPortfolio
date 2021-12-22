@@ -27,23 +27,42 @@ const repo = process.env.REACT_APP_PROJECT
 const token = process.env.REACT_APP_TOKEN
 
 type Props = {
-  issueId?: string
+  issueNumber?: number
   dialogTitle: string
   dialogDesc: string | Array<string | ElementType>
   selectedLabel: string
   open: boolean
   todoItems: Issues
+  doingItems: Issues
+  closedItems: Issues
   setOpen: (open: boolean) => void
   fetchIssues: () => void
+  setNumber: (num: number | undefined) => void
   setTodo: React.Dispatch<React.SetStateAction<Issues>>
-  setId: (id: string | undefined) => void
+  setDoing: React.Dispatch<React.SetStateAction<Issues>>
+  setClosed: React.Dispatch<React.SetStateAction<Issues>>
 }
 
 const IssueDialog: React.FC<Props> = (props: Props) => {
 
   console.log(props)
 
-  const { dialogTitle, dialogDesc, selectedLabel, open, todoItems, setOpen, fetchIssues, setTodo, setId } = props
+  const {
+    issueNumber,
+    dialogTitle,
+    dialogDesc,
+    selectedLabel,
+    open,
+    todoItems,
+    doingItems,
+    closedItems,
+    setOpen,
+    fetchIssues,
+    setTodo,
+    setDoing,
+    setClosed,
+    setNumber
+  } = props
 
   const [inputError, setInputError] = useState(false)
 
@@ -52,7 +71,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
 
   const handleClickClose = () => {
     setOpen(false)
-    setId(undefined)
+    setNumber(undefined)
   }
 
   const handleInputTitle = () => {
@@ -76,6 +95,21 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
     await handleClickClose()
     await fetchIssues()
     await setTodo([...todoItems, payload].sort(sortIssues))
+  }
+
+  // https://github.com/Yuisei-Maruyama/MyPortfolio/issues/39
+
+  const handleClickDelete = async (num: number, labelName: string) => {
+    if (!token) return
+    const headers = await getHeaders(token)
+    const { data } = await request.delete(`/repos/${owner}/${repo}/issues/${num}`, { headers })
+    console.log(data)
+    const payload = convertIssueId(data)
+    await handleClickClose()
+    await fetchIssues()
+    if (labelName === 'Todo') await setTodo([...todoItems, payload].sort(sortIssues))
+    if (labelName === 'Doing') await setDoing([...doingItems, payload].sort(sortIssues))
+    if (labelName === 'Closed') await setClosed([...closedItems, payload].sort(sortIssues))
   }
 
   const convertToUpperCase = (name: string) => {
@@ -102,32 +136,42 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
           </IconButton>
         </DialogTitle>
         <DialogContent dividers>
-          <DialogContentText>{ dialogDesc }</DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="title"
-            label="Title"
-            type="text"
-            color="primary"
-            error={inputError}
-            helperText={inputError ? "Title is required." : ""}
-            inputRef={inputTitleRef}
-            fullWidth
-            variant="standard"
-            onChange={handleInputTitle}
-          />
-          <TextareaAutosize
-            placeholder="Description"
-            minRows={12}
-            style={{ width: '100%', marginTop: 15 }}
-            ref={inputDeskRef}
-          />
+          {
+            issueNumber
+              ? <DialogContentText>{ dialogDesc }</DialogContentText>
+              : <>
+                  <DialogContentText>{ dialogDesc }</DialogContentText>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="title"
+                    label="Title"
+                    type="text"
+                    color="primary"
+                    error={inputError}
+                    helperText={inputError ? "Title is required." : ""}
+                    inputRef={inputTitleRef}
+                    fullWidth
+                    variant="standard"
+                    onChange={handleInputTitle}
+                  />
+                  <TextareaAutosize
+                    placeholder="Description"
+                    minRows={12}
+                    style={{ width: '100%', marginTop: 15 }}
+                    ref={inputDeskRef}
+                  />
+                </>
+          }
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleClickSubmit(convertToUpperCase(selectedLabel))} style={{ backgroundColor: '#3F51B5', color: 'white' }}>
-            Submit
-          </Button>
+          {
+            issueNumber
+              ? <Button disabled onClick={() => handleClickDelete(issueNumber, convertToUpperCase(selectedLabel))}>Delete</Button>
+              : <Button onClick={() => handleClickSubmit(convertToUpperCase(selectedLabel))} style={{ backgroundColor: '#3F51B5', color: 'white' }}>
+                  Submit
+                </Button>
+          }
         </DialogActions>
       </Dialog>
     </>

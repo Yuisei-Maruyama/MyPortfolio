@@ -35,7 +35,7 @@ const BoardBase: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false)
   const [selectedLabel, setSelectLabel] = useState<string>('')
   const [toggleDelete, setDelete] = useState<boolean>(false)
-  const [id, setId] = useState<string | undefined>(undefined)
+  const [number, setNumber] = useState<number | undefined>(undefined)
 
   const fetchIssues = useCallback(async () => {
     if (!token) return
@@ -52,7 +52,7 @@ const BoardBase: React.FC = () => {
       if (!token) return
       const headers = await getHeaders(token)
       await request
-        .get(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=open`, { headers })
+        .get(`/repos/${owner}/${repo}/issues?labels=${labelName}`, { headers })
         .then((res: { data: any }) => {
           if (labelName === 'Todo' && !todoItems?.length) {
             const payload = convertIssueId(res.data)
@@ -178,11 +178,11 @@ const BoardBase: React.FC = () => {
 
   console.log('Check relender')
 
-  const handleClickOpen = (label: string, id?: string) => {
+  const handleClickOpen = (label: string, number?: number) => {
     setSelectLabel(label)
     setOpen(true)
-    if (id) {
-      setId(id)
+    if (number) {
+      setNumber(number)
     }
   }
 
@@ -249,18 +249,22 @@ const BoardBase: React.FC = () => {
                             : <></>
                         }
                         {
-                          id
+                          number
                             ? <IssueDialog
-                                issueId={id}
+                                issueNumber={number}
                                 dialogTitle='Delete a GitHub Issue'
-                                dialogDesc={['Delete a issue with <span style={{ fontWeight: "bold"}}>{ convertToUpperCase(selectedLabel) }</span> label.']}
+                                dialogDesc={["I gave up because GitHub doesn't provide DELETE API about Issue."]}
                                 selectedLabel={selectedLabel}
                                 open={open}
                                 todoItems={todoItems}
+                                doingItems={doingItems}
+                                closedItems={closedItems}
                                 setOpen={(open) => setOpen(open)}
                                 fetchIssues={fetchIssues}
                                 setTodo={setTodo}
-                                setId={setId}
+                                setNumber={setNumber}
+                                setDoing={setDoing}
+                                setClosed={setClosed}
                               />
                             : <IssueDialog
                                 dialogTitle='Create a new GitHub Issue'
@@ -268,10 +272,14 @@ const BoardBase: React.FC = () => {
                                 selectedLabel={selectedLabel}
                                 open={open}
                                 todoItems={todoItems}
+                                doingItems={doingItems}
+                                closedItems={closedItems}
                                 setOpen={(open) => setOpen(open)}
                                 fetchIssues={fetchIssues}
                                 setTodo={setTodo}
-                                setId={setId}
+                                setNumber={setNumber}
+                                setDoing={setDoing}
+                                setClosed={setClosed}
                               />
                         }
                       </div>
@@ -312,7 +320,7 @@ const BoardBase: React.FC = () => {
                                       </div>
                                       {
                                         toggleDelete
-                                          ? <IconButton onClick={() => handleClickOpen(label, item.id)} style={{ color: 'white', marginLeft: 5 }}>
+                                          ? <IconButton onClick={() => handleClickOpen(label, item.number)} style={{ color: 'white', marginLeft: 5 }}>
                                             <DeleteForeverIcon fontSize='large' />
                                           </IconButton>
                                         : <></>
