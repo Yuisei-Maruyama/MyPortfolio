@@ -139,8 +139,8 @@ const BoardBase: React.FC = () => {
     if (!destination) return
     if (destination.droppableId === source.droppableId && destination.index === source.index) return
     if (source.droppableId !== destination.droppableId) {
-      const sourceColumn = columns[source.droppableId] // ドロップ元のカラム
-      const destColumn = columns[destination.droppableId] // ドロップ先のカラム
+      const sourceColumn = columns[source.droppableId]
+      const destColumn = columns[destination.droppableId]
       const sourceItems = [...sourceColumn.items]
       const destItems = [...destColumn.items]
       const [targetItem] = sourceItems.splice(source.index, 1)
@@ -178,7 +178,6 @@ const BoardBase: React.FC = () => {
   console.log('Check relender')
 
   const handleClickOpen = (id: string) => {
-    console.log(id)
     setSelectLabel(id)
     setOpen(true)
   }
@@ -206,15 +205,17 @@ const BoardBase: React.FC = () => {
         <h1 style={{ flexGrow: 1 }}>TaskBoard of GitHub Issue</h1>
         <IconSwitch {...switchProps} />
       </div>
-      <a onClick={() => window.open('https://docs.github.com/ja/rest/reference/users', '_blank')} style={{ cursor: 'pointer' }}>
-        <p style={{ color: '#C38FFF' }}>GitHub API</p>
-      </a>
-      <a onClick={() => window.open('https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md', '_blank')} style={{ cursor: 'pointer' }}>
-        <p style={{ color: '#C38FFF' }}>react-beautiful-dnd</p>
-      </a>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <a onClick={() => window.open('https://docs.github.com/ja/rest/reference/users', '_blank')} style={{ cursor: 'pointer' }}>
+          <p style={{ color: '#C38FFF', display: 'contents' }}>GitHub API</p>
+        </a>
+        <a onClick={() => window.open('https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md', '_blank')} style={{ cursor: 'pointer' }}>
+          <p style={{ color: '#C38FFF', display: 'contents' }}>react-beautiful-dnd</p>
+        </a>
+      </div>
       <div style={{ display: 'flex' }}>
         <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
-          {Object.entries(columns).map(([id, column]) => {
+          {Object.entries(columns).map(([id, column], index) => {
             return (
               <Droppable droppableId={id} key={id}>
                 {(provided, snapshot) => {
@@ -243,7 +244,15 @@ const BoardBase: React.FC = () => {
                               </IconButton>
                             : <></>
                         }
-                        <IssueDialog selectedLabel={selectedLabel} open={open} setOpen={(open) => setOpen(open)} fetchIssues={fetchIssues} todoItems={todoItems} setTodo={setTodo} />
+                        <IssueDialog
+                          dialogTitle='Create a new GitHub Issue'
+                          selectedLabel={selectedLabel}
+                          open={open}
+                          setOpen={(open) => setOpen(open)}
+                          fetchIssues={fetchIssues}
+                          todoItems={todoItems}
+                          setTodo={setTodo}
+                        />
                       </div>
                       {column.items?.map((item, index) => {
                         return (
@@ -281,7 +290,8 @@ const BoardBase: React.FC = () => {
                                         </Typography>
                                       </div>
                                       {
-                                        toggleDelete ? <IconButton onClick={() => handleClickOpen(id)} style={{ color: 'white', marginLeft: 5 }}>
+                                        toggleDelete
+                                          ? <IconButton onClick={() => handleClickOpen(id)} style={{ color: 'white', marginLeft: 5 }}>
                                             <DeleteForeverIcon fontSize='large' />
                                           </IconButton>
                                         : <></>
