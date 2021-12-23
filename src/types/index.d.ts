@@ -10,6 +10,7 @@ export interface Issue {
   title: string
   body: string
   number: number
+  state: string
   /* eslint-disable camelcase */
   html_url: string
   user: {
