@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: 'My Portfolio: Projects Kanban Automation'
+
+# Controls when the workflow will run
+on: [issues]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  automate-project-columns:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Move labeled issues into Todo
+        if: github.event.action == 'labeled' && github.event.label.name == 'Todo'
+        uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: MyPortfolio-TaskBoard
+          column: Todo
+          repo-token: ${{ secrets.PERSONAL_TOKEN_FOR_KANBAN }}
+      - name: Move labeled issues into Doing
+        if: github.event.action == 'labeled' && github.event.label.name == 'Doing'
+        uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: MyPortfolio-TaskBoard
+          column: Doing
+          repo-token: ${{ secrets.PERSONAL_TOKEN_FOR_KANBAN }}
+      - name: Move labeled issues into Closed
+        if: github.event.action == 'labeled' && github.event.label.name == 'Closed'
+        uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: MyPortfolio-TaskBoard
+          column: Closed
+          repo-token: ${{ secrets.PERSONAL_TOKEN_FOR_KANBAN }}
