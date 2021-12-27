@@ -231,7 +231,6 @@ const BoardBase: React.FC = () => {
                         background: snapshot.isDraggingOver ? rgba(63, 81, 181, 1.0) : '#161C22',
                         margin: 10,
                         padding: 6,
-                        width: 400,
                         minHeight: 400,
                         borderRadius: 7,
                       }}
@@ -311,20 +310,22 @@ const BoardBase: React.FC = () => {
                                         sx={{ width: 35, height: 35, marginRight: 2 }}
                                       />
                                       <div style={{ flexDirection: 'column', flexGrow: 1 }} >
-                                        <Typography sx={{ fontSize: 16, fontWeight: 'bold', color: 'white', cursor: 'pointer', width: 260 }} component="div" onClick={() => window.open(`${item.html_url}`, '_blank')}>
-                                          {item.title}
-                                        </Typography>
+                                        <div style={{ display: 'flex' }}>
+                                          <Typography sx={{ width: (toggleDelete ? 200 : 260), fontSize: 16, fontWeight: 'bold', color: 'white', cursor: 'pointer' }} component="div" onClick={() => window.open(`${item.html_url}`, '_blank')}>
+                                            {item.title}
+                                          </Typography>
+                                          {
+                                            toggleDelete
+                                              ? <IconButton onClick={() => handleClickOpen(label, item.number)} style={{ color: 'white', marginLeft: 5 }}>
+                                                <DeleteForeverIcon fontSize='large' />
+                                              </IconButton>
+                                            : <></>
+                                          }
+                                        </div>
                                         <Typography sx={{ mb: 1.0, margin: 0 }}>
                                           #{item.number} {item.state} by {item.user.login}
                                         </Typography>
                                       </div>
-                                      {
-                                        toggleDelete
-                                          ? <IconButton onClick={() => handleClickOpen(label, item.number)} style={{ color: 'white', marginLeft: 5 }}>
-                                            <DeleteForeverIcon fontSize='large' />
-                                          </IconButton>
-                                        : <></>
-                                      }
                                     </div>
                                   </CardContent>
                                 </Card>
