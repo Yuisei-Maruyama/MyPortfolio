@@ -1,3 +1,5 @@
+import { Issues, Label} from '@/types'
+
 //  React Components
 export { default as Tooltip } from './Tooltip/Tooltip'
 export { default as ProfileCard } from './ProfileCard/ProfileCard'
@@ -9,4 +11,36 @@ export { default as Circular } from './Circular/Circular'
 export { default as Menu } from './Menu/Menu'
 export { default as MessageArea } from './MessageArea/MessageArea'
 export { default as BoardBase } from './BoardBase/BoardBase'
+export { default as IssueDialog } from './IssueDialog/IssueDialog'
 // export { default as Baffle } from './components/Baffle'
+export { default as IconSwitch } from './SvgIconSwitch/SvgIconSwitch'
+export { default as IssueCard } from './IssueCard/IssueCard'
+
+export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
+  const authorization = `bearer ${token}`
+  const headers = authorization ? { authorization } : {}
+  return headers
+}
+
+/** IssueのIDを number から string に変換する */
+export const convertIssueId = (data: any) => {
+  if (typeof data === 'object' && typeof data.id === 'number') {
+    const payload = { ...data, id: data.id.toString() }
+    return payload
+  }
+  const payload = data.map((item: { id: number }) => {
+    return { ...item, id: item.id.toString() }
+  })
+  return payload
+}
+
+/** Labelオブジェクトの形を下記に変換する */
+export const convertLabel = (items: Issues): Label => {
+  const labels = { ...items[0].labels }
+  let label
+  Object.entries(labels).forEach(([key, value]) => {
+    label = value
+    return value
+  })
+  return label as unknown as Label
+}

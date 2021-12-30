@@ -76,6 +76,7 @@ const ModeSwitch: React.FC<Props> = (props: Props) => {
     } else {
       props.setDarkMode(false)
     }
+    // eslint-disable-next-line
   }, [])
   return (
     <div>
