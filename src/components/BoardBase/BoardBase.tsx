@@ -4,15 +4,11 @@ import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautif
 import { rgba } from 'polished'
 import {
   Avatar,
-  IconButton,
-  Card,
-  CardContent,
-  Typography
+  IconButton
 } from '@mui/material'
-import { IssueDialog, getHeaders, IconSwitch, convertIssueId, convertLabel } from '@/components'
+import { IssueDialog, IssueCard, getHeaders, IconSwitch, convertIssueId, convertLabel } from '@/components'
 import { deepPurple } from '@mui/material/colors'
 import { AiOutlinePlus } from 'react-icons/ai'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import axios from 'axios'
 import { Label, Issues } from '@/types'
 
@@ -39,8 +35,7 @@ const BoardBase: React.FC = () => {
 
   const fetchIssues = useCallback(async () => {
     if (!token) return
-    const headers = await getHeaders(token)
-    const { data } = await request.get(`/repos/${owner}/${repo}/issues`, { headers })
+    const { data } = await request.get(`/repos/${owner}/${repo}/issues`)
     const payload = convertIssueId(data)
     await setIssues(payload)
   }, [])
@@ -50,9 +45,8 @@ const BoardBase: React.FC = () => {
 
     await labelNames.forEach(async (labelName: string) => {
       if (!token) return
-      const headers = await getHeaders(token)
       await request
-        .get(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=all`, { headers })
+        .get(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=all`)
         .then((res: { data: any }) => {
           if (labelName === 'Todo' && !todoItems?.length) {
             const payload = convertIssueId(res.data)
@@ -125,11 +119,12 @@ const BoardBase: React.FC = () => {
         { headers }
       )
     }
-    await request.patch(
+    const { data } = await request.patch(
       `/repos/${owner}/${repo}/issues/${issueNum}`,
       { labels: [label.name] },
       { headers }
     )
+    console.log(data)
   }
 
   const onDragEnd = async (result: DropResult, columns: any, setColumns: any) => {
@@ -267,7 +262,7 @@ const BoardBase: React.FC = () => {
                               />
                             : <IssueDialog
                                 dialogTitle='Create a new GitHub Issue'
-                                dialogDesc={['Create a new issue with <span style={{ fontWeight: "bold"}}>{ convertToUpperCase(selectedLabel) }</span> label.']}
+                                dialogDesc={['Create a new issue with Todo label.']}
                                 selectedLabel={selectedLabel}
                                 open={open}
                                 todoItems={todoItems}
@@ -287,48 +282,7 @@ const BoardBase: React.FC = () => {
                           <Draggable key={item.id} draggableId={item.id} index={index}>
                             {(provided, snapshot) => {
                               return (
-                                <Card
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                  style={{
-                                    userSelect: 'none',
-                                    padding: 10,
-                                    borderRadius: 10,
-                                    margin: '10px 5px 0 5px',
-                                    minHeight: '120px',
-                                    backgroundColor: snapshot.isDragging ? '#263B4A' : '#2A2A2A',
-                                    color: 'white',
-                                    ...provided.draggableProps.style,
-                                  }}
-                                >
-                                  <CardContent style={{ padding: 0 }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                      <Avatar
-                                        alt={item.user.login}
-                                        src={item.user.avatar_url}
-                                        sx={{ width: 35, height: 35, marginRight: 2 }}
-                                      />
-                                      <div style={{ flexDirection: 'column', flexGrow: 1 }} >
-                                        <div style={{ display: 'flex' }}>
-                                          <Typography sx={{ width: (toggleDelete ? 200 : 260), fontSize: 16, fontWeight: 'bold', color: 'white', cursor: 'pointer' }} component="div" onClick={() => window.open(`${item.html_url}`, '_blank')}>
-                                            {item.title}
-                                          </Typography>
-                                          {
-                                            toggleDelete
-                                              ? <IconButton onClick={() => handleClickOpen(label, item.number)} style={{ color: 'white', marginLeft: 5 }}>
-                                                <DeleteForeverIcon fontSize='large' />
-                                              </IconButton>
-                                            : <></>
-                                          }
-                                        </div>
-                                        <Typography sx={{ mb: 1.0, margin: 0 }}>
-                                          #{item.number} {item.state} by {item.user.login}
-                                        </Typography>
-                                      </div>
-                                    </div>
-                                  </CardContent>
-                                </Card>
+                                <IssueCard provided={provided} snapshot={snapshot} item={item} toggleDelete={toggleDelete} label={column.title} handleClickOpen={handleClickOpen}  />
                               )
                             }}
                           </Draggable>
