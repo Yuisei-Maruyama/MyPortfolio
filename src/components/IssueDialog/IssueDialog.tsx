@@ -8,13 +8,13 @@ import {
   DialogContentText,
   DialogTitle,
   Button,
-  TextField,
-  TextareaAutosize,
+  TextField
 } from '@mui/material'
 import { AiOutlineClose } from 'react-icons/ai'
 import axios from 'axios'
 import { getHeaders, convertIssueId } from '@/components'
 import { Issues, Issue } from '@/types'
+import MDEditor from '@uiw/react-md-editor'
 
 const request = axios.create({
   baseURL: 'https://api.github.com',
@@ -45,8 +45,6 @@ type Props = {
 
 const IssueDialog: React.FC<Props> = (props: Props) => {
 
-  console.log(props)
-
   const {
     issueNumber,
     dialogTitle,
@@ -65,9 +63,10 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
   } = props
 
   const [inputError, setInputError] = useState(false)
+  const [desc, setDesc] = useState<string | undefined>('')
 
   const inputTitleRef = useRef<any>(null)
-  const inputDeskRef = useRef<any>(null)
+  // const inputDeskRef = useRef<any>(null)
 
   const handleClickClose = () => {
     setOpen(false)
@@ -80,6 +79,15 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
     }
   }
 
+  // const handleInputDesc = (e: string | undefined) => {
+  //   if (inputDeskRef.current) {
+  //     // const desk = inputDeskRef.current
+  //     // console.log(desk)
+  //     const text = inputDeskRef.current.textarea.value
+  //     console.log(text)
+  //   }
+  // }
+
   // Issues内をIDで降順で並べ替え
   const sortIssues = (before: Issue, after: Issue) => {
     return before.id < after.id ? 1 : -1
@@ -89,21 +97,20 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
     if (!token) return
     const headers = await getHeaders(token)
     const title = inputTitleRef.current.value
-    const description = inputDeskRef.current.value
+    // const description = inputDeskRef.current.value
+    const description = desc
     const { data } = await request.post(`/repos/${owner}/${repo}/issues`, { title: title, body: description, labels: [labelName] }, { headers })
     const payload = convertIssueId(data)
     await handleClickClose()
+    await setDesc('')
     await fetchIssues()
     await setTodo([...todoItems, payload].sort(sortIssues))
   }
-
-  // https://github.com/Yuisei-Maruyama/MyPortfolio/issues/39
 
   const handleClickDelete = async (num: number, labelName: string) => {
     if (!token) return
     const headers = await getHeaders(token)
     const { data } = await request.delete(`/repos/${owner}/${repo}/issues/${num}`, { headers })
-    console.log(data)
     const payload = convertIssueId(data)
     await handleClickClose()
     await fetchIssues()
@@ -155,11 +162,12 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
                     variant="standard"
                     onChange={handleInputTitle}
                   />
-                  <TextareaAutosize
-                    placeholder="Description"
-                    minRows={12}
-                    style={{ width: '100%', marginTop: 15 }}
-                    ref={inputDeskRef}
+                  <MDEditor
+                    placeholder='Description'
+                    style={{ marginTop: 25 }}
+                    value={desc}
+                    height={400}
+                    onChange={setDesc}
                   />
                 </>
           }
@@ -168,7 +176,9 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
           {
             issueNumber
               ? <Button disabled onClick={() => handleClickDelete(issueNumber, convertToUpperCase(selectedLabel))}>Delete</Button>
-              : <Button onClick={() => handleClickSubmit(convertToUpperCase(selectedLabel))} style={{ backgroundColor: '#3F51B5', color: 'white' }}>
+              : <Button
+                onClick={() => handleClickSubmit(convertToUpperCase(selectedLabel))}
+                style={{ backgroundColor: '#3F51B5', color: 'white' }}>
                   Submit
                 </Button>
           }
