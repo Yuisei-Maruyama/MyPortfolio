@@ -34,7 +34,6 @@ const BoardBase: React.FC = () => {
   const [number, setNumber] = useState<number | undefined>(undefined)
 
   const fetchIssues = useCallback(async () => {
-    if (!token) return
     const { data } = await request.get(`/repos/${owner}/${repo}/issues`)
     const payload = convertIssueId(data)
     await setIssues(payload)
@@ -44,7 +43,6 @@ const BoardBase: React.FC = () => {
     const labelNames = ['Todo', 'Doing', 'Closed']
 
     await labelNames.forEach(async (labelName: string) => {
-      if (!token) return
       await request
         .get(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=all`)
         .then((res: { data: any }) => {
