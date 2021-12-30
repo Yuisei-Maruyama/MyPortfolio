@@ -3,7 +3,7 @@ import Switch from '@mui/material/Switch'
 import { styled } from '@mui/material/styles'
 
 const MaterialUISwitch = styled(Switch)(({ checked, checkedcolor, uncheckcolor, checkedsvg, unchecksvg }: { checked: boolean, checkedcolor: string, uncheckcolor: string, checkedsvg: string, unchecksvg: string }) => ({
-  width: 62,
+  width: 60,
   height: 34,
   padding: 7,
   '& .MuiSwitch-switchBase': {
