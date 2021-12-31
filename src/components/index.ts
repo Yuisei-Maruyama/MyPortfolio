@@ -1,4 +1,4 @@
-import { Issues, Label} from '@/types'
+import { Issues, Label } from '@/types'
 
 //  React Components
 export { default as Tooltip } from './Tooltip/Tooltip'
