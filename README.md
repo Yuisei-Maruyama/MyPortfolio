@@ -43,7 +43,7 @@ ex.) Todo -> Doing ラベルに変更
 
 ex.) Doing -> Closed ラベルに変更  
 
-<img src="public/assets/ReadmeGifs/Delete-Issue.gif" width="100%">
+<img src="public/assets/ReadmeGifs/Closed-Issue.gif" width="100%">
 
 ### 使用技術・バージョン
 | 技術 | version |説明 |
