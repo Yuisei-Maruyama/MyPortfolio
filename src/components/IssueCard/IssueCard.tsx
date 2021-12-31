@@ -1,14 +1,8 @@
 import React from 'react'
-import {
-  Avatar,
-  IconButton,
-  Card,
-  CardContent,
-  Typography
-} from '@mui/material'
+import { Avatar, IconButton, Card, CardContent, Typography } from '@mui/material'
 import { DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd'
 import { Issue } from '@/types/index'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 
 type Props = {
   provided: DraggableProvided
@@ -39,23 +33,32 @@ const IssueCard: React.FC<Props> = (props: Props) => {
     >
       <CardContent style={{ padding: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Avatar
-            alt={item.user.login}
-            src={item.user.avatar_url}
-            sx={{ width: 35, height: 35, marginRight: 2 }}
-          />
-          <div style={{ flexDirection: 'column', flexGrow: 1 }} >
+          <Avatar alt={item.user.login} src={item.user.avatar_url} sx={{ width: 35, height: 35, marginRight: 2 }} />
+          <div style={{ flexDirection: 'column', flexGrow: 1 }}>
             <div style={{ display: 'flex' }}>
-              <Typography sx={{ width: (toggleDelete ? 200 : 260), fontSize: 16, fontWeight: 'bold', color: 'white', cursor: 'pointer' }} component="div" onClick={() => window.open(`${item.html_url}`, '_blank')}>
+              <Typography
+                sx={{
+                  width: toggleDelete ? 200 : 260,
+                  fontSize: 16,
+                  fontWeight: 'bold',
+                  color: 'white',
+                  cursor: 'pointer',
+                }}
+                component="div"
+                onClick={() => window.open(`${item.html_url}`, '_blank')}
+              >
                 {item.title}
               </Typography>
-              {
-                toggleDelete
-                  ? <IconButton onClick={() => handleClickOpen(label, item.number)} style={{ color: 'white', marginLeft: 5 }}>
-                    <DeleteForeverIcon fontSize='large' />
-                  </IconButton>
-                : <></>
-              }
+              {toggleDelete ? (
+                <IconButton
+                  onClick={() => handleClickOpen(label, item.number)}
+                  style={{ color: 'white', marginLeft: 5 }}
+                >
+                  <DeleteForeverIcon fontSize="large" />
+                </IconButton>
+              ) : (
+                <></>
+              )}
             </div>
             <Typography sx={{ mb: 1.0, margin: 0 }}>
               #{item.number} {item.state} by {item.user.login}
