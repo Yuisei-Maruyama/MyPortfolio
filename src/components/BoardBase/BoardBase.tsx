@@ -2,10 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import classes from './BoardBase.module.scss'
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd'
 import { rgba } from 'polished'
-import {
-  Avatar,
-  IconButton
-} from '@mui/material'
+import { Avatar, IconButton } from '@mui/material'
 import { IssueDialog, IssueCard, getHeaders, IconSwitch, convertIssueId, convertLabel } from '@/components'
 import { deepPurple } from '@mui/material/colors'
 import { AiOutlinePlus } from 'react-icons/ai'
@@ -43,22 +40,20 @@ const BoardBase: React.FC = () => {
     const labelNames = ['Todo', 'Doing', 'Closed']
 
     await labelNames.forEach(async (labelName: string) => {
-      await request
-        .get(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=all`)
-        .then((res: { data: any }) => {
-          if (labelName === 'Todo' && !todoItems?.length) {
-            const payload = convertIssueId(res.data)
-            setTodo(payload)
-          }
-          if (labelName === 'Doing' && !doingItems?.length) {
-            const payload = convertIssueId(res.data)
-            setDoing(payload)
-          }
-          if (labelName === 'Closed' && !closedItems?.length) {
-            const payload = convertIssueId(res.data)
-            setClosed(payload)
-          }
-        })
+      await request.get(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=all`).then((res: { data: any }) => {
+        if (labelName === 'Todo' && !todoItems?.length) {
+          const payload = convertIssueId(res.data)
+          setTodo(payload)
+        }
+        if (labelName === 'Doing' && !doingItems?.length) {
+          const payload = convertIssueId(res.data)
+          setDoing(payload)
+        }
+        if (labelName === 'Closed' && !closedItems?.length) {
+          const payload = convertIssueId(res.data)
+          setClosed(payload)
+        }
+      })
     })
   }, [todoItems, doingItems, closedItems])
 
@@ -98,7 +93,6 @@ const BoardBase: React.FC = () => {
   }
 
   useEffect(() => {
-
     orderProcess()
     // eslint-disable-next-line
   }, [todoItems, doingItems, closedItems])
@@ -112,7 +106,7 @@ const BoardBase: React.FC = () => {
         `/repos/${owner}/${repo}/issues/${issueNum}`,
         {
           state: 'closed',
-          labels: [payload.label.name]
+          labels: [payload.label.name],
         },
         { headers }
       )
@@ -187,26 +181,35 @@ const BoardBase: React.FC = () => {
     checked: toggleDelete,
     color: {
       checkedcolor: '#3F51B5',
-      uncheckcolor: deepPurple[500]
+      uncheckcolor: deepPurple[500],
     },
     svg: {
-      checkedsvg: "M20.37, 8.91L19.37, 10.64L7.24, 3.64L8.24, 1.91L11.28, 3.66L12.64, 3.29L16.97, 5.79L17.34, 7.16L20.37, 8.91M6, 19V7H11.07L18, 11V19A2, 2 0 0, 1 16, 21H8A2, 2 0 0, 1 6, 19Z",
-      unchecksvg: "M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
+      checkedsvg:
+        'M20.37, 8.91L19.37, 10.64L7.24, 3.64L8.24, 1.91L11.28, 3.66L12.64, 3.29L16.97, 5.79L17.34, 7.16L20.37, 8.91M6, 19V7H11.07L18, 11V19A2, 2 0 0, 1 16, 21H8A2, 2 0 0, 1 6, 19Z',
+      unchecksvg: 'M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z',
     },
-    onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => handleClickToggle(e)
+    onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => handleClickToggle(e),
   }
 
   return (
     <div className={classes.area}>
-      <div style={{ display: 'flex', alignItems: 'center'}}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <h1 style={{ flexGrow: 1 }}>TaskBoard of GitHub Issue</h1>
         <IconSwitch {...switchProps} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <a onClick={() => window.open('https://docs.github.com/ja/rest/reference/users', '_blank')} style={{ cursor: 'pointer' }}>
+        <a
+          onClick={() => window.open('https://docs.github.com/ja/rest/reference/users', '_blank')}
+          style={{ cursor: 'pointer' }}
+        >
           <p style={{ color: '#C38FFF', display: 'contents' }}>GitHub API</p>
         </a>
-        <a onClick={() => window.open('https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md', '_blank')} style={{ cursor: 'pointer' }}>
+        <a
+          onClick={() =>
+            window.open('https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md', '_blank')
+          }
+          style={{ cursor: 'pointer' }}
+        >
           <p style={{ color: '#C38FFF', display: 'contents' }}>react-beautiful-dnd</p>
         </a>
       </div>
@@ -229,58 +232,74 @@ const BoardBase: React.FC = () => {
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <Avatar sx={{ width: 30, height: 30, bgcolor: deepPurple[500], margin: '10px', fontWeight: 'bold', fontSize: 16 }}>
+                        <Avatar
+                          sx={{
+                            width: 30,
+                            height: 30,
+                            bgcolor: deepPurple[500],
+                            margin: '10px',
+                            fontWeight: 'bold',
+                            fontSize: 16,
+                          }}
+                        >
                           {column.items ? column.items.length : '0'}
                         </Avatar>
                         <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
-                        {
-                          label === 'todo'
-                            ? <IconButton onClick={() => handleClickOpen(label)}>
-                                <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
-                              </IconButton>
-                            : <></>
-                        }
-                        {
-                          number
-                            ? <IssueDialog
-                                issueNumber={number}
-                                dialogTitle='Delete a GitHub Issue'
-                                dialogDesc={["I gave up because GitHub doesn't provide DELETE API about Issue."]}
-                                selectedLabel={selectedLabel}
-                                open={open}
-                                todoItems={todoItems}
-                                doingItems={doingItems}
-                                closedItems={closedItems}
-                                setOpen={(open) => setOpen(open)}
-                                fetchIssues={fetchIssues}
-                                setTodo={setTodo}
-                                setNumber={setNumber}
-                                setDoing={setDoing}
-                                setClosed={setClosed}
-                              />
-                            : <IssueDialog
-                                dialogTitle='Create a new GitHub Issue'
-                                dialogDesc={['Create a new issue with Todo label.']}
-                                selectedLabel={selectedLabel}
-                                open={open}
-                                todoItems={todoItems}
-                                doingItems={doingItems}
-                                closedItems={closedItems}
-                                setOpen={(open) => setOpen(open)}
-                                fetchIssues={fetchIssues}
-                                setTodo={setTodo}
-                                setNumber={setNumber}
-                                setDoing={setDoing}
-                                setClosed={setClosed}
-                              />
-                        }
+                        {label === 'todo' ? (
+                          <IconButton onClick={() => handleClickOpen(label)}>
+                            <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
+                          </IconButton>
+                        ) : (
+                          <></>
+                        )}
+                        {number ? (
+                          <IssueDialog
+                            issueNumber={number}
+                            dialogTitle="Delete a GitHub Issue"
+                            dialogDesc={["I gave up because GitHub doesn't provide DELETE API about Issue."]}
+                            selectedLabel={selectedLabel}
+                            open={open}
+                            todoItems={todoItems}
+                            doingItems={doingItems}
+                            closedItems={closedItems}
+                            setOpen={(open) => setOpen(open)}
+                            fetchIssues={fetchIssues}
+                            setTodo={setTodo}
+                            setNumber={setNumber}
+                            setDoing={setDoing}
+                            setClosed={setClosed}
+                          />
+                        ) : (
+                          <IssueDialog
+                            dialogTitle="Create a new GitHub Issue"
+                            dialogDesc={['Create a new issue with Todo label.']}
+                            selectedLabel={selectedLabel}
+                            open={open}
+                            todoItems={todoItems}
+                            doingItems={doingItems}
+                            closedItems={closedItems}
+                            setOpen={(open) => setOpen(open)}
+                            fetchIssues={fetchIssues}
+                            setTodo={setTodo}
+                            setNumber={setNumber}
+                            setDoing={setDoing}
+                            setClosed={setClosed}
+                          />
+                        )}
                       </div>
                       {column.items?.map((item, index) => {
                         return (
                           <Draggable key={item.id} draggableId={item.id} index={index}>
                             {(provided, snapshot) => {
                               return (
-                                <IssueCard provided={provided} snapshot={snapshot} item={item} toggleDelete={toggleDelete} label={column.title} handleClickOpen={handleClickOpen}  />
+                                <IssueCard
+                                  provided={provided}
+                                  snapshot={snapshot}
+                                  item={item}
+                                  toggleDelete={toggleDelete}
+                                  label={column.title}
+                                  handleClickOpen={handleClickOpen}
+                                />
                               )
                             }}
                           </Draggable>
