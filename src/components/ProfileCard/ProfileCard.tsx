@@ -13,7 +13,7 @@ const ProfileCard: React.FC = () => {
           Age: 24
         </Typography>
         <Typography variant="body2" color="textSecondary">
-          Job: Front End Engineer
+          Job: Front-End Engineer
         </Typography>
         <Typography component={'div'} variant="body2" color="textSecondary">
           Location: Tokyo/Japan
