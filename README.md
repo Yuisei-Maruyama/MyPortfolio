@@ -26,11 +26,24 @@ Issueに付与されたラベルごとに管理しづらいことや対象とな
 | GitHub Issue の新規作成機能  |
 | GitHub Issue に付与されたラベルごとの管理機能 |
 | スイッチでメインカラーを切り替えられる機能 |
-|  |
-|  |
-|  |
-|  |
-|  |
+
+---
+
+> GitHub Issue の新規作成
+
+<img src="public/assets/ReadmeGifs/Add-Issue.gif" width="100%">
+
+> 付与されたラベルごとの管理機能
+
+>> ドラッグ＆ドロップにおけるラベルの修正  
+
+ex.) Todo -> Doing ラベルに変更  
+
+<img src="public/assets/ReadmeGifs/Update-Issue.gif" width="100%">
+
+ex.) Doing -> Closed ラベルに変更  
+
+<img src="public/assets/ReadmeGifs/Delete-Issue.gif" width="100%">
 
 ### 使用技術・バージョン
 | 技術 | version |説明 |
