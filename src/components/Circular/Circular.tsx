@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import { Box, Button } from '@material-ui/core'
+import { Chip, Avatar, Typography } from '@mui/material'
 import classes from './Circular.module.scss'
+import { Issue, Issues } from '@/types'
+import MarkdownPreview from '@uiw/react-markdown-preview'
+import { rgba } from 'polished'
 
 type Props = {
   length: number
   value: number
+  todoItems: Issues
 }
 
 const prev = (selected: number, length: number, setSelect: Function) => {
@@ -19,12 +24,17 @@ const next = (selected: number, length: number, setSelect: Function) => {
 }
 
 const Circular: React.FC<Props> = (props: Props) => {
-  const [selected, setSelect] = useState<number>(props.value)
+  const { todoItems, value, length } = props
+
+  const [selected, setSelect] = useState<number>(value)
+
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Button
+        className={classes.button}
+        style={{ color: 'white' }}
         onClick={() => {
-          prev(selected, props.length, setSelect)
+          prev(selected, length, setSelect)
         }}
       >
         <MdChevronLeft />
@@ -32,26 +42,39 @@ const Circular: React.FC<Props> = (props: Props) => {
       <Box sx={{ width: '950px' }} className={classes.stage}>
         <Box
           sx={{ display: 'flex', height: '350px' }}
-          style={{ transform: `translateZ(-650px) rotateY(${(360 / props.length) * selected}deg)` }}
+          style={{ transform: `translateZ(-550px) rotateY(${(360 / length) * selected}deg)` }}
           className={classes.circle}
         >
-          {[1, 2, 3, 4, 5, 6].map((position) => {
+          {todoItems.map((item: Issue, position: number) => {
             return (
               <div
                 key={position - 1}
                 style={{
-                  transform: `translateX(-50%) rotateY(${(360 / props.length) * (position - 1)}deg) translateZ(550px)`,
+                  transform: `translateX(-50%) rotateY(${(360 / length) * (position - 1)}deg) translateZ(700px)`,
                 }}
                 className={classes.item}
               >
-                {position}
-                {props.value}
+                <Chip
+                  label={item.user.login}
+                  className={classes.chip}
+                  style={{ color: 'white', backgroundColor: rgba(0, 0, 0, 0.3) }}
+                  avatar={<Avatar alt={item.user.login} src={item.user.avatar_url} />}
+                />
+                <div className={classes.contents}>
+                  <Typography sx={{ fontSize: 13, fontWeight: 'bold', color: 'white' }}>{item.title}</Typography>
+                  <hr className={classes.divider} />
+                  <Typography sx={{ fontSize: 5 }} component="div">
+                    <MarkdownPreview source={item.body} style={{ fontSize: 10, fontWeight: 'bold' }} />
+                  </Typography>
+                </div>
               </div>
             )
           })}
         </Box>
       </Box>
       <Button
+        className={classes.button}
+        style={{ color: 'white' }}
         onClick={() => {
           next(selected, props.length, setSelect)
         }}
