@@ -21,36 +21,43 @@ Issueに付与されたラベルごとに管理しづらいことや対象とな
 
 ### 機能一覧
 
-| 機能 | 備考 |
-| --- | --- |
-| GitHub Issue の新規作成機能  |   |
-| GitHub Issue に付与されたラベルごとの管理機能 |  |
-| スイッチでメインカラーを切り替えられる機能 |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
+| 機能 |
+| --- |
+| GitHub Issue の新規作成機能  |
+| GitHub Issue に付与されたラベルごとの管理機能 |
+| スイッチでメインカラーを切り替えられる機能 |
+|  |
+|  |
+|  |
+|  |
+|  |
 
 ### 使用技術・バージョン
-| 技術 | 説明 |
-| --- | --- |
-| [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) | webpack の設定を上書きしてエイリアス設定しているパスの解決を行う |
-| [styled-components](https://styled-components.com/docs/basics) | JavaScriptでstyleを記述するCSS in JSのライブラリ |
-| [vertical-timeline-component-react](https://stephane-monnot.github.io/react-vertical-timeline/#/) | タイムライムの表示 |
-| eslint | コードの解析 |
-| eslint-config-prettier | ESLint と Prettierを併用する |
-| prettier | コードの整形 |
-| @typescript-eslint/parser | ESLintをTypescriptで解析できるようにする |
-| @typescript-eslint/eslint-plugin | ESLintでTypescriptのチェックを行う |
-| husky | Gitコマンドフックに別のコマンドを呼び出せる |
-| lint-staged | commitしたファイル(Stagingにあるファイル)にlintを実行する |
-| [react-icons](https://react-icons.github.io/react-icons) | `Ant Design` や `Material Design`などを集めたアイコンの宝庫 |
-| [dts-gen](https://github.com/microsoft/dts-gen) | ライブラリで型定義ファイルがない場合に `XXX.d.ts` を生成する |
-| | |
-| | |
-| | |
-
+| 技術 | version |説明 |
+| --- | --- | --- |
+| react | 17.0.2 | ユーザインタフェース構築のためのJavaScriptライブラリ |
+| typescript | 4.1.2 | JavaScriptに対して、静的型付けとクラスベースオブジェクト指向を加えた言語 |
+| react-router-dom | 5.2.0 | ルーティングを定義するためのライブラリ |
+| [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) | 2.1.8 | webpack の設定を上書きしてエイリアス設定しているパスの解決を行う |
+| react-beautiful-dnd | 13.1.0 | ドロップ&ドラッグを実現できるライブラリ |
+| [react-vertical-timeline-component](https://stephane-monnot.github.io/react-vertical-timeline/#/) | 3.3.3 | タイムライムの表示 |
+| axios | 0.24.0 | PromiseベースのHTTP Clientライブラリ |
+| uuid | 8.3.2 | uuidを付与する |
+| sass | 1.45.1 | Sass をコンパイルするためのモジュール |
+| sass-loader | 12.4.0 | Sass を CSS へ変換するためのモジュール |
+| tslib | 2.3.1 | コンパイル後のjsファイルが大きくなるのを防ぐ |
+| eslint | 7.32.0 | コードの解析 |
+| eslint-config-prettier | 8.3.0 | ESLint と Prettierを併用する |
+| prettier | 2.4.1 | コードの整形 |
+| @typescript-eslint/parser | 4.31.1 | ESLintをTypescriptで解析できるようにする |
+| @typescript-eslint/eslint-plugin | 4.31.1 | ESLintでTypescriptのチェックを行う |
+| husky | 4.3.8 | Gitコマンドフックに別のコマンドを呼び出せる |
+| lint-staged | 11.1.2 | commitしたファイル(Stagingにあるファイル)にlintを実行する |
+| [react-icons](https://react-icons.github.io/react-icons) | 4.2.0 | `Ant Design` や `Material Design`などを集めたアイコンの宝庫 |
+| [dts-gen](https://github.com/microsoft/dts-gen) | 0.6.0 | ライブラリで型定義ファイルがない場合に `XXX.d.ts` を生成する |
+|  | | |
+|  | | |
+|  | | |
 ### 動作環境
 
 | デバイスの識別 | OS | 対応ブラウザ |
