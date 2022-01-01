@@ -39,14 +39,14 @@ const SkillTable: React.FC<Props> = (props: Props) => {
   const { title, frontEndProps, backEndProps } = props
 
   useEffect(() => {
-    if (frontEndProps) {
+    if (frontEndProps && !frontEndRows.length) {
       frontEndProps.forEach((item: TableData) => {
         const { name, steps, activeStep } = item
         frontEndRows.push(createData(name, <Stepper steps={steps} activeStep={activeStep} />))
       })
     }
 
-    if (backEndProps) {
+    if (backEndProps && !backEndRows.length) {
       backEndProps.forEach((item: TableData) => {
         const { name, steps, activeStep } = item
         backEndRows.push(createData(name, <Stepper steps={steps} activeStep={activeStep} />))
