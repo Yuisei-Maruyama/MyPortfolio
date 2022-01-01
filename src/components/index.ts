@@ -15,6 +15,8 @@ export { default as IssueDialog } from './IssueDialog/IssueDialog'
 // export { default as Baffle } from './components/Baffle'
 export { default as IconSwitch } from './SvgIconSwitch/SvgIconSwitch'
 export { default as IssueCard } from './IssueCard/IssueCard'
+export { default as SkillTable } from './SkillTable/SkillTable'
+export { default as Stepper } from './Stepper/Stepper'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`
