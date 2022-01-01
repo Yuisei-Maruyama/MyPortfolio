@@ -31,7 +31,7 @@ export interface Header {
   width?: number
   minWidth?: number
   manWidth?: number
-  align?: 'right'
+  align?: 'right' | 'left'
   format?: (value: number) => string
 }
 
