@@ -14,7 +14,7 @@ const Stepper: React.FC<Props> = (props: Props) => {
       <BaseStepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
-            <StepLabel sx={{ color: 'white' }}>{label}</StepLabel>
+            <StepLabel>{label}</StepLabel>
           </Step>
         ))}
       </BaseStepper>
