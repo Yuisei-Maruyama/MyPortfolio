@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ProfileCard, Circular, MessageArea, SkillTable } from '@/components'
+import { ProfileCard, Circular, MessageArea, SkillTables } from '@/components'
 import classes from './Main.module.scss'
 import { Box } from '@material-ui/core'
 import { Issues } from '@/types'
@@ -41,8 +41,8 @@ const Main = () => {
       {/* <Box sx={{ display: 'flex', marginTop: 15 }} className={classes.body}>
         <History />
       </Box> */}
-      <Box sx={{ marginTop: 15, width: 900, margin: '15px auto 0' }}>
-        <SkillTable />
+      <Box sx={{ display: 'flex', width: '90%', margin: '30px auto 0' }}>
+        <SkillTables />
       </Box>
     </div>
   )
