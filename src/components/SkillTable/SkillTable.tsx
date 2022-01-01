@@ -4,8 +4,20 @@ import { rgba } from 'polished'
 import { Header } from '@/types/index'
 import { Stepper } from '@/components'
 
+type TableData = {
+  name: string
+  steps: string[]
+  activeStep: number
+}
+
+type Props = {
+  title: string
+  frontEndProps?: TableData[]
+  backEndProps?: TableData[]
+}
+
 const headers: Header[] = [
-  { id: 'name', label: 'Name' },
+  { id: 'name', label: 'Technology', align: 'left' },
   { id: 'roadStep', label: 'Road\u00a0Step' },
 ]
 
@@ -13,20 +25,35 @@ const createData = (name: string, roadStep: string | React.ReactNode) => {
   return { name, roadStep }
 }
 
-let rows: { name: string; roadStep: string | React.ReactNode }[] = []
+const rows: { name: string; roadStep: string | React.ReactNode }[] = []
 
-const SkillTable: React.FC = () => {
+const frontEndRows: { name: string; roadStep: string | React.ReactNode }[] = []
+const backEndRows: { name: string; roadStep: string | React.ReactNode }[] = []
+
+const SkillTable: React.FC<Props> = (props: Props) => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
 
-  const reactStep = ['create-react-app', 'rooting', 'tsx']
+  console.log(props)
+
+  const { title, frontEndProps, backEndProps } = props
 
   useEffect(() => {
-    rows = [
-      createData('React.js', <Stepper steps={reactStep} activeStep={2} />),
-      createData('Vue.js', 'CN'),
-      createData('TypeScript', 'IT'),
-    ]
+    if (frontEndProps) {
+      frontEndProps.forEach((item: TableData) => {
+        const { name, steps, activeStep } = item
+        frontEndRows.push(createData(name, <Stepper steps={steps} activeStep={activeStep} />))
+      })
+    }
+
+    if (backEndProps) {
+      backEndProps.forEach((item: TableData) => {
+        const { name, steps, activeStep } = item
+        backEndRows.push(createData(name, <Stepper steps={steps} activeStep={activeStep} />))
+      })
+    }
+
+    // eslint-disable-next-line
   }, [])
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
@@ -40,12 +67,12 @@ const SkillTable: React.FC = () => {
 
   return (
     <Paper sx={{ width: '100%', backgroundColor: rgba(0, 0, 0, 0.3), border: 2 }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
+      <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell align="center" colSpan={12} sx={{ color: 'white', backgroundColor: rgba(63, 81, 181, 1) }}>
-                Front-End Goal Image
+                {title}
               </TableCell>
             </TableRow>
             <TableRow>
@@ -62,20 +89,35 @@ const SkillTable: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
-              return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                  {headers.map((column) => {
-                    const value = row[column.id]
-                    return (
-                      <TableCell key={column.id} align={column.align} sx={{ color: 'white' }}>
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
-                      </TableCell>
-                    )
-                  })}
-                </TableRow>
-              )
-            })}
+            {frontEndProps
+              ? frontEndRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+                  return (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                      {headers.map((column) => {
+                        const value = row[column.id]
+                        return (
+                          <TableCell key={column.id} align={column.align} sx={{ color: 'white' }}>
+                            {column.format && typeof value === 'number' ? column.format(value) : value}
+                          </TableCell>
+                        )
+                      })}
+                    </TableRow>
+                  )
+                })
+              : backEndRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+                  return (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                      {headers.map((column) => {
+                        const value = row[column.id]
+                        return (
+                          <TableCell key={column.id} align={column.align} sx={{ color: 'white' }}>
+                            {column.format && typeof value === 'number' ? column.format(value) : value}
+                          </TableCell>
+                        )
+                      })}
+                    </TableRow>
+                  )
+                })}
           </TableBody>
         </Table>
       </TableContainer>
@@ -89,6 +131,34 @@ const SkillTable: React.FC = () => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      {frontEndProps ? (
+        <TablePagination
+          sx={{ color: 'white' }}
+          rowsPerPageOptions={[5, 10, 100]}
+          component="div"
+          count={frontEndRows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      ) : (
+        <></>
+      )}
+      {backEndProps ? (
+        <TablePagination
+          sx={{ color: 'white' }}
+          rowsPerPageOptions={[5, 10, 100]}
+          component="div"
+          count={backEndRows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      ) : (
+        <></>
+      )}
     </Paper>
   )
 }
