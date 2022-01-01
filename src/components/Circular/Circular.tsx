@@ -39,7 +39,7 @@ const Circular: React.FC<Props> = (props: Props) => {
       >
         <MdChevronLeft />
       </Button>
-      <Box sx={{ width: '950px' }} className={classes.stage}>
+      <Box sx={{ width: '1200px' }} className={classes.stage}>
         <Box
           sx={{ display: 'flex', height: '350px' }}
           style={{ transform: `translateZ(-550px) rotateY(${(360 / length) * selected}deg)` }}
@@ -50,7 +50,7 @@ const Circular: React.FC<Props> = (props: Props) => {
               <div
                 key={position - 1}
                 style={{
-                  transform: `translateX(-50%) rotateY(${(360 / length) * (position - 1)}deg) translateZ(700px)`,
+                  transform: `translateX(-50%) rotateY(${(360 / length) * (position - 1)}deg) translateZ(765px)`,
                 }}
                 className={classes.item}
               >

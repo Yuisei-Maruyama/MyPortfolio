@@ -3,10 +3,11 @@ import { SkillTable } from '@/components'
 
 const reactSteps = [
   'create-react-app',
-  'rooting',
   'tsx',
+  'react-router-dom',
+  'material ui',
   'styled-components',
-  'ver18 Features',
+  'React 18.x Features',
   'OAuth',
   'Unit Test',
   'Apollo-Client',
@@ -15,6 +16,8 @@ const reactSteps = [
 const hooksSteps = ['useState', 'useEffect', 'useRef', 'useCallback', 'useMemo', 'useContext', 'useReducer']
 
 const reduxSteps = ['flux-flow', 'ducks-pattern', 're-ducks-pattern', 'redux-thunk', 'redux-saga']
+
+const vueSteps = ['Atomic Design', 'Vuetify', 'Vue-Router', 'Vuex', 'Vue 3.x Features']
 
 const nodeSteps = ['Connect DB', 'CRUD', 'OAuth', 'NPM Version Management', 'GraphQL', 'Apollo']
 
@@ -25,7 +28,7 @@ const SkillTables: React.FC = () => {
     {
       name: 'React.js',
       steps: reactSteps,
-      activeStep: 3,
+      activeStep: 4,
     },
     {
       name: 'React Hooks',
@@ -36,6 +39,11 @@ const SkillTables: React.FC = () => {
       name: 'Redux',
       steps: reduxSteps,
       activeStep: 3,
+    },
+    {
+      name: 'Vue.js',
+      steps: vueSteps,
+      activeStep: 4,
     },
   ]
 

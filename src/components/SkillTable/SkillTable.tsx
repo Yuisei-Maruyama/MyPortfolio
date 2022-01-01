@@ -25,8 +25,6 @@ const createData = (name: string, roadStep: string | React.ReactNode) => {
   return { name, roadStep }
 }
 
-const rows: { name: string; roadStep: string | React.ReactNode }[] = []
-
 const frontEndRows: { name: string; roadStep: string | React.ReactNode }[] = []
 const backEndRows: { name: string; roadStep: string | React.ReactNode }[] = []
 
@@ -39,14 +37,14 @@ const SkillTable: React.FC<Props> = (props: Props) => {
   const { title, frontEndProps, backEndProps } = props
 
   useEffect(() => {
-    if (frontEndProps) {
+    if (frontEndProps && !frontEndRows.length) {
       frontEndProps.forEach((item: TableData) => {
         const { name, steps, activeStep } = item
         frontEndRows.push(createData(name, <Stepper steps={steps} activeStep={activeStep} />))
       })
     }
 
-    if (backEndProps) {
+    if (backEndProps && !backEndRows.length) {
       backEndProps.forEach((item: TableData) => {
         const { name, steps, activeStep } = item
         backEndRows.push(createData(name, <Stepper steps={steps} activeStep={activeStep} />))
@@ -121,17 +119,7 @@ const SkillTable: React.FC<Props> = (props: Props) => {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        sx={{ color: 'white' }}
-        rowsPerPageOptions={[5, 10, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-      {frontEndProps ? (
+      {frontEndProps && frontEndRows.length ? (
         <TablePagination
           sx={{ color: 'white' }}
           rowsPerPageOptions={[5, 10, 100]}
@@ -145,7 +133,7 @@ const SkillTable: React.FC<Props> = (props: Props) => {
       ) : (
         <></>
       )}
-      {backEndProps ? (
+      {backEndProps && backEndRows.length ? (
         <TablePagination
           sx={{ color: 'white' }}
           rowsPerPageOptions={[5, 10, 100]}
