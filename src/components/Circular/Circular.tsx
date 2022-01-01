@@ -50,7 +50,7 @@ const Circular: React.FC<Props> = (props: Props) => {
               <div
                 key={position - 1}
                 style={{
-                  transform: `translateX(-50%) rotateY(${(360 / length) * (position - 1)}deg) translateZ(730px)`,
+                  transform: `translateX(-50%) rotateY(${(360 / length) * (position - 1)}deg) translateZ(765px)`,
                 }}
                 className={classes.item}
               >
