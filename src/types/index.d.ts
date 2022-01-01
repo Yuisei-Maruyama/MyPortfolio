@@ -25,4 +25,14 @@ export interface Column {
   ['todo' | 'doing' | 'closed']: { title?: string; items?: Issues; label?: Label }
 }
 
+export interface Header {
+  id: 'name' | 'roadStep'
+  label: string
+  width?: number
+  minWidth?: number
+  manWidth?: number
+  align?: 'right'
+  format?: (value: number) => string
+}
+
 export type Issues = Issue[]
