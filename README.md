@@ -53,7 +53,7 @@ ex.) Doing -> Closed ラベルに変更
 | react-router-dom | 5.2.0 | ルーティングを定義するためのライブラリ |
 | [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) | 2.1.8 | webpack の設定を上書きしてエイリアス設定しているパスの解決を行う |
 | react-beautiful-dnd | 13.1.0 | ドロップ&ドラッグを実現できるライブラリ |
-| [react-vertical-timeline-component](https://stephane-monnot.github.io/react-vertical-timeline/#/) | 3.3.3 | タイムライムの表示 |
+| [react-vertical-timeline-component](https://stephane-monnot.github.io/react-vertical-timeline/#/) | 3.5.2 | タイムライムの表示 |
 | axios | 0.24.0 | PromiseベースのHTTP Clientライブラリ |
 | uuid | 8.3.2 | uuidを付与する |
 | sass | 1.45.1 | Sass をコンパイルするためのモジュール |
