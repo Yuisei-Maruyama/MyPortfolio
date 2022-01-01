@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { ProfileCard, Circular, MessageArea, SkillTables } from '@/components'
-import classes from './Main.module.scss'
 import { Box } from '@material-ui/core'
 import { Issues } from '@/types'
 import axios from 'axios'
@@ -30,7 +29,7 @@ const Main = () => {
   return (
     <div>
       <Circular todoItems={todoItems} length={todoItems.length} value={0} />
-      <Box sx={{ display: 'flex', width: '80%' }} className={classes.body}>
+      <Box sx={{ display: 'flex', width: '80%', margin: '0 auto' }}>
         <ProfileCard />
         {/* <div style={{ flexGrow: 1 }}></div> */}
         <Box sx={{ ml: 12 }}>
