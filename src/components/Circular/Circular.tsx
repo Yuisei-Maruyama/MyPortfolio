@@ -57,11 +57,17 @@ const Circular: React.FC<Props> = (props: Props) => {
                 <Chip
                   label={item.user.login}
                   className={classes.chip}
-                  style={{ color: 'white', backgroundColor: rgba(0, 0, 0, 0.3) }}
+                  style={{ color: 'white', backgroundColor: rgba(0, 0, 0, 0.3), cursor: 'pointer' }}
+                  onClick={() => window.open(`https://github.com/Yuisei-Maruyama`, '_blank')}
                   avatar={<Avatar alt={item.user.login} src={item.user.avatar_url} />}
                 />
                 <div className={classes.contents}>
-                  <Typography sx={{ fontSize: 13, fontWeight: 'bold', color: 'white' }}>{item.title}</Typography>
+                  <Typography
+                    sx={{ fontSize: 13, fontWeight: 'bold', color: 'white', cursor: 'pointer' }}
+                    onClick={() => window.open(`${item.html_url}`, '_blank')}
+                  >
+                    {item.title}
+                  </Typography>
                   <hr className={classes.divider} />
                   <Typography sx={{ fontSize: 5 }} component="div">
                     <MarkdownPreview source={item.body} style={{ fontSize: 10, fontWeight: 'bold' }} />

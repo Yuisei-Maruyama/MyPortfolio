@@ -3,11 +3,12 @@ import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeli
 import 'react-vertical-timeline-component/style.min.css'
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew'
 import SchoolIcon from '@material-ui/icons/School'
+import { rgba } from 'polished'
 
 const History: React.FC = () => {
   return (
-    <div>
-      <VerticalTimeline>
+    <div style={{ borderRadius: 5, backgroundColor: rgba(0, 0, 0, 0.3) }}>
+      <VerticalTimeline layout="1-column">
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
           contentStyle={{ background: 'rgb(63,81,181)', color: '#fff' }}

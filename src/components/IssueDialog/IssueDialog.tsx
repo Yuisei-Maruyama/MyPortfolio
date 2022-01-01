@@ -8,7 +8,7 @@ import {
   DialogContentText,
   DialogTitle,
   Button,
-  TextField
+  TextField,
 } from '@mui/material'
 import { AiOutlineClose } from 'react-icons/ai'
 import axios from 'axios'
@@ -44,7 +44,6 @@ type Props = {
 }
 
 const IssueDialog: React.FC<Props> = (props: Props) => {
-
   const {
     issueNumber,
     dialogTitle,
@@ -59,7 +58,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
     setTodo,
     setDoing,
     setClosed,
-    setNumber
+    setNumber,
   } = props
 
   const [inputError, setInputError] = useState(false)
@@ -93,13 +92,17 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
     return before.id < after.id ? 1 : -1
   }
 
-  const handleClickSubmit = async(labelName: string) => {
+  const handleClickSubmit = async (labelName: string) => {
     if (!token) return
     const headers = await getHeaders(token)
     const title = inputTitleRef.current.value
     // const description = inputDeskRef.current.value
     const description = desc
-    const { data } = await request.post(`/repos/${owner}/${repo}/issues`, { title: title, body: description, labels: [labelName] }, { headers })
+    const { data } = await request.post(
+      `/repos/${owner}/${repo}/issues`,
+      { title: title, body: description, labels: [labelName] },
+      { headers }
+    )
     const payload = convertIssueId(data)
     await handleClickClose()
     await setDesc('')
@@ -125,7 +128,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-       <Dialog open={open} onClose={handleClickClose} fullWidth maxWidth="md">
+      <Dialog open={open} onClose={handleClickClose} fullWidth maxWidth="md">
         <DialogTitle
           style={{
             display: 'flex',
@@ -135,53 +138,54 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
             backgroundColor: '#3F51B5',
           }}
         >
-          <Typography sx={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>
-            { dialogTitle }
-          </Typography>
+          <Typography sx={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>{dialogTitle}</Typography>
           <IconButton onClick={handleClickClose} sx={{ color: 'white' }}>
             <AiOutlineClose />
           </IconButton>
         </DialogTitle>
         <DialogContent dividers>
-          {
-            issueNumber
-              ? <DialogContentText>{ dialogDesc }</DialogContentText>
-              : <>
-                  <DialogContentText>{ dialogDesc }</DialogContentText>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="title"
-                    label="Title"
-                    type="text"
-                    color="primary"
-                    error={inputError}
-                    helperText={inputError ? "Title is required." : ""}
-                    inputRef={inputTitleRef}
-                    fullWidth
-                    variant="standard"
-                    onChange={handleInputTitle}
-                  />
-                  <MDEditor
-                    placeholder='Description'
-                    style={{ marginTop: 25 }}
-                    value={desc}
-                    height={400}
-                    onChange={setDesc}
-                  />
-                </>
-          }
+          {issueNumber ? (
+            <DialogContentText>{dialogDesc}</DialogContentText>
+          ) : (
+            <>
+              <DialogContentText>{dialogDesc}</DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="title"
+                label="Title"
+                type="text"
+                color="primary"
+                error={inputError}
+                helperText={inputError ? 'Title is required.' : ''}
+                inputRef={inputTitleRef}
+                fullWidth
+                variant="standard"
+                onChange={handleInputTitle}
+              />
+              <MDEditor
+                placeholder="Description"
+                style={{ marginTop: 25 }}
+                value={desc}
+                height={400}
+                onChange={setDesc}
+              />
+            </>
+          )}
         </DialogContent>
         <DialogActions>
-          {
-            issueNumber
-              ? <Button disabled onClick={() => handleClickDelete(issueNumber, convertToUpperCase(selectedLabel))}>Delete</Button>
-              : <Button
-                onClick={() => handleClickSubmit(convertToUpperCase(selectedLabel))}
-                style={{ backgroundColor: '#3F51B5', color: 'white' }}>
-                  Submit
-                </Button>
-          }
+          {issueNumber ? (
+            <Button disabled onClick={() => handleClickDelete(issueNumber, convertToUpperCase(selectedLabel))}>
+              Delete
+            </Button>
+          ) : (
+            <Button
+              onClick={() => handleClickSubmit(convertToUpperCase(selectedLabel))}
+              style={{ backgroundColor: '#3F51B5', color: 'white' }}
+            >
+              Submit
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </>
