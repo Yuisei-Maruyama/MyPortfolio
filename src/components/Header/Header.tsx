@@ -4,6 +4,8 @@ import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { ModeSwitch, ThemeProvider, Menu } from '@/components'
 import { AiFillGithub, AiFillInstagram } from 'react-icons/ai'
+import { BiTask } from 'react-icons/bi'
+import { useHistory, withRouter } from 'react-router-dom'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,6 +28,8 @@ const Header: React.FC = () => {
 
   const changeToggle = (toggle: boolean) => setToggle(!toggle)
 
+  const history = useHistory()
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -45,6 +49,16 @@ const Header: React.FC = () => {
           <Typography variant="h6" className={classes.title}>
             MyPortfolio
           </Typography>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="github tasks"
+            onClick={() => {
+              history.push('/board')
+            }}
+          >
+            <BiTask />
+          </IconButton>
           <IconButton
             edge="start"
             color="inherit"
@@ -73,4 +87,4 @@ const Header: React.FC = () => {
   )
 }
 
-export default Header
+export default withRouter(Header)
