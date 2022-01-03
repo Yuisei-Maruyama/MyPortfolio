@@ -10,7 +10,6 @@ const ProfileCard: React.FC = () => {
         <Typography gutterBottom variant="h5" component="div">
           Yuisei Maruyama
         </Typography>
-        <Typography variant="body2">Age: 24</Typography>
         <Typography variant="body2">Job: Front-End Engineer</Typography>
         <Typography component={'div'} variant="body2">
           Location: Tokyo/Japan
