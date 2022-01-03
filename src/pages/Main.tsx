@@ -27,7 +27,7 @@ const Main = () => {
   }, [])
 
   return (
-    <div style={{ margin: '0 auto' }}>
+    <div>
       <Circular todoItems={todoItems} length={todoItems.length} value={0} />
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 15 }}>
         <Box sx={{ width: '20%' }}>
@@ -37,7 +37,7 @@ const Main = () => {
           <MessageArea />
         </Box>
       </Box>
-      <Box sx={{ width: '90%', margin: '30px auto 0' }}>
+      <Box sx={{ display: 'flex', width: '90%', margin: '30px auto 0' }}>
         <SkillTables />
       </Box>
     </div>
