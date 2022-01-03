@@ -46,7 +46,14 @@ const Header: React.FC = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography
+            variant="h6"
+            className={classes.title}
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              history.push('/')
+            }}
+          >
             MyPortfolio
           </Typography>
           <Tooltip title="TaskBoard" arrow>
