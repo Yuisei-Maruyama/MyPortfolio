@@ -1,9 +1,8 @@
 import React from 'react'
 import { Drawer } from '@material-ui/core'
 import { MenuList, MenuItem, ListItemIcon, ListItemText } from '@mui/material'
-import { FaPlane } from 'react-icons/fa'
+import { FaPlane, FaRegAddressCard } from 'react-icons/fa'
 import { AiTwotoneHome, AiOutlineBgColors } from 'react-icons/ai'
-import { BiCodeAlt } from 'react-icons/bi'
 import { useHistory, withRouter, RouteComponentProps } from 'react-router-dom'
 
 interface Props extends RouteComponentProps {
@@ -22,7 +21,7 @@ const Menu: React.FC<Props> = (props: Props) => {
 
   const itemList: Nav[] = [
     { text: 'Home', icon: <AiTwotoneHome />, nav: '' },
-    { text: 'Technology', icon: <BiCodeAlt />, nav: 'technology' },
+    { text: 'Job History', icon: <FaRegAddressCard />, nav: 'history' },
     { text: 'Art', icon: <AiOutlineBgColors />, nav: 'art' },
     { text: 'Travel', icon: <FaPlane />, nav: 'travel' },
   ]

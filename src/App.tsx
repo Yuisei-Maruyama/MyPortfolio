@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Container from '@material-ui/core/Container'
-import { Main, Board, Technology, Art, Travel } from '@/pages'
-import { Header } from '@/components'
+import { Container } from '@material-ui/core'
+import { Main, Board, History, Art, Travel } from '@/pages'
+import { Header, Footer } from '@/components'
 
 const App: React.FC = () => {
   return (
@@ -13,11 +13,12 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path="/" component={Main} />
             <Route exact path="/board" component={Board} />
-            <Route exact path="/technology" component={Technology} />
+            <Route exact path="/history" component={History} />
             <Route exact path="/art" component={Art} />
             <Route exact path="/travel" component={Travel} />
           </Switch>
         </Container>
+        <Footer />
       </Router>
     </div>
   )

@@ -16,7 +16,11 @@ type Props = {
   backEndProps?: TableData[]
 }
 
-const headers: Header[] = [
+interface CustomHeader extends Header {
+  id: 'name' | 'roadStep'
+}
+
+const headers: CustomHeader[] = [
   { id: 'name', label: 'Technology', align: 'left' },
   { id: 'roadStep', label: 'Road\u00a0Step' },
 ]
@@ -31,8 +35,6 @@ const backEndRows: { name: string; roadStep: string | React.ReactNode }[] = []
 const SkillTable: React.FC<Props> = (props: Props) => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
-
-  console.log(props)
 
   const { title, frontEndProps, backEndProps } = props
 

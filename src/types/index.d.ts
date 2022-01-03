@@ -26,7 +26,7 @@ export interface Column {
 }
 
 export interface Header {
-  id: 'name' | 'roadStep'
+  id: string
   label: string
   width?: number
   minWidth?: number

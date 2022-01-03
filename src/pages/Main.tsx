@@ -37,10 +37,6 @@ const Main = () => {
           <MessageArea />
         </Box>
       </Box>
-      {/* <Baffle /> */}
-      {/* <Box sx={{ display: 'flex', marginTop: 15 }} className={classes.body}>
-        <History />
-      </Box> */}
       <Box sx={{ display: 'flex', width: '90%', margin: '30px auto 0' }}>
         <SkillTables />
       </Box>
