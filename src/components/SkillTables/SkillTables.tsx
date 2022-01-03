@@ -7,6 +7,7 @@ const reactSteps = [
   'react-router-dom',
   'material ui',
   'styled-components',
+  'Custom Hooks',
   'React 18.x Features',
   'OAuth',
   'Unit Test',
