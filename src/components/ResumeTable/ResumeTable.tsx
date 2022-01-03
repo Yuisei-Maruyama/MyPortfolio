@@ -16,7 +16,7 @@ interface Rows {
   summary: string | string[]
   experience: string[]
   post: string
-  language: string[]
+  language: string
   db: string
   environment: string
   tools: string[]
@@ -38,7 +38,7 @@ const createData = (
   summary: string | string[],
   experience: string[],
   post: string,
-  language: string[],
+  language: string,
   db: string,
   environment: string,
   tools: string[]
@@ -67,12 +67,23 @@ const ResumeTable: React.FC<Props> = (props: Props) => {
       '官公庁の職員を対象とした申請システムの開発と管理画面の作成', // 業務概要
       ['Vue,jsを使用したコンポーネント作成'], // 業務内容
       'PG', // 役割
-      ['Javascript', 'TypeScript', 'YAML'], // 使用言語
+      'Javascript\nTypeScript\nYAML', // 使用言語
       'CouchDB', // DB
       'Windows', // 作業環境
       ['Vue.js', 'Vuetify', 'Vuex', 'Vue-Router'] // 開発ツール等
     ),
   ]
+
+  // const Chapters = (value: string) => {
+  //   const chapters = value.split("\n")
+  //   return (
+  //     <List>
+  //       {chapters.map((chapter, i) => (
+  //         <ListItem key={i}>{chapter}</ListItem>
+  //       ))}
+  //     </List>
+  //   );
+  // }
 
   return (
     <Paper sx={{ width: '100%', backgroundColor: rgba(0, 0, 0, 0.3), border: '1px solid black' }}>
@@ -97,7 +108,26 @@ const ResumeTable: React.FC<Props> = (props: Props) => {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody></TableBody>
+          <TableBody>
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+              return (
+                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                  {headers.map((column) => {
+                    const value = row[column.id]
+                    if (column.label === 'LANGUAGE') {
+                      console.log(value)
+                      // value = <Chapters value={value} />
+                    }
+                    return (
+                      <TableCell key={column.id} align={column.align} sx={{ color: 'white' }}>
+                        {column.format && typeof value === 'number' ? column.format(value) : value}
+                      </TableCell>
+                    )
+                  })}
+                </TableRow>
+              )
+            })}
+          </TableBody>
         </Table>
       </TableContainer>
       <TablePagination
