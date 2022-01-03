@@ -4,7 +4,7 @@ import { rgba } from 'polished'
 
 const ProfileCard: React.FC = () => {
   return (
-    <Card style={{ maxWidth: 400, backgroundColor: rgba(0, 0, 0, 0.3), color: 'white' }}>
+    <Card style={{ maxWidth: '100%', backgroundColor: rgba(0, 0, 0, 0.3), color: 'white' }}>
       <CardMedia component="img" image="assets/Profile.jpg" />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
