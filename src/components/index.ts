@@ -5,6 +5,7 @@ export { default as Tooltip } from './Tooltip/Tooltip'
 export { default as ProfileCard } from './ProfileCard/ProfileCard'
 export { default as History } from './History/History'
 export { default as Header } from './Header/Header'
+export { default as Footer } from './Footer/Footer'
 export { default as ModeSwitch } from './ModeSwitch/ModeSwitch'
 export { default as ThemeProvider } from './ThemeProvider'
 export { default as Circular } from './Circular/Circular'
@@ -19,6 +20,7 @@ export { default as SkillTable } from './SkillTable/SkillTable'
 export { default as SkillTables } from './SkillTables/SkillTables'
 export { default as Stepper } from './Stepper/Stepper'
 export { default as TypeWriter } from './TypeWriter/TypeWriter'
+export { default as ResumeTable } from './ResumeTable/ResumeTable'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`
