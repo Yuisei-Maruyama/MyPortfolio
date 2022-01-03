@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Container from '@material-ui/core/Container'
+import { Container } from '@material-ui/core'
 import { Main, Board, History, Art, Travel } from '@/pages'
 import { Header, Footer } from '@/components'
 
