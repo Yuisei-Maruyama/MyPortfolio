@@ -18,6 +18,7 @@ export { default as IssueCard } from './IssueCard/IssueCard'
 export { default as SkillTable } from './SkillTable/SkillTable'
 export { default as SkillTables } from './SkillTables/SkillTables'
 export { default as Stepper } from './Stepper/Stepper'
+export { default as TypeWriter } from './TypeWriter/TypeWriter'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`
