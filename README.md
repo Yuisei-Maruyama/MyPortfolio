@@ -23,11 +23,18 @@ Issueに付与されたラベルごとの管理がしづらいことや対象と
 
 | 機能 |
 | --- |
+| GitHub Issue のTodoラベル内容閲覧機能  |
 | GitHub Issue の新規作成機能  |
 | GitHub Issue に付与されたラベルごとの管理機能 |
 | スイッチでメインカラーを切り替えられる機能 |
 
 ---
+
+> GitHub Issue のTodoラベル内容閲覧機能
+>> GitHub Issue に付与されたTodoラベルの内容からタイトルと詳細内容が閲覧可能  
+>> Issueタイトルをクリックすることで該当Issueに遷移可能
+
+<img src="public/assets/ReadmeGifs/slider.gif" width="100%">
 
 > GitHub Issue の新規作成
 
