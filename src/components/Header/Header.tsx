@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, IconButton, Tooltip } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { ModeSwitch, ThemeProvider, Menu } from '@/components'
 import { AiFillGithub, AiFillInstagram } from 'react-icons/ai'
@@ -49,36 +49,42 @@ const Header: React.FC = () => {
           <Typography variant="h6" className={classes.title}>
             MyPortfolio
           </Typography>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="github tasks"
-            onClick={() => {
-              history.push('/board')
-            }}
-          >
-            <BiTask />
-          </IconButton>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="github"
-            onClick={() => {
-              window.open('https://github.com/Yuisei-Maruyama/MyPortfolio', '_blank')
-            }}
-          >
-            <AiFillGithub />
-          </IconButton>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="instagram"
-            onClick={() => {
-              window.open('https://www.instagram.com/y_metro/', '_blank')
-            }}
-          >
-            <AiFillInstagram />
-          </IconButton>
+          <Tooltip title="TaskBoard" arrow>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="github tasks"
+              onClick={() => {
+                history.push('/board')
+              }}
+            >
+              <BiTask />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="GitHub Repo" arrow>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="github"
+              onClick={() => {
+                window.open('https://github.com/Yuisei-Maruyama/MyPortfolio', '_blank')
+              }}
+            >
+              <AiFillGithub />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Instagram" arrow>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="instagram"
+              onClick={() => {
+                window.open('https://www.instagram.com/y_metro/', '_blank')
+              }}
+            >
+              <AiFillInstagram />
+            </IconButton>
+          </Tooltip>
           <ModeSwitch darkMode={darkMode} setDarkMode={setDarkMode}></ModeSwitch>
           <ThemeProvider mode={darkMode} />
         </Toolbar>
