@@ -6,6 +6,7 @@ const reactSteps = [
   'tsx',
   'react-router-dom',
   'material ui',
+  'Custom Hooks',
   'styled-components',
   'React 18.x Features',
   'OAuth',
@@ -28,12 +29,12 @@ const SkillTables: React.FC = () => {
     {
       name: 'React.js',
       steps: reactSteps,
-      activeStep: 4,
+      activeStep: 5,
     },
     {
       name: 'React Hooks',
       steps: hooksSteps,
-      activeStep: 3,
+      activeStep: 4,
     },
     {
       name: 'Redux',

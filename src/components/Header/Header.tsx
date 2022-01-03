@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, IconButton, Tooltip } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { ModeSwitch, ThemeProvider, Menu } from '@/components'
 import { AiFillGithub, AiFillInstagram } from 'react-icons/ai'
+import { BiTask } from 'react-icons/bi'
+import { useHistory, withRouter } from 'react-router-dom'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,6 +28,8 @@ const Header: React.FC = () => {
 
   const changeToggle = (toggle: boolean) => setToggle(!toggle)
 
+  const history = useHistory()
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -42,29 +46,52 @@ const Header: React.FC = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography
+            variant="h6"
+            className={classes.title}
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              history.push('/')
+            }}
+          >
             MyPortfolio
           </Typography>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="github"
-            onClick={() => {
-              window.open('https://github.com/Yuisei-Maruyama/MyPortfolio', '_blank')
-            }}
-          >
-            <AiFillGithub />
-          </IconButton>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="instagram"
-            onClick={() => {
-              window.open('https://www.instagram.com/y_metro/', '_blank')
-            }}
-          >
-            <AiFillInstagram />
-          </IconButton>
+          <Tooltip title="TaskBoard" arrow>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="github tasks"
+              onClick={() => {
+                history.push('/board')
+              }}
+            >
+              <BiTask />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="GitHub Repo" arrow>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="github"
+              onClick={() => {
+                window.open('https://github.com/Yuisei-Maruyama/MyPortfolio', '_blank')
+              }}
+            >
+              <AiFillGithub />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Instagram" arrow>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="instagram"
+              onClick={() => {
+                window.open('https://www.instagram.com/y_metro/', '_blank')
+              }}
+            >
+              <AiFillInstagram />
+            </IconButton>
+          </Tooltip>
           <ModeSwitch darkMode={darkMode} setDarkMode={setDarkMode}></ModeSwitch>
           <ThemeProvider mode={darkMode} />
         </Toolbar>
@@ -73,4 +100,4 @@ const Header: React.FC = () => {
   )
 }
 
-export default Header
+export default withRouter(Header)

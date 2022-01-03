@@ -29,10 +29,11 @@ const Main = () => {
   return (
     <div>
       <Circular todoItems={todoItems} length={todoItems.length} value={0} />
-      <Box sx={{ display: 'flex', width: '80%', margin: '0 auto' }}>
-        <ProfileCard />
-        {/* <div style={{ flexGrow: 1 }}></div> */}
-        <Box sx={{ ml: 12 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 15 }}>
+        <Box sx={{ width: '20%' }}>
+          <ProfileCard />
+        </Box>
+        <Box sx={{ ml: 12, width: '40%' }}>
           <MessageArea />
         </Box>
       </Box>
