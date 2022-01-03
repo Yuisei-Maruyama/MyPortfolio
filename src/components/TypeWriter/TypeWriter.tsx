@@ -18,7 +18,6 @@ const TypeWriter: React.FC<Props> = (props: Props) => {
   useEffect(() => {
     const char = message[Symbol.iterator]()
     let timerId: number
-
     ;(function showChar() {
       const nextChar = char.next()
       if (nextChar.done) {
