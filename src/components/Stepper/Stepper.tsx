@@ -12,6 +12,8 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       '& .MuiStepLabel-label.Mui-active': { color: 'white' },
       '& .MuiStepLabel-label.Mui-completed': { color: 'white' },
+      '& .Mui-disabled': { color: 'dimgray' },
+      '& .MuiSvgIcon-root': { color: 'dimgray' },
     },
   })
 )
