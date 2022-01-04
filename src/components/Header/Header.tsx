@@ -4,6 +4,7 @@ import { AppBar, Toolbar, Typography, IconButton, Tooltip } from '@material-ui/c
 import MenuIcon from '@material-ui/icons/Menu'
 import { ModeSwitch, ThemeProvider, Menu } from '@/components'
 import { AiFillGithub, AiFillInstagram } from 'react-icons/ai'
+import { SiNetlify } from 'react-icons/si'
 import { BiTask } from 'react-icons/bi'
 import { useHistory, withRouter } from 'react-router-dom'
 
@@ -78,6 +79,18 @@ const Header: React.FC = () => {
               }}
             >
               <AiFillGithub />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Netlify" arrow>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="github tasks"
+              onClick={() => {
+                window.open('https://app.netlify.com/sites/silly-goodall-7bfc72/deploys?filter=main', '_blank')
+              }}
+            >
+              <SiNetlify />
             </IconButton>
           </Tooltip>
           <Tooltip title="Instagram" arrow>
