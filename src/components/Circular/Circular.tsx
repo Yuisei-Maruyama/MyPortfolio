@@ -50,7 +50,7 @@ const Circular: React.FC<Props> = (props: Props) => {
               <div
                 key={position - 1}
                 style={{
-                  transform: `translateX(-50%) rotateY(${(360 / length) * (position - 1)}deg) translateZ(765px)`,
+                  transform: `translateX(-50%) rotateY(${(360 / length) * (position - 1)}deg) translateZ(760px)`,
                 }}
                 className={classes.item}
               >
@@ -70,7 +70,7 @@ const Circular: React.FC<Props> = (props: Props) => {
                   </Typography>
                   <hr className={classes.divider} />
                   <Typography sx={{ fontSize: 5 }} component="div">
-                    <MarkdownPreview source={item.body} style={{ fontSize: 10, fontWeight: 'bold' }} />
+                    <MarkdownPreview source={item.body} style={{ fontSize: 11, fontWeight: 'bold' }} />
                   </Typography>
                 </div>
               </div>
