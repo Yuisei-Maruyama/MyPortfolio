@@ -65,8 +65,16 @@ const SkillTables: React.FC = () => {
     <>
       {frontEndProps && backEndProps ? (
         <>
-          <SkillTable title="Front-End Goal Image" frontEndProps={frontEndProps} />
-          <SkillTable title="Back-End Goal Image" backEndProps={backEndProps} />
+          <SkillTable
+            title="Front-End Goal Image"
+            link="https://github.com/Yuisei-Maruyama/MyPortfolio"
+            frontEndProps={frontEndProps}
+          />
+          <SkillTable
+            title="Back-End Goal Image"
+            link="https://github.com/Yuisei-Maruyama/MyPortfolio_Backend"
+            backEndProps={backEndProps}
+          />
         </>
       ) : (
         <></>

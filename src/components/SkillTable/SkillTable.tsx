@@ -12,6 +12,7 @@ type TableData = {
 
 type Props = {
   title: string
+  link?: string
   frontEndProps?: TableData[]
   backEndProps?: TableData[]
 }
@@ -36,7 +37,7 @@ const SkillTable: React.FC<Props> = (props: Props) => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
 
-  const { title, frontEndProps, backEndProps } = props
+  const { title, link, frontEndProps, backEndProps } = props
 
   useEffect(() => {
     if (frontEndProps && !frontEndRows.length) {
@@ -71,7 +72,18 @@ const SkillTable: React.FC<Props> = (props: Props) => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell align="center" colSpan={12} sx={{ color: 'white', backgroundColor: rgba(63, 81, 181, 1) }}>
+              <TableCell
+                onClick={() => {
+                  window.open(link, '_blank')
+                }}
+                align="center"
+                colSpan={12}
+                sx={{
+                  cursor: 'pointer',
+                  color: 'white',
+                  backgroundColor: rgba(63, 81, 181, 1),
+                }}
+              >
                 {title}
               </TableCell>
             </TableRow>
