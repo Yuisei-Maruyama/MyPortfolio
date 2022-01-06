@@ -21,6 +21,7 @@ export { default as SkillTables } from './SkillTables/SkillTables'
 export { default as Stepper } from './Stepper/Stepper'
 export { default as TypeWriter } from './TypeWriter/TypeWriter'
 export { default as ResumeTable } from './ResumeTable/ResumeTable'
+export { default as ComponentList } from './ComponentList/ComponentList'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`
