@@ -57,7 +57,7 @@ const ComponentList: React.FC = () => {
       aria-label="icon expansion"
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
-      sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+      sx={{ height: 1200, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
       <CustomTreeItem nodeId="1" label="Components">
         <CustomTreeItem nodeId="2" label="Header" />
@@ -67,6 +67,7 @@ const ComponentList: React.FC = () => {
         </CustomTreeItem>
         <CustomTreeItem nodeId="6" label="Footer" />
       </CustomTreeItem>
+
       <CustomTreeItem nodeId="7" label="Documents">
         <CustomTreeItem nodeId="20" label="Front-End">
           <CustomTreeItem nodeId="8" label="README" />
