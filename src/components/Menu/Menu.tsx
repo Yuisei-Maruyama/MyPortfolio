@@ -4,6 +4,7 @@ import { MenuList, MenuItem, ListItemIcon, ListItemText } from '@mui/material'
 import { FaPlane, FaRegAddressCard } from 'react-icons/fa'
 import { AiTwotoneHome, AiOutlineBgColors } from 'react-icons/ai'
 import { useHistory, withRouter, RouteComponentProps } from 'react-router-dom'
+import { ComponentList } from '@/components'
 
 interface Props extends RouteComponentProps {
   toggle: boolean
@@ -44,6 +45,7 @@ const Menu: React.FC<Props> = (props: Props) => {
             <ListItemText primary={item.text} />
           </MenuItem>
         ))}
+        <ComponentList />
       </MenuList>
     </Drawer>
   )
