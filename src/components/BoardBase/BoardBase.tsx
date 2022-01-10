@@ -85,7 +85,7 @@ const BoardBase: React.FC = () => {
   const initializeColumns = useCallback(async () => {
     if (!(todoItems || doingItems || closedItems)?.length) return
 
-    const columnsFromBackend: Record<string, { title: string; items: Issues; label: Label }> = {
+    const columns: Record<string, { title: string; items: Issues; label: Label }> = {
       todo: {
         title: 'Todo',
         items: todoItems,
@@ -102,7 +102,7 @@ const BoardBase: React.FC = () => {
         label: closedItems ? convertLabel(closedItems) : {},
       },
     }
-    await setColumns(columnsFromBackend)
+    await setColumns(columns)
   }, [todoItems, doingItems, closedItems])
 
   const orderProcess = async () => {
