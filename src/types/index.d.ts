@@ -1,4 +1,5 @@
 export interface Label {
+  color?: string
   description?: string
   id?: number
   name?: string

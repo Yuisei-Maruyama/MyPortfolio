@@ -7,7 +7,7 @@ import { IssueDialog, IssueCard, getHeaders, IconSwitch, convertIssueId, convert
 import { deepPurple } from '@mui/material/colors'
 import { AiOutlinePlus } from 'react-icons/ai'
 import axios from 'axios'
-import { Label, Issues } from '@/types'
+import { Label,  Issue, Issues } from '@/types'
 
 const owner = process.env.REACT_APP_USER_NAME
 
@@ -31,31 +31,22 @@ const BoardBase: React.FC = () => {
   const [number, setNumber] = useState<number | undefined>(undefined)
 
   const fetchIssues = useCallback(async () => {
-    const { data } = await request.get(`/repos/${owner}/${repo}/issues`)
+    const { data } = await request.get(`/repos/${owner}/${repo}/issues?state=all`)
     const payload = convertIssueId(data)
-    await setIssues(payload)
+    const todoIssues: Issues = []
+    const doingIssues: Issues = []
+    const closedIssues: Issues = []
+    payload.map((issue: Issue) => issue.labels.forEach((label: Label) => {
+      if (label.name === 'Todo') todoIssues.push(issue)
+      if (label.name === 'Doing') doingIssues.push(issue)
+      if (label.name === 'Closed') closedIssues.push(issue)
+    }))
+    setIssues(payload)
+    setTodo(todoIssues)
+    setDoing(doingIssues)
+    setClosed(closedIssues)
+    // eslint-disable-next-line
   }, [])
-
-  const eachIssues = useCallback(async () => {
-    const labelNames = ['Todo', 'Doing', 'Closed']
-
-    await labelNames.forEach(async (labelName: string) => {
-      await request.get(`/repos/${owner}/${repo}/issues?labels=${labelName}&state=all`).then((res: { data: any }) => {
-        if (labelName === 'Todo' && !todoItems?.length) {
-          const payload = convertIssueId(res.data)
-          setTodo(payload)
-        }
-        if (labelName === 'Doing' && !doingItems?.length) {
-          const payload = convertIssueId(res.data)
-          setDoing(payload)
-        }
-        if (labelName === 'Closed' && !closedItems?.length) {
-          const payload = convertIssueId(res.data)
-          setClosed(payload)
-        }
-      })
-    })
-  }, [todoItems, doingItems, closedItems])
 
   const initializeColumns = useCallback(async () => {
     if (!(todoItems || doingItems || closedItems)?.length) return
@@ -78,14 +69,14 @@ const BoardBase: React.FC = () => {
       },
     }
     await setColumns(columnsFromBackend)
+    // eslint-disable-next-line
   }, [todoItems, doingItems, closedItems])
 
   const orderProcess = async () => {
+
     if (!issueItems?.length) {
       await fetchIssues()
     }
-
-    await eachIssues()
 
     if (todoItems?.length && doingItems?.length && closedItems?.length) {
       await initializeColumns()
