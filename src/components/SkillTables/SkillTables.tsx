@@ -14,7 +14,7 @@ const reactSteps = [
   'Apollo-Client',
 ]
 
-const hooksSteps = ['useState', 'useEffect', 'useRef', 'useCallback', 'useMemo', 'useContext', 'useReducer']
+const hooksSteps = ['useState', 'useEffect', 'useRef', 'useCallback', 'useContext', 'useMemo', 'useReducer']
 
 const reduxSteps = ['flux-flow', 'ducks-pattern', 're-ducks-pattern', 'redux-thunk', 'redux-saga']
 
@@ -34,7 +34,7 @@ const SkillTables: React.FC = () => {
     {
       name: 'React Hooks',
       steps: hooksSteps,
-      activeStep: 4,
+      activeStep: 5,
     },
     {
       name: 'Redux',
@@ -52,12 +52,12 @@ const SkillTables: React.FC = () => {
     {
       name: 'Node.js',
       steps: nodeSteps,
-      activeStep: 1,
+      activeStep: 2,
     },
     {
       name: 'OpenAPI',
       steps: openApiSteps,
-      activeStep: 0,
+      activeStep: 1,
     },
   ]
 
