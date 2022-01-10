@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, createContext } from 'react'
 import classes from './BoardBase.module.scss'
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd'
 import { rgba } from 'polished'
@@ -19,6 +19,24 @@ const request = axios.create({
   baseURL: 'https://api.github.com',
 })
 
+export type DialogContextType = {
+  todoItems: Issues
+  doingItems: Issues
+  closedItems: Issues
+  open: boolean
+  issueNumber: number
+  selectedLabel: string
+  setOpen: (open: boolean) => void
+  setNumber: (num: number | undefined) => void
+  setSelectLabel: (label: string) => void
+  fetchIssues: () => Promise<void>,
+  setTodo: React.Dispatch<React.SetStateAction<Issues>>,
+  setDoing: React.Dispatch<React.SetStateAction<Issues>>,
+  setClosed: React.Dispatch<React.SetStateAction<Issues>>
+}
+
+export const IssueContext = createContext<Partial<DialogContextType>>({})
+
 const BoardBase: React.FC = () => {
   const [issueItems, setIssues] = useState<Issues>([])
   const [todoItems, setTodo] = useState<Issues>([])
@@ -28,7 +46,7 @@ const BoardBase: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false)
   const [selectedLabel, setSelectLabel] = useState<string>('')
   const [toggleDelete, setDelete] = useState<boolean>(false)
-  const [number, setNumber] = useState<number | undefined>(undefined)
+  const [issueNumber, setNumber] = useState<number | undefined>(undefined)
 
   const fetchIssues = useCallback(async () => {
     const { data } = await request.get(`/repos/${owner}/${repo}/issues?state=all`)
@@ -47,6 +65,22 @@ const BoardBase: React.FC = () => {
     setClosed(closedIssues)
     // eslint-disable-next-line
   }, [])
+
+  const contextValue = {
+    todoItems,
+    doingItems,
+    closedItems,
+    open,
+    issueNumber,
+    selectedLabel,
+    setOpen,
+    setNumber,
+    setSelectLabel,
+    fetchIssues,
+    setTodo,
+    setDoing,
+    setClosed
+  }
 
   const initializeColumns = useCallback(async () => {
     if (!(todoItems || doingItems || closedItems)?.length) return
@@ -69,7 +103,6 @@ const BoardBase: React.FC = () => {
       },
     }
     await setColumns(columnsFromBackend)
-    // eslint-disable-next-line
   }, [todoItems, doingItems, closedItems])
 
   const orderProcess = async () => {
@@ -205,105 +238,84 @@ const BoardBase: React.FC = () => {
         </a>
       </div>
       <div style={{ display: 'flex' }}>
-        <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
-          {Object.entries(columns).map(([label, column]) => {
-            return (
-              <Droppable droppableId={label} key={label}>
-                {(provided, snapshot) => {
-                  return (
-                    <div
-                      {...provided.droppableProps}
-                      ref={provided.innerRef}
-                      style={{
-                        background: snapshot.isDraggingOver ? rgba(63, 81, 181, 1.0) : '#161C22',
-                        margin: 10,
-                        padding: 6,
-                        minHeight: 400,
-                        borderRadius: 7,
-                      }}
-                    >
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <Avatar
-                          sx={{
-                            width: 30,
-                            height: 30,
-                            bgcolor: deepPurple[500],
-                            margin: '10px',
-                            fontWeight: 'bold',
-                            fontSize: 16,
-                          }}
-                        >
-                          {column.items ? column.items.length : '0'}
-                        </Avatar>
-                        <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
-                        {label === 'todo' ? (
-                          <IconButton onClick={() => handleClickOpen(label)}>
-                            <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
-                          </IconButton>
-                        ) : (
-                          <></>
-                        )}
-                        {number ? (
-                          <IssueDialog
-                            issueNumber={number}
-                            dialogTitle="Delete a GitHub Issue"
-                            dialogDesc={["I gave up because GitHub doesn't provide DELETE API about Issue."]}
-                            selectedLabel={selectedLabel}
-                            open={open}
-                            todoItems={todoItems}
-                            doingItems={doingItems}
-                            closedItems={closedItems}
-                            setOpen={(open) => setOpen(open)}
-                            fetchIssues={fetchIssues}
-                            setTodo={setTodo}
-                            setNumber={setNumber}
-                            setDoing={setDoing}
-                            setClosed={setClosed}
-                          />
-                        ) : (
-                          <IssueDialog
-                            dialogTitle="Create a new GitHub Issue"
-                            dialogDesc={['Create a new issue with Todo label.']}
-                            selectedLabel={selectedLabel}
-                            open={open}
-                            todoItems={todoItems}
-                            doingItems={doingItems}
-                            closedItems={closedItems}
-                            setOpen={(open) => setOpen(open)}
-                            fetchIssues={fetchIssues}
-                            setTodo={setTodo}
-                            setNumber={setNumber}
-                            setDoing={setDoing}
-                            setClosed={setClosed}
-                          />
-                        )}
-                      </div>
-                      {column.items?.map((item, index) => {
-                        return (
-                          <Draggable key={item.id} draggableId={item.id} index={index}>
-                            {(provided, snapshot) => {
-                              return (
-                                <IssueCard
-                                  provided={provided}
-                                  snapshot={snapshot}
-                                  item={item}
-                                  toggleDelete={toggleDelete}
-                                  label={column.title}
-                                  handleClickOpen={handleClickOpen}
-                                />
-                              )
+        <IssueContext.Provider value={contextValue}>
+          <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
+            {Object.entries(columns).map(([label, column]) => {
+              return (
+                <Droppable droppableId={label} key={label}>
+                  {(provided, snapshot) => {
+                    return (
+                      <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        style={{
+                          background: snapshot.isDraggingOver ? rgba(63, 81, 181, 1.0) : '#161C22',
+                          margin: 10,
+                          padding: 6,
+                          minHeight: 400,
+                          borderRadius: 7,
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                          <Avatar
+                            sx={{
+                              width: 30,
+                              height: 30,
+                              bgcolor: deepPurple[500],
+                              margin: '10px',
+                              fontWeight: 'bold',
+                              fontSize: 16,
                             }}
-                          </Draggable>
-                        )
-                      })}
-                      {provided.placeholder}
-                    </div>
-                  )
-                }}
-              </Droppable>
-            )
-          })}
-        </DragDropContext>
+                          >
+                            {column.items ? column.items.length : '0'}
+                          </Avatar>
+                          <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
+                          {label === 'todo' ? (
+                            <IconButton onClick={() => handleClickOpen(label)}>
+                              <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
+                            </IconButton>
+                          ) : (
+                            <></>
+                          )}
+                          {issueNumber ? (
+                            <IssueDialog
+                              dialogTitle="Delete a GitHub Issue"
+                              dialogDesc={["I gave up because GitHub doesn't provide DELETE API about Issue."]}
+                            />
+                          ) : (
+                            <IssueDialog
+                              dialogTitle="Create a new GitHub Issue"
+                              dialogDesc={['Create a new issue with Todo label.']}
+                            />
+                          )}
+                        </div>
+                        {column.items?.map((item, index) => {
+                          return (
+                            <Draggable key={item.id} draggableId={item.id} index={index}>
+                              {(provided, snapshot) => {
+                                return (
+                                  <IssueCard
+                                    provided={provided}
+                                    snapshot={snapshot}
+                                    item={item}
+                                    toggleDelete={toggleDelete}
+                                    label={column.title}
+                                    handleClickOpen={handleClickOpen}
+                                  />
+                                )
+                              }}
+                            </Draggable>
+                          )
+                        })}
+                        {provided.placeholder}
+                      </div>
+                    )
+                  }}
+                </Droppable>
+              )
+            })}
+          </DragDropContext>
+        </IssueContext.Provider>
       </div>
     </div>
   )
