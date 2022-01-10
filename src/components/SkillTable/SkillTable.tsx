@@ -4,13 +4,13 @@ import { rgba } from 'polished'
 import { Header } from '@/types/index'
 import { Stepper } from '@/components'
 
-type TableData = {
+interface TableData {
   name: string
   steps: string[]
   activeStep: number
 }
 
-type Props = {
+interface Props {
   title: string
   link?: string
   frontEndProps?: TableData[]
@@ -55,7 +55,7 @@ const SkillTable: React.FC<Props> = (props: Props) => {
     }
 
     // eslint-disable-next-line
-  }, [])
+  }, [frontEndProps, backEndProps])
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage)
