@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import { Box, Button } from '@material-ui/core'
 import classes from './Circular.module.scss'
-import { Issue, Issues } from '@/types'
 import { SliderContents } from '@/components'
 
 type Props = {
   length: number
   value: number
-  todoItems: Issues
+  items: unknown[]
 }
 
 const prev = (selected: number, length: number, setSelect: Function) => {
@@ -22,7 +21,7 @@ const next = (selected: number, length: number, setSelect: Function) => {
 }
 
 const Circular: React.FC<Props> = (props: Props) => {
-  const { todoItems, value, length } = props
+  const { items, value, length } = props
 
   const [selected, setSelect] = useState<number>(value)
 
@@ -43,7 +42,7 @@ const Circular: React.FC<Props> = (props: Props) => {
           style={{ transform: `translateZ(-550px) rotateY(${(360 / length) * selected}deg)` }}
           className={classes.circle}
         >
-          {todoItems.map((item: Issue, position: number) => {
+          {items.map((item: unknown, position: number) => {
             return (
               <div
                 key={position - 1}
@@ -52,7 +51,7 @@ const Circular: React.FC<Props> = (props: Props) => {
                 }}
                 className={classes.item}
               >
-                <SliderContents item={item} />
+                <SliderContents item={item} specify='github-todo' />
               </div>
             )
           })}
