@@ -23,6 +23,7 @@ export { default as TypeWriter } from './TypeWriter/TypeWriter'
 export { default as ResumeTable } from './ResumeTable/ResumeTable'
 export { default as ComponentList } from './ComponentList/ComponentList'
 export { default as DragDrop } from './DragDrop/DragDrop'
+export { default as SliderContents } from './SliderContents/SliderContents'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`
