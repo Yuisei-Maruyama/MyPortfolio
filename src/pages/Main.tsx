@@ -28,7 +28,7 @@ const Main = () => {
 
   return (
     <div>
-      <Circular todoItems={todoItems} length={todoItems.length} value={0} />
+      <Circular items={todoItems} length={todoItems.length} value={0} />
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 15 }}>
         <Box sx={{ width: '20%' }}>
           <ProfileCard />
