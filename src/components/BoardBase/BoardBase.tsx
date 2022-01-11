@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useCallback, createContext } from 'react'
 import classes from './BoardBase.module.scss'
-import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd'
-import { rgba } from 'polished'
-import { Avatar, IconButton } from '@mui/material'
-import { IssueDialog, IssueCard, getHeaders, IconSwitch, convertIssueId, convertLabel } from '@/components'
+import { DragDropContext, DropResult } from 'react-beautiful-dnd'
+import { getHeaders, IconSwitch, convertIssueId, convertLabel, DragDrop } from '@/components'
 import { deepPurple } from '@mui/material/colors'
-import { AiOutlinePlus } from 'react-icons/ai'
 import axios from 'axios'
-import { Label,  Issue, Issues } from '@/types'
+import { Label, Issue, Issues } from '@/types'
 
 const owner = process.env.REACT_APP_USER_NAME
 
@@ -240,78 +237,16 @@ const BoardBase: React.FC = () => {
       <div style={{ display: 'flex' }}>
         <IssueContext.Provider value={contextValue}>
           <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
-            {Object.entries(columns).map(([label, column]) => {
+            {Object.entries(columns).map(([label, column], index) => {
               return (
-                <Droppable droppableId={label} key={label}>
-                  {(provided, snapshot) => {
-                    return (
-                      <div
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        style={{
-                          background: snapshot.isDraggingOver ? rgba(63, 81, 181, 1.0) : '#161C22',
-                          margin: 10,
-                          padding: 6,
-                          minHeight: 400,
-                          borderRadius: 7,
-                        }}
-                      >
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                          <Avatar
-                            sx={{
-                              width: 30,
-                              height: 30,
-                              bgcolor: deepPurple[500],
-                              margin: '10px',
-                              fontWeight: 'bold',
-                              fontSize: 16,
-                            }}
-                          >
-                            {column.items ? column.items.length : '0'}
-                          </Avatar>
-                          <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
-                          {label === 'todo' ? (
-                            <IconButton onClick={() => handleClickOpen(label)}>
-                              <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
-                            </IconButton>
-                          ) : (
-                            <></>
-                          )}
-                          {issueNumber ? (
-                            <IssueDialog
-                              dialogTitle="Delete a GitHub Issue"
-                              dialogDesc={["I gave up because GitHub doesn't provide DELETE API about Issue."]}
-                            />
-                          ) : (
-                            <IssueDialog
-                              dialogTitle="Create a new GitHub Issue"
-                              dialogDesc={['Create a new issue with Todo label.']}
-                            />
-                          )}
-                        </div>
-                        {column.items?.map((item, index) => {
-                          return (
-                            <Draggable key={item.id} draggableId={item.id} index={index}>
-                              {(provided, snapshot) => {
-                                return (
-                                  <IssueCard
-                                    provided={provided}
-                                    snapshot={snapshot}
-                                    item={item}
-                                    toggleDelete={toggleDelete}
-                                    label={column.title}
-                                    handleClickOpen={handleClickOpen}
-                                  />
-                                )
-                              }}
-                            </Draggable>
-                          )
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    )
-                  }}
-                </Droppable>
+                <DragDrop
+                  key={index}
+                  column={column}
+                  issueNumber={issueNumber}
+                  label={label}
+                  toggleDelete={toggleDelete}
+                  handleClickOpen={handleClickOpen}
+                />
               )
             })}
           </DragDropContext>
