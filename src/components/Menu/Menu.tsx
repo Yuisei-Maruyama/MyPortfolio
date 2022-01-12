@@ -4,7 +4,7 @@ import { MenuList, MenuItem, ListItemIcon, ListItemText, Divider } from '@mui/ma
 import { FaPlane, FaRegAddressCard } from 'react-icons/fa'
 import { AiTwotoneHome, AiOutlineBgColors } from 'react-icons/ai'
 import { useHistory, withRouter, RouteComponentProps } from 'react-router-dom'
-import { ComponentList } from '@/components'
+import { TreeViewer } from '@/components'
 
 interface Props extends RouteComponentProps {
   toggle: boolean
@@ -46,7 +46,7 @@ const Menu: React.FC<Props> = (props: Props) => {
           </MenuItem>
         ))}
         <Divider />
-        <ComponentList />
+        <TreeViewer />
       </MenuList>
     </Drawer>
   )
