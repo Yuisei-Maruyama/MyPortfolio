@@ -51,7 +51,7 @@ const Circular: React.FC<Props> = (props: Props) => {
                 }}
                 className={classes.item}
               >
-                <SliderContents item={item} specify='github-todo' />
+                <SliderContents item={item} />
               </div>
             )
           })}
