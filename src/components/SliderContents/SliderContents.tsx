@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Chip, Avatar, Typography } from '@mui/material'
 import MarkdownPreview from '@uiw/react-markdown-preview'
 import { rgba } from 'polished'
 import classes from './SliderContents.module.scss'
 import { Issue } from '@/types'
+import { SliderContext } from '@/pages/Main'
 
 type Props = {
-  item: unknown,
-  specify?: string
+  item?: unknown
 }
 
 const SliderContent: React.FC<Props> = (props: Props) => {
 
-  const { item, specify } = props
+  const { item } = props
+
+  const { specify } = useContext(SliderContext)
 
   return (
     <>
@@ -41,7 +43,7 @@ const SliderContent: React.FC<Props> = (props: Props) => {
                 </div>
               </>
             )
-          : <></>
+          : <>Default Slider Contents</>
         }
     </>
   )
