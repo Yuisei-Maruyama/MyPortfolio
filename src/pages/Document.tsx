@@ -7,7 +7,7 @@ const Document = () => {
   const params: { label: string } = useParams()
 
   return (
-    <div style={{ margin: "3% auto", width: "60%" }}>
+    <div style={{ margin: "2% auto", width: "60%" }}>
       <MarkdownPreviewer fileName={`${params.label}.md`} />
     </div>
   )
