@@ -25,6 +25,8 @@ export { default as TreeViewer } from './TreeViewer/TreeViewer'
 export { default as DragDrop } from './DragDrop/DragDrop'
 export { default as SliderContents } from './SliderContents/SliderContents'
 export { default as MarkdownPreviewer } from './MarkdownPreviewer/MarkdownPreviewer'
+export { default as ComponentList } from './ComponentList/ComponentList'
+export { default as DocumentList } from './DocumentList/DocumentList'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`
