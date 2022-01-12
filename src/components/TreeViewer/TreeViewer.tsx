@@ -5,6 +5,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import TreeItem, { TreeItemProps, useTreeItem, TreeItemContentProps } from '@mui/lab/TreeItem'
 import clsx from 'clsx'
 import Typography from '@mui/material/Typography'
+import { ComponentList, DocumentList } from '@/components'
 
 const CustomContent = React.forwardRef(function CustomContent(props: TreeItemContentProps, ref) {
   const { classes, className, label, nodeId, icon: iconProp, expansionIcon, displayIcon } = props
@@ -49,7 +50,7 @@ const CustomContent = React.forwardRef(function CustomContent(props: TreeItemCon
   )
 })
 
-const CustomTreeItem = (props: TreeItemProps) => <TreeItem ContentComponent={CustomContent} {...props} />
+export const CustomTreeItem = (props: TreeItemProps) => <TreeItem ContentComponent={CustomContent} {...props} />
 
 const TreeViewer: React.FC = () => {
   return (
@@ -59,40 +60,8 @@ const TreeViewer: React.FC = () => {
       defaultExpandIcon={<ChevronRightIcon />}
       sx={{ height: 1200, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
-      <CustomTreeItem nodeId="1" label="Components">
-        <CustomTreeItem nodeId="2" label="Header" />
-        <CustomTreeItem nodeId="3" label="Table">
-          <CustomTreeItem nodeId="4" label="SkillTable" />
-          <CustomTreeItem nodeId="5" label="ResumeTable" />
-        </CustomTreeItem>
-        <CustomTreeItem nodeId="6" label="Footer" />
-      </CustomTreeItem>
-
-      <CustomTreeItem nodeId="7" label="Documents">
-        <CustomTreeItem nodeId="20" label="Front-End">
-          <CustomTreeItem nodeId="8" label="README" />
-          <CustomTreeItem nodeId="9" label="React">
-            <CustomTreeItem nodeId="10" label="React Hooks">
-              <CustomTreeItem nodeId="11" label="useState" />
-              <CustomTreeItem nodeId="12" label="useEffect" />
-              <CustomTreeItem nodeId="13" label="useRef" />
-              <CustomTreeItem nodeId="14" label="useCallback" />
-            </CustomTreeItem>
-            <CustomTreeItem nodeId="15" label="react-router-dom" />
-            <CustomTreeItem nodeId="16" label="styled-components" />
-            <CustomTreeItem nodeId="17" label="Suspense" />
-            <CustomTreeItem nodeId="18" label="OAuth" />
-            <CustomTreeItem nodeId="19" label="Apollo-Client" />
-          </CustomTreeItem>
-          <CustomTreeItem nodeId="21" label="Vue">
-            <CustomTreeItem nodeId="22" label="Vue v3.x" />
-          </CustomTreeItem>
-        </CustomTreeItem>
-        <CustomTreeItem nodeId="23" label="Back-End">
-          <CustomTreeItem nodeId="24" label="Node.js" />
-          <CustomTreeItem nodeId="25" label="OpenAPI" />
-        </CustomTreeItem>
-      </CustomTreeItem>
+      <ComponentList />
+      <DocumentList />
     </TreeView>
   )
 }
