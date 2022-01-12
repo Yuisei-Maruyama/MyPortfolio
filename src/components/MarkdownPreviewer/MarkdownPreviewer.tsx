@@ -17,6 +17,7 @@ const MarkdownPreviewer: React.FC<Props> = (props: Props) => {
         fetch(res.default).then(res => res.text()).then(res => setText(res))
       })
       .catch(err => console.log(err))
+    // eslint-disable-next-line
   }, [])
 
   return (
