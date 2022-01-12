@@ -1,13 +1,26 @@
 import React from 'react'
 import TreeItem from '@mui/lab/TreeItem'
+import { useHistory, withRouter } from 'react-router-dom'
 
 const DocumentList: React.FC = () => {
+
+  const history = useHistory()
+
+
+  const handleToDocument = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const param = (event.target as unknown as { textContent: string }).textContent
+    // console.log((event.target as unknown as { textContent: string }).textContent)
+    history.push(`/document/${param}`)
+  }
+
+
   return (
     <>
       <TreeItem nodeId="7" label="Documents">
         <TreeItem nodeId="20" label="Front-End">
           <TreeItem nodeId="8" label="README" />
           <TreeItem nodeId="9" label="React">
+            <TreeItem nodeId="26" label="Environment" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => handleToDocument(e)} />
             <TreeItem nodeId="10" label="React Hooks">
               <TreeItem nodeId="11" label="useState" />
               <TreeItem nodeId="12" label="useEffect" />
@@ -33,4 +46,4 @@ const DocumentList: React.FC = () => {
   )
 }
 
-export default DocumentList
+export default withRouter(DocumentList)
