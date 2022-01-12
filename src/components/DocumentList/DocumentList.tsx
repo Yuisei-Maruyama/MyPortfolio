@@ -9,7 +9,6 @@ const DocumentList: React.FC = () => {
 
   const handleToDocument = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const param = (event.target as unknown as { textContent: string }).textContent
-    // console.log((event.target as unknown as { textContent: string }).textContent)
     history.push(`/document/${param}`)
   }
 
