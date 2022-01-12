@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
 import { ProfileCard, Circular, MessageArea, SkillTables } from '@/components'
 import { Box } from '@material-ui/core'
 import { Issues } from '@/types'
@@ -11,6 +11,16 @@ const request = axios.create({
 const owner = process.env.REACT_APP_USER_NAME
 
 const repo = process.env.REACT_APP_PROJECT
+
+export type SliderContextType = {
+  specify?: string
+}
+
+export const SliderContext = createContext<SliderContextType>({})
+
+const contextValue = {
+  specify: 'github-todo'
+}
 
 const Main = () => {
   const [todoItems, setTodo] = useState<Issues>([])
@@ -28,7 +38,9 @@ const Main = () => {
 
   return (
     <div>
-      <Circular items={todoItems} length={todoItems.length} value={0} />
+      <SliderContext.Provider value={contextValue}>
+        <Circular items={todoItems} length={todoItems.length} value={0} />
+      </SliderContext.Provider>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 15 }}>
         <Box sx={{ width: '20%' }}>
           <ProfileCard />
