@@ -24,6 +24,7 @@ export { default as ResumeTable } from './ResumeTable/ResumeTable'
 export { default as TreeViewer } from './TreeViewer/TreeViewer'
 export { default as DragDrop } from './DragDrop/DragDrop'
 export { default as SliderContents } from './SliderContents/SliderContents'
+export { default as MarkdownPreviewer } from './MarkdownPreviewer/MarkdownPreviewer'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`
