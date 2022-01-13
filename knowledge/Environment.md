@@ -1,3 +1,5 @@
+# 環境構築
+
 ## tsx ファイルの作成方法
 
  1. 対象のディレクトリを作成し、`~.tsx`を作成する。
@@ -29,7 +31,7 @@
 
 ## ESLint の設定方法
 
-```
+```ts
 $ npm i eslint
 $ npx eslint --init
 ```
@@ -38,13 +40,13 @@ $ npx eslint --init
 
 下記のコマンドを実行した時に、`pre-commit`や`pre-rebase`が存在していることを確認する。
 
-```
+```ts
 $ ls -la .git/hooks/ls -la .git/hooks/
 ```
 
 なかったら、
 
-```
+```ts
 $ npm uni husky
 ```
 を実行し、  
@@ -105,7 +107,7 @@ tsconfig.json に tsconfig.paths.json を読み込ませる。
 create-react-app で作ったアプリは webpack でバンドルされているので、webpack の設定を上書きしてエイリアス設定しているパスの解決をする必要がある。
 
 下記を実行し、`config-overrides.js` を作成する。
-```
+```ts
 $ npm i -D react-app-rewired
 ```
 

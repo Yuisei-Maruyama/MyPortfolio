@@ -21,9 +21,12 @@ export { default as SkillTables } from './SkillTables/SkillTables'
 export { default as Stepper } from './Stepper/Stepper'
 export { default as TypeWriter } from './TypeWriter/TypeWriter'
 export { default as ResumeTable } from './ResumeTable/ResumeTable'
-export { default as ComponentList } from './ComponentList/ComponentList'
+export { default as TreeViewer } from './TreeViewer/TreeViewer'
 export { default as DragDrop } from './DragDrop/DragDrop'
 export { default as SliderContents } from './SliderContents/SliderContents'
+export { default as MarkdownPreviewer } from './MarkdownPreviewer/MarkdownPreviewer'
+export { default as ComponentList } from './ComponentList/ComponentList'
+export { default as DocumentList } from './DocumentList/DocumentList'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`

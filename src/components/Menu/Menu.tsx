@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { createContext } from 'react'
 import { Drawer } from '@material-ui/core'
 import { MenuList, MenuItem, ListItemIcon, ListItemText, Divider } from '@mui/material'
 import { FaPlane, FaRegAddressCard } from 'react-icons/fa'
 import { AiTwotoneHome, AiOutlineBgColors } from 'react-icons/ai'
 import { useHistory, withRouter, RouteComponentProps } from 'react-router-dom'
-import { ComponentList } from '@/components'
+import { TreeViewer } from '@/components'
 
 interface Props extends RouteComponentProps {
   toggle: boolean
@@ -17,8 +17,17 @@ interface Nav {
   nav: string
 }
 
+export type DocumentContextType = {
+  toggle: boolean
+  handleDrawerToggle: (toggle: boolean) => void
+}
+
+export const DocumentContext = createContext<Partial<DocumentContextType>>({})
+
 const Menu: React.FC<Props> = (props: Props) => {
   const history = useHistory()
+
+  const { toggle } = props
 
   const itemList: Nav[] = [
     { text: 'Home', icon: <AiTwotoneHome />, nav: '' },
@@ -36,18 +45,25 @@ const Menu: React.FC<Props> = (props: Props) => {
     handleDrawerToggle(toggle)
   }
 
+  const contextValue = {
+    toggle,
+    handleDrawerToggle
+  }
+
   return (
-    <Drawer open={props.toggle} onClose={() => handleDrawerToggle(props.toggle)}>
+    <Drawer open={toggle} onClose={() => handleDrawerToggle(toggle)}>
       <MenuList>
         {itemList.map((item, index) => (
-          <MenuItem key={index} onClick={() => handleToPage(item, props.toggle)}>
+          <MenuItem key={index} onClick={() => handleToPage(item, toggle)}>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </MenuItem>
         ))}
         <Divider />
-        <ComponentList />
-      </MenuList>
+        <DocumentContext.Provider value={contextValue}>
+          <TreeViewer />
+        </DocumentContext.Provider>
+        </MenuList>
     </Drawer>
   )
 }

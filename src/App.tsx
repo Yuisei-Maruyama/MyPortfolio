@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from '@material-ui/core'
-import { Main, Board, History, Art, Travel } from '@/pages'
+import { Main, Board, History, Art, Travel, Document } from '@/pages'
 import { Header, Footer } from '@/components'
 
 const App: React.FC = () => {
@@ -12,10 +12,11 @@ const App: React.FC = () => {
         <Container maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0 }}>
           <Switch>
             <Route exact path="/" component={Main} />
-            <Route exact path="/board" component={Board} />
-            <Route exact path="/history" component={History} />
-            <Route exact path="/art" component={Art} />
-            <Route exact path="/travel" component={Travel} />
+            <Route path="/board" component={Board} />
+            <Route path="/history" component={History} />
+            <Route path="/art" component={Art} />
+            <Route path="/travel" component={Travel} />
+            <Route path="/document/:label" component={Document} />
           </Switch>
         </Container>
         <Footer />
