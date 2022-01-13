@@ -63,7 +63,7 @@ const Menu: React.FC<Props> = (props: Props) => {
         <DocumentContext.Provider value={contextValue}>
           <TreeViewer />
         </DocumentContext.Provider>
-      </MenuList>
+        </MenuList>
     </Drawer>
   )
 }

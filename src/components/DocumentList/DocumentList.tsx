@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import TreeItem from '@mui/lab/TreeItem'
 import { useHistory, withRouter } from 'react-router-dom'
 import { DocumentContext } from '@/components/Menu/Menu'
@@ -7,10 +7,13 @@ const DocumentList: React.FC = () => {
 
   const history = useHistory()
 
+  const [param, setParam] = useState<string>('')
+
   const { toggle, handleDrawerToggle } = useContext(DocumentContext)
 
   const handleToDocument = async (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const param = (event.target as unknown as { textContent: string }).textContent
+    setParam(param)
     history.push(`/document/${param}`)
   }
 
@@ -21,6 +24,10 @@ const DocumentList: React.FC = () => {
     })
   }
 
+  useEffect(() => {
+    history.push(`/document/${param}`)
+  }, [param, history])
+
 
   return (
     <>
@@ -29,9 +36,10 @@ const DocumentList: React.FC = () => {
         <TreeItem nodeId="8" label="README" />
         <TreeItem nodeId="9" label="React">
           <TreeItem nodeId="26" label="Environment" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
+          <TreeItem nodeId="27" label="props" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
           <TreeItem nodeId="10" label="React Hooks">
             <TreeItem nodeId="11" label="useState" />
-            <TreeItem nodeId="12" label="useEffect" />
+            <TreeItem nodeId="12" label="useEffect" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
             <TreeItem nodeId="13" label="useRef" />
             <TreeItem nodeId="14" label="useCallback" />
           </TreeItem>
