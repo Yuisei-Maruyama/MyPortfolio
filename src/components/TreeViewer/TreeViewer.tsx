@@ -1,4 +1,5 @@
 import React from 'react'
+import { Box } from '@mui/material'
 import TreeView from '@mui/lab/TreeView'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
@@ -12,8 +13,12 @@ const TreeViewer: React.FC = () => {
       defaultExpandIcon={<ChevronRightIcon />}
       sx={{ height: 1200, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
-      <ComponentList />
-      <DocumentList />
+      <Box sx={{ marginTop: "5%" }}>
+        <ComponentList />
+      </Box>
+      <Box sx={{ marginTop: "10%" }}>
+        <DocumentList />
+      </Box>
     </TreeView>
   )
 }
