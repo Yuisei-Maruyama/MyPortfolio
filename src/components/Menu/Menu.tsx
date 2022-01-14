@@ -4,7 +4,6 @@ import { MenuList, MenuItem, ListItemIcon, ListItemText, Divider } from '@mui/ma
 import { FaPlane, FaRegAddressCard } from 'react-icons/fa'
 import { AiTwotoneHome, AiOutlineBgColors } from 'react-icons/ai'
 import { useHistory, withRouter, RouteComponentProps } from 'react-router-dom'
-import { TreeViewer } from '@/components'
 
 interface Props extends RouteComponentProps {
   toggle: boolean
@@ -45,11 +44,6 @@ const Menu: React.FC<Props> = (props: Props) => {
     handleDrawerToggle(toggle)
   }
 
-  const contextValue = {
-    toggle,
-    handleDrawerToggle
-  }
-
   return (
     <Drawer open={toggle} onClose={() => handleDrawerToggle(toggle)}>
       <MenuList>
@@ -60,9 +54,6 @@ const Menu: React.FC<Props> = (props: Props) => {
           </MenuItem>
         ))}
         <Divider />
-        <DocumentContext.Provider value={contextValue}>
-          <TreeViewer />
-        </DocumentContext.Provider>
         </MenuList>
     </Drawer>
   )
