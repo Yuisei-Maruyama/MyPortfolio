@@ -25,7 +25,6 @@ const DocumentList: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-      <TreeItem nodeId="7" label="Documents">
       <TreeItem nodeId="20" label="Front-End">
         <TreeItem nodeId="8" label="README" />
         <TreeItem nodeId="9" label="React">
@@ -51,7 +50,6 @@ const DocumentList: React.FC<Props> = (props: Props) => {
         <TreeItem nodeId="24" label="Node.js" />
         <TreeItem nodeId="25" label="OpenAPI" />
       </TreeItem>
-    </TreeItem>
     </>
   )
 }
