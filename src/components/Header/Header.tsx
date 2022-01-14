@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
     menuButton: {
       marginRight: theme.spacing(2),
     },
-    title: {
+    grow: {
       flexGrow: 1,
     },
   })
@@ -49,7 +49,6 @@ const Header: React.FC = () => {
           </IconButton>
           <Typography
             variant="h6"
-            className={classes.title}
             style={{ cursor: 'pointer' }}
             onClick={() => {
               history.push('/')
@@ -57,6 +56,8 @@ const Header: React.FC = () => {
           >
             MyPortfolio
           </Typography>
+          <Typography>Components</Typography>
+          <Typography variant="h6" style={{ marginLeft: 10}} className={classes.grow}>Documents</Typography>
           <Tooltip title="TaskBoard" arrow>
             <IconButton
               edge="start"
