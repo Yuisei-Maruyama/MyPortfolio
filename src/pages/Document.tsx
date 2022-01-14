@@ -16,7 +16,7 @@ const Document: React.FC = () => {
         aria-label="icon expansion"
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
-        sx={{ height: 1200, flexGrow: 1, maxWidth: 400, overflowY: 'auto', marginRight: '10%' }}
+        sx={{ height: 1200, flexGrow: 1, width: '25%', overflowY: 'auto', marginRight: '5%' }}
       >
         <DocumentList getParams={getParams} />
       </TreeView>
@@ -24,7 +24,7 @@ const Document: React.FC = () => {
         {
           params
             ? (
-              <Box sx={{ width: '80%'}}>
+              <Box sx={{ width: '90%'}}>
                 <MarkdownPreviewer fileName={`${params}.md`} />
               </Box>
             )
