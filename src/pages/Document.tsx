@@ -11,12 +11,12 @@ const Document: React.FC = () => {
   const { getParams, params } = useSetParams()
 
   return (
-    <Box sx={{ margin: "2% 4%", display: 'flex' }}>
+    <Box sx={{ margin: "2% 2%", display: 'flex' }}>
       <TreeView
         aria-label="icon expansion"
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
-        sx={{ height: 1200, flexGrow: 1, width: '25%', overflowY: 'auto', marginRight: '5%' }}
+        sx={{ height: 1200, overflowY: 'auto' }}
       >
         <DocumentList getParams={getParams} />
       </TreeView>
@@ -24,7 +24,7 @@ const Document: React.FC = () => {
         {
           params
             ? (
-              <Box sx={{ width: '90%'}}>
+              <Box sx={{ width: '90%', paddingLeft: '6%' }}>
                 <MarkdownPreviewer fileName={`${params}.md`} />
               </Box>
             )
