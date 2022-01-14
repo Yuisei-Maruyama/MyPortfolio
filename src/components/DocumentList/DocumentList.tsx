@@ -1,33 +1,27 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React from 'react'
 import TreeItem from '@mui/lab/TreeItem'
-import { useHistory, withRouter } from 'react-router-dom'
-import { DocumentContext } from '@/components/Menu/Menu'
+import { useHistory } from 'react-router-dom'
 
-const DocumentList: React.FC = () => {
+type Props = {
+  getParams: (params: string) => void
+}
+
+const DocumentList: React.FC<Props> = (props: Props) => {
 
   const history = useHistory()
 
-  const [param, setParam] = useState<string>('')
-
-  const { toggle, handleDrawerToggle } = useContext(DocumentContext)
+  const { getParams } = props
 
   const handleToDocument = async (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    if (!getParams) return
     const param = (event.target as unknown as { textContent: string }).textContent
-    setParam(param)
-    history.push(`/document/${param}`)
+    getParams(param)
+    history.push(`/documents/${param}`)
   }
 
   const previewDocument = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    handleToDocument(event).then(() => {
-      if (!toggle || !handleDrawerToggle) return
-      handleDrawerToggle(toggle)
-    })
+    handleToDocument(event)
   }
-
-  useEffect(() => {
-    history.push(`/document/${param}`)
-  }, [param, history])
-
 
   return (
     <>
@@ -62,4 +56,4 @@ const DocumentList: React.FC = () => {
   )
 }
 
-export default withRouter(DocumentList)
+export default DocumentList
