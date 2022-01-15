@@ -1,6 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from '@material-ui/core'
+import { Box } from '@mui/material'
+import { rgba } from 'polished'
 import { Main, Board, History, Art, Travel, Document } from '@/pages'
 import { Header2, Footer, MarkdownPreviewer } from '@/components'
 
@@ -21,7 +23,9 @@ const App: React.FC = () => {
               <Route path="/documents/:label" component={MarkdownPreviewer} />
           </Switch>
         </Container>
-        <Footer />
+        <Box sx={{ position: 'fixed', width: '100%', bottom: 0, right: 0, backgroundColor: rgba(0,26,26, 1) }}>
+          <Footer />
+        </Box>
       </Router>
     </div>
   )
