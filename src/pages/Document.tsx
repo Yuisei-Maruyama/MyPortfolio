@@ -11,26 +11,32 @@ const Document: React.FC = () => {
   const { getParams, params } = useSetParams()
 
   return (
-    <Box sx={{ margin: "2% 2%", display: 'flex' }}>
-      <TreeView
-        aria-label="icon expansion"
-        defaultCollapseIcon={<ExpandMoreIcon />}
-        defaultExpandIcon={<ChevronRightIcon />}
-        sx={{ height: 1200, overflowY: 'auto' }}
-      >
-        <DocumentList getParams={getParams} />
-      </TreeView>
-      <div>
+    <Box sx={{ margin: "2% 2% 5% 2%", display: 'flex' }}>
+      <Box sx={{ padding: 3, border: "solid 1px #06D8D7", borderRadius: 3 }}>
+        <TreeView
+          aria-label="icon expansion"
+          defaultCollapseIcon={<ExpandMoreIcon />}
+          defaultExpandIcon={<ChevronRightIcon />}
+          sx={{ overflowY: 'auto' }}
+        >
+          <DocumentList getParams={getParams} />
+        </TreeView>
+      </Box>
+      <>
         {
           params
             ? (
-              <Box sx={{ width: '90%', paddingLeft: '6%' }}>
+              <Box sx={{ width: '75%', paddingLeft: '6%' }}>
                 <MarkdownPreviewer fileName={`${params}.md`} />
               </Box>
             )
-            : <p>左のドキュメントリストを選択すると、ここにMarkdownがプレビューされます。</p>
+            : (
+              <Box sx={{ marginLeft: '20%' }}>
+                <p>左のドキュメントリストを選択すると、ここにMarkdownがプレビューされます。</p>
+              </Box>
+            )
         }
-      </div>
+      </>
     </Box>
   )
 }

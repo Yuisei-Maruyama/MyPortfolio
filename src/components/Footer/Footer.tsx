@@ -7,9 +7,8 @@ const Footer: React.FC = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        marginTop: 30,
         height: 40,
-        borderTop: 'solid 1px white',
+        borderTop: 'solid 1px #06D8D7',
       }}
     >
       <p style={{ marginRight: 10 }}>created by Yuisei Maruyama</p>
