@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-import { AppBar, Tabs, Tab, Typography, Box } from '@mui/material'
+import { AppBar, Tabs, Tab, Typography, Box, List, ListItem, ListItemText } from '@mui/material'
+import { rgba } from 'polished'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { Header, Footer } from '@/components'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -11,6 +14,14 @@ interface TabPanelProps {
 type Props = {
   params: string | string[]
 }
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '& .MuiTab-root': { backgroundColor: "#06D8D7" }
+    },
+  })
+)
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
@@ -41,16 +52,23 @@ function a11yProps(index: number) {
 
 const CustomTabs: React.FC<Props> = (props: Props) => {
 
-  console.log(props)
+  const { params } = props
 
-  const [value, setValue] = useState(0);
+  const classes = useStyles()
+
+  const [value, setValue] = useState(0)
+
+  const componentList = [
+    { name: 'Header', tag: <Header /> },
+    { name: 'Footer', tag: <Footer /> },
+  ]
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   }
 
   return (
-    <Box sx={{ bgcolor: 'background.paper' }}>
+    <Box sx={{ bgcolor: rgba(0,26,26, 1), color: "white" }}>
       <AppBar position="static">
         <Tabs
           value={value}
@@ -60,13 +78,29 @@ const CustomTabs: React.FC<Props> = (props: Props) => {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="Usage" {...a11yProps(0)} />
-          <Tab label="Props" {...a11yProps(1)} />
-          <Tab label="Events" {...a11yProps(2)} />
+          <Tab sx={{ backgroundColor: rgba(0,26,26, 1) }} label="Usage" {...a11yProps(0)} />
+          <Tab sx={{ backgroundColor: rgba(0,26,26, 1) }} label="Props" {...a11yProps(1)} />
+          <Tab sx={{ backgroundColor: rgba(0,26,26, 1) }} className={classes.root} label="Events" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Usage
+        <List dense={true} sx={{ marginBottom: 3 }}>
+            <ListItem>
+              <ListItemText>Name:<span style={{ fontWeight: 'bold', marginLeft: 10 }}>{ params }</span></ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText>Demo:</ListItemText>
+            </ListItem>
+        </List>
+        {
+          componentList.map(component =>
+            component.name === params
+              ? (
+                component.tag
+              )
+              : <></>
+          )
+        }
       </TabPanel>
       <TabPanel value={value} index={1}>
         Props
