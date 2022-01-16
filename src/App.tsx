@@ -4,7 +4,7 @@ import { Container } from '@material-ui/core'
 import { Box } from '@mui/material'
 import { rgba } from 'polished'
 import { Main, Board, History, Art, Travel, DocumentsPreviewer, ComponentsPreviewer } from '@/pages'
-import { Header2, Footer, MarkdownPreviewer, ComponentPreviewTabs } from '@/components'
+import { Header, Footer, MarkdownPreviewer, ComponentPreviewTabs } from '@/components'
 
 
 const App: React.FC = () => {
@@ -12,7 +12,7 @@ const App: React.FC = () => {
     <div className="App">
       <Router>
         <Box>
-          <Header2 />
+          <Header />
         </Box>
         <Container maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0 }}>
           <Switch>
