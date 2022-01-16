@@ -28,7 +28,7 @@ const DocumentList: React.FC<Props> = (props: Props) => {
     <>
       <Box>
         <TreeItem nodeId="20" label="Front-End">
-          <TreeItem nodeId="8" label="README" />
+          <TreeItem nodeId="8" label="README" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
           <TreeItem nodeId="9" label="React">
             <TreeItem nodeId="26" label="Environment" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
             <TreeItem nodeId="27" label="props" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
@@ -38,7 +38,7 @@ const DocumentList: React.FC<Props> = (props: Props) => {
               <TreeItem nodeId="13" label="useRef" />
               <TreeItem nodeId="14" label="useCallback" />
             </TreeItem>
-            <TreeItem nodeId="15" label="react-router-dom" />
+            <TreeItem nodeId="15" label="react-router-dom" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
             <TreeItem nodeId="16" label="styled-components" />
             <TreeItem nodeId="17" label="Suspense" />
             <TreeItem nodeId="18" label="OAuth" />
@@ -47,12 +47,18 @@ const DocumentList: React.FC<Props> = (props: Props) => {
           <TreeItem nodeId="21" label="Vue">
             <TreeItem nodeId="22" label="Vue v3.x" />
           </TreeItem>
+          <TreeItem nodeId="27" label="MaterialUI" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
         </TreeItem>
       </Box>
       <Box sx={{ marginTop: '10%'}}>
         <TreeItem nodeId="23" label="Back-End">
           <TreeItem nodeId="24" label="Node.js" />
           <TreeItem nodeId="25" label="OpenAPI" />
+        </TreeItem>
+      </Box>
+      <Box sx={{ marginTop: '10%'}}>
+        <TreeItem nodeId="26" label="TypeScript">
+        <TreeItem nodeId="15" label="types-cheat-sheet" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
         </TreeItem>
       </Box>
     </>
