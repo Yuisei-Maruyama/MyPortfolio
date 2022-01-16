@@ -4,8 +4,8 @@ import { Issues, Label } from '@/types'
 export { default as Tooltip } from './Tooltip/Tooltip'
 export { default as ProfileCard } from './ProfileCard/ProfileCard'
 export { default as History } from './History/History'
-export { default as Header } from './Header/Header'
 export { default as Header2 } from './Header2/Header2'
+export { default as Header } from './Header/Header'
 export { default as Footer } from './Footer/Footer'
 export { default as ModeSwitch } from './ModeSwitch/ModeSwitch'
 export { default as ThemeProvider } from './ThemeProvider'
@@ -27,6 +27,7 @@ export { default as SliderContents } from './SliderContents/SliderContents'
 export { default as MarkdownPreviewer } from './MarkdownPreviewer/MarkdownPreviewer'
 export { default as ComponentList } from './ComponentList/ComponentList'
 export { default as DocumentList } from './DocumentList/DocumentList'
+export { default as ComponentPreviewTabs } from './ComponentPreviewTabs/ComponentPreviewTabs'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`
