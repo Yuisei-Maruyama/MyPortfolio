@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AppBar, Tabs, Tab, Typography, Box } from '@mui/material'
+import { AppBar, Tabs, Tab, Typography, Box, List, ListItem, ListItemText } from '@mui/material'
 import { rgba } from 'polished'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { Header, Footer } from '@/components'
@@ -59,8 +59,8 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
   const [value, setValue] = useState(0)
 
   const componentList = [
-    { name: 'Header', tag: <Header /> },
-    { name: 'Footer', tag: <Footer /> },
+    { name: 'Header', tag: Header },
+    { name: 'Footer', tag: Footer },
   ]
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -84,19 +84,19 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        {/* <List dense={true} sx={{ marginBottom: 3 }}>
+        <List dense={true} sx={{ marginBottom: 3 }}>
             <ListItem>
               <ListItemText>Name:<span style={{ fontWeight: 'bold', marginLeft: 10 }}>{ params }</span></ListItemText>
             </ListItem>
             <ListItem>
               <ListItemText>Demo:</ListItemText>
             </ListItem>
-        </List> */}
+        </List>
         {
-          componentList.map(component =>
+          componentList.map((component, index) =>
             component.name === params
               ? (
-                component.tag
+                <component.tag key={index} />
               )
               : <></>
           )
