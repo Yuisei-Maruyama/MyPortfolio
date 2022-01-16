@@ -27,7 +27,7 @@ export { default as SliderContents } from './SliderContents/SliderContents'
 export { default as MarkdownPreviewer } from './MarkdownPreviewer/MarkdownPreviewer'
 export { default as ComponentList } from './ComponentList/ComponentList'
 export { default as DocumentList } from './DocumentList/DocumentList'
-export { default as CustomTabs } from './CustomTabs/CustomTabs'
+export { default as ComponentPreviewTabs } from './ComponentPreviewTabs/ComponentPreviewTabs'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`

@@ -1,17 +1,20 @@
 import React from 'react'
+import { Box } from '@mui/material'
 import TreeView from '@mui/lab/TreeView'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import { DocumentList, MarkdownPreviewer } from '@/components'
-import { Box } from '@mui/material'
+import { ComponentList, ComponentPreviewTabs } from '@/components'
 import { useSetParams } from '@/customHooks'
 
-const Document: React.FC = () => {
+const ComponentsPreviewer: React.FC = () => {
 
   const { getParams, params } = useSetParams()
 
+  console.log(params)
+
+
   return (
-    <Box sx={{ margin: "2% 2% 5% 2%", display: 'flex' }}>
+    <Box sx={{ margin: "2% 3% 5% 2%", display: 'flex' }}>
       <Box sx={{ padding: 3, border: "solid 1px #06D8D7", borderRadius: 3 }}>
         <TreeView
           aria-label="icon expansion"
@@ -19,20 +22,20 @@ const Document: React.FC = () => {
           defaultExpandIcon={<ChevronRightIcon />}
           sx={{ overflowY: 'auto' }}
         >
-          <DocumentList getParams={getParams} />
+          <ComponentList getParams={getParams} />
         </TreeView>
       </Box>
       <>
         {
           params
             ? (
-              <Box sx={{ width: '75%', paddingLeft: '6%' }}>
-                <MarkdownPreviewer fileName={`${params}.md`} />
+              <Box sx={{ width: '100%', paddingLeft: '6%' }}>
+                <ComponentPreviewTabs params={params} />
               </Box>
             )
             : (
               <Box sx={{ marginLeft: '20%' }}>
-                <p>左のドキュメントリストを選択すると、ここにMarkdownがプレビューされます。</p>
+                <p>左のコンポーネントリストから対象のラベルを選択すると、ここに選択されたComponentの詳細がプレビューされます。</p>
               </Box>
             )
         }
@@ -41,4 +44,4 @@ const Document: React.FC = () => {
   )
 }
 
-export default Document
+export default ComponentsPreviewer
