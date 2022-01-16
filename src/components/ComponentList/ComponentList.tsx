@@ -1,17 +1,37 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import TreeItem from '@mui/lab/TreeItem'
 
-const ComponentList: React.FC = () => {
+type Props = {
+  getParams: (params: string) => void
+}
+
+const ComponentList: React.FC<Props> = (props: Props) => {
+
+  const history = useHistory()
+
+  const { getParams } = props
+
+  const handleToComponent = async (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    if (!getParams) return
+    const param = (event.target as unknown as { textContent: string }).textContent
+    getParams(param)
+    history.push(`/components/${param}`)
+  }
+
+  const previewComponent = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    handleToComponent(event)
+  }
+
+
   return (
     <>
-      <TreeItem nodeId="1" label="Components">
-        <TreeItem nodeId="2" label="Header" />
-        <TreeItem nodeId="3" label="Table">
-          <TreeItem nodeId="4" label="SkillTable" />
-          <TreeItem nodeId="5" label="ResumeTable" />
-        </TreeItem>
-        <TreeItem nodeId="6" label="Footer" />
+      <TreeItem nodeId="2" label="Header" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)} />
+      <TreeItem nodeId="3" label="Table">
+        <TreeItem nodeId="4" label="SkillTable" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)} />
+        <TreeItem nodeId="5" label="ResumeTable" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)} />
       </TreeItem>
+      <TreeItem nodeId="6" label="Footer" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)} />
     </>
   )
 }
