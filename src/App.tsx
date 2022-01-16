@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from '@material-ui/core'
 import { Box } from '@mui/material'
 import { rgba } from 'polished'
-import { Main, Board, History, Art, Travel, Document } from '@/pages'
-import { Header2, Footer, MarkdownPreviewer } from '@/components'
+import { Main, Board, History, Art, Travel, Document, Components } from '@/pages'
+import { Header2, Footer, MarkdownPreviewer, CustomTabs } from '@/components'
 
 
 const App: React.FC = () => {
@@ -19,8 +19,10 @@ const App: React.FC = () => {
             <Route exact path="/history" component={History} />
             <Route exact path="/art" component={Art} />
             <Route exact path="/travel" component={Travel} />
-              <Route path="/documents" component={Document} />
-              <Route path="/documents/:label" component={MarkdownPreviewer} />
+            <Route path="/documents" component={Document} />
+            <Route path="/documents/:label" component={MarkdownPreviewer} />
+            <Route path="/components" component={Components} />
+            <Route path="/components/:label" component={CustomTabs} />
           </Switch>
         </Container>
         <Box sx={{ position: 'fixed', width: '100%', bottom: 0, right: 0, backgroundColor: rgba(0,26,26, 1) }}>
