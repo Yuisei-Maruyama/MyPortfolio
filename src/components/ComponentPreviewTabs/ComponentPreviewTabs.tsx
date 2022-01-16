@@ -50,7 +50,7 @@ function a11yProps(index: number) {
   }
 }
 
-const CustomTabs: React.FC<Props> = (props: Props) => {
+const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
 
   const { params } = props
 
@@ -112,4 +112,4 @@ const CustomTabs: React.FC<Props> = (props: Props) => {
   );
 }
 
-export default CustomTabs
+export default ComponentPreviewTabs
