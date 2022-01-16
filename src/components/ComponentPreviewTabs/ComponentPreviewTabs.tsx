@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AppBar, Tabs, Tab, Typography, Box, List, ListItem, ListItemText } from '@mui/material'
+import { AppBar, Tabs, Tab, Typography, Box } from '@mui/material'
 import { rgba } from 'polished'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { Header, Footer } from '@/components'
@@ -84,14 +84,14 @@ const CustomTabs: React.FC<Props> = (props: Props) => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <List dense={true} sx={{ marginBottom: 3 }}>
+        {/* <List dense={true} sx={{ marginBottom: 3 }}>
             <ListItem>
               <ListItemText>Name:<span style={{ fontWeight: 'bold', marginLeft: 10 }}>{ params }</span></ListItemText>
             </ListItem>
             <ListItem>
               <ListItemText>Demo:</ListItemText>
             </ListItem>
-        </List>
+        </List> */}
         {
           componentList.map(component =>
             component.name === params

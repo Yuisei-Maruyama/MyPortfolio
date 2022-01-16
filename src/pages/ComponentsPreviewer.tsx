@@ -10,9 +10,6 @@ const ComponentsPreviewer: React.FC = () => {
 
   const { getParams, params } = useSetParams()
 
-  console.log(params)
-
-
   return (
     <Box sx={{ margin: "2% 3% 5% 2%", display: 'flex' }}>
       <Box sx={{ padding: 3, border: "solid 1px #06D8D7", borderRadius: 3 }}>
