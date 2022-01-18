@@ -60,8 +60,8 @@ const DocumentList: React.FC<Props> = (props: Props) => {
         </TreeItem>
       </Box>
       <Box sx={{ marginTop: '10%'}}>
-        <TreeItem nodeId="26" label="TypeScript">
-        <TreeItem nodeId="15" label="types-cheat-sheet" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
+        <TreeItem nodeId="60" label="TypeScript">
+        <TreeItem nodeId="61" label="types-cheat-sheet" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
         </TreeItem>
       </Box>
     </>
