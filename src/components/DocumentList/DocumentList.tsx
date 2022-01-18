@@ -35,8 +35,11 @@ const DocumentList: React.FC<Props> = (props: Props) => {
             <TreeItem nodeId="10" label="React Hooks">
               <TreeItem nodeId="11" label="useState" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
               <TreeItem nodeId="12" label="useEffect" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
+              <TreeItem nodeId="28" label="useContext" />
+              <TreeItem nodeId="29" label="useReducer" />
               <TreeItem nodeId="13" label="useRef" />
               <TreeItem nodeId="14" label="useCallback" />
+              <TreeItem nodeId="30" label="useMemo" />
             </TreeItem>
             <TreeItem nodeId="15" label="react-router-dom" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
             <TreeItem nodeId="16" label="styled-components" />
