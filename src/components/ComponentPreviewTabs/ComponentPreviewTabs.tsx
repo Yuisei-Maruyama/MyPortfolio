@@ -88,23 +88,27 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
         <List dense={true} sx={{ marginBottom: 3 }}>
             <ListItem>
               <ListItemText>Name:<span style={{ fontWeight: 'bold', marginLeft: 10 }}>{ params }</span></ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText>Input:{ input }</ListItemText>
-            </ListItem>
+          </ListItem>
+          { input
+            ? (
+              <>
+                <ListItem>
+                  <ListItemText>Input:{ input }</ListItemText>
+                </ListItem>
+              </>
+            )
+            :
+            <></>
+          }
             <ListItem>
               <ListItemText>Demo:</ListItemText>
             </ListItem>
         </List>
         <>
           {
-            componentList.map((component, index) =>
-              component.name === params
-                ? (
-                  <component.tag key={index} />
-                )
-                : <p key={index}> component is not exist. </p>
-            )
+            componentList.filter(component => component.name === params).map((component, index) => {
+                return <component.tag key={index} />
+            })
           }
         </>
       </TabPanel>
