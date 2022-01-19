@@ -12,7 +12,8 @@ interface TabPanelProps {
 }
 
 type Props = {
-  params: string | string[]
+  params: string | string[],
+  input?: React.FC
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,7 +37,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component="div">{children}</Typography>
         </Box>
       )}
     </div>
@@ -52,7 +53,7 @@ function a11yProps(index: number) {
 
 const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
 
-  const { params } = props
+  const { params, input } = props
 
   const classes = useStyles()
 
@@ -89,18 +90,23 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
               <ListItemText>Name:<span style={{ fontWeight: 'bold', marginLeft: 10 }}>{ params }</span></ListItemText>
             </ListItem>
             <ListItem>
+              <ListItemText>Input:{ input }</ListItemText>
+            </ListItem>
+            <ListItem>
               <ListItemText>Demo:</ListItemText>
             </ListItem>
         </List>
-        {
-          componentList.map((component, index) =>
-            component.name === params
-              ? (
-                <component.tag key={index} />
-              )
-              : <></>
-          )
-        }
+        <>
+          {
+            componentList.map((component, index) =>
+              component.name === params
+                ? (
+                  <component.tag key={index} />
+                )
+                : <p key={index}> component is not exist. </p>
+            )
+          }
+        </>
       </TabPanel>
       <TabPanel value={value} index={1}>
         Props
