@@ -4,13 +4,14 @@ import { Container } from '@material-ui/core'
 import { Box } from '@mui/material'
 import { rgba } from 'polished'
 import { Main, Board, History, Art, Travel, DocumentsPreviewer, ComponentsPreviewer } from '@/pages'
-import { Header, Footer, MarkdownPreviewer, ComponentPreviewTabs } from '@/components'
+import { ThemeProvider, Header, Footer, MarkdownPreviewer, ComponentPreviewTabs } from '@/components'
 
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
+        <ThemeProvider mode={true} />
         <Header></Header>
         <Container maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0 }}>
           <Switch>
