@@ -48,7 +48,7 @@ const TypeWriter: React.FC<Props> = (props: Props) => {
   })
 
   return (
-    <Typography sx={{ fontSize: 20 }} ref={msgRef} className={className + (cursor ? ' cursor-blink' : '')}>
+    <Typography component='div' sx={{ fontSize: 20 }} ref={msgRef} className={className + (cursor ? ' cursor-blink' : '')}>
       {text.split('\n').map((txt, index) =>
         <div key={index}> {txt} </div>
       )}
