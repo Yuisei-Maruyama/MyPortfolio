@@ -26,7 +26,8 @@ Issueに付与されたラベルごとの管理がしづらいことや対象と
 | GitHub Issue のTodoラベル内容閲覧機能  |
 | GitHub Issue の新規作成機能  |
 | GitHub Issue に付与されたラベルごとの管理機能 |
-| スイッチでメインカラーを切り替えられる機能 |
+| コンポーネントのプレビュー機能 |
+| ドキュメントのプレビュー機能 |
 
 ---
 
@@ -61,6 +62,7 @@ ex.) Doing -> Closed ラベルに変更
 | [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) | 2.1.8 | webpack の設定を上書きしてエイリアス設定しているパスの解決を行う |
 | react-beautiful-dnd | 13.1.0 | ドロップ&ドラッグを実現できるライブラリ |
 | [react-vertical-timeline-component](https://stephane-monnot.github.io/react-vertical-timeline/#/) | 3.5.2 | タイムライムの表示 |
+| [@uiw/react-md-editor](https://uiwjs.github.io/react-markdown-preview) | ReactでMarkdownを表示できるようにするライブラリ | 3.9.1 |
 | axios | 0.24.0 | PromiseベースのHTTP Clientライブラリ |
 | uuid | 8.3.2 | uuidを付与する |
 | sass | 1.45.1 | Sass をコンパイルするためのモジュール |
@@ -77,12 +79,11 @@ ex.) Doing -> Closed ラベルに変更
 | [dts-gen](https://github.com/microsoft/dts-gen) | 0.6.0 | ライブラリで型定義ファイルがない場合に `XXX.d.ts` を生成する |
 |  | | |
 |  | | |
-|  | | |
 ### 動作環境
 
 | デバイスの識別 | OS | 対応ブラウザ |
 | --- | --- |--- |
-| PC | macOS Mojave | Google chrome最新 |
+| PC | macOS Monterey | Google chrome最新 |
 
 ## 基本設計
 
@@ -95,5 +96,10 @@ ex.) Doing -> Closed ラベルに変更
 | ヘッダー | - |
 | メイン画面 | / |
 | タスク管理ボード画面 | /board |
+| コンポーネントプレビュー画面 | /components |
+| 対象のコンポーネントのプレビュー | /components/:label |
+| ドキュメントプレビュー画面 | /documents |
+| 対象のドキュメントのプレビュー | /documents/:label |
+| フッダー | - |
 
 
