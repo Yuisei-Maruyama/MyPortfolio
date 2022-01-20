@@ -15,7 +15,13 @@ const MessageArea: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    typeStart(`My name is Yuisei Maruyama.\nI'm interested in Front-End technology.`
+    typeStart(`I'm Yuisei Maruyama.\n
+    My motto is to work while having fun.\n
+    Interested in Front-End of web technology.\n
+    Especially technology of interest is React.\n
+    In the future, I wanna be a mobile developer.\n
+    In order to reach my goal, I think it is essential to learn React.\n
+    `
   )
     // eslint-disable-next-line
   }, [])
