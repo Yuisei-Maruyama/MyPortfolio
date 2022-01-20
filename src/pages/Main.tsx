@@ -49,7 +49,7 @@ const Main = () => {
           <MessageArea />
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', width: '90%', margin: '30px auto 0' }}>
+      <Box sx={{ display: 'flex', width: '90%', margin: '30px auto 80px' }}>
         <SkillTables />
       </Box>
     </div>
