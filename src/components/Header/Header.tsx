@@ -17,7 +17,6 @@ import { SiNetlify } from 'react-icons/si'
 import { BiTask } from 'react-icons/bi'
 import { useHistory, withRouter } from 'react-router-dom'
 import { rgba } from 'polished'
-// import { ThemeProvider } from '@/components'
 
 const pages = ['Components', 'Documents']
 const settings = ['Login', 'Account']
@@ -210,7 +209,6 @@ const Header: React.FC = () => {
               ))}
             </DefaultMenu>
         </Box>
-        {/* <ThemeProvider mode={true} /> */}
         </Toolbar>
     </AppBar>
   )
