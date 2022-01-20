@@ -11,9 +11,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
-        <Box>
-          <Header />
-        </Box>
+        <Header></Header>
         <Container maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0 }}>
           <Switch>
             <Route exact path="/" component={Main} />
