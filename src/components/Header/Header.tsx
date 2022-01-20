@@ -16,25 +16,14 @@ import { AiFillGithub, AiFillInstagram } from 'react-icons/ai'
 import { SiNetlify } from 'react-icons/si'
 import { BiTask } from 'react-icons/bi'
 import { useHistory, withRouter } from 'react-router-dom'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { rgba } from 'polished'
 import { ThemeProvider } from '@/components'
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiButton-root.MuiButton-text.MuiButton-textPrimary': { color: rgba(0, 248,248, 1) }
-    },
-  })
-)
 
 const pages = ['Components', 'Documents']
 const settings = ['Login', 'Account']
 
 
 const Header: React.FC = () => {
-
-  const classes = useStyles()
 
   const history = useHistory()
 
@@ -135,7 +124,6 @@ const Header: React.FC = () => {
                 key={page}
                 onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => handleToPage(e)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
-                className={classes.root}
               >
                 {page}
               </Button>
