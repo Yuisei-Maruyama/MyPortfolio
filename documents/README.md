@@ -26,7 +26,10 @@ Issueに付与されたラベルごとの管理がしづらいことや対象と
 | GitHub Issue のTodoラベル内容閲覧機能  |
 | GitHub Issue の新規作成機能  |
 | GitHub Issue に付与されたラベルごとの管理機能 |
-| スイッチでメインカラーを切り替えられる機能 |
+| コンポーネントのプレビュー機能 |
+| ドキュメントのプレビュー機能 |
+
+<!--rehype:style=color: black;-->
 
 ---
 
@@ -34,23 +37,32 @@ Issueに付与されたラベルごとの管理がしづらいことや対象と
 >> GitHub Issue に付与されたTodoラベルの内容からタイトルと詳細内容が閲覧可能  
 >> Issueタイトルをクリックすることで該当Issueに遷移可能
 
-<img src="../public/assets/ReadmeGifs/slider.gif" width="100%">
+<!--rehype:style=color: white;-->
+
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/ReadmeGifs/slider.gif?raw=true" width="100%">  
+
+---
 
 > GitHub Issue の新規作成
+<!--rehype:style=color: white;-->
 
-<img src="../public/assets/ReadmeGifs/Add-Issue.gif" width="100%">
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/ReadmeGifs/Add-Issue.gif?raw=true" width="100%">  
+
+---
 
 > 付与されたラベルごとの管理機能
-
 >> ドラッグ＆ドロップにおけるラベルの修正  
+<!--rehype:style=color: white;-->
 
 ex.) Todo -> Doing ラベルに変更  
 
-<img src="../public/assets/ReadmeGifs/Update-Issue.gif" width="100%">
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/ReadmeGifs/Update-Issue.gif?raw=true" width="100%">  
 
 ex.) Doing -> Closed ラベルに変更  
 
-<img src="../public/assets/ReadmeGifs/Closed-Issue.gif" width="100%">
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/ReadmeGifs/Closed-Issue.gif?raw=true" width="100%">  
+
+---
 
 ### 使用技術・バージョン
 | 技術 | version |説明 |
@@ -61,6 +73,7 @@ ex.) Doing -> Closed ラベルに変更
 | [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) | 2.1.8 | webpack の設定を上書きしてエイリアス設定しているパスの解決を行う |
 | react-beautiful-dnd | 13.1.0 | ドロップ&ドラッグを実現できるライブラリ |
 | [react-vertical-timeline-component](https://stephane-monnot.github.io/react-vertical-timeline/#/) | 3.5.2 | タイムライムの表示 |
+| [@uiw/react-md-editor](https://uiwjs.github.io/react-markdown-preview) | ReactでMarkdownを表示できるようにするライブラリ | 3.9.1 |
 | axios | 0.24.0 | PromiseベースのHTTP Clientライブラリ |
 | uuid | 8.3.2 | uuidを付与する |
 | sass | 1.45.1 | Sass をコンパイルするためのモジュール |
@@ -78,11 +91,16 @@ ex.) Doing -> Closed ラベルに変更
 |  | | |
 |  | | |
 |  | | |
+
+<!--rehype:style=color: black;-->  
+
 ### 動作環境
 
 | デバイスの識別 | OS | 対応ブラウザ |
 | --- | --- |--- |
-| PC | macOS Mojave | Google chrome最新 |
+| PC | macOS Monterey | Google chrome最新 |
+
+<!--rehype:style=color: black;-->
 
 ## 基本設計
 
@@ -95,5 +113,12 @@ ex.) Doing -> Closed ラベルに変更
 | ヘッダー | - |
 | メイン画面 | / |
 | タスク管理ボード画面 | /board |
+| コンポーネントプレビュー画面 | /components |
+| 対象のコンポーネントのプレビュー | /components/:label |
+| ドキュメントプレビュー画面 | /documents |
+| 対象のドキュメントのプレビュー | /documents/:label |
+| フッダー | - |
+
+<!--rehype:style=color: black;-->
 
 
