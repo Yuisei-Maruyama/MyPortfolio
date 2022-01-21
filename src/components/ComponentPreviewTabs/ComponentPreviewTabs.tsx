@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AppBar, Tabs, Tab, Typography, Box, List, ListItem, ListItemText } from '@mui/material'
+import { AppBar, Tabs, Tab, Typography, Box, List, ListItem, ListItemText, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 import { rgba } from 'polished'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { Header, Circular, Footer } from '@/components'
@@ -145,21 +145,41 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
         </>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Typography variant='h6'>＜親コンポーネントから渡される Props 情報＞</Typography>
         <List dense={true} sx={{ marginBottom: 3 }}>
           <ListItem>
-              <ListItemText>{componentList.filter(component => component.name === params).map((component, index) => {
-                return component.props
-                  ? Object.entries(component.props).map((prop, index) => {
-                    return (
-                      <Box sx={{ display: 'flex'}} key={index}>
-                        <Typography sx={{ fontSize: 18 }}>{prop[0]}:</Typography>
-                        <Typography sx={{ marginLeft: 8}}>{Array.isArray(prop[1]) ? 'Array' : (typeof prop[1]).charAt(0).toUpperCase() + (typeof prop[1]).slice(1)}</Typography>
-                      </Box>
-                    )
-                    })
-                  : <p key={index}>Props is Nothing.</p>
-              }) }</ListItemText>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 350 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Props Name</TableCell>
+                    <TableCell align="right">Type</TableCell>
+                    <TableCell align="right">Example</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {componentList.filter(component => component.name === params).map((component, index) => {
+                    return component.props
+                      ? Object.entries(component.props).map((prop, index) => {
+                        return (
+                          <TableRow
+                            key={index}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                          >
+                            <TableCell component="th" scope="row">{prop[0]}</TableCell>
+                            <TableCell align="right">{Array.isArray(prop[1]) ? 'Array' + `<${ typeof prop[1][0] }>` : (typeof prop[1]).charAt(0).toUpperCase() + (typeof prop[1]).slice(1)}</TableCell>
+                            <TableCell align="right">{prop[1]}</TableCell>
+                          </TableRow>
+                        )
+                        })
+                      : (
+                        <TableRow key={index}>
+                          <TableCell key={index}>No props by the parent component.</TableCell>
+                        </TableRow>
+                      )
+                  })}
+                </TableBody>
+                </Table>
+            </TableContainer>
           </ListItem>
         </List>
       </TabPanel>
