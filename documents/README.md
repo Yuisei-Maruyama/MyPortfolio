@@ -69,11 +69,11 @@ ex.) Doing -> Closed ラベルに変更
 | --- | --- | --- |
 | react | 17.0.2 | ユーザインタフェース構築のためのJavaScriptライブラリ |
 | typescript | 4.1.2 | JavaScriptに対して、静的型付けとクラスベースオブジェクト指向を加えた言語 |
-| react-router-dom | 5.2.0 | ルーティングを定義するためのライブラリ |
+| [react-router-dom](https://github.com/remix-run/react-router#readme) | 5.2.0 | ルーティングを定義するためのライブラリ |
 | [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) | 2.1.8 | webpack の設定を上書きしてエイリアス設定しているパスの解決を行う |
-| react-beautiful-dnd | 13.1.0 | ドロップ&ドラッグを実現できるライブラリ |
+| [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) | 13.1.0 | ドロップ&ドラッグを実現できるライブラリ |
 | [react-vertical-timeline-component](https://stephane-monnot.github.io/react-vertical-timeline/#/) | 3.5.2 | タイムライムの表示 |
-| [@uiw/react-md-editor](https://uiwjs.github.io/react-markdown-preview) | ReactでMarkdownを表示できるようにするライブラリ | 3.9.1 |
+| [@uiw/react-md-editor](https://uiwjs.github.io/react-markdown-preview) | 3.9.1 | ReactでMarkdownを表示できるようにするライブラリ |
 | axios | 0.24.0 | PromiseベースのHTTP Clientライブラリ |
 | uuid | 8.3.2 | uuidを付与する |
 | sass | 1.45.1 | Sass をコンパイルするためのモジュール |
@@ -88,7 +88,6 @@ ex.) Doing -> Closed ラベルに変更
 | lint-staged | 11.1.2 | commitしたファイル(Stagingにあるファイル)にlintを実行する |
 | [react-icons](https://react-icons.github.io/react-icons) | 4.2.0 | `Ant Design` や `Material Design`などを集めたアイコンの宝庫 |
 | [dts-gen](https://github.com/microsoft/dts-gen) | 0.6.0 | ライブラリで型定義ファイルがない場合に `XXX.d.ts` を生成する |
-|  | | |
 |  | | |
 |  | | |
 
