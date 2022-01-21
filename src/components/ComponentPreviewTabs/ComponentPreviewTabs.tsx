@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { AppBar, Tabs, Tab, Typography, Box, List, ListItem, ListItemText } from '@mui/material'
 import { rgba } from 'polished'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { Header, Footer } from '@/components'
+import { Header, Circular, Footer } from '@/components'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -60,8 +60,22 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
   const [value, setValue] = useState(0)
 
   const componentList = [
-    { name: 'Header', tag: Header },
-    { name: 'Footer', tag: Footer },
+    {
+      name: 'Header',
+      desc: `Headerを構成するコンポーネント`,
+      tag: Header
+    },
+    {
+      name: 'Circular',
+      desc: `Circularを構成するコンポーネント`,
+      tag: Circular,
+      props: { length: 8, value: 0, items: ['1', '2', '3', '4', '5', '6', '7', '8'] }
+    },
+    {
+      name: 'Footer',
+      desc: `Footerを構成するコンポーネント`,
+      tag: Footer
+    },
   ]
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -88,18 +102,36 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
         <List dense={true} sx={{ marginBottom: 3 }}>
             <ListItem>
               <ListItemText>Name:<span style={{ fontWeight: 'bold', marginLeft: 10 }}>{ params }</span></ListItemText>
-          </ListItem>
-          { input
-            ? (
-              <>
-                <ListItem>
-                  <ListItemText>Input:{ input }</ListItemText>
-                </ListItem>
-              </>
-            )
-            :
-            <></>
-          }
+            </ListItem>
+            <ListItem>
+            <Box sx={{ display: 'flex' }}>
+              <ListItemText>Description:</ListItemText>
+              <ListItemText sx={{ marginLeft: 5}}>
+                  {
+                    componentList.filter(component => component.name === params).map((component, index) =>
+                    <Typography component='div' key={index}>
+                        {
+                          component.desc.match(/\n/) ? component.desc.split('\n').map((txt, index) =>
+                            <div key={index}> { txt }</div>
+                          ) : component.desc
+                        }
+                    </Typography>
+                  )}
+              </ListItemText>
+            </Box>
+            </ListItem>
+            {
+              input
+              ? (
+                <>
+                  <ListItem>
+                    <ListItemText>Input:{ input }</ListItemText>
+                  </ListItem>
+                </>
+              )
+              :
+              <></>
+            }
             <ListItem>
               <ListItemText>Demo:</ListItemText>
             </ListItem>
@@ -107,13 +139,29 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
         <>
           {
             componentList.filter(component => component.name === params).map((component, index) => {
-                return <component.tag key={index} />
+              return component.props ? <component.tag key={index} {...component.props}  /> : <component.tag key={index} />
             })
           }
         </>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Props
+        <Typography variant='h6'>＜親コンポーネントから渡される Props 情報＞</Typography>
+        <List dense={true} sx={{ marginBottom: 3 }}>
+          <ListItem>
+              <ListItemText>{componentList.filter(component => component.name === params).map((component, index) => {
+                return component.props
+                  ? Object.entries(component.props).map((prop, index) => {
+                    return (
+                      <Box sx={{ display: 'flex'}} key={index}>
+                        <Typography sx={{ fontSize: 18 }}>{prop[0]}:</Typography>
+                        <Typography sx={{ marginLeft: 8}}>{Array.isArray(prop[1]) ? 'Array' : (typeof prop[1]).charAt(0).toUpperCase() + (typeof prop[1]).slice(1)}</Typography>
+                      </Box>
+                    )
+                    })
+                  : <p key={index}>Props is Nothing.</p>
+              }) }</ListItemText>
+          </ListItem>
+        </List>
       </TabPanel>
       <TabPanel value={value} index={2}>
         Events
