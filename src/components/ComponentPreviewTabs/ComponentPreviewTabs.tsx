@@ -51,6 +51,22 @@ function a11yProps(index: number) {
   }
 }
 
+const headerEvents = [
+  { name: 'click', desc: '/ に遷移', target: 'MyPortfolio' },
+  { name: 'click', desc: '/components に遷移', target: 'COMPONENTS' },
+  { name: 'click', desc: '/documents に遷移', target: 'DOCUMENTS' },
+  { name: 'click', desc: '/board に遷移', target: 'TaskBoard Icon' },
+  { name: 'click', desc: 'GitHub の README に遷移', target: 'GitHub Icon' },
+  { name: 'click', desc: 'Netlify の Deployページ に遷移', target: 'Netlify Icon' },
+  { name: 'click', desc: 'Instagram の Profileページ に遷移', target: 'Instagram Icon' },
+  { name: 'click', desc: 'Login メニューの表示\n認証機能は未実装', target: 'User Icon' }
+]
+
+const circularEvents = [
+  { name: 'click', desc: '左にあるスライドを中央に設置', target: 'ChevronRight Icon' },
+  { name: 'click', desc: '右にあるスライドを中央に設置', target: 'ChevronLeft Icon' }
+]
+
 const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
 
   const { params, input } = props
@@ -63,13 +79,15 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
     {
       name: 'Header',
       desc: `Headerを構成するコンポーネント`,
-      tag: Header
+      tag: Header,
+      events: headerEvents
     },
     {
       name: 'Circular',
       desc: `Circularを構成するコンポーネント`,
       tag: Circular,
-      props: { length: 8, value: 0, items: ['1', '2', '3', '4', '5', '6', '7', '8'] }
+      props: { length: 8, value: 0, items: ['1', '2', '3', '4', '5', '6', '7', '8'] },
+      events: circularEvents
     },
     {
       name: 'Footer',
@@ -152,8 +170,8 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
                 <TableHead>
                   <TableRow>
                     <TableCell>Props Name</TableCell>
-                    <TableCell align="right">Type</TableCell>
-                    <TableCell align="right">Example</TableCell>
+                    <TableCell align="left">Type</TableCell>
+                    <TableCell align="left">Example</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -166,8 +184,8 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                           >
                             <TableCell component="th" scope="row">{prop[0]}</TableCell>
-                            <TableCell align="right">{Array.isArray(prop[1]) ? 'Array' + `<${ typeof prop[1][0] }>` : (typeof prop[1]).charAt(0).toUpperCase() + (typeof prop[1]).slice(1)}</TableCell>
-                            <TableCell align="right">{prop[1]}</TableCell>
+                            <TableCell align="left">{Array.isArray(prop[1]) ? 'Array' + `<${ typeof prop[1][0] }>` : (typeof prop[1]).charAt(0).toUpperCase() + (typeof prop[1]).slice(1)}</TableCell>
+                            <TableCell align="left">{prop[1]}</TableCell>
                           </TableRow>
                         )
                         })
@@ -184,7 +202,50 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
         </List>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Events
+        <List dense={true} sx={{ marginBottom: 3 }}>
+          <ListItem>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 350 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Event Name</TableCell>
+                    <TableCell align="left">Target UI</TableCell>
+                    <TableCell align="left">Description</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {componentList.filter(component => component.name === params).map((component, index) => {
+                    return component.events
+                      ? component.events.map((event, index) => {
+                        return (
+                          <TableRow
+                            key={index}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                          >
+                            <TableCell component="th" scope="row">{event.name}</TableCell>
+                            <TableCell align="left">{ event.target }</TableCell>
+                            <TableCell align="left">
+                              {
+                                event.desc.match(/\n/)
+                                  ? event.desc.split('\n').map((txt, index) =>
+                                    <div key={index}> {txt} </div>
+                                    )
+                                  : event.desc
+                              }
+                            </TableCell>
+                          </TableRow>
+                        )
+                      }) : (
+                        <TableRow key={index}>
+                          <TableCell key={index}>No events.</TableCell>
+                        </TableRow>
+                      )
+                    })}
+                  </TableBody>
+              </Table>
+            </TableContainer>
+          </ListItem>
+        </List>
       </TabPanel>
     </Box>
   );

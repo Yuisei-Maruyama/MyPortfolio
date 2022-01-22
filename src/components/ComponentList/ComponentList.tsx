@@ -27,11 +27,7 @@ const ComponentList: React.FC<Props> = (props: Props) => {
   return (
     <>
       <TreeItem nodeId="2" label="Header" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)} />
-      <TreeItem nodeId="3" label="Table">
-        <TreeItem nodeId="4" label="SkillTable" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)} />
-        <TreeItem nodeId="5" label="ResumeTable" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)} />
-      </TreeItem>
-      <TreeItem nodeId="6" label="Circular" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)}></TreeItem>
+      <TreeItem nodeId="3" label="Circular" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)}></TreeItem>
       <TreeItem nodeId="100" label="Footer" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)} />
     </>
   )
