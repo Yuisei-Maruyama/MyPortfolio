@@ -16,10 +16,11 @@ const MessageArea: React.FC = () => {
 
   useEffect(() => {
     typeStart(`I'm Yuisei Maruyama.\n
-    My motto is to work while having fun.\n
+    My motto is to work while having fun !!\n
     Interested in Front-End of web technology.\n
     Especially technology of interest is React.\n
     In the future, I wanna be a mobile developer.\n
+    Mobile developers are expected to be able to give more people a great experience.\n
     In order to reach my goal, I think it is essential to learn React.\n
     `
   )
