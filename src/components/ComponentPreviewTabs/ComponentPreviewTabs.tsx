@@ -228,7 +228,7 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
                               {
                                 event.desc.match(/\n/)
                                   ? event.desc.split('\n').map((txt, index) =>
-                                    <div key={index}> {txt}</div>
+                                    <div key={index}> {txt} </div>
                                     )
                                   : event.desc
                               }
