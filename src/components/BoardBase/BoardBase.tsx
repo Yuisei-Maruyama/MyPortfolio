@@ -47,16 +47,23 @@ const BoardBase: React.FC = () => {
 
   const fetchIssues = useCallback(async () => {
     const { data } = await request.get(`/repos/${owner}/${repo}/issues?state=all`)
-    const payload = convertIssueId(data)
+    const open = await request.get(`/repos/${owner}/${repo}/issues?state=open`)
+    const closed = await request.get(`/repos/${owner}/${repo}/issues?state=closed&labels=closed`)
+    const openData = open.data
+    const closedData = closed.data
+    const payloadOpenIssues = convertIssueId(openData)
+    const payloadClosedIssues = convertIssueId(closedData)
     const todoIssues: Issues = []
     const doingIssues: Issues = []
     const closedIssues: Issues = []
-    payload.map((issue: Issue) => issue.labels.forEach((label: Label) => {
+    payloadOpenIssues.map((issue: Issue) => issue.labels.forEach((label: Label) => {
       if (label.name === 'Todo') todoIssues.push(issue)
       if (label.name === 'Doing') doingIssues.push(issue)
+    }))
+    payloadClosedIssues.map((issue: Issue) => issue.labels.forEach((label: Label) => {
       if (label.name === 'Closed') closedIssues.push(issue)
     }))
-    setIssues(payload)
+    setIssues(data)
     setTodo(todoIssues)
     setDoing(doingIssues)
     setClosed(closedIssues)
