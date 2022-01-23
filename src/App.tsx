@@ -11,24 +11,25 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
-        <ThemeProvider mode={true} />
-        <Header></Header>
-        <Container maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0 }}>
-          <Switch>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/board" component={Board} />
-            <Route exact path="/history" component={History} />
-            <Route exact path="/art" component={Art} />
-            <Route exact path="/travel" component={Travel} />
-            <Route path="/documents" component={DocumentsPreviewer} />
-            <Route path="/documents/:label" component={MarkdownPreviewer} />
-            <Route path="/components" component={ComponentsPreviewer} />
-            <Route path="/components/:label" component={ComponentPreviewTabs} />
-          </Switch>
-        </Container>
-        <Box sx={{ position: 'fixed', width: '100%', bottom: 0, right: 0, backgroundColor: rgba(0,26,26, 1) }}>
-          <Footer />
-        </Box>
+        <ThemeProvider mode='dark'>
+          <Header></Header>
+          <Container maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 70 }}>
+            <Switch>
+              <Route exact path="/" component={Main} />
+              <Route exact path="/board" component={Board} />
+              <Route exact path="/history" component={History} />
+              <Route exact path="/art" component={Art} />
+              <Route exact path="/travel" component={Travel} />
+              <Route path="/documents" component={DocumentsPreviewer} />
+              <Route path="/documents/:label" component={MarkdownPreviewer} />
+              <Route path="/components" component={ComponentsPreviewer} />
+              <Route path="/components/:label" component={ComponentPreviewTabs} />
+            </Switch>
+          </Container>
+          <Box sx={{ position: 'fixed', width: '100%', bottom: 0, right: 0, backgroundColor: rgba(0,26,26, 1) }}>
+            <Footer />
+          </Box>
+        </ThemeProvider>
       </Router>
     </div>
   )
