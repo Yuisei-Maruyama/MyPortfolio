@@ -13,7 +13,7 @@ const App: React.FC = () => {
       <Router>
         <ThemeProvider mode='dark'>
           <Header></Header>
-          <Container maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 70 }}>
+          <Container maxWidth="xl" style={{ padding: '0 0 70px 0' }}>
             <Switch>
               <Route exact path="/" component={Main} />
               <Route exact path="/board" component={Board} />
