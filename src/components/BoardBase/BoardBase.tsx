@@ -222,7 +222,7 @@ const BoardBase: React.FC = () => {
   return (
     <div className={classes.area}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <h1 style={{ flexGrow: 1 }}>TaskBoard of GitHub Issue</h1>
+        <h1 style={{ flexGrow: 1, color: 'white' }}>TaskBoard of GitHub Issue</h1>
         <IconSwitch {...switchProps} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>

@@ -2626,6 +2626,11 @@
     "rehype" "12.0.0"
     "rehype-sanitize" "5.0.1"
 
+"@use-it/interval@^1.0.0":
+  "integrity" "sha512-WQFcnSt/xM/mS8ZtJ0ut5lhPrl+V0HDPPcI/J0eUClsfiD+/r8A7IeW/pVcfpSVGWRmN3+WnjNteWuKyWs2WZg=="
+  "resolved" "https://registry.npmjs.org/@use-it/interval/-/interval-1.0.0.tgz"
+  "version" "1.0.0"
+
 "@webassemblyjs/ast@1.9.0":
   "integrity" "sha512-C6wW5L+b7ogSDVqymbkkvuW9kruN//YisMED04xzeBBqjHa2FYnmvOlS6Xj68xWQRgWvI9cIglsjFowH/RJyEA=="
   "resolved" "https://registry.npmjs.org/@webassemblyjs/ast/-/ast-1.9.0.tgz"
