@@ -18,7 +18,7 @@ import { BiTask } from 'react-icons/bi'
 import { useHistory, withRouter } from 'react-router-dom'
 import { rgba } from 'polished'
 
-const pages = ['Components', 'Documents']
+const pages = ['Components', 'Documents', 'Matrix']
 const settings = ['Login', 'Account']
 
 
