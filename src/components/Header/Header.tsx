@@ -52,7 +52,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ zIndex: 2 }}>
         <Toolbar disableGutters sx={{ paddingLeft: 3, paddingRight: 1, backgroundColor: rgba(0,26,26, 1), border: "solid 1px #06D8D7" }}>
           <Typography
             variant="h6"

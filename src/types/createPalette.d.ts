@@ -2,7 +2,7 @@
 import { PaletteColorOptions } from "@material-ui/core/styles/createPalette";
 
 interface CustomPalette {
-  cyber: PaletteColorOptions; // light, main, dark, 50, 100, ..., 900, A100, ..., A700
+  cyber?: PaletteColorOptions; // light, main, dark, 50, 100, ..., 900, A100, ..., A700
 }
 
 interface CustomPaletteColorOptions {
