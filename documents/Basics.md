@@ -27,3 +27,13 @@ const Parent: React.FC = () => (
 
 export default Parent
 ```
+
+結果として、下記のように解釈される。  
+
+```ts
+const Parent: React.FC = () => (
+  <div>
+    aaaaaaaaa
+  </div>
+)
+```
