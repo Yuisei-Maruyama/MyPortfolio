@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, createContext } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
 import classes from './BoardBase.module.scss'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { getHeaders, IconSwitch, convertIssueId, convertLabel, DragDrop } from '@/components'
@@ -45,7 +45,7 @@ const BoardBase: React.FC = () => {
   const [toggleDelete, setDelete] = useState<boolean>(false)
   const [issueNumber, setNumber] = useState<number | undefined>(undefined)
 
-  const fetchIssues = useCallback(async () => {
+  const fetchIssues = async () => {
     const { data } = await request.get(`/repos/${owner}/${repo}/issues?state=all`)
     const open = await request.get(`/repos/${owner}/${repo}/issues?state=open`)
     const closed = await request.get(`/repos/${owner}/${repo}/issues?state=closed&labels=closed`)
@@ -67,8 +67,7 @@ const BoardBase: React.FC = () => {
     setTodo(todoIssues)
     setDoing(doingIssues)
     setClosed(closedIssues)
-    // eslint-disable-next-line
-  }, [])
+  }
 
   const contextValue = {
     todoItems,
@@ -86,7 +85,7 @@ const BoardBase: React.FC = () => {
     setClosed
   }
 
-  const initializeColumns = useCallback(async () => {
+  const initializeColumns = async () => {
     if (!(todoItems || doingItems || closedItems)?.length) return
 
     const columns: Record<string, { title: string; items: Issues; label: Label }> = {
@@ -107,7 +106,7 @@ const BoardBase: React.FC = () => {
       },
     }
     await setColumns(columns)
-  }, [todoItems, doingItems, closedItems])
+  }
 
   const orderProcess = async () => {
 
