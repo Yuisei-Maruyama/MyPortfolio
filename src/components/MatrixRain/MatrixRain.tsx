@@ -46,7 +46,7 @@ const MatrixRain: React.FC = () => {
     if (marginTop > window.innerHeight) {
       setMarginTop(0)
     }
-    setMarginTop(marginTop + 44)
+    setMarginTop(marginTop + 70)
     setStream(stream => getMutatedStream(stream))
   }, 100)
 
