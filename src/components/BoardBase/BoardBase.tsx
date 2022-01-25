@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, useEffect, useCallback, createContext } from 'react'
 import classes from './BoardBase.module.scss'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { getHeaders, IconSwitch, convertIssueId, convertLabel, DragDrop } from '@/components'
@@ -192,13 +192,13 @@ const BoardBase: React.FC = () => {
 
   console.log('Check relender')
 
-  const handleClickOpen = (label: string, number?: number) => {
+  const handleClickOpen = useCallback((label: string, number?: number) => {
     setSelectLabel(label)
     setOpen(true)
     if (number) {
       setNumber(number)
     }
-  }
+  }, [setSelectLabel, setOpen, setNumber])
 
   const handleClickToggle = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setDelete((event.target as unknown as { checked: boolean }).checked)
