@@ -32,11 +32,12 @@ const DocumentList: React.FC<Props> = (props: Props) => {
           <TreeItem nodeId="3" label="React">
             <TreeItem nodeId="4" label="Environment" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
             <TreeItem nodeId="27" label="Basics" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
+            <TreeItem nodeId="28" label="PerformanceTuning" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
             <TreeItem nodeId="5" label="props" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
             <TreeItem nodeId="6" label="React Hooks">
               <TreeItem nodeId="7" label="useState" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
               <TreeItem nodeId="8" label="useEffect" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
-              <TreeItem nodeId="9" label="useContext" />
+              <TreeItem nodeId="9" label="useContext" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
               <TreeItem nodeId="10" label="useReducer" />
               <TreeItem nodeId="11" label="useRef" />
               <TreeItem nodeId="12" label="useCallback" />
