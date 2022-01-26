@@ -1,6 +1,6 @@
 import React from 'react'
 import { rgba } from 'polished'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import { BoxProps } from '@mui/material/Box'
 import { hachiMaruPopFont } from '@/components/ThemeProvider'
 import { ThemeProvider } from '@/components'
@@ -28,10 +28,7 @@ const InstructionsArea: React.FC = () => {
       <ThemeProvider theme={hachiMaruPopFont}>
         <div style={{ width: '85%', height: 1000, margin: '60px auto 0', backgroundColor: rgba(0, 0, 0, 0.3), borderRadius: 40 }}>
           <Box sx={{ paddingTop: '1%' }}>
-            <h1 style={{ textAlign: 'center' }}>〜取り扱い説明書〜</h1>
-            <Typography variant="h6" gutterBottom component="div" sx={{ fontFamily: 'Hachi Maru Pop', textAlign: 'center' }}>
-              各ページの表示内容について説明します。
-            </Typography>
+            <h1 style={{ textAlign: 'center' }}>〜各画面の表示内容の説明〜</h1>
             <Box
               sx={{
                 marginTop: 5,
