@@ -8,6 +8,17 @@ type Props = {
   children?: React.ReactNode
 }
 
+export const hachiMaruPopFont = createTheme({
+  typography: {
+    fontFamily: [
+      'Hachi Maru Pop',
+    ].join(','),
+  },
+  palette: {
+    type: 'dark',
+  }
+})
+
 const ThemeProvider: React.FC<Props> = (props: Props) => {
 
   const { theme, children, mode } = props
