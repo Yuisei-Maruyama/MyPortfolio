@@ -29,6 +29,7 @@ export { default as DocumentList } from './DocumentList/DocumentList'
 export { default as ComponentPreviewTabs } from './ComponentPreviewTabs/ComponentPreviewTabs'
 export { default as MatrixRain } from './MatrixRain/MatrixRain'
 export { default as MatrixArea } from './MatrixArea/MatrixArea'
+export { default as InstructionsArea } from './InstructionsArea/InstructionsArea'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`
