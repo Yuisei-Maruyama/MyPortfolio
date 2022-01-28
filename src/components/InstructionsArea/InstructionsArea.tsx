@@ -39,7 +39,7 @@ const InstructionsArea: React.FC = () => {
     <>
       <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet" />
       <ThemeProvider theme={hachiMaruPopFont}>
-        <div style={{ width: '85%', height: 1000, margin: '60px auto 0', backgroundColor: rgba(0, 0, 0, 0.3), borderRadius: 40 }}>
+        <div style={{ width: '85%', height: '100%', margin: '60px auto 0', paddingBottom: '100px', backgroundColor: rgba(0, 0, 0, 0.3), borderRadius: 40 }}>
           <Box sx={{ paddingTop: '1%' }}>
             <h1 style={{ textAlign: 'center' }}>〜各画面の表示内容の説明〜</h1>
             <Box
@@ -61,21 +61,21 @@ const InstructionsArea: React.FC = () => {
             </Box>
             <Box sx={{ marginTop: 15 }}>
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Card sx={{ width: 400, transform: 'rotate(-6deg)', border: 'solid 1px #06D8D7' }}>
+                <Card sx={{ width: 500, transform: 'rotate(-6deg)', border: 'solid 1px #06D8D7' }}>
                   <CardActionArea onClick={(e) => handleClickOpen(e)}>
                     <CardMedia
                       component="img"
-                      height="230"
+                      height="400"
                       image="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/add-instructions/public/assets/pages/Main.png?raw=true"
                       alt="Main"
                       />
                     </CardActionArea>
                 </Card>
-                <Card sx={{ width: 400, transform: 'rotate(5deg)', border: 'solid 1px #06D8D7' }}>
+                <Card sx={{ width: 500, transform: 'rotate(5deg)', border: 'solid 1px #06D8D7' }}>
                   <CardActionArea onClick={handleClickOpen}>
                     <CardMedia
                       component="img"
-                      height="230"
+                      height="400"
                       image="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/add-instructions/public/assets/pages/TaskBoard.png?raw=true"
                       alt="TaskBoard"
                     />
@@ -83,21 +83,21 @@ const InstructionsArea: React.FC = () => {
                 </Card>
               </Box>
               <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: -2, }}>
-                <Card sx={{ width: 400, marginLeft: 7, transform: 'rotate(3deg)', border: 'solid 1px #06D8D7' }}>
+                <Card sx={{ width: 500, transform: 'rotate(3deg)', border: 'solid 1px #06D8D7' }}>
                   <CardActionArea onClick={handleClickOpen}>
                     <CardMedia
                         component="img"
-                        height="230"
+                        height="400"
                         image="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/add-instructions/public/assets/pages/ComponentList.png?raw=true"
                         alt="ComponentList"
                       />
                   </CardActionArea>
                 </Card>
-                <Card sx={{ width: 400, marginRight: 3, transform: 'rotate(-4deg)', border: 'solid 1px #06D8D7' }}>
+                <Card sx={{ width: 500, transform: 'rotate(-4deg)', border: 'solid 1px #06D8D7' }}>
                   <CardActionArea onClick={handleClickOpen}>
                     <CardMedia
                       component="img"
-                      height="230"
+                      height="400"
                       image="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/add-instructions/public/assets/pages/DocumentList.png?raw=true"
                       alt="DocumentList"
                     />
