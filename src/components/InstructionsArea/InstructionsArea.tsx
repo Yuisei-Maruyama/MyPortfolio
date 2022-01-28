@@ -1,6 +1,6 @@
 import React from 'react'
 import { rgba } from 'polished'
-import { Box } from '@mui/material'
+import { Box, Card, CardMedia, CardActionArea } from '@mui/material'
 import { BoxProps } from '@mui/material/Box'
 import { hachiMaruPopFont } from '@/components/ThemeProvider'
 import { ThemeProvider } from '@/components'
@@ -44,7 +44,53 @@ const InstructionsArea: React.FC = () => {
               <Item sx={{ gridArea: 'main', color: 'white'}}>・メイン画面</Item>
               <Item sx={{ gridArea: 'components', color: 'white'}}>・コンポーネントリスト画面</Item>
               <Item sx={{ gridArea: 'documents', color: 'white'}}>・ドキュメントリスト画面</Item>
-              <Item sx={{ gridArea: 'taskboard', color: 'white'}}>・タスク管理画面</Item>
+              <Item sx={{ gridArea: 'taskboard', color: 'white' }}>・タスク管理画面</Item>
+            </Box>
+            <Box sx={{ marginTop: 10 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Card sx={{ width: 400, transform: 'rotate(-6deg)', border: 'solid 1px #06D8D7' }}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height="230"
+                      image="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/add-instructions/public/assets/pages/Main.png?raw=true"
+                      alt="Main"
+                      />
+                    </CardActionArea>
+                </Card>
+                <Card sx={{ width: 400, transform: 'rotate(5deg)', border: 'solid 1px #06D8D7' }}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height="230"
+                      image="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/add-instructions/public/assets/pages/TaskBoard.png?raw=true"
+                      alt="TaskBoard"
+                    />
+                  </CardActionArea>
+                </Card>
+              </Box>
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Card sx={{ width: 400, transform: 'rotate(-1.5deg)', border: 'solid 1px #06D8D7' }}>
+                  <CardActionArea>
+                    <CardMedia
+                        component="img"
+                        height="230"
+                        image="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/add-instructions/public/assets/pages/ComponetList.png?raw=true"
+                        alt="ComponentList"
+                      />
+                  </CardActionArea>
+                </Card>
+                <Card sx={{ width: 400, transform: 'rotate(0.5deg)', border: 'solid 1px #06D8D7' }}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height="230"
+                      image="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/add-instructions/public/assets/pages/DocumentList.png?raw=true"
+                      alt="DocumentList"
+                      />
+                  </CardActionArea>
+                </Card>
+              </Box>
             </Box>
           </Box>
         </div>
