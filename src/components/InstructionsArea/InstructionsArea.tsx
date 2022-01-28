@@ -88,7 +88,7 @@ const InstructionsArea: React.FC = () => {
                     <CardMedia
                         component="img"
                         height="230"
-                        image="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/add-instructions/public/assets/pages/ComponetList.png?raw=true"
+                        image="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/add-instructions/public/assets/pages/ComponentList.png?raw=true"
                         alt="ComponentList"
                       />
                   </CardActionArea>
