@@ -2,7 +2,9 @@ import { Issues, Label } from '@/types'
 
 //  React Components
 export { default as Tooltip } from './Tooltip/Tooltip'
-export { default as ProfileCard } from './ProfileCard/ProfileCard'
+export { default as FlippedCard } from './FlippedCard/FlippedCard'
+export { default as ProfileFrontCard } from './ProfileFrontCard/ProfileFrontCard'
+export { default as ProfileBackCard } from './ProfileBackCard/ProfileBackCard'
 export { default as History } from './History/History'
 export { default as Header } from './Header/Header'
 export { default as Footer } from './Footer/Footer'
