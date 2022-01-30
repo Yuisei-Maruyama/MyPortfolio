@@ -1,5 +1,5 @@
-import React, { useState, useEffect, createContext } from 'react'
-import { ProfileCard, Circular, MessageArea, SkillTables } from '@/components'
+import React, { useState, useEffect, createContext, useCallback } from 'react'
+import { FlippedCard, ProfileFrontCard, ProfileBackCard, Circular, MessageArea, SkillTables } from '@/components'
 import { Box } from '@material-ui/core'
 import { Issues } from '@/types'
 import axios from 'axios'
@@ -24,6 +24,7 @@ const contextValue = {
 
 const Main = () => {
   const [todoItems, setTodo] = useState<Issues>([])
+  const [isFlipped, setFlipped] = useState<boolean>(false)
 
   const fetchTodo = async () => {
     const labelName = 'Todo'
@@ -36,6 +37,10 @@ const Main = () => {
     // eslint-disable-next-line
   }, [])
 
+  const handleSetFlipped = useCallback((isFlipped: boolean) => {
+    setFlipped(isFlipped)
+  }, [setFlipped])
+
   return (
     <div>
       <SliderContext.Provider value={contextValue}>
@@ -43,7 +48,10 @@ const Main = () => {
       </SliderContext.Provider>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 15 }}>
         <Box sx={{ width: '20%' }}>
-          <ProfileCard />
+          <FlippedCard isFlipped={isFlipped} setFlipped={handleSetFlipped}>
+            <ProfileFrontCard height='420px' />
+            <ProfileBackCard height='420px' />
+          </FlippedCard>
         </Box>
         <Box sx={{ ml: 12, width: '40%' }}>
           <MessageArea />

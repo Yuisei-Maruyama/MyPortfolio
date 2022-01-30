@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import { Box, Button } from '@material-ui/core'
 import classes from './Circular.module.scss'
@@ -70,4 +70,4 @@ const Circular: React.FC<Props> = (props: Props) => {
   )
 }
 
-export default Circular
+export default memo(Circular)
