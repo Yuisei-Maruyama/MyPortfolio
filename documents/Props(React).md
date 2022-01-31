@@ -82,33 +82,3 @@ const Main: React.FC = () => (
   </>
 )
 ```
-
-## Reactのchildrenにpropsを追加する
-
-`React.cloneElement` を使って children を複製することで任意のpropsを追加できる。  
-
-```ts
-const Example = ({children}) => {
-  const additionalProps = { addProps: 'XXX', ... }
-
-  // React.cloneElementの第一引数にchildren, 第二引数に追加したいpropsを渡す
-  const newChildren = React.cloneElement(children, additionalProps)
-
-  return (
-    <div>{newChildren}</div>
-  )
-}
-```
-
-### React.cloneElement について
-
-`React.cloneElement()` は Element を複製するメソッドである。  
-
-引数に以下のような3つの値を受け取る。  
-
-```ts
-// element: ReactのElement
-// props: 複製するElementにわたすprops, elementがもともと持っていたpropsとマージされる
-// children: 複製するElementにわたすchildren
-React.cloneElement(element, props, [...children])
-```
