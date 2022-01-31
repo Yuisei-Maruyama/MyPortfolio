@@ -45,7 +45,7 @@ const DocumentList: React.FC<Props> = (props: Props) => {
             <TreeItem nodeId="19" label="Apollo-Client" />
           </TreeItem>
           <TreeItem nodeId="21" label="Vue">
-            <TreeItem nodeId="22" label="Vue v3.x" />
+            <TreeItem nodeId="22" label="CompositionAPI" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
           </TreeItem>
           <TreeItem nodeId="27" label="MaterialUI" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
         </TreeItem>
