@@ -51,6 +51,7 @@ const DocumentList: React.FC<Props> = (props: Props) => {
             <TreeItem nodeId="19" label="MaterialUI" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
           </TreeItem>
           <TreeItem nodeId="20" label="Vue">
+            <TreeItem nodeId="40" label="Tips(Vue)" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
             <TreeItem nodeId="21" label="CompositionAPI">
               <TreeItem nodeId="22" label="Props(Vue)" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
               <TreeItem nodeId="23" label="Emit" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
