@@ -36,3 +36,26 @@ $style を使用することで、スタイルを当てることができる。
 }
 </style>
 ```
+
+## nuxt-typed-vuex
+
+Vuex要素の呼び出し時は this.$accessor を経由する！
+
+```ts
+// Accesses this.$store.state.email
+this.$accessor.email;
+
+// Accesses this.$store.getters['fullName']
+this.$accessor.fullName;
+
+// Runs this.$store.dispatch('initialiseStore')
+this.$accessor.initialiseStore();
+
+// Runs this.$store.commit('SET_NAME', 'John Doe')
+this.$accessor.SET_NAME("John Doe");
+
+// Accesses this.$store.state.submodule.id
+this.$accessor.submodule.id;
+
+// etc.
+```
