@@ -90,6 +90,34 @@ export default {
 
 ```
 
+### computed で getter, setter を使うパターン
+
+```ts
+<template>
+  <v-text-field v-model="editValue" />
+</template>
+
+<script>
+  import { computed, defineComponent } from 'vue'
+
+  export default defineComponent({
+  props: {
+    targetValue: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props, { emit }) {
+    const editValue = computed({
+      get: () => props.targetValue,
+      set: (newValue: string) => emit('handle-change-value', newValue),
+    })
+  }
+  })
+</script>
+
+```
+
 ## アンチパターン
 
 **※ 引数を分割代入で取得してしまうと、リアクティブではなくなってしまう**  
