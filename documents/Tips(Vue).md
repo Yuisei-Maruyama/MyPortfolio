@@ -51,7 +51,7 @@ $listener は 孫コンポーネントのイベント発火を親コンポーネ
 ```ts
 <template>
   <GrandChild
-    @childMethod="$listeners['parentMethod']"
+    @childMethod="$listeners"
   ></GrandChild>
 </template>
  
