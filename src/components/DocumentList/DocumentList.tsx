@@ -57,6 +57,7 @@ const DocumentList: React.FC<Props> = (props: Props) => {
               <TreeItem nodeId="23" label="Emit" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
               <TreeItem nodeId="24" label="Two-Way Binding" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
             </TreeItem>
+            <TreeItem nodeId="54" label="Provide&Inject" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
             <TreeItem nodeId="55" label="NuxtJS" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
           </TreeItem>
         </TreeItem>
