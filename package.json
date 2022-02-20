@@ -27,6 +27,7 @@
     "react-vertical-timeline-component": "^3.5.2",
     "sass": "^1.45.1",
     "sass-loader": "^12.4.0",
+    "shelljs": "^0.8.5",
     "tslib": "^2.3.1",
     "typescript": "^4.1.2",
     "uuid": "^8.3.2",
@@ -34,7 +35,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "react-app-rewired build && node build-lib",
     "lint-fix": "eslint --fix './src/**/*.{js,ts,tsx}' && prettier --write './src/**/*.{js,ts,tsx}'",
     "test": "react-app-rewired test"
   },
