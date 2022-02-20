@@ -36,8 +36,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "lint-fix": "eslint --fix './src/**/*.{js,ts,tsx}' && prettier --write './src/**/*.{js,ts,tsx}'",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "test": "react-app-rewired test"
   },
   "eslintConfig": {
     "extends": [
