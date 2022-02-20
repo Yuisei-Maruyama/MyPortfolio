@@ -76,6 +76,7 @@ ex.) Doing -> Closed ラベルに変更
 | [@uiw/react-md-editor](https://uiwjs.github.io/react-markdown-preview) | 3.9.1 | ReactでMarkdownを表示できるようにするライブラリ |
 | axios | 0.24.0 | PromiseベースのHTTP Clientライブラリ |
 | uuid | 8.3.2 | uuidを付与する |
+| ts-node | 10.5.0 | typescript のファイルを単体で実行できるモジュール |
 | sass | 1.45.1 | Sass をコンパイルするためのモジュール |
 | sass-loader | 12.4.0 | Sass を CSS へ変換するためのモジュール |
 | tslib | 2.3.1 | コンパイル後のjsファイルが大きくなるのを防ぐ |
