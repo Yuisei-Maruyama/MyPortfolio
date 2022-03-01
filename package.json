@@ -24,6 +24,7 @@
     "react-particle-effect-button": "^1.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-scroll-parallax": "^3.0.3",
     "react-vertical-timeline-component": "^3.5.2",
     "sass": "^1.45.1",
     "sass-loader": "^12.4.0",
