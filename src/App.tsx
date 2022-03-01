@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from '@material-ui/core'
 import { Box } from '@mui/material'
 import { rgba } from 'polished'
-import { Main, Board, History, Matrix, Travel, Instructions, DocumentsPreviewer, ComponentsPreviewer } from '@/pages'
+import { Main, Board, History, Matrix, Travel, Instructions, DocumentsPreviewer, ComponentsPreviewer, ScrollAnimations } from '@/pages'
 import { ThemeProvider, Header, Footer, MarkdownPreviewer, ComponentPreviewTabs } from '@/components'
 
 
@@ -21,6 +21,7 @@ const App: React.FC = () => {
               <Route exact path="/matrix" component={Matrix} />
               <Route exact path="/travel" component={Travel} />
               <Route exact path="/instructions" component={Instructions} />
+              <Route exact path="/scroll-animations" component={ScrollAnimations} />
               <Route path="/documents" component={DocumentsPreviewer} />
               <Route path="/documents/:label" component={MarkdownPreviewer} />
               <Route path="/components" component={ComponentsPreviewer} />
