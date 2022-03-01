@@ -18,8 +18,7 @@ type Props = {
 }
 
 const DragDrop: React.FC<Props> = (props: Props) => {
-
-  const { column, issueNumber, label, toggleDelete, handleClickOpen  } = props
+  const { column, issueNumber, label, toggleDelete, handleClickOpen } = props
 
   return (
     <Droppable droppableId={label} key={label}>

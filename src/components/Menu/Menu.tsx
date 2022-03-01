@@ -54,7 +54,7 @@ const Menu: React.FC<Props> = (props: Props) => {
           </MenuItem>
         ))}
         <Divider />
-        </MenuList>
+      </MenuList>
     </Drawer>
   )
 }

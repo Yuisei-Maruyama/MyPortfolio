@@ -9,7 +9,7 @@ const useSetParams = () => {
 
   return {
     getParams,
-    params
+    params,
   }
 }
 

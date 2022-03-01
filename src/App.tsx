@@ -6,12 +6,11 @@ import { rgba } from 'polished'
 import { Main, Board, History, Matrix, Travel, Instructions, DocumentsPreviewer, ComponentsPreviewer } from '@/pages'
 import { ThemeProvider, Header, Footer, MarkdownPreviewer, ComponentPreviewTabs } from '@/components'
 
-
 const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
-        <ThemeProvider mode='dark'>
+        <ThemeProvider mode="dark">
           <Header></Header>
           <Container maxWidth="xl" style={{ padding: '0 0 70px 0' }}>
             <Switch>
@@ -27,7 +26,7 @@ const App: React.FC = () => {
               <Route path="/components/:label" component={ComponentPreviewTabs} />
             </Switch>
           </Container>
-          <Box sx={{ position: 'fixed', width: '100%', bottom: 0, right: 0, backgroundColor: rgba(0,26,26, 1) }}>
+          <Box sx={{ position: 'fixed', width: '100%', bottom: 0, right: 0, backgroundColor: rgba(0, 26, 26, 1) }}>
             <Footer />
           </Box>
         </ThemeProvider>

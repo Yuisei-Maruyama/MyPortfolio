@@ -34,10 +34,7 @@ type Props = {
 }
 
 const IssueDialog: React.FC<Props> = (props: Props) => {
-  const {
-    dialogTitle,
-    dialogDesc,
-  } = props
+  const { dialogTitle, dialogDesc } = props
 
   const {
     todoItems,
@@ -124,72 +121,70 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-      {
-        !open || !selectedLabel
-          ? (<></>)
-          : (
-          <Dialog open={open} onClose={handleClickClose} fullWidth maxWidth="md">
-            <DialogTitle
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                paddingRight: 13,
-                backgroundColor: '#3F51B5',
-              }}
-            >
-              <Typography sx={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>{dialogTitle}</Typography>
-              <IconButton onClick={handleClickClose} sx={{ color: 'white' }}>
-                <AiOutlineClose />
-              </IconButton>
-            </DialogTitle>
-            <DialogContent dividers>
-              {issueNumber ? (
+      {!open || !selectedLabel ? (
+        <></>
+      ) : (
+        <Dialog open={open} onClose={handleClickClose} fullWidth maxWidth="md">
+          <DialogTitle
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              paddingRight: 13,
+              backgroundColor: '#3F51B5',
+            }}
+          >
+            <Typography sx={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>{dialogTitle}</Typography>
+            <IconButton onClick={handleClickClose} sx={{ color: 'white' }}>
+              <AiOutlineClose />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent dividers>
+            {issueNumber ? (
+              <DialogContentText>{dialogDesc}</DialogContentText>
+            ) : (
+              <>
                 <DialogContentText>{dialogDesc}</DialogContentText>
-              ) : (
-                <>
-                  <DialogContentText>{dialogDesc}</DialogContentText>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="title"
-                    label="Title"
-                    type="text"
-                    color="primary"
-                    error={inputError}
-                    helperText={inputError ? 'Title is required.' : ''}
-                    inputRef={inputTitleRef}
-                    fullWidth
-                    variant="standard"
-                    onChange={handleInputTitle}
-                  />
-                  <MDEditor
-                    placeholder="Description"
-                    style={{ marginTop: 25 }}
-                    value={desc}
-                    height={400}
-                    onChange={setDesc}
-                  />
-                </>
-              )}
-            </DialogContent>
-            <DialogActions>
-              {issueNumber ? (
-                <Button disabled onClick={() => handleClickDelete(issueNumber, convertToUpperCase(selectedLabel))}>
-                  Delete
-                </Button>
-              ) : (
-                <Button
-                  onClick={() => handleClickSubmit(convertToUpperCase(selectedLabel))}
-                  style={{ backgroundColor: '#3F51B5', color: 'white' }}
-                >
-                  Submit
-                </Button>
-              )}
-            </DialogActions>
-          </Dialog>
-        )
-      }
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="title"
+                  label="Title"
+                  type="text"
+                  color="primary"
+                  error={inputError}
+                  helperText={inputError ? 'Title is required.' : ''}
+                  inputRef={inputTitleRef}
+                  fullWidth
+                  variant="standard"
+                  onChange={handleInputTitle}
+                />
+                <MDEditor
+                  placeholder="Description"
+                  style={{ marginTop: 25 }}
+                  value={desc}
+                  height={400}
+                  onChange={setDesc}
+                />
+              </>
+            )}
+          </DialogContent>
+          <DialogActions>
+            {issueNumber ? (
+              <Button disabled onClick={() => handleClickDelete(issueNumber, convertToUpperCase(selectedLabel))}>
+                Delete
+              </Button>
+            ) : (
+              <Button
+                onClick={() => handleClickSubmit(convertToUpperCase(selectedLabel))}
+                style={{ backgroundColor: '#3F51B5', color: 'white' }}
+              >
+                Submit
+              </Button>
+            )}
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   )
 }

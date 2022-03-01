@@ -19,7 +19,7 @@ export type SliderContextType = {
 export const SliderContext = createContext<SliderContextType>({})
 
 const contextValue = {
-  specify: 'github-todo'
+  specify: 'github-todo',
 }
 
 const Main = () => {
@@ -37,9 +37,12 @@ const Main = () => {
     // eslint-disable-next-line
   }, [])
 
-  const handleSetFlipped = useCallback((isFlipped: boolean) => {
-    setFlipped(isFlipped)
-  }, [setFlipped])
+  const handleSetFlipped = useCallback(
+    (isFlipped: boolean) => {
+      setFlipped(isFlipped)
+    },
+    [setFlipped]
+  )
 
   return (
     <div>
@@ -49,8 +52,8 @@ const Main = () => {
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 15 }}>
         <Box sx={{ width: '20%' }}>
           <FlippedCard isFlipped={isFlipped} setFlipped={handleSetFlipped}>
-            <ProfileFrontCard height='400px' />
-            <ProfileBackCard height='400px' />
+            <ProfileFrontCard height="400px" />
+            <ProfileBackCard height="400px" />
           </FlippedCard>
         </Box>
         <Box sx={{ ml: 12, width: '40%' }}>

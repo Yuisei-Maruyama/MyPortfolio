@@ -7,7 +7,6 @@ type Props = {
 }
 
 const ProfileFrontCard: React.FC<Props> = (props: Props) => {
-
   const { height } = props
 
   return (
@@ -26,6 +25,6 @@ const ProfileFrontCard: React.FC<Props> = (props: Props) => {
       </Card>
     </>
   )
-};
+}
 
 export default ProfileFrontCard

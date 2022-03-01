@@ -8,7 +8,6 @@ type Props = {
 }
 
 const FlippedCard: React.FC<Props> = (props: Props) => {
-
   const { children, isFlipped, setFlipped } = props
 
   const [rotation, setRotation] = useState(0)
@@ -23,19 +22,21 @@ const FlippedCard: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-      {
-        Array.isArray(children) && children?.length === 2
-          ? (
-            <>
-              {
-                !isFlipped
-                  ? <div style={{ transform: `rotateY(${rotation})`}} onMouseEnter={handleHover}>{ children[0] }</div>
-                  : <div style={{ transform: `rotateY(${rotation})`}} onMouseLeave={handleHover}>{ children[1] }</div>
-              }
-            </>
-          )
-          : <p>FlippedCard need two elements!!</p>
-      }
+      {Array.isArray(children) && children?.length === 2 ? (
+        <>
+          {!isFlipped ? (
+            <div style={{ transform: `rotateY(${rotation})` }} onMouseEnter={handleHover}>
+              {children[0]}
+            </div>
+          ) : (
+            <div style={{ transform: `rotateY(${rotation})` }} onMouseLeave={handleHover}>
+              {children[1]}
+            </div>
+          )}
+        </>
+      ) : (
+        <p>FlippedCard need two elements!!</p>
+      )}
     </>
   )
 }
