@@ -18,7 +18,7 @@ import { BiTask } from 'react-icons/bi'
 import { useHistory, withRouter } from 'react-router-dom'
 import { rgba } from 'polished'
 
-const pages = ['Components', 'Documents', 'Matrix', 'Instructions']
+const pages = ['Components', 'Documents', 'Matrix', 'Instructions', 'Scroll-animations']
 const settings = ['Login', 'Account']
 
 
@@ -44,6 +44,17 @@ const Header: React.FC = () => {
   const handleToPage = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const param = (event.target as unknown as { textContent: string }).textContent
     const convertParam = param.slice(0, 1).toLocaleLowerCase() + param.slice(1)
+    // if (!convertParam.match(/^[a-z-]+$/)) {
+    //   convertParam.split('').map((char: string) => {
+    //     const regex = /[A-Z]/g
+    //     if (char.match(regex)) {
+    //       char = char.replace(regex, '-' + char.toLowerCase())
+    //     }
+    //     return char++
+    //   }
+    //     // char.match(/\u/) ? char.toLocaleLowerCase() : char
+    //   )
+    // }
     history.push(`/${convertParam}`)
   }
 
