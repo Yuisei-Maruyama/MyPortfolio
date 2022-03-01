@@ -26,9 +26,9 @@ export type DialogContextType = {
   setOpen: (open: boolean) => void
   setNumber: (num: number | undefined) => void
   setSelectLabel: (label: string) => void
-  fetchIssues: () => Promise<void>,
-  setTodo: React.Dispatch<React.SetStateAction<Issues>>,
-  setDoing: React.Dispatch<React.SetStateAction<Issues>>,
+  fetchIssues: () => Promise<void>
+  setTodo: React.Dispatch<React.SetStateAction<Issues>>
+  setDoing: React.Dispatch<React.SetStateAction<Issues>>
   setClosed: React.Dispatch<React.SetStateAction<Issues>>
 }
 
@@ -56,13 +56,17 @@ const BoardBase: React.FC = () => {
     const todoIssues: Issues = []
     const doingIssues: Issues = []
     const closedIssues: Issues = []
-    payloadOpenIssues.map((issue: Issue) => issue.labels.forEach((label: Label) => {
-      if (label.name === 'Todo') todoIssues.push(issue)
-      if (label.name === 'Doing') doingIssues.push(issue)
-    }))
-    payloadClosedIssues.map((issue: Issue) => issue.labels.forEach((label: Label) => {
-      if (label.name === 'Closed') closedIssues.push(issue)
-    }))
+    payloadOpenIssues.map((issue: Issue) =>
+      issue.labels.forEach((label: Label) => {
+        if (label.name === 'Todo') todoIssues.push(issue)
+        if (label.name === 'Doing') doingIssues.push(issue)
+      })
+    )
+    payloadClosedIssues.map((issue: Issue) =>
+      issue.labels.forEach((label: Label) => {
+        if (label.name === 'Closed') closedIssues.push(issue)
+      })
+    )
     setIssues(data)
     setTodo(todoIssues)
     setDoing(doingIssues)
@@ -82,7 +86,7 @@ const BoardBase: React.FC = () => {
     fetchIssues,
     setTodo,
     setDoing,
-    setClosed
+    setClosed,
   }
 
   const initializeColumns = async () => {
@@ -109,7 +113,6 @@ const BoardBase: React.FC = () => {
   }
 
   const orderProcess = async () => {
-
     if (!issueItems?.length) {
       await fetchIssues()
     }
@@ -192,13 +195,16 @@ const BoardBase: React.FC = () => {
 
   console.log('Check relender')
 
-  const handleClickOpen = useCallback((label: string, number?: number) => {
-    setSelectLabel(label)
-    setOpen(true)
-    if (number) {
-      setNumber(number)
-    }
-  }, [setSelectLabel, setOpen, setNumber])
+  const handleClickOpen = useCallback(
+    (label: string, number?: number) => {
+      setSelectLabel(label)
+      setOpen(true)
+      if (number) {
+        setNumber(number)
+      }
+    },
+    [setSelectLabel, setOpen, setNumber]
+  )
 
   const handleClickToggle = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setDelete((event.target as unknown as { checked: boolean }).checked)

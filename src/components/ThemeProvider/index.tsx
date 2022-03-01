@@ -10,17 +10,14 @@ type Props = {
 
 export const hachiMaruPopFont = createTheme({
   typography: {
-    fontFamily: [
-      'Hachi Maru Pop',
-    ].join(','),
+    fontFamily: ['Hachi Maru Pop'].join(','),
   },
   palette: {
     type: 'dark',
-  }
+  },
 })
 
 const ThemeProvider: React.FC<Props> = (props: Props) => {
-
   const { theme, children, mode } = props
 
   const baseTheme = createTheme({
@@ -30,14 +27,14 @@ const ThemeProvider: React.FC<Props> = (props: Props) => {
         main: '#001A1A',
         sub: '#021114',
         text: '#00F8F8',
-        subText: '#00FF00'
-      }
+        subText: '#00FF00',
+      },
     },
   })
   return (
     <BaseThemeProvider theme={theme || baseTheme}>
       <CssBaseline />
-      { children }
+      {children}
     </BaseThemeProvider>
   )
 }

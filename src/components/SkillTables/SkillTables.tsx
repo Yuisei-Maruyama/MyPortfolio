@@ -10,7 +10,7 @@ const reactSteps = [
   'styled-components',
   'React 18.x Features',
   'OAuth',
-  'Unit Test'
+  'Unit Test',
 ]
 
 const hooksSteps = ['useState', 'useEffect', 'useRef', 'useCallback', 'useContext', 'useMemo', 'useReducer']

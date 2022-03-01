@@ -4,7 +4,7 @@ import { TypeWriter } from '@/components'
 import { useTyping } from '@/customHooks'
 
 const MessageArea: React.FC = () => {
-  const { typeStart ,typeEnd, ...params } = useTyping()
+  const { typeStart, typeEnd, ...params } = useTyping()
 
   const doing = useCallback(() => {
     if ((params as unknown as { message: string }).message) {
@@ -22,8 +22,7 @@ const MessageArea: React.FC = () => {
     In the future, I wanna be a mobile developer.\n
     Mobile developers are expected to be able to give more people a great experience.\n
     In order to reach my goal, I think it is essential to learn React.\n
-    `
-  )
+    `)
     // eslint-disable-next-line
   }, [])
 

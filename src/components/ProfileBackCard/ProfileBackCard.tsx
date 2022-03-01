@@ -9,13 +9,12 @@ type Props = {
 }
 
 const ProfileBackCard: React.FC<Props> = (props: Props) => {
-
   const { height } = props
 
   return (
     <Card style={{ maxWidth: '100%', height: height, backgroundColor: rgba(0, 0, 0, 0.3), color: 'white' }}>
       <CardContent>
-        <Typography sx={{ textAlign: 'center'}} gutterBottom variant="h4" component="div">
+        <Typography sx={{ textAlign: 'center' }} gutterBottom variant="h4" component="div">
           Skill
         </Typography>
         <List sx={{ width: '100%', overflow: 'auto' }} dense={true}>
@@ -24,7 +23,7 @@ const ProfileBackCard: React.FC<Props> = (props: Props) => {
             <ListItemText>HTML</ListItemText>
           </ListItem>
           <ListItem>
-          <SiCss3 />
+            <SiCss3 />
             <ListItemText>CSS</ListItemText>
           </ListItem>
           <ListItem>
@@ -44,10 +43,9 @@ const ProfileBackCard: React.FC<Props> = (props: Props) => {
             <ListItemText>React.js</ListItemText>
           </ListItem>
         </List>
-
       </CardContent>
     </Card>
   )
-};
+}
 
 export default memo(ProfileBackCard)

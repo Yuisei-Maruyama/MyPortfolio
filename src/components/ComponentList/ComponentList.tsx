@@ -7,7 +7,6 @@ type Props = {
 }
 
 const ComponentList: React.FC<Props> = (props: Props) => {
-
   const history = useHistory()
 
   const { getParams } = props
@@ -23,12 +22,23 @@ const ComponentList: React.FC<Props> = (props: Props) => {
     handleToComponent(event)
   }
 
-
   return (
     <>
-      <TreeItem nodeId="2" label="Header" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)} />
-      <TreeItem nodeId="3" label="Circular" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)}></TreeItem>
-      <TreeItem nodeId="100" label="Footer" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)} />
+      <TreeItem
+        nodeId="2"
+        label="Header"
+        onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)}
+      />
+      <TreeItem
+        nodeId="3"
+        label="Circular"
+        onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)}
+      ></TreeItem>
+      <TreeItem
+        nodeId="100"
+        label="Footer"
+        onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)}
+      />
     </>
   )
 }
