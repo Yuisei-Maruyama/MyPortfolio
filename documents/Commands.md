@@ -16,6 +16,13 @@ Already downloaded: /Library/Caches/Homebrew/tree-1.7.0.el_capitan.bottle.1.tar.
 $ tree --version
 tree v1.7.0 (c) 1996 - 2014 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro 
 
+# 指定したディレクトリ以下を表示
+tree ディレクトリ名
+
 # 第2階層まで表示する
 $ tree -L 2
+
+# 指定したディレクトリ以下を、ディレクトリのみ、2階層目まで表示
+tree -d -L 2 ディレクトリ名
+
 ```
