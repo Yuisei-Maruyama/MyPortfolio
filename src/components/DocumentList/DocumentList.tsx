@@ -135,7 +135,11 @@ const DocumentList: React.FC<Props> = (props: Props) => {
       </Box>
       <Box sx={{ marginTop: '10%' }}>
         <TreeItem nodeId="25" label="Back-End">
-          <TreeItem nodeId="26" label="Node.js" />
+          <TreeItem
+            nodeId="26"
+            label="NodeJs"
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
+          />
           <TreeItem nodeId="27" label="OpenAPI" />
         </TreeItem>
       </Box>
@@ -144,6 +148,15 @@ const DocumentList: React.FC<Props> = (props: Props) => {
           <TreeItem
             nodeId="29"
             label="types-cheat-sheet"
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
+          />
+        </TreeItem>
+      </Box>
+      <Box sx={{ marginTop: '10%' }}>
+        <TreeItem nodeId="101" label="Utils">
+          <TreeItem
+            nodeId="102"
+            label="Commands"
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
           />
         </TreeItem>
