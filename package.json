@@ -36,7 +36,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build && node build-lib",
-    "lint-fix": "eslint --fix './src/**/*.{js,ts,tsx}' && prettier --write './src/**/*.{js,ts,tsx}'",
+    "lint-fix": "eslint --fix './src/**/*.{js,ts,tsx}' && prettier --write './src/**/*.{js,ts,tsx}' && ts-node tools/duplicateReadme.ts",
     "test": "react-app-rewired test",
     "prepare": "husky install"
   },
