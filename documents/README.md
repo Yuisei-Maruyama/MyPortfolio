@@ -121,5 +121,3 @@ ex.) Doing -> Closed ラベルに変更
 | フッダー | - |
 
 <!--rehype:style=color: black;-->
-
-

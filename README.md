@@ -29,29 +29,40 @@ Issueに付与されたラベルごとの管理がしづらいことや対象と
 | コンポーネントのプレビュー機能 |
 | ドキュメントのプレビュー機能 |
 
+<!--rehype:style=color: black;-->
+
 ---
 
 > GitHub Issue のTodoラベル内容閲覧機能
 >> GitHub Issue に付与されたTodoラベルの内容からタイトルと詳細内容が閲覧可能  
 >> Issueタイトルをクリックすることで該当Issueに遷移可能
 
-<img src="public/assets/ReadmeGifs/slider.gif" width="100%">
+<!--rehype:style=color: white;-->
+
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/ReadmeGifs/slider.gif?raw=true" width="100%">  
+
+---
 
 > GitHub Issue の新規作成
+<!--rehype:style=color: white;-->
 
-<img src="public/assets/ReadmeGifs/Add-Issue.gif" width="100%">
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/ReadmeGifs/Add-Issue.gif?raw=true" width="100%">  
+
+---
 
 > 付与されたラベルごとの管理機能
-
 >> ドラッグ＆ドロップにおけるラベルの修正  
+<!--rehype:style=color: white;-->
 
 ex.) Todo -> Doing ラベルに変更  
 
-<img src="public/assets/ReadmeGifs/Update-Issue.gif" width="100%">
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/ReadmeGifs/Update-Issue.gif?raw=true" width="100%">  
 
 ex.) Doing -> Closed ラベルに変更  
 
-<img src="public/assets/ReadmeGifs/Closed-Issue.gif" width="100%">
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/ReadmeGifs/Closed-Issue.gif?raw=true" width="100%">  
+
+---
 
 ### 使用技術・バージョン
 | 技術 | version |説明 |
@@ -81,11 +92,16 @@ ex.) Doing -> Closed ラベルに変更
 | [dts-gen](https://github.com/microsoft/dts-gen) | 0.6.0 | ライブラリで型定義ファイルがない場合に `XXX.d.ts` を生成する |
 |  | | |
 |  | | |
+
+<!--rehype:style=color: black;-->  
+
 ### 動作環境
 
 | デバイスの識別 | OS | 対応ブラウザ |
 | --- | --- |--- |
 | PC | macOS Monterey | Google chrome最新 |
+
+<!--rehype:style=color: black;-->
 
 ## 基本設計
 
@@ -104,4 +120,4 @@ ex.) Doing -> Closed ラベルに変更
 | 対象のドキュメントのプレビュー | /documents/:label |
 | フッダー | - |
 
-
+<!--rehype:style=color: black;-->
