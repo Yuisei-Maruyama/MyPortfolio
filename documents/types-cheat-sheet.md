@@ -56,3 +56,11 @@ export class typeSampleModel {
 ```ts
 this as unknown as { xxx: XXX }
 ```
+
+## TypeScript のファイルを単体で実行して確認したい場合
+
+下記のようにすれば、単体で実行可能になる。
+
+```ts
+$ npx ts-node {対象のファイルパス}
+```

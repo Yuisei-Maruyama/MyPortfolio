@@ -1,20 +1,40 @@
 import React from 'react'
-import { CssBaseline, createTheme } from '@material-ui/core'
+import { CssBaseline, createTheme, Theme } from '@material-ui/core'
 import { ThemeProvider as BaseThemeProvider } from '@material-ui/styles'
 
 type Props = {
-  mode: boolean
+  theme?: Theme
+  mode?: 'dark' | 'light'
+  children?: React.ReactNode
 }
 
+export const hachiMaruPopFont = createTheme({
+  typography: {
+    fontFamily: ['Hachi Maru Pop'].join(','),
+  },
+  palette: {
+    type: 'dark',
+  },
+})
+
 const ThemeProvider: React.FC<Props> = (props: Props) => {
-  const theme = createTheme({
+  const { theme, children, mode } = props
+
+  const baseTheme = createTheme({
     palette: {
-      type: props.mode ? 'dark' : 'light',
+      type: mode ? 'dark' : 'light',
+      cyber: {
+        main: '#001A1A',
+        sub: '#021114',
+        text: '#00F8F8',
+        subText: '#00FF00',
+      },
     },
   })
   return (
-    <BaseThemeProvider theme={theme}>
+    <BaseThemeProvider theme={theme || baseTheme}>
       <CssBaseline />
+      {children}
     </BaseThemeProvider>
   )
 }

@@ -26,9 +26,9 @@ export type DialogContextType = {
   setOpen: (open: boolean) => void
   setNumber: (num: number | undefined) => void
   setSelectLabel: (label: string) => void
-  fetchIssues: () => Promise<void>,
-  setTodo: React.Dispatch<React.SetStateAction<Issues>>,
-  setDoing: React.Dispatch<React.SetStateAction<Issues>>,
+  fetchIssues: () => Promise<void>
+  setTodo: React.Dispatch<React.SetStateAction<Issues>>
+  setDoing: React.Dispatch<React.SetStateAction<Issues>>
   setClosed: React.Dispatch<React.SetStateAction<Issues>>
 }
 
@@ -45,23 +45,33 @@ const BoardBase: React.FC = () => {
   const [toggleDelete, setDelete] = useState<boolean>(false)
   const [issueNumber, setNumber] = useState<number | undefined>(undefined)
 
-  const fetchIssues = useCallback(async () => {
+  const fetchIssues = async () => {
     const { data } = await request.get(`/repos/${owner}/${repo}/issues?state=all`)
-    const payload = convertIssueId(data)
+    const open = await request.get(`/repos/${owner}/${repo}/issues?state=open`)
+    const closed = await request.get(`/repos/${owner}/${repo}/issues?state=closed&labels=closed`)
+    const openData = open.data
+    const closedData = closed.data
+    const payloadOpenIssues = convertIssueId(openData)
+    const payloadClosedIssues = convertIssueId(closedData)
     const todoIssues: Issues = []
     const doingIssues: Issues = []
     const closedIssues: Issues = []
-    payload.map((issue: Issue) => issue.labels.forEach((label: Label) => {
-      if (label.name === 'Todo') todoIssues.push(issue)
-      if (label.name === 'Doing') doingIssues.push(issue)
-      if (label.name === 'Closed') closedIssues.push(issue)
-    }))
-    setIssues(payload)
+    payloadOpenIssues.map((issue: Issue) =>
+      issue.labels.forEach((label: Label) => {
+        if (label.name === 'Todo') todoIssues.push(issue)
+        if (label.name === 'Doing') doingIssues.push(issue)
+      })
+    )
+    payloadClosedIssues.map((issue: Issue) =>
+      issue.labels.forEach((label: Label) => {
+        if (label.name === 'Closed') closedIssues.push(issue)
+      })
+    )
+    setIssues(data)
     setTodo(todoIssues)
     setDoing(doingIssues)
     setClosed(closedIssues)
-    // eslint-disable-next-line
-  }, [])
+  }
 
   const contextValue = {
     todoItems,
@@ -76,10 +86,10 @@ const BoardBase: React.FC = () => {
     fetchIssues,
     setTodo,
     setDoing,
-    setClosed
+    setClosed,
   }
 
-  const initializeColumns = useCallback(async () => {
+  const initializeColumns = async () => {
     if (!(todoItems || doingItems || closedItems)?.length) return
 
     const columns: Record<string, { title: string; items: Issues; label: Label }> = {
@@ -100,10 +110,9 @@ const BoardBase: React.FC = () => {
       },
     }
     await setColumns(columns)
-  }, [todoItems, doingItems, closedItems])
+  }
 
   const orderProcess = async () => {
-
     if (!issueItems?.length) {
       await fetchIssues()
     }
@@ -186,13 +195,16 @@ const BoardBase: React.FC = () => {
 
   console.log('Check relender')
 
-  const handleClickOpen = (label: string, number?: number) => {
-    setSelectLabel(label)
-    setOpen(true)
-    if (number) {
-      setNumber(number)
-    }
-  }
+  const handleClickOpen = useCallback(
+    (label: string, number?: number) => {
+      setSelectLabel(label)
+      setOpen(true)
+      if (number) {
+        setNumber(number)
+      }
+    },
+    [setSelectLabel, setOpen, setNumber]
+  )
 
   const handleClickToggle = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setDelete((event.target as unknown as { checked: boolean }).checked)
@@ -215,7 +227,7 @@ const BoardBase: React.FC = () => {
   return (
     <div className={classes.area}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <h1 style={{ flexGrow: 1 }}>TaskBoard of GitHub Issue</h1>
+        <h1 style={{ flexGrow: 1, color: 'white' }}>TaskBoard of GitHub Issue</h1>
         <IconSwitch {...switchProps} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>

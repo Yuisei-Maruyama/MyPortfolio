@@ -250,6 +250,60 @@ export interface ComponentsPropsList {
 }
 ```
 
+### 型拡張の方法
+
+例えば、下記のように `palette` のプロパティに `cyber` を追加しようとすると、エラーになる。
+
+```ts
+const baseTheme = createTheme({
+    palette: {
+      type: mode ? 'dark' : 'light',
+      cyber: {
+        main: '#001A1A',
+        sub: '#021114',
+        text: '#00F8F8',
+        subText: '#00FF00'
+      }
+    },
+  })
+```
+
+(エラー内容)
+```ts
+型 '{ type: "dark" | "light"; cyber: { main: string; sub: string; text: string; subText: string; }; }' を型 'PaletteOptions' に割り当てることはできません。
+  オブジェクト リテラルは既知のプロパティのみ指定できます。'cyber' は型 'PaletteOptions' に存在しません。
+```
+
+**対応方法**  
+
+1. `types/XXX.d.ts` を作成する。  
+
+2. 上記ファイル内で下記のような記述を行い、型の拡張を行う。  
+
+```ts
+import { PaletteColorOptions } from "@material-ui/core/styles/createPalette";
+
+interface CustomPalette {
+  cyber?: PaletteColorOptions; // light, main, dark, 50, 100, ..., 900, A100, ..., A700
+}
+
+interface CustomPaletteColorOptions {
+  sub?: string,
+  text?: string,
+  subText?: string
+}
+
+declare module "@material-ui/core/styles/createPalette" {
+  // eslint-disable-next-line
+  interface SimplePaletteColorOptions extends CustomPaletteColorOptions {}
+  // eslint-disable-next-line
+  interface PaletteOptions extends CustomPalette {}
+  // eslint-disable-next-line
+  interface Palette extends CustomPalette {}
+}
+```
+
+
 ### レイアウト調整
 
 `CssBaseline` は各ブラウザーの差異を平均化させる normalize.css のような役割を果たしてくれる。

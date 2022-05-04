@@ -11,7 +11,6 @@ const reactSteps = [
   'React 18.x Features',
   'OAuth',
   'Unit Test',
-  'Apollo-Client',
 ]
 
 const hooksSteps = ['useState', 'useEffect', 'useRef', 'useCallback', 'useContext', 'useMemo', 'useReducer']

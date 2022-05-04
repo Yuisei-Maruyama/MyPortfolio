@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const useTyping = () => {
-  const [message, setMessage] = useState("My name is Yuisei Maruyama. I'm interested in Front-End technology.")
+  const [message, setMessage] = useState('')
   const [key, setKey] = useState(0)
   const [inputRock, setRock] = useState(false)
 
