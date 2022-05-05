@@ -4,12 +4,13 @@ import TreeItem from '@mui/lab/TreeItem'
 
 type Props = {
   getParams: (params: string) => void
+  componentsFileNameList: string[]
 }
 
 const ComponentList: React.FC<Props> = (props: Props) => {
   const history = useHistory()
 
-  const { getParams } = props
+  const { getParams, componentsFileNameList } = props
 
   const handleToComponent = async (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (!getParams) return
@@ -24,21 +25,16 @@ const ComponentList: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-      <TreeItem
-        nodeId="2"
-        label="Header"
-        onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)}
-      />
-      <TreeItem
-        nodeId="3"
-        label="Circular"
-        onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)}
-      ></TreeItem>
-      <TreeItem
-        nodeId="100"
-        label="Footer"
-        onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)}
-      />
+      {componentsFileNameList.map((component, index) => {
+        return (
+          <TreeItem
+            key={index}
+            nodeId={index.toString()}
+            label={component}
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewComponent(e)}
+          ></TreeItem>
+        )
+      })}
     </>
   )
 }
