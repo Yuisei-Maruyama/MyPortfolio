@@ -4,7 +4,14 @@ import TreeView from '@mui/lab/TreeView'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { ComponentList, ComponentPreviewTabs } from '@/components'
+import * as componentsExports from '@/components'
 import { useSetParams } from '@/customHooks'
+
+const componentsFileNameList: string[] = Object.keys(componentsExports)
+  .filter(
+    (exportItem) => exportItem !== 'getHeaders' && exportItem !== 'convertIssueId' && exportItem !== 'convertLabel'
+  )
+  .sort()
 
 const ComponentsPreviewer: React.FC = () => {
   const { getParams, params } = useSetParams()
@@ -18,7 +25,7 @@ const ComponentsPreviewer: React.FC = () => {
           defaultExpandIcon={<ChevronRightIcon />}
           sx={{ overflowY: 'auto' }}
         >
-          <ComponentList getParams={getParams} />
+          <ComponentList getParams={getParams} componentsFileNameList={componentsFileNameList} />
         </TreeView>
       </Box>
       <>
