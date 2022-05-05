@@ -15,10 +15,12 @@ import {
   TableHead,
   TableRow,
   Paper,
+  IconButton,
 } from '@mui/material'
 import { rgba } from 'polished'
+import { GrTooltip } from 'react-icons/gr'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { Header, Circular, Footer } from '@/components'
+import { Tooltip, Header, Circular, Footer } from '@/components'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -30,6 +32,25 @@ interface TabPanelProps {
 type Props = {
   params: string | string[]
   input?: React.FC
+}
+
+type ComponentList = {
+  name: string
+  desc: string
+  tag: any
+  props?: {
+    title?: string
+    icon?: string
+    children?: React.ReactNode
+    length?: number
+    value?: number
+    items?: string[]
+  }
+  events?: {
+    name: string
+    desc: string
+    target: string
+  }[]
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -90,7 +111,21 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
 
   const [value, setValue] = useState(0)
 
-  const componentList = [
+  const componentList: ComponentList[] = [
+    {
+      name: 'Tooltip',
+      desc: `Tooltipを構成するコンポーネント`,
+      tag: Tooltip,
+      props: {
+        title: 'Tooltip Demo',
+        icon: 'arrow',
+        children: (
+          <IconButton edge="start" color="inherit" aria-label="tooltip_demo">
+            <GrTooltip />
+          </IconButton>
+        ),
+      },
+    },
     {
       name: 'Header',
       desc: `Headerを構成するコンポーネント`,
@@ -172,7 +207,13 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
             .filter((component) => component.name === params)
             .map((component, index) => {
               return component.props ? (
-                <component.tag key={index} {...component.props} />
+                !component.props.children ? (
+                  <component.tag key={index} {...component.props} />
+                ) : (
+                  <component.tag key={index} {...component.props}>
+                    {component.props.children}
+                  </component.tag>
+                )
               ) : (
                 <component.tag key={index} />
               )
