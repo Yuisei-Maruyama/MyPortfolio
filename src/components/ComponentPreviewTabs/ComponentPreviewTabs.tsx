@@ -17,10 +17,11 @@ import {
   Paper,
   IconButton,
 } from '@mui/material'
+import { useSetParams } from '@/customHooks'
 import { rgba } from 'polished'
 import { GrTooltip } from 'react-icons/gr'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { Tooltip, Header, Circular, Footer } from '@/components'
+import { Tooltip, Header, Circular, ComponentList, Footer } from '@/components'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -32,15 +33,18 @@ interface TabPanelProps {
 type Props = {
   params: string | string[]
   input?: React.FC
+  componentsFileNameList?: string[]
 }
 
-type ComponentList = {
+type ComponentPreviewListType = {
   name: string
   desc: string
   tag: any
   props?: {
     title?: string
     icon?: string
+    getParams?: (params: string) => void
+    componentsFileNameList?: string[]
     children?: React.ReactNode
     length?: number
     value?: number
@@ -104,14 +108,37 @@ const circularEvents = [
   { name: 'click', desc: '右にあるスライドを中央に設置', target: 'ChevronLeft Icon' },
 ]
 
+const componentListEvents = [
+  { name: 'click', desc: '選択されたコンポーネントの使用方法を表示する', target: 'Label of ComponentName' },
+]
+
 const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
-  const { params, input } = props
+  const { params, input, componentsFileNameList } = props
 
   const classes = useStyles()
 
+  const { getParams } = useSetParams()
+
   const [value, setValue] = useState(0)
 
-  const componentList: ComponentList[] = [
+  const componentList: ComponentPreviewListType[] = [
+    {
+      name: 'Circular',
+      desc: `Circularを構成するコンポーネント`,
+      tag: Circular,
+      props: { length: 8, value: 0, items: ['1', '2', '3', '4', '5', '6', '7', '8'] },
+      events: circularEvents,
+    },
+    {
+      name: 'ComponentList',
+      desc: `ComponentListを構成するコンポーネント`,
+      tag: ComponentList,
+      props: {
+        getParams: () => getParams(typeof params === 'string' ? params : ''),
+        componentsFileNameList: componentsFileNameList,
+      },
+      events: componentListEvents,
+    },
     {
       name: 'Tooltip',
       desc: `Tooltipを構成するコンポーネント`,
@@ -131,13 +158,6 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
       desc: `Headerを構成するコンポーネント`,
       tag: Header,
       events: headerEvents,
-    },
-    {
-      name: 'Circular',
-      desc: `Circularを構成するコンポーネント`,
-      tag: Circular,
-      props: { length: 8, value: 0, items: ['1', '2', '3', '4', '5', '6', '7', '8'] },
-      events: circularEvents,
     },
     {
       name: 'Footer',

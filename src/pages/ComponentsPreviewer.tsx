@@ -9,7 +9,12 @@ import { useSetParams } from '@/customHooks'
 
 const componentsFileNameList: string[] = Object.keys(componentsExports)
   .filter(
-    (exportItem) => exportItem !== 'getHeaders' && exportItem !== 'convertIssueId' && exportItem !== 'convertLabel'
+    (exportItem) =>
+      exportItem !== 'getHeaders' &&
+      exportItem !== 'convertIssueId' &&
+      exportItem !== 'convertLabel' &&
+      exportItem !== 'BoardBase' &&
+      exportItem !== 'ComponentPreviewTabs'
   )
   .sort()
 
@@ -31,7 +36,7 @@ const ComponentsPreviewer: React.FC = () => {
       <>
         {params ? (
           <Box sx={{ width: '100%', paddingLeft: '6%' }}>
-            <ComponentPreviewTabs params={params} />
+            <ComponentPreviewTabs params={params} componentsFileNameList={componentsFileNameList} />
           </Box>
         ) : (
           <Box sx={{ marginLeft: '20%' }}>
