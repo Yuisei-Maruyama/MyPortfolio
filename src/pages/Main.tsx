@@ -1,8 +1,9 @@
-import React, { useState, useEffect, createContext, useCallback } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
 import { FlippedCard, ProfileFrontCard, ProfileBackCard, Circular, MessageArea, SkillTables } from '@/components'
 import { Box } from '@material-ui/core'
 import { Issues } from '@/types'
 import axios from 'axios'
+import { useFlipped } from '@/customHooks'
 
 const request = axios.create({
   baseURL: 'https://api.github.com',
@@ -24,7 +25,7 @@ const contextValue = {
 
 const Main = () => {
   const [todoItems, setTodo] = useState<Issues>([])
-  const [isFlipped, setFlipped] = useState<boolean>(false)
+  const { isFlipped, handleSetFlipped } = useFlipped()
 
   const fetchTodo = async () => {
     const labelName = 'Todo'
@@ -36,13 +37,6 @@ const Main = () => {
     fetchTodo()
     // eslint-disable-next-line
   }, [])
-
-  const handleSetFlipped = useCallback(
-    (isFlipped: boolean) => {
-      setFlipped(isFlipped)
-    },
-    [setFlipped]
-  )
 
   return (
     <div>
