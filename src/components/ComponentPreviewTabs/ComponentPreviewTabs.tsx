@@ -17,11 +17,21 @@ import {
   Paper,
   IconButton,
 } from '@mui/material'
-import { useSetParams } from '@/customHooks'
+import { useSetParams, useFlipped } from '@/customHooks'
 import { rgba } from 'polished'
 import { GrTooltip } from 'react-icons/gr'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { Tooltip, Header, Circular, ComponentList, Footer } from '@/components'
+import {
+  Tooltip,
+  Header,
+  Circular,
+  ComponentList,
+  DocumentList,
+  FlippedCard,
+  ProfileFrontCard,
+  ProfileBackCard,
+  Footer,
+} from '@/components'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -49,6 +59,8 @@ type ComponentPreviewListType = {
     length?: number
     value?: number
     items?: string[]
+    isFlipped?: boolean
+    setFlipped?: (isFlipped: boolean) => void
   }
   events?: {
     name: string
@@ -109,7 +121,15 @@ const circularEvents = [
 ]
 
 const componentListEvents = [
-  { name: 'click', desc: '選択されたコンポーネントの使用方法を表示する', target: 'Label of ComponentName' },
+  { name: 'click', desc: '選択されたコンポーネントの使用方法を表示する', target: 'Label of Component' },
+]
+
+const documentListEvents = [
+  { name: 'click', desc: '選択されたドキュメントの使用方法を表示する', target: 'Label of Document' },
+]
+
+const flippedCardEvents = [
+  { name: 'hover', desc: 'マウスホバー時に表示するカードを切り替える', target: 'Front-Card or Back-Card' },
 ]
 
 const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
@@ -118,6 +138,8 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
   const classes = useStyles()
 
   const { getParams } = useSetParams()
+
+  const { isFlipped, handleSetFlipped } = useFlipped()
 
   const [value, setValue] = useState(0)
 
@@ -138,6 +160,29 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
         componentsFileNameList: componentsFileNameList,
       },
       events: componentListEvents,
+    },
+    {
+      name: 'DocumentList',
+      desc: `DocumentListを構成するコンポーネント`,
+      tag: DocumentList,
+      props: {
+        getParams: () => getParams(typeof params === 'string' ? params : ''),
+      },
+      events: documentListEvents,
+    },
+    {
+      name: 'FlippedCard',
+      desc: `FlippedCardを構成するコンポーネント`,
+      tag: FlippedCard,
+      props: {
+        isFlipped: isFlipped,
+        setFlipped: handleSetFlipped,
+        children: [
+          <ProfileFrontCard width="300px" height="450px" key={1} />,
+          <ProfileBackCard width="300px" height="450px" key={2} />,
+        ],
+      },
+      events: flippedCardEvents,
     },
     {
       name: 'Tooltip',

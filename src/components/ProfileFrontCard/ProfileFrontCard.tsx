@@ -3,15 +3,23 @@ import { Card, CardContent, CardMedia, Typography } from '@material-ui/core'
 import { rgba } from 'polished'
 
 type Props = {
+  width?: string
   height?: string
 }
 
 const ProfileFrontCard: React.FC<Props> = (props: Props) => {
-  const { height } = props
+  const { width, height } = props
 
   return (
     <>
-      <Card style={{ maxWidth: '100%', height: height, backgroundColor: rgba(0, 0, 0, 0.3), color: 'white' }}>
+      <Card
+        style={{
+          width: width,
+          height: height,
+          backgroundColor: rgba(0, 0, 0, 0.3),
+          color: 'white',
+        }}
+      >
         <CardMedia component="img" image="assets/Profile.jpg" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
