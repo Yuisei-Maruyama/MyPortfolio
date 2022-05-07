@@ -46,7 +46,11 @@ const Main = () => {
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 15 }}>
         <Box sx={{ width: '20%' }}>
           <FlippedCard isFlipped={isFlipped} setFlipped={handleSetFlipped}>
-            <ProfileFrontCard width="300px" height="450px" />
+            <ProfileFrontCard
+              width="300px"
+              height="450px"
+              imageSrc="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true"
+            />
             <ProfileBackCard width="300px" height="450px" />
           </FlippedCard>
         </Box>

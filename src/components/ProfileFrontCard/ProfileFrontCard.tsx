@@ -5,10 +5,11 @@ import { rgba } from 'polished'
 type Props = {
   width?: string
   height?: string
+  imageSrc?: string
 }
 
 const ProfileFrontCard: React.FC<Props> = (props: Props) => {
-  const { width, height } = props
+  const { width, height, imageSrc } = props
 
   return (
     <>
@@ -20,7 +21,7 @@ const ProfileFrontCard: React.FC<Props> = (props: Props) => {
           color: 'white',
         }}
       >
-        <CardMedia component="img" image="assets/Profile.jpg" />
+        <CardMedia component="img" image={imageSrc} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             Yuisei Maruyama

@@ -14,7 +14,9 @@ const componentsFileNameList: string[] = Object.keys(componentsExports)
       exportItem !== 'convertIssueId' &&
       exportItem !== 'convertLabel' &&
       exportItem !== 'BoardBase' &&
-      exportItem !== 'ComponentPreviewTabs'
+      exportItem !== 'ComponentPreviewTabs' &&
+      exportItem !== 'DragDrop' &&
+      exportItem !== 'InstructionsArea'
   )
   .sort()
 
@@ -39,7 +41,7 @@ const ComponentsPreviewer: React.FC = () => {
             <ComponentPreviewTabs params={params} componentsFileNameList={componentsFileNameList} />
           </Box>
         ) : (
-          <Box sx={{ marginLeft: '20%' }}>
+          <Box sx={{ marginLeft: '4%' }}>
             <p>
               左のコンポーネントリストから対象のラベルを選択すると、ここに選択されたComponentの詳細がプレビューされます。
             </p>

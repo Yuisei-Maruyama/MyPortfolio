@@ -178,7 +178,12 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
         isFlipped: isFlipped,
         setFlipped: handleSetFlipped,
         children: [
-          <ProfileFrontCard width="300px" height="450px" key={1} />,
+          <ProfileFrontCard
+            imageSrc="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true"
+            width="300px"
+            height="450px"
+            key={1}
+          />,
           <ProfileBackCard width="300px" height="450px" key={2} />,
         ],
       },
