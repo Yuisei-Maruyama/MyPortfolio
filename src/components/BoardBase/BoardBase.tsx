@@ -5,6 +5,7 @@ import { getHeaders, IconSwitch, convertIssueId, convertLabel, DragDrop } from '
 import { deepPurple } from '@mui/material/colors'
 import axios from 'axios'
 import { Label, Issue, Issues } from '@/types'
+import { useDelete } from '@/customHooks'
 
 const owner = process.env.REACT_APP_USER_NAME
 
@@ -42,8 +43,9 @@ const BoardBase: React.FC = () => {
   const [columns, setColumns] = useState<Record<string, { title: string; items: Issues; label: Label }>>({})
   const [open, setOpen] = useState<boolean>(false)
   const [selectedLabel, setSelectLabel] = useState<string>('')
-  const [toggleDelete, setDelete] = useState<boolean>(false)
   const [issueNumber, setNumber] = useState<number | undefined>(undefined)
+
+  const { toggleDelete, handleClickToggle } = useDelete()
 
   const fetchIssues = async () => {
     const { data } = await request.get(`/repos/${owner}/${repo}/issues?state=all`)
@@ -205,10 +207,6 @@ const BoardBase: React.FC = () => {
     },
     [setSelectLabel, setOpen, setNumber]
   )
-
-  const handleClickToggle = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    setDelete((event.target as unknown as { checked: boolean }).checked)
-  }
 
   const switchProps = {
     checked: toggleDelete,
