@@ -146,6 +146,10 @@ const flippedCardEvents = [
   { name: 'hover', desc: 'マウスホバー時に表示するカードを切り替える', target: 'Front-Card or Back-Card' },
 ]
 
+const svgIconSwitchEvents = [
+  { name: 'click', desc: 'toggleの真偽値を入れ替え、アイコンと色の表示を切り替える', target: 'Switch Button' },
+]
+
 const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
   const { params, input, componentsFileNameList } = props
 
@@ -252,6 +256,7 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
         },
         onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => handleClickToggle(e),
       },
+      events: svgIconSwitchEvents,
     },
   ]
 
@@ -352,14 +357,31 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
                               <TableCell component="th" scope="row">
                                 {isObject(prop[0]) ? Object.entries(prop[0]) : prop[0]}
                               </TableCell>
-
                               <TableCell align="left">
                                 {Array.isArray(prop[1])
                                   ? 'Array' + `<${typeof prop[1][0]}>`
                                   : (typeof prop[1]).charAt(0).toUpperCase() + (typeof prop[1]).slice(1)}
                               </TableCell>
                               <TableCell align="left">
-                                {isObject(prop[1]) && !!prop[1] ? Object.entries(prop[1]) : prop[1]}
+                                {isObject(prop[1]) && !!prop[1] && prop[0] !== 'children'
+                                  ? Object.entries(prop[1]).map((prop, index) => {
+                                      return (
+                                        <TableBody key={index}>
+                                          <TableRow
+                                            key={index}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                          >
+                                            <TableCell component="th" scope="row">
+                                              {isObject(prop[0]) ? Object.entries(prop[0]) : prop[0]}
+                                            </TableCell>
+                                            <TableCell component="th" scope="row">
+                                              {isObject(prop[1]) ? Object.entries(prop[1]) : prop[1]}
+                                            </TableCell>
+                                          </TableRow>
+                                        </TableBody>
+                                      )
+                                    })
+                                  : prop[1]}
                               </TableCell>
                             </TableRow>
                           )
