@@ -31,6 +31,7 @@ import {
   ProfileFrontCard,
   ProfileBackCard,
   Footer,
+  History,
 } from '@/components'
 
 interface TabPanelProps {
@@ -213,6 +214,11 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
       name: 'Footer',
       desc: `Footerを構成するコンポーネント`,
       tag: Footer,
+    },
+    {
+      name: 'History',
+      desc: `Historyタイムラインを構成するコンポーネント`,
+      tag: History,
     },
   ]
 
