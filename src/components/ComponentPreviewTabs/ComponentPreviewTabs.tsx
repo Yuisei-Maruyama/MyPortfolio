@@ -36,6 +36,7 @@ import {
   History,
   IconSwitch,
   MarkdownPreviewer,
+  ResumeTable,
 } from '@/components'
 
 interface TabPanelProps {
@@ -77,6 +78,9 @@ type ComponentPreviewListType = {
     }
     onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
     fileName?: string
+    width?: string
+    height?: string
+    imageSrc?: string
   }
   events?: {
     name: string
@@ -266,6 +270,33 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
       tag: MarkdownPreviewer,
       props: {
         fileName: 'ComponentPreviewDemo',
+      },
+    },
+    {
+      name: 'ProfileBackCard',
+      desc: `ProfileBackCardを構成するコンポーネント`,
+      tag: ProfileBackCard,
+      props: {
+        width: '300px',
+        height: '450px',
+      },
+    },
+    {
+      name: 'ProfileFrontCard',
+      desc: `ProfileFrontCardを構成するコンポーネント`,
+      tag: ProfileFrontCard,
+      props: {
+        width: '300px',
+        height: '450px',
+        imageSrc: 'https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true',
+      },
+    },
+    {
+      name: 'ResumeTable',
+      desc: `ResumeTableを構成するコンポーネント`,
+      tag: ResumeTable,
+      props: {
+        title: '業務経歴テーブル',
       },
     },
   ]
