@@ -35,6 +35,7 @@ import {
   Footer,
   History,
   IconSwitch,
+  MarkdownPreviewer,
 } from '@/components'
 
 interface TabPanelProps {
@@ -75,6 +76,7 @@ type ComponentPreviewListType = {
       unchecksvg: string
     }
     onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
+    fileName?: string
   }
   events?: {
     name: string
@@ -257,6 +259,14 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
         onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => handleClickToggle(e),
       },
       events: svgIconSwitchEvents,
+    },
+    {
+      name: 'MarkdownPreviewer',
+      desc: `MarkdownPreviewerを構成するコンポーネント`,
+      tag: MarkdownPreviewer,
+      props: {
+        fileName: 'ComponentPreviewDemo',
+      },
     },
   ]
 

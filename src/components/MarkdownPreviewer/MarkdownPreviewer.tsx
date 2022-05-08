@@ -11,7 +11,7 @@ const MarkdownPreviewer: React.FC<Props> = (props: Props) => {
   const [text, setText] = useState<string>('')
 
   useEffect(() => {
-    import(`../../../documents/${fileName}`)
+    import(`../../../documents/${fileName}.md`)
       .then((res) => {
         fetch(res.default)
           .then((res) => res.text())

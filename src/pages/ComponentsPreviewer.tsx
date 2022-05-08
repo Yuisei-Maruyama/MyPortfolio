@@ -16,7 +16,11 @@ const componentsFileNameList: string[] = Object.keys(componentsExports)
       exportItem !== 'BoardBase' &&
       exportItem !== 'ComponentPreviewTabs' &&
       exportItem !== 'DragDrop' &&
-      exportItem !== 'InstructionsArea'
+      exportItem !== 'InstructionsArea' &&
+      exportItem !== 'IssueCard' &&
+      exportItem !== 'IssueDialog' &&
+      exportItem !== 'MatrixArea' &&
+      exportItem !== 'MessageArea'
   )
   .sort()
 

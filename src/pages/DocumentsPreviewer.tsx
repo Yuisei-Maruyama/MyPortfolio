@@ -24,7 +24,7 @@ const DocumentsPreviewer: React.FC = () => {
       <>
         {params ? (
           <Box sx={{ width: '75%', paddingLeft: '6%' }}>
-            <MarkdownPreviewer fileName={`${params}.md`} />
+            <MarkdownPreviewer fileName={`${params}`} />
           </Box>
         ) : (
           <Box sx={{ marginLeft: '20%' }}>
