@@ -17,10 +17,12 @@ import {
   Paper,
   IconButton,
 } from '@mui/material'
-import { useSetParams, useFlipped } from '@/customHooks'
+import { deepPurple } from '@mui/material/colors'
+import { useSetParams, useFlipped, useDelete } from '@/customHooks'
 import { rgba } from 'polished'
 import { GrTooltip } from 'react-icons/gr'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { isObject } from '@/data/utils'
 import {
   Tooltip,
   Header,
@@ -32,6 +34,7 @@ import {
   ProfileBackCard,
   Footer,
   History,
+  IconSwitch,
 } from '@/components'
 
 interface TabPanelProps {
@@ -62,6 +65,16 @@ type ComponentPreviewListType = {
     items?: string[]
     isFlipped?: boolean
     setFlipped?: (isFlipped: boolean) => void
+    checked?: boolean
+    color?: {
+      checkedcolor: string
+      uncheckcolor: string
+    }
+    svg?: {
+      checkedsvg: string
+      unchecksvg: string
+    }
+    onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
   }
   events?: {
     name: string
@@ -142,6 +155,8 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
 
   const { isFlipped, handleSetFlipped } = useFlipped()
 
+  const { toggleDelete, handleClickToggle } = useDelete()
+
   const [value, setValue] = useState(0)
 
   const componentList: ComponentPreviewListType[] = [
@@ -219,6 +234,24 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
       name: 'History',
       desc: `Historyタイムラインを構成するコンポーネント`,
       tag: History,
+    },
+    {
+      name: 'IconSwitch',
+      desc: `IconSwitchを構成するコンポーネント`,
+      tag: IconSwitch,
+      props: {
+        checked: toggleDelete,
+        color: {
+          checkedcolor: '#3F51B5',
+          uncheckcolor: deepPurple[500],
+        },
+        svg: {
+          checkedsvg:
+            'M20.37, 8.91L19.37, 10.64L7.24, 3.64L8.24, 1.91L11.28, 3.66L12.64, 3.29L16.97, 5.79L17.34, 7.16L20.37, 8.91M6, 19V7H11.07L18, 11V19A2, 2 0 0, 1 16, 21H8A2, 2 0 0, 1 6, 19Z',
+          unchecksvg: 'M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z',
+        },
+        onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => handleClickToggle(e),
+      },
     },
   ]
 
@@ -317,14 +350,17 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
                           return (
                             <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                               <TableCell component="th" scope="row">
-                                {prop[0]}
+                                {isObject(prop[0]) ? Object.entries(prop[0]) : prop[0]}
                               </TableCell>
+
                               <TableCell align="left">
                                 {Array.isArray(prop[1])
                                   ? 'Array' + `<${typeof prop[1][0]}>`
                                   : (typeof prop[1]).charAt(0).toUpperCase() + (typeof prop[1]).slice(1)}
                               </TableCell>
-                              <TableCell align="left">{prop[1]}</TableCell>
+                              <TableCell align="left">
+                                {isObject(prop[1]) && !!prop[1] ? Object.entries(prop[1]) : prop[1]}
+                              </TableCell>
                             </TableRow>
                           )
                         })
