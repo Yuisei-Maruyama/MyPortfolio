@@ -22,10 +22,10 @@ const componentsFileNameList: string[] = Object.keys(componentsExports)
       exportItem !== 'MatrixArea' &&
       exportItem !== 'MatrixRain' &&
       exportItem !== 'Menu' &&
-      exportItem !== 'MessageArea' &&
       exportItem !== 'ModeSwitch' &&
       exportItem !== 'ThemeProvider' &&
-      exportItem !== 'SliderContents'
+      exportItem !== 'SliderContents' &&
+      exportItem !== 'TypeWriter'
   )
   .sort()
 

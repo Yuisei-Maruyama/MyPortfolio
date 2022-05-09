@@ -36,6 +36,7 @@ import {
   History,
   IconSwitch,
   MarkdownPreviewer,
+  MessageArea,
   ResumeTable,
   SkillTable,
   SkillTables,
@@ -83,6 +84,8 @@ type ComponentPreviewListType = {
     }
     onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
     fileName?: string
+    message?: string
+    speed?: number
     width?: string
     height?: string
     imageSrc?: string
@@ -228,20 +231,6 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
       events: flippedCardEvents,
     },
     {
-      name: 'Tooltip',
-      desc: `Tooltipを構成するコンポーネント`,
-      tag: Tooltip,
-      props: {
-        title: 'Tooltip Demo',
-        icon: 'arrow',
-        children: (
-          <IconButton edge="start" color="inherit" aria-label="tooltip_demo">
-            <GrTooltip />
-          </IconButton>
-        ),
-      },
-    },
-    {
       name: 'Header',
       desc: `Headerを構成するコンポーネント`,
       tag: Header,
@@ -282,6 +271,16 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
       tag: MarkdownPreviewer,
       props: {
         fileName: 'ComponentPreviewDemo',
+      },
+    },
+    {
+      name: 'MessageArea',
+      desc: `MessageAreaを構成するコンポーネント`,
+      tag: MessageArea,
+      props: {
+        message:
+          'ここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります',
+        speed: 50,
       },
     },
     {
@@ -349,6 +348,20 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
       props: {
         steps: demoSteps,
         activeStep: 3,
+      },
+    },
+    {
+      name: 'Tooltip',
+      desc: `Tooltipを構成するコンポーネント`,
+      tag: Tooltip,
+      props: {
+        title: 'Tooltip Demo',
+        icon: 'arrow',
+        children: (
+          <IconButton edge="start" color="inherit" aria-label="tooltip_demo">
+            <GrTooltip />
+          </IconButton>
+        ),
       },
     },
   ]

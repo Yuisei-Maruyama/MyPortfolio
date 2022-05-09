@@ -43,6 +43,15 @@ const Main = () => {
     setTodo(data)
   }
 
+  const message = `I'm Yuisei Maruyama.\n
+  My motto is to work while having fun!!\n
+  Interested in Front-End of web technology.\n
+  Especially technology of interest is React.\n
+  In the future, I wanna be a mobile developer.\n
+  Mobile developers are expected to be able to give more people a great experience.\n
+  In order to reach my goal, I think it is essential to learn React.\n
+  `
+
   useEffect(() => {
     fetchTodo()
     // eslint-disable-next-line
@@ -65,7 +74,7 @@ const Main = () => {
           </FlippedCard>
         </Box>
         <Box sx={{ ml: 12, width: '40%' }}>
-          <MessageArea />
+          <MessageArea message={message} speed={50} />
         </Box>
       </Box>
       <Box sx={{ display: 'flex', width: '90%', margin: '30px auto 0' }}>
