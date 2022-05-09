@@ -20,7 +20,12 @@ const componentsFileNameList: string[] = Object.keys(componentsExports)
       exportItem !== 'IssueCard' &&
       exportItem !== 'IssueDialog' &&
       exportItem !== 'MatrixArea' &&
-      exportItem !== 'MessageArea'
+      exportItem !== 'MatrixRain' &&
+      exportItem !== 'Menu' &&
+      exportItem !== 'MessageArea' &&
+      exportItem !== 'ModeSwitch' &&
+      exportItem !== 'ThemeProvider' &&
+      exportItem !== 'SliderContents'
   )
   .sort()
 

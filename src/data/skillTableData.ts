@@ -1,4 +1,6 @@
 export const skillTableData = () => {
+  const demoSteps = ['step1', 'step2', 'step3', 'step4']
+
   const reactSteps = [
     'create-react-app',
     'tsx',
@@ -58,6 +60,7 @@ export const skillTableData = () => {
   ]
 
   return {
+    demoSteps,
     reactSteps,
     frontEndProps,
     backEndProps,

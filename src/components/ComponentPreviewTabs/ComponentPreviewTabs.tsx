@@ -39,6 +39,7 @@ import {
   ResumeTable,
   SkillTable,
   SkillTables,
+  Stepper,
 } from '@/components'
 import { skillTableData } from '@/data/skillTableData'
 import { SkillTableContents } from '@/types'
@@ -88,6 +89,8 @@ type ComponentPreviewListType = {
     link?: string
     frontEndProps?: SkillTableContents
     backEndProps?: SkillTableContents
+    steps?: string[]
+    activeStep?: number
   }
   events?: {
     name: string
@@ -174,7 +177,7 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
 
   const { toggleDelete, handleClickToggle } = useDelete()
 
-  const { frontEndProps, backEndProps } = skillTableData()
+  const { frontEndProps, backEndProps, demoSteps } = skillTableData()
 
   const [value, setValue] = useState(0)
 
@@ -337,6 +340,15 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
             />
           </>
         ),
+      },
+    },
+    {
+      name: 'Stepper',
+      desc: `Stepperを構成するコンポーネント`,
+      tag: Stepper,
+      props: {
+        steps: demoSteps,
+        activeStep: 3,
       },
     },
   ]
