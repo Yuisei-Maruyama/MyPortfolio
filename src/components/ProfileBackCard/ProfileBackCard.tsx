@@ -5,19 +5,20 @@ import { FaVuejs } from 'react-icons/fa'
 import { SiHtml5, SiCss3, SiJavascript, SiTypescript, SiReact } from 'react-icons/si'
 
 type Props = {
+  width?: string
   height?: string
 }
 
 const ProfileBackCard: React.FC<Props> = (props: Props) => {
-  const { height } = props
+  const { width, height } = props
 
   return (
-    <Card style={{ maxWidth: '100%', height: height, backgroundColor: rgba(0, 0, 0, 0.3), color: 'white' }}>
+    <Card style={{ width: width, height: height, backgroundColor: rgba(0, 0, 0, 0.3), color: 'white' }}>
       <CardContent>
         <Typography sx={{ textAlign: 'center' }} gutterBottom variant="h4" component="div">
           Skill
         </Typography>
-        <List sx={{ width: '100%', overflow: 'auto' }} dense={true}>
+        <List sx={{ overflow: 'auto' }} dense={true}>
           <ListItem>
             <SiHtml5 />
             <ListItemText>HTML</ListItemText>

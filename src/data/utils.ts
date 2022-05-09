@@ -52,3 +52,8 @@ export const gen = {
     return Math.floor(Math.random() * 10)
   },
 }
+
+/** 引数がオブジェクトかどうか判定する */
+export function isObject(value: unknown) {
+  return value !== null && typeof value === 'object'
+}

@@ -4,7 +4,30 @@ import TreeView from '@mui/lab/TreeView'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { ComponentList, ComponentPreviewTabs } from '@/components'
+import * as componentsExports from '@/components'
 import { useSetParams } from '@/customHooks'
+
+const componentsFileNameList: string[] = Object.keys(componentsExports)
+  .filter(
+    (exportItem) =>
+      exportItem !== 'getHeaders' &&
+      exportItem !== 'convertIssueId' &&
+      exportItem !== 'convertLabel' &&
+      exportItem !== 'BoardBase' &&
+      exportItem !== 'ComponentPreviewTabs' &&
+      exportItem !== 'DragDrop' &&
+      exportItem !== 'InstructionsArea' &&
+      exportItem !== 'IssueCard' &&
+      exportItem !== 'IssueDialog' &&
+      exportItem !== 'MatrixArea' &&
+      exportItem !== 'MatrixRain' &&
+      exportItem !== 'Menu' &&
+      exportItem !== 'ModeSwitch' &&
+      exportItem !== 'ThemeProvider' &&
+      exportItem !== 'SliderContents' &&
+      exportItem !== 'TypeWriter'
+  )
+  .sort()
 
 const ComponentsPreviewer: React.FC = () => {
   const { getParams, params } = useSetParams()
@@ -18,16 +41,16 @@ const ComponentsPreviewer: React.FC = () => {
           defaultExpandIcon={<ChevronRightIcon />}
           sx={{ overflowY: 'auto' }}
         >
-          <ComponentList getParams={getParams} />
+          <ComponentList getParams={getParams} componentsFileNameList={componentsFileNameList} />
         </TreeView>
       </Box>
       <>
         {params ? (
           <Box sx={{ width: '100%', paddingLeft: '6%' }}>
-            <ComponentPreviewTabs params={params} />
+            <ComponentPreviewTabs params={params} componentsFileNameList={componentsFileNameList} />
           </Box>
         ) : (
-          <Box sx={{ marginLeft: '20%' }}>
+          <Box sx={{ marginLeft: '4%' }}>
             <p>
               左のコンポーネントリストから対象のラベルを選択すると、ここに選択されたComponentの詳細がプレビューされます。
             </p>

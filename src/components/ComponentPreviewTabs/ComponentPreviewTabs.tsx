@@ -15,10 +15,35 @@ import {
   TableHead,
   TableRow,
   Paper,
+  IconButton,
 } from '@mui/material'
+import { deepPurple } from '@mui/material/colors'
+import { useSetParams, useFlipped, useDelete } from '@/customHooks'
 import { rgba } from 'polished'
+import { GrTooltip } from 'react-icons/gr'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { Header, Circular, Footer } from '@/components'
+import { isObject } from '@/data/utils'
+import {
+  Tooltip,
+  Header,
+  Circular,
+  ComponentList,
+  DocumentList,
+  FlippedCard,
+  ProfileFrontCard,
+  ProfileBackCard,
+  Footer,
+  History,
+  IconSwitch,
+  MarkdownPreviewer,
+  MessageArea,
+  ResumeTable,
+  SkillTable,
+  SkillTables,
+  Stepper,
+} from '@/components'
+import { skillTableData } from '@/data/skillTableData'
+import { SkillTableContents } from '@/types'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -30,6 +55,51 @@ interface TabPanelProps {
 type Props = {
   params: string | string[]
   input?: React.FC
+  componentsFileNameList?: string[]
+}
+
+type ComponentPreviewListType = {
+  name: string
+  desc: string
+  tag: any
+  props?: {
+    title?: string
+    icon?: string
+    getParams?: (params: string) => void
+    componentsFileNameList?: string[]
+    children?: React.ReactNode
+    length?: number
+    value?: number
+    items?: string[]
+    isFlipped?: boolean
+    setFlipped?: (isFlipped: boolean) => void
+    checked?: boolean
+    color?: {
+      checkedcolor: string
+      uncheckcolor: string
+    }
+    svg?: {
+      checkedsvg: string
+      unchecksvg: string
+    }
+    onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
+    fileName?: string
+    message?: string
+    speed?: number
+    width?: string
+    height?: string
+    imageSrc?: string
+    link?: string
+    frontEndProps?: SkillTableContents
+    backEndProps?: SkillTableContents
+    steps?: string[]
+    activeStep?: number
+  }
+  events?: {
+    name: string
+    desc: string
+    target: string
+  }[]
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -83,20 +153,38 @@ const circularEvents = [
   { name: 'click', desc: '右にあるスライドを中央に設置', target: 'ChevronLeft Icon' },
 ]
 
+const componentListEvents = [
+  { name: 'click', desc: '選択されたコンポーネントの使用方法を表示する', target: 'Label of Component' },
+]
+
+const documentListEvents = [
+  { name: 'click', desc: '選択されたドキュメントの使用方法を表示する', target: 'Label of Document' },
+]
+
+const flippedCardEvents = [
+  { name: 'hover', desc: 'マウスホバー時に表示するカードを切り替える', target: 'Front-Card or Back-Card' },
+]
+
+const svgIconSwitchEvents = [
+  { name: 'click', desc: 'toggleの真偽値を入れ替え、アイコンと色の表示を切り替える', target: 'Switch Button' },
+]
+
 const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
-  const { params, input } = props
+  const { params, input, componentsFileNameList } = props
 
   const classes = useStyles()
 
+  const { getParams } = useSetParams()
+
+  const { isFlipped, handleSetFlipped } = useFlipped()
+
+  const { toggleDelete, handleClickToggle } = useDelete()
+
+  const { frontEndProps, backEndProps, demoSteps } = skillTableData()
+
   const [value, setValue] = useState(0)
 
-  const componentList = [
-    {
-      name: 'Header',
-      desc: `Headerを構成するコンポーネント`,
-      tag: Header,
-      events: headerEvents,
-    },
+  const componentList: ComponentPreviewListType[] = [
     {
       name: 'Circular',
       desc: `Circularを構成するコンポーネント`,
@@ -105,9 +193,176 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
       events: circularEvents,
     },
     {
+      name: 'ComponentList',
+      desc: `ComponentListを構成するコンポーネント`,
+      tag: ComponentList,
+      props: {
+        getParams: () => getParams(typeof params === 'string' ? params : ''),
+        componentsFileNameList: componentsFileNameList,
+      },
+      events: componentListEvents,
+    },
+    {
+      name: 'DocumentList',
+      desc: `DocumentListを構成するコンポーネント`,
+      tag: DocumentList,
+      props: {
+        getParams: () => getParams(typeof params === 'string' ? params : ''),
+      },
+      events: documentListEvents,
+    },
+    {
+      name: 'FlippedCard',
+      desc: `FlippedCardを構成するコンポーネント`,
+      tag: FlippedCard,
+      props: {
+        isFlipped: isFlipped,
+        setFlipped: handleSetFlipped,
+        children: [
+          <ProfileFrontCard
+            imageSrc="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true"
+            width="300px"
+            height="450px"
+            key={1}
+          />,
+          <ProfileBackCard width="300px" height="450px" key={2} />,
+        ],
+      },
+      events: flippedCardEvents,
+    },
+    {
+      name: 'Header',
+      desc: `Headerを構成するコンポーネント`,
+      tag: Header,
+      events: headerEvents,
+    },
+    {
       name: 'Footer',
       desc: `Footerを構成するコンポーネント`,
       tag: Footer,
+    },
+    {
+      name: 'History',
+      desc: `Historyタイムラインを構成するコンポーネント`,
+      tag: History,
+    },
+    {
+      name: 'IconSwitch',
+      desc: `IconSwitchを構成するコンポーネント`,
+      tag: IconSwitch,
+      props: {
+        checked: toggleDelete,
+        color: {
+          checkedcolor: '#3F51B5',
+          uncheckcolor: deepPurple[500],
+        },
+        svg: {
+          checkedsvg:
+            'M20.37, 8.91L19.37, 10.64L7.24, 3.64L8.24, 1.91L11.28, 3.66L12.64, 3.29L16.97, 5.79L17.34, 7.16L20.37, 8.91M6, 19V7H11.07L18, 11V19A2, 2 0 0, 1 16, 21H8A2, 2 0 0, 1 6, 19Z',
+          unchecksvg: 'M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z',
+        },
+        onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => handleClickToggle(e),
+      },
+      events: svgIconSwitchEvents,
+    },
+    {
+      name: 'MarkdownPreviewer',
+      desc: `MarkdownPreviewerを構成するコンポーネント`,
+      tag: MarkdownPreviewer,
+      props: {
+        fileName: 'ComponentPreviewDemo',
+      },
+    },
+    {
+      name: 'MessageArea',
+      desc: `MessageAreaを構成するコンポーネント`,
+      tag: MessageArea,
+      props: {
+        message:
+          'ここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります',
+        speed: 50,
+      },
+    },
+    {
+      name: 'ProfileBackCard',
+      desc: `ProfileBackCardを構成するコンポーネント`,
+      tag: ProfileBackCard,
+      props: {
+        width: '300px',
+        height: '450px',
+      },
+    },
+    {
+      name: 'ProfileFrontCard',
+      desc: `ProfileFrontCardを構成するコンポーネント`,
+      tag: ProfileFrontCard,
+      props: {
+        width: '300px',
+        height: '450px',
+        imageSrc: 'https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true',
+      },
+    },
+    {
+      name: 'ResumeTable',
+      desc: `ResumeTableを構成するコンポーネント`,
+      tag: ResumeTable,
+      props: {
+        title: '業務経歴テーブル',
+      },
+    },
+    {
+      name: 'SkillTable',
+      desc: `SkillTableを構成するコンポーネント\nテーブルヘッダーをクリックすることで該当のREADMEに遷移する`,
+      tag: SkillTable,
+      props: {
+        title: 'Front-End Goal Image',
+        link: 'https://github.com/Yuisei-Maruyama/MyPortfolio',
+        frontEndProps: frontEndProps,
+      },
+    },
+    {
+      name: 'SkillTables',
+      desc: `SkillTablesを構成するコンポーネント`,
+      tag: SkillTables,
+      props: {
+        children: (
+          <>
+            <SkillTable
+              title="Front-End Goal Image"
+              link="https://github.com/Yuisei-Maruyama/MyPortfolio"
+              frontEndProps={frontEndProps}
+            />
+            <SkillTable
+              title="Back-End Goal Image"
+              link="https://github.com/Yuisei-Maruyama/MyPortfolio_Backend"
+              backEndProps={backEndProps}
+            />
+          </>
+        ),
+      },
+    },
+    {
+      name: 'Stepper',
+      desc: `Stepperを構成するコンポーネント`,
+      tag: Stepper,
+      props: {
+        steps: demoSteps,
+        activeStep: 3,
+      },
+    },
+    {
+      name: 'Tooltip',
+      desc: `Tooltipを構成するコンポーネント`,
+      tag: Tooltip,
+      props: {
+        title: 'Tooltip Demo',
+        icon: 'arrow',
+        children: (
+          <IconButton edge="start" color="inherit" aria-label="tooltip_demo">
+            <GrTooltip />
+          </IconButton>
+        ),
+      },
     },
   ]
 
@@ -172,7 +427,13 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
             .filter((component) => component.name === params)
             .map((component, index) => {
               return component.props ? (
-                <component.tag key={index} {...component.props} />
+                !component.props.children ? (
+                  <component.tag key={index} {...component.props} />
+                ) : (
+                  <component.tag key={index} {...component.props}>
+                    {component.props.children}
+                  </component.tag>
+                )
               ) : (
                 <component.tag key={index} />
               )
@@ -200,14 +461,34 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
                           return (
                             <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                               <TableCell component="th" scope="row">
-                                {prop[0]}
+                                {isObject(prop[0]) ? Object.entries(prop[0]) : prop[0]}
                               </TableCell>
                               <TableCell align="left">
                                 {Array.isArray(prop[1])
                                   ? 'Array' + `<${typeof prop[1][0]}>`
                                   : (typeof prop[1]).charAt(0).toUpperCase() + (typeof prop[1]).slice(1)}
                               </TableCell>
-                              <TableCell align="left">{prop[1]}</TableCell>
+                              <TableCell align="left">
+                                {isObject(prop[1]) && !!prop[1] && prop[0] !== 'children'
+                                  ? Object.entries(prop[1]).map((prop, index) => {
+                                      return (
+                                        <TableBody key={index}>
+                                          <TableRow
+                                            key={index}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                          >
+                                            <TableCell component="th" scope="row">
+                                              {isObject(prop[0]) ? Object.entries(prop[0]) : prop[0]}
+                                            </TableCell>
+                                            <TableCell component="th" scope="row">
+                                              {isObject(prop[1]) ? Object.entries(prop[1]) : prop[1]}
+                                            </TableCell>
+                                          </TableRow>
+                                        </TableBody>
+                                      )
+                                    })
+                                  : prop[1]}
+                              </TableCell>
                             </TableRow>
                           )
                         })

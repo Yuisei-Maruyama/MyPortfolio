@@ -1,8 +1,18 @@
-import React, { useState, useEffect, createContext, useCallback } from 'react'
-import { FlippedCard, ProfileFrontCard, ProfileBackCard, Circular, MessageArea, SkillTables } from '@/components'
+import React, { useState, useEffect, createContext } from 'react'
+import {
+  FlippedCard,
+  ProfileFrontCard,
+  ProfileBackCard,
+  Circular,
+  MessageArea,
+  SkillTable,
+  SkillTables,
+} from '@/components'
 import { Box } from '@material-ui/core'
 import { Issues } from '@/types'
 import axios from 'axios'
+import { useFlipped } from '@/customHooks'
+import { skillTableData } from '@/data/skillTableData'
 
 const request = axios.create({
   baseURL: 'https://api.github.com',
@@ -24,7 +34,8 @@ const contextValue = {
 
 const Main = () => {
   const [todoItems, setTodo] = useState<Issues>([])
-  const [isFlipped, setFlipped] = useState<boolean>(false)
+  const { isFlipped, handleSetFlipped } = useFlipped()
+  const { frontEndProps, backEndProps } = skillTableData()
 
   const fetchTodo = async () => {
     const labelName = 'Todo'
@@ -32,17 +43,19 @@ const Main = () => {
     setTodo(data)
   }
 
+  const message = `I'm Yuisei Maruyama.\n
+  My motto is to work while having fun!!\n
+  Interested in Front-End of web technology.\n
+  Especially technology of interest is React.\n
+  In the future, I wanna be a mobile developer.\n
+  Mobile developers are expected to be able to give more people a great experience.\n
+  In order to reach my goal, I think it is essential to learn React.\n
+  `
+
   useEffect(() => {
     fetchTodo()
     // eslint-disable-next-line
   }, [])
-
-  const handleSetFlipped = useCallback(
-    (isFlipped: boolean) => {
-      setFlipped(isFlipped)
-    },
-    [setFlipped]
-  )
 
   return (
     <div>
@@ -52,16 +65,31 @@ const Main = () => {
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 15 }}>
         <Box sx={{ width: '20%' }}>
           <FlippedCard isFlipped={isFlipped} setFlipped={handleSetFlipped}>
-            <ProfileFrontCard height="450px" />
-            <ProfileBackCard height="450px" />
+            <ProfileFrontCard
+              width="300px"
+              height="450px"
+              imageSrc="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true"
+            />
+            <ProfileBackCard width="300px" height="450px" />
           </FlippedCard>
         </Box>
         <Box sx={{ ml: 12, width: '40%' }}>
-          <MessageArea />
+          <MessageArea message={message} speed={50} />
         </Box>
       </Box>
       <Box sx={{ display: 'flex', width: '90%', margin: '30px auto 0' }}>
-        <SkillTables />
+        <SkillTables>
+          <SkillTable
+            title="Front-End Goal Image"
+            link="https://github.com/Yuisei-Maruyama/MyPortfolio"
+            frontEndProps={frontEndProps}
+          />
+          <SkillTable
+            title="Back-End Goal Image"
+            link="https://github.com/Yuisei-Maruyama/MyPortfolio_Backend"
+            backEndProps={backEndProps}
+          />
+        </SkillTables>
       </Box>
     </div>
   )
