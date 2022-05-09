@@ -1,9 +1,18 @@
 import React, { useState, useEffect, createContext } from 'react'
-import { FlippedCard, ProfileFrontCard, ProfileBackCard, Circular, MessageArea, SkillTables } from '@/components'
+import {
+  FlippedCard,
+  ProfileFrontCard,
+  ProfileBackCard,
+  Circular,
+  MessageArea,
+  SkillTable,
+  SkillTables,
+} from '@/components'
 import { Box } from '@material-ui/core'
 import { Issues } from '@/types'
 import axios from 'axios'
 import { useFlipped } from '@/customHooks'
+import { skillTableData } from '@/data/skillTableData'
 
 const request = axios.create({
   baseURL: 'https://api.github.com',
@@ -26,6 +35,7 @@ const contextValue = {
 const Main = () => {
   const [todoItems, setTodo] = useState<Issues>([])
   const { isFlipped, handleSetFlipped } = useFlipped()
+  const { frontEndProps, backEndProps } = skillTableData()
 
   const fetchTodo = async () => {
     const labelName = 'Todo'
@@ -59,7 +69,18 @@ const Main = () => {
         </Box>
       </Box>
       <Box sx={{ display: 'flex', width: '90%', margin: '30px auto 0' }}>
-        <SkillTables />
+        <SkillTables>
+          <SkillTable
+            title="Front-End Goal Image"
+            link="https://github.com/Yuisei-Maruyama/MyPortfolio"
+            frontEndProps={frontEndProps}
+          />
+          <SkillTable
+            title="Back-End Goal Image"
+            link="https://github.com/Yuisei-Maruyama/MyPortfolio_Backend"
+            backEndProps={backEndProps}
+          />
+        </SkillTables>
       </Box>
     </div>
   )

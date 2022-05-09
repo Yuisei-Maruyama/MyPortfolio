@@ -37,7 +37,11 @@ import {
   IconSwitch,
   MarkdownPreviewer,
   ResumeTable,
+  SkillTable,
+  SkillTables,
 } from '@/components'
+import { skillTableData } from '@/data/skillTableData'
+import { SkillTableContents } from '@/types'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -81,6 +85,9 @@ type ComponentPreviewListType = {
     width?: string
     height?: string
     imageSrc?: string
+    link?: string
+    frontEndProps?: SkillTableContents
+    backEndProps?: SkillTableContents
   }
   events?: {
     name: string
@@ -166,6 +173,8 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
   const { isFlipped, handleSetFlipped } = useFlipped()
 
   const { toggleDelete, handleClickToggle } = useDelete()
+
+  const { frontEndProps, backEndProps } = skillTableData()
 
   const [value, setValue] = useState(0)
 
@@ -297,6 +306,37 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
       tag: ResumeTable,
       props: {
         title: '業務経歴テーブル',
+      },
+    },
+    {
+      name: 'SkillTable',
+      desc: `SkillTableを構成するコンポーネント\nテーブルヘッダーをクリックすることで該当のREADMEに遷移する`,
+      tag: SkillTable,
+      props: {
+        title: 'Front-End Goal Image',
+        link: 'https://github.com/Yuisei-Maruyama/MyPortfolio',
+        frontEndProps: frontEndProps,
+      },
+    },
+    {
+      name: 'SkillTables',
+      desc: `SkillTablesを構成するコンポーネント`,
+      tag: SkillTables,
+      props: {
+        children: (
+          <>
+            <SkillTable
+              title="Front-End Goal Image"
+              link="https://github.com/Yuisei-Maruyama/MyPortfolio"
+              frontEndProps={frontEndProps}
+            />
+            <SkillTable
+              title="Back-End Goal Image"
+              link="https://github.com/Yuisei-Maruyama/MyPortfolio_Backend"
+              backEndProps={backEndProps}
+            />
+          </>
+        ),
       },
     },
   ]

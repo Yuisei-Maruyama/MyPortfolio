@@ -37,3 +37,9 @@ export interface Header {
 }
 
 export type Issues = Issue[]
+
+export type SkillTableContents = {
+  name: string
+  steps: string[]
+  activeStep: number
+}[]
