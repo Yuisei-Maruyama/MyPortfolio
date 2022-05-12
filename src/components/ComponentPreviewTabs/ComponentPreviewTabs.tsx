@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   AppBar,
   Tabs,
@@ -17,33 +17,13 @@ import {
   Paper,
   IconButton,
 } from '@mui/material'
-import { deepPurple } from '@mui/material/colors'
-import { useSetParams, useFlipped, useDelete } from '@/customHooks'
 import { rgba } from 'polished'
 import { GrTooltip } from 'react-icons/gr'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { isObject } from '@/data/utils'
-import {
-  Tooltip,
-  Header,
-  Circular,
-  ComponentList,
-  DocumentList,
-  FlippedCard,
-  ProfileFrontCard,
-  ProfileBackCard,
-  Footer,
-  History,
-  IconSwitch,
-  MarkdownPreviewer,
-  MessageArea,
-  ResumeTable,
-  SkillTable,
-  SkillTables,
-  Stepper,
-} from '@/components'
-import { skillTableData } from '@/data/skillTableData'
-import { SkillTableContents } from '@/types'
+import { componentPreviewData, ComponentPreviewListType } from '@/data/componentPreviewData'
+import { ProfileFrontCard, ProfileBackCard, SkillTable } from '@/components'
+import { useSetParams, useFlipped, useDelete } from '@/customHooks'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -55,51 +35,7 @@ interface TabPanelProps {
 type Props = {
   params: string | string[]
   input?: React.FC
-  componentsFileNameList?: string[]
-}
-
-type ComponentPreviewListType = {
-  name: string
-  desc: string
-  tag: any
-  props?: {
-    title?: string
-    icon?: string
-    getParams?: (params: string) => void
-    componentsFileNameList?: string[]
-    children?: React.ReactNode
-    length?: number
-    value?: number
-    items?: string[]
-    isFlipped?: boolean
-    setFlipped?: (isFlipped: boolean) => void
-    checked?: boolean
-    color?: {
-      checkedcolor: string
-      uncheckcolor: string
-    }
-    svg?: {
-      checkedsvg: string
-      unchecksvg: string
-    }
-    onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
-    fileName?: string
-    message?: string
-    speed?: number
-    width?: string
-    height?: string
-    imageSrc?: string
-    link?: string
-    frontEndProps?: SkillTableContents
-    backEndProps?: SkillTableContents
-    steps?: string[]
-    activeStep?: number
-  }
-  events?: {
-    name: string
-    desc: string
-    target: string
-  }[]
+  componentsFileNameList: string[]
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -137,42 +73,12 @@ function a11yProps(index: number) {
   }
 }
 
-const headerEvents = [
-  { name: 'click', desc: '/ に遷移', target: 'MyPortfolio' },
-  { name: 'click', desc: '/components に遷移', target: 'COMPONENTS' },
-  { name: 'click', desc: '/documents に遷移', target: 'DOCUMENTS' },
-  { name: 'click', desc: '/board に遷移', target: 'TaskBoard Icon' },
-  { name: 'click', desc: 'GitHub の README に遷移', target: 'GitHub Icon' },
-  { name: 'click', desc: 'Netlify の Deployページ に遷移', target: 'Netlify Icon' },
-  { name: 'click', desc: 'Instagram の Profileページ に遷移', target: 'Instagram Icon' },
-  { name: 'click', desc: 'Login メニューの表示\n認証機能は未実装', target: 'User Icon' },
-]
-
-const circularEvents = [
-  { name: 'click', desc: '左にあるスライドを中央に設置', target: 'ChevronRight Icon' },
-  { name: 'click', desc: '右にあるスライドを中央に設置', target: 'ChevronLeft Icon' },
-]
-
-const componentListEvents = [
-  { name: 'click', desc: '選択されたコンポーネントの使用方法を表示する', target: 'Label of Component' },
-]
-
-const documentListEvents = [
-  { name: 'click', desc: '選択されたドキュメントの使用方法を表示する', target: 'Label of Document' },
-]
-
-const flippedCardEvents = [
-  { name: 'hover', desc: 'マウスホバー時に表示するカードを切り替える', target: 'Front-Card or Back-Card' },
-]
-
-const svgIconSwitchEvents = [
-  { name: 'click', desc: 'toggleの真偽値を入れ替え、アイコンと色の表示を切り替える', target: 'Switch Button' },
-]
-
 const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
   const { params, input, componentsFileNameList } = props
 
-  const classes = useStyles()
+  const [value, setValue] = useState(0)
+
+  const [componentPreviewList, setPreviewList] = useState<ComponentPreviewListType[]>([])
 
   const { getParams } = useSetParams()
 
@@ -180,191 +86,74 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
 
   const { toggleDelete, handleClickToggle } = useDelete()
 
-  const { frontEndProps, backEndProps, demoSteps } = skillTableData()
+  const classes = useStyles()
 
-  const [value, setValue] = useState(0)
+  const payload = {
+    paramsState: {
+      params,
+      getParams,
+    },
+    flipState: {
+      isFlipped,
+      handleSetFlipped,
+    },
+    deleteState: {
+      toggleDelete,
+      handleClickToggle,
+    },
+  }
 
-  const componentList: ComponentPreviewListType[] = [
-    {
-      name: 'Circular',
-      desc: `Circularを構成するコンポーネント`,
-      tag: Circular,
-      props: { length: 8, value: 0, items: ['1', '2', '3', '4', '5', '6', '7', '8'] },
-      events: circularEvents,
-    },
-    {
-      name: 'ComponentList',
-      desc: `ComponentListを構成するコンポーネント`,
-      tag: ComponentList,
-      props: {
-        getParams: () => getParams(typeof params === 'string' ? params : ''),
-        componentsFileNameList: componentsFileNameList,
-      },
-      events: componentListEvents,
-    },
-    {
-      name: 'DocumentList',
-      desc: `DocumentListを構成するコンポーネント`,
-      tag: DocumentList,
-      props: {
-        getParams: () => getParams(typeof params === 'string' ? params : ''),
-      },
-      events: documentListEvents,
-    },
-    {
-      name: 'FlippedCard',
-      desc: `FlippedCardを構成するコンポーネント`,
-      tag: FlippedCard,
-      props: {
-        isFlipped: isFlipped,
-        setFlipped: handleSetFlipped,
-        children: [
-          <ProfileFrontCard
-            imageSrc="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true"
-            width="300px"
-            height="450px"
-            key={1}
-          />,
-          <ProfileBackCard width="300px" height="450px" key={2} />,
-        ],
-      },
-      events: flippedCardEvents,
-    },
-    {
-      name: 'Header',
-      desc: `Headerを構成するコンポーネント`,
-      tag: Header,
-      events: headerEvents,
-    },
-    {
-      name: 'Footer',
-      desc: `Footerを構成するコンポーネント`,
-      tag: Footer,
-    },
-    {
-      name: 'History',
-      desc: `Historyタイムラインを構成するコンポーネント`,
-      tag: History,
-    },
-    {
-      name: 'IconSwitch',
-      desc: `IconSwitchを構成するコンポーネント`,
-      tag: IconSwitch,
-      props: {
-        checked: toggleDelete,
-        color: {
-          checkedcolor: '#3F51B5',
-          uncheckcolor: deepPurple[500],
-        },
-        svg: {
-          checkedsvg:
-            'M20.37, 8.91L19.37, 10.64L7.24, 3.64L8.24, 1.91L11.28, 3.66L12.64, 3.29L16.97, 5.79L17.34, 7.16L20.37, 8.91M6, 19V7H11.07L18, 11V19A2, 2 0 0, 1 16, 21H8A2, 2 0 0, 1 6, 19Z',
-          unchecksvg: 'M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z',
-        },
-        onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => handleClickToggle(e),
-      },
-      events: svgIconSwitchEvents,
-    },
-    {
-      name: 'MarkdownPreviewer',
-      desc: `MarkdownPreviewerを構成するコンポーネント`,
-      tag: MarkdownPreviewer,
-      props: {
-        fileName: 'ComponentPreviewDemo',
-      },
-    },
-    {
-      name: 'MessageArea',
-      desc: `MessageAreaを構成するコンポーネント`,
-      tag: MessageArea,
-      props: {
-        message:
-          'ここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります\nここにメッセージが入ります',
-        speed: 50,
-      },
-    },
-    {
-      name: 'ProfileBackCard',
-      desc: `ProfileBackCardを構成するコンポーネント`,
-      tag: ProfileBackCard,
-      props: {
-        width: '300px',
-        height: '450px',
-      },
-    },
-    {
-      name: 'ProfileFrontCard',
-      desc: `ProfileFrontCardを構成するコンポーネント`,
-      tag: ProfileFrontCard,
-      props: {
-        width: '300px',
-        height: '450px',
-        imageSrc: 'https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true',
-      },
-    },
-    {
-      name: 'ResumeTable',
-      desc: `ResumeTableを構成するコンポーネント`,
-      tag: ResumeTable,
-      props: {
-        title: '業務経歴テーブル',
-      },
-    },
-    {
-      name: 'SkillTable',
-      desc: `SkillTableを構成するコンポーネント\nテーブルヘッダーをクリックすることで該当のREADMEに遷移する`,
-      tag: SkillTable,
-      props: {
-        title: 'Front-End Goal Image',
-        link: 'https://github.com/Yuisei-Maruyama/MyPortfolio',
-        frontEndProps: frontEndProps,
-      },
-    },
-    {
-      name: 'SkillTables',
-      desc: `SkillTablesを構成するコンポーネント`,
-      tag: SkillTables,
-      props: {
-        children: (
-          <>
-            <SkillTable
-              title="Front-End Goal Image"
-              link="https://github.com/Yuisei-Maruyama/MyPortfolio"
-              frontEndProps={frontEndProps}
-            />
-            <SkillTable
-              title="Back-End Goal Image"
-              link="https://github.com/Yuisei-Maruyama/MyPortfolio_Backend"
-              backEndProps={backEndProps}
-            />
-          </>
-        ),
-      },
-    },
-    {
-      name: 'Stepper',
-      desc: `Stepperを構成するコンポーネント`,
-      tag: Stepper,
-      props: {
-        steps: demoSteps,
-        activeStep: 3,
-      },
-    },
-    {
-      name: 'Tooltip',
-      desc: `Tooltipを構成するコンポーネント`,
-      tag: Tooltip,
-      props: {
-        title: 'Tooltip Demo',
-        icon: 'arrow',
-        children: (
-          <IconButton edge="start" color="inherit" aria-label="tooltip_demo">
-            <GrTooltip />
-          </IconButton>
-        ),
-      },
-    },
+  const { frontEndProps, backEndProps, componentList } = componentPreviewData(componentsFileNameList, payload)
+
+  const flippedCardChildren = [
+    <ProfileFrontCard
+      imageSrc="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true"
+      width="300px"
+      height="450px"
+      key={1}
+    />,
+    <ProfileBackCard width="300px" height="450px" key={2} />,
   ]
+
+  const skillTablesChildren = (
+    <>
+      <SkillTable
+        title="Front-End Goal Image"
+        link="https://github.com/Yuisei-Maruyama/MyPortfolio"
+        frontEndProps={frontEndProps}
+      />
+      <SkillTable
+        title="Back-End Goal Image"
+        link="https://github.com/Yuisei-Maruyama/MyPortfolio_Backend"
+        backEndProps={backEndProps}
+      />
+    </>
+  )
+
+  const tooltipChildren = (
+    <IconButton edge="start" color="inherit" aria-label="tooltip_demo">
+      <GrTooltip />
+    </IconButton>
+  )
+
+  const previewList: ComponentPreviewListType[] = []
+
+  const convertComponentPreviewList = () => {
+    componentList.forEach((component) => {
+      if (component.props?.children) {
+        if (component.name === 'FlippedCard') return (component.props.children = flippedCardChildren)
+        if (component.name === 'SkillTables') return (component.props.children = skillTablesChildren)
+        if (component.name === 'Tooltip') return (component.props.children = tooltipChildren)
+      }
+      previewList.push(component)
+    })
+    return previewList
+  }
+
+  useEffect(() => {
+    setPreviewList(convertComponentPreviewList())
+    // eslint-disable-next-line
+  }, [])
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -397,7 +186,7 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
             <Box sx={{ display: 'flex' }}>
               <ListItemText>Description:</ListItemText>
               <ListItemText sx={{ marginLeft: 5 }}>
-                {componentList
+                {componentPreviewList
                   .filter((component) => component.name === params)
                   .map((component, index) => (
                     <Typography component="div" key={index}>
@@ -423,7 +212,7 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
           </ListItem>
         </List>
         <>
-          {componentList
+          {componentPreviewList
             .filter((component) => component.name === params)
             .map((component, index) => {
               return component.props ? (
@@ -453,7 +242,7 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {componentList
+                  {componentPreviewList
                     .filter((component) => component.name === params)
                     .map((component, index) => {
                       return component.props ? (
@@ -517,7 +306,7 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {componentList
+                  {componentPreviewList
                     .filter((component) => component.name === params)
                     .map((component, index) => {
                       return component.events ? (
