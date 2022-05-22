@@ -140,10 +140,17 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
 
   const convertComponentPreviewList = () => {
     componentList.forEach((component) => {
-      if (component.props?.children) {
-        if (component.name === 'FlippedCard') return (component.props.children = flippedCardChildren)
-        if (component.name === 'SkillTables') return (component.props.children = skillTablesChildren)
-        if (component.name === 'Tooltip') return (component.props.children = tooltipChildren)
+      if (component.props && Object.keys(component.props).includes('children')) {
+        console.log(component)
+        if (component.name === 'FlippedCard') {
+          component.props.children = flippedCardChildren
+        }
+        if (component.name === 'SkillTables') {
+          component.props.children = skillTablesChildren
+        }
+        if (component.name === 'Tooltip') {
+          component.props.children = tooltipChildren
+        }
       }
       previewList.push(component)
     })
