@@ -189,7 +189,20 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
       name: 'Circular',
       desc: `Circularを構成するコンポーネント`,
       tag: Circular,
-      props: { length: 8, value: 0, items: ['1枚目のスライド', '2枚目のスライド', '3枚目のスライド', '4枚目のスライド', '5枚目のスライド', '6枚目のスライド', '7枚目のスライド', '8枚目のスライド'] },
+      props: {
+        length: 8,
+        value: 0,
+        items: [
+          '1枚目のスライド',
+          '2枚目のスライド',
+          '3枚目のスライド',
+          '4枚目のスライド',
+          '5枚目のスライド',
+          '6枚目のスライド',
+          '7枚目のスライド',
+          '8枚目のスライド',
+        ],
+      },
       events: circularEvents,
     },
     {
