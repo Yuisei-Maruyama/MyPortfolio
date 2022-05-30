@@ -41,9 +41,7 @@ const InstructionsArea: React.FC = () => {
     <>
       <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet" />
       <ThemeProvider theme={hachiMaruPopFont}>
-        <div
-          className={classes.area}
-        >
+        <div className={classes.area}>
           <Box sx={{ paddingTop: '1%' }}>
             <h1 style={{ textAlign: 'center' }}>〜各画面の表示内容の説明〜</h1>
             <Box

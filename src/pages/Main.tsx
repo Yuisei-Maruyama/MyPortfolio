@@ -44,8 +44,6 @@ const Main = () => {
     setTodo(data)
   }
 
-  
-
   useEffect(() => {
     fetchTodo()
     // eslint-disable-next-line

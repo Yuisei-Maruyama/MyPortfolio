@@ -21,7 +21,7 @@ const ProfileFrontCard: React.FC<Props> = (props: Props) => {
           color: '#06D8D7',
         }}
       >
-        <CardMedia style={{borderRadius: '15px', width: '100%', height: '280px'}} component="img" image={imageSrc} />
+        <CardMedia style={{ borderRadius: '15px', width: '100%', height: '280px' }} component="img" image={imageSrc} />
         <CardContent>
           <Typography gutterBottom style={{ fontSize: '30px' }} component="div">
             Yuisei Maruyama
