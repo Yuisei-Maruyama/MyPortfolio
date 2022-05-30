@@ -18,16 +18,16 @@ const ProfileFrontCard: React.FC<Props> = (props: Props) => {
           width: width,
           height: height,
           backgroundColor: rgba(0, 0, 0, 0.3),
-          color: 'white',
+          color: '#06D8D7',
         }}
       >
-        <CardMedia component="img" image={imageSrc} />
+        <CardMedia style={{borderRadius: '15px', width: '100%', height: '280px'}} component="img" image={imageSrc} />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom style={{ fontSize: '30px' }} component="div">
             Yuisei Maruyama
           </Typography>
-          <Typography variant="body2">Job: Front-End Engineer</Typography>
-          <Typography component={'div'} variant="body2">
+          <Typography variant="body1">Job: Front-End Engineer</Typography>
+          <Typography component={'div'} variant="body1">
             Location: Tokyo/Japan
           </Typography>
         </CardContent>

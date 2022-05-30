@@ -28,6 +28,7 @@ const ComponentList: React.FC<Props> = (props: Props) => {
       {componentsFileNameList.map((component, index) => {
         return (
           <TreeItem
+            color='#FFFFFF'
             key={index}
             nodeId={index.toString()}
             label={component}

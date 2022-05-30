@@ -67,7 +67,7 @@ const SkillTable: React.FC<Props> = (props: Props) => {
   }
 
   return (
-    <Paper sx={{ width: '100%', backgroundColor: rgba(0, 0, 0, 0.3), border: '1px solid black' }}>
+    <Paper sx={{ width: '100%', backgroundColor: rgba(0, 0, 0, 0.3), border: '1px solid #06D8D7' }}>
       <TableContainer>
         <Table>
           <TableHead>

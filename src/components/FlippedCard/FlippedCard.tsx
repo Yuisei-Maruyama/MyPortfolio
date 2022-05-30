@@ -25,11 +25,11 @@ const FlippedCard: React.FC<Props> = (props: Props) => {
       {Array.isArray(children) && children?.length === 2 ? (
         <>
           {!isFlipped ? (
-            <div style={{ transform: `rotateY(${rotation})` }} onMouseEnter={handleHover}>
+            <div style={{ transform: `rotateY(${rotation})`, border: '1px solid #06D8D7', borderRadius: '15px' }} onMouseEnter={handleHover}>
               {children[0]}
             </div>
           ) : (
-            <div style={{ transform: `rotateY(${rotation})` }} onMouseLeave={handleHover}>
+            <div style={{ transform: `rotateY(${rotation})`, border: '1px solid #06D8D7', borderRadius: '15px' }} onMouseLeave={handleHover}>
               {children[1]}
             </div>
           )}

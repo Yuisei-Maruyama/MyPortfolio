@@ -13,6 +13,7 @@ import { Issues } from '@/types'
 import axios from 'axios'
 import { useFlipped } from '@/customHooks'
 import { skillTableData } from '@/data/skillTableData'
+import { message } from '@/data/message'
 
 const request = axios.create({
   baseURL: 'https://api.github.com',
@@ -43,14 +44,7 @@ const Main = () => {
     setTodo(data)
   }
 
-  const message = `I'm Yuisei Maruyama.\n
-  My motto is to work while having fun!!\n
-  Interested in Front-End of web technology.\n
-  Especially technology of interest is React.\n
-  In the future, I wanna be a mobile developer.\n
-  Mobile developers are expected to be able to give more people a great experience.\n
-  In order to reach my goal, I think it is essential to learn React.\n
-  `
+  
 
   useEffect(() => {
     fetchTodo()
@@ -62,15 +56,15 @@ const Main = () => {
       <SliderContext.Provider value={contextValue}>
         <Circular items={todoItems} length={todoItems.length} value={0} />
       </SliderContext.Provider>
-      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 15 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
         <Box sx={{ width: '20%' }}>
           <FlippedCard isFlipped={isFlipped} setFlipped={handleSetFlipped}>
             <ProfileFrontCard
-              width="300px"
+              width="100%"
               height="450px"
-              imageSrc="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true"
+              imageSrc="https://avatars.githubusercontent.com/u/76277215?v=4"
             />
-            <ProfileBackCard width="300px" height="450px" />
+            <ProfileBackCard width="100%" height="450px" />
           </FlippedCard>
         </Box>
         <Box sx={{ ml: 12, width: '40%' }}>

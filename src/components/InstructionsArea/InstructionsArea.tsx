@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { rgba } from 'polished'
 import { Box, Card, CardMedia, CardActionArea, Dialog, DialogContent } from '@mui/material'
 import { BoxProps } from '@mui/material/Box'
 import { hachiMaruPopFont } from '@/components/ThemeProvider'
 import { ThemeProvider } from '@/components'
+import classes from './InstructionsArea.module.scss'
 
 const Item = (props: BoxProps) => {
   const { sx, ...other } = props
@@ -42,14 +42,7 @@ const InstructionsArea: React.FC = () => {
       <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet" />
       <ThemeProvider theme={hachiMaruPopFont}>
         <div
-          style={{
-            width: '85%',
-            height: '100%',
-            margin: '60px auto 0',
-            paddingBottom: '100px',
-            backgroundColor: rgba(0, 0, 0, 0.3),
-            borderRadius: 40,
-          }}
+          className={classes.area}
         >
           <Box sx={{ paddingTop: '1%' }}>
             <h1 style={{ textAlign: 'center' }}>〜各画面の表示内容の説明〜</h1>
