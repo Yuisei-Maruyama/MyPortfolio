@@ -97,6 +97,8 @@ const DocumentList: React.FC<Props> = (props: Props) => {
               onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
             />
           </TreeItem>
+          <TreeItem nodeId="80" label="NextJS" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}></TreeItem>
+          <TreeItem nodeId="81" label="SSG/SSR" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}></TreeItem>
           <TreeItem nodeId="20" label="Vue">
             <TreeItem
               nodeId="40"
