@@ -9,10 +9,12 @@ import {
   SkillTables,
 } from '@/components'
 import { Box } from '@material-ui/core'
+import { Grid } from '@mui/material'
 import { Issues } from '@/types'
 import axios from 'axios'
 import { useFlipped } from '@/customHooks'
 import { skillTableData } from '@/data/skillTableData'
+import { message } from '@/data/message'
 
 const request = axios.create({
   baseURL: 'https://api.github.com',
@@ -43,15 +45,6 @@ const Main = () => {
     setTodo(data)
   }
 
-  const message = `I'm Yuisei Maruyama.\n
-  My motto is to work while having fun!!\n
-  Interested in Front-End of web technology.\n
-  Especially technology of interest is React.\n
-  In the future, I wanna be a mobile developer.\n
-  Mobile developers are expected to be able to give more people a great experience.\n
-  In order to reach my goal, I think it is essential to learn React.\n
-  `
-
   useEffect(() => {
     fetchTodo()
     // eslint-disable-next-line
@@ -60,36 +53,48 @@ const Main = () => {
   return (
     <div>
       <SliderContext.Provider value={contextValue}>
-        <Circular items={todoItems} length={todoItems.length} value={0} />
+        <Grid container>
+          <Grid item sm={12} xs={12} md={12} lg={12} xl={12}>
+            <Circular items={todoItems} length={todoItems.length} value={0} />
+          </Grid>
+        </Grid>
       </SliderContext.Provider>
-      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 15 }}>
-        <Box sx={{ width: '20%' }}>
+      <Grid container gap={12} sx={{ mt: 6 }}>
+        <Grid lg={1} xl={1} />
+        <Grid item sm={6} xs={5} md={4} lg={3} xl={2}>
           <FlippedCard isFlipped={isFlipped} setFlipped={handleSetFlipped}>
             <ProfileFrontCard
-              width="300px"
+              width="100%"
               height="450px"
-              imageSrc="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true"
+              imageSrc="https://avatars.githubusercontent.com/u/76277215?v=4"
             />
-            <ProfileBackCard width="300px" height="450px" />
+            <ProfileBackCard width="100%" height="450px" />
           </FlippedCard>
-        </Box>
-        <Box sx={{ ml: 12, width: '40%' }}>
+        </Grid>
+        <Grid item sm={10} xs={8} md={7} lg={5} xl={5}>
           <MessageArea message={message} speed={50} />
-        </Box>
-      </Box>
-      <Box sx={{ display: 'flex', width: '90%', margin: '30px auto 0' }}>
-        <SkillTables>
-          <SkillTable
-            title="Front-End Goal Image"
-            link="https://github.com/Yuisei-Maruyama/MyPortfolio"
-            frontEndProps={frontEndProps}
-          />
-          <SkillTable
-            title="Back-End Goal Image"
-            link="https://github.com/Yuisei-Maruyama/MyPortfolio_Backend"
-            backEndProps={backEndProps}
-          />
-        </SkillTables>
+        </Grid>
+        <Grid lg={1} xl={1} />
+      </Grid>
+      <Box sx={{ display: 'flex', width: '90%', margin: '50px auto 0' }}>
+        <Grid container>
+          <SkillTables>
+            <Grid item sm={12} xs={12} md={12} lg={12} xl={6}>
+              <SkillTable
+                title="Front-End Goal Image"
+                link="https://github.com/Yuisei-Maruyama/MyPortfolio"
+                frontEndProps={frontEndProps}
+              />
+            </Grid>
+            <Grid item sm={12} xs={12} md={12} lg={12} xl={6}>
+              <SkillTable
+                title="Back-End Goal Image"
+                link="https://github.com/Yuisei-Maruyama/MyPortfolio_Backend"
+                backEndProps={backEndProps}
+              />
+            </Grid>
+          </SkillTables>
+        </Grid>
       </Box>
     </div>
   )

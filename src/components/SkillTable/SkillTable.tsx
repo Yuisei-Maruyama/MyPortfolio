@@ -67,7 +67,7 @@ const SkillTable: React.FC<Props> = (props: Props) => {
   }
 
   return (
-    <Paper sx={{ width: '100%', backgroundColor: rgba(0, 0, 0, 0.3), border: '1px solid black' }}>
+    <Paper sx={{ width: '100%', backgroundColor: rgba(0, 0, 0, 0.3), border: '1px solid #06D8D7' }}>
       <TableContainer>
         <Table>
           <TableHead>
@@ -80,8 +80,10 @@ const SkillTable: React.FC<Props> = (props: Props) => {
                 colSpan={12}
                 sx={{
                   cursor: 'pointer',
-                  color: 'white',
-                  backgroundColor: rgba(63, 81, 181, 1),
+                  color: '#06D8D7',
+                  backgroundColor: rgba(8, 55, 54, 0.7),
+                  fontSize: '2rem',
+                  fontFamily: 'TronFont',
                 }}
               >
                 {title}
@@ -93,7 +95,7 @@ const SkillTable: React.FC<Props> = (props: Props) => {
                   key={column.id}
                   align={column.align}
                   style={{ top: 57, minWidth: column.minWidth }}
-                  sx={{ color: 'white', backgroundColor: rgba(63, 81, 181, 0.7) }}
+                  sx={{ color: '#06D8D7', backgroundColor: rgba(0, 26, 26, 1) }}
                 >
                   {column.label}
                 </TableCell>

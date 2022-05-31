@@ -6,6 +6,7 @@ import { AiOutlinePlus } from 'react-icons/ai'
 import { Avatar, IconButton } from '@mui/material'
 import { IssueDialog, IssueCard } from '@/components'
 import { deepPurple } from '@mui/material/colors'
+import classes from './DragDrop.module.scss'
 
 type Column = { title: string; items: Issues; label: Label }
 
@@ -28,12 +29,13 @@ const DragDrop: React.FC<Props> = (props: Props) => {
             {...provided.droppableProps}
             ref={provided.innerRef}
             style={{
-              background: snapshot.isDraggingOver ? rgba(63, 81, 181, 1.0) : '#161C22',
-              margin: 10,
+              background: rgba(5, 33, 35, 0.7),
+              margin: 25,
               padding: 6,
               minHeight: 400,
               borderRadius: 7,
             }}
+            className={snapshot.isDraggingOver ? classes.neonBorderBox : ''}
           >
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <Avatar
@@ -48,7 +50,7 @@ const DragDrop: React.FC<Props> = (props: Props) => {
               >
                 {column.items ? column.items.length : '0'}
               </Avatar>
-              <h3 style={{ flexGrow: 1 }}>{column.title}</h3>
+              <h3 style={{ flexGrow: 1, color: '#06D8D7' }}>{column.title}</h3>
               {label === 'todo' ? (
                 <IconButton onClick={() => handleClickOpen(label)}>
                   <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>

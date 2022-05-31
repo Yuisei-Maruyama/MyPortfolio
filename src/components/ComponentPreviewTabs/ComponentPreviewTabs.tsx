@@ -189,7 +189,20 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
       name: 'Circular',
       desc: `Circularを構成するコンポーネント`,
       tag: Circular,
-      props: { length: 8, value: 0, items: ['1', '2', '3', '4', '5', '6', '7', '8'] },
+      props: {
+        length: 8,
+        value: 0,
+        items: [
+          '1枚目のスライド',
+          '2枚目のスライド',
+          '3枚目のスライド',
+          '4枚目のスライド',
+          '5枚目のスライド',
+          '6枚目のスライド',
+          '7枚目のスライド',
+          '8枚目のスライド',
+        ],
+      },
       events: circularEvents,
     },
     {
@@ -220,7 +233,7 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
         setFlipped: handleSetFlipped,
         children: [
           <ProfileFrontCard
-            imageSrc="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true"
+            imageSrc="https://avatars.githubusercontent.com/u/76277215?v=4"
             width="300px"
             height="450px"
             key={1}
@@ -299,7 +312,7 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
       props: {
         width: '300px',
         height: '450px',
-        imageSrc: 'https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/Profile.jpg?raw=true',
+        imageSrc: 'https://avatars.githubusercontent.com/u/76277215?v=4',
       },
     },
     {

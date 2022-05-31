@@ -23,6 +23,7 @@ const IssueCard: React.FC<Props> = (props: Props) => {
       style={{
         userSelect: 'none',
         padding: 10,
+        border: '1px solid #06D8D7',
         borderRadius: 10,
         margin: '10px 5px 0 5px',
         minHeight: '120px',

@@ -1,0 +1,13 @@
+.neonBorderBox {
+  box-shadow:
+    -1px -1px #06D8D7,
+      1px -1px #06D8D7,
+      1px  1px #06D8D7,
+    -1px  1px #06D8D7,
+    0 0 .1em #06D8D7,
+    0 0 .1em #06D8D7 inset,
+    0 0 .5em #06D8D7,
+    0 0 .5em #06D8D7 inset,
+    0 0 1em #06D8D7,
+    0 0 1em #06D8D7 inset;
+}

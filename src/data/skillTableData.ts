@@ -15,11 +15,11 @@ export const skillTableData = () => {
 
   const hooksSteps = ['useState', 'useEffect', 'useRef', 'useCallback', 'useContext', 'useMemo', 'useReducer']
 
-  const reduxSteps = ['flux-flow', 'ducks-pattern', 're-ducks-pattern', 'redux-thunk', 'redux-saga']
+  const reduxSteps = ['flux-flow', 'ducks-pattern', 're-ducks-pattern', 'redux toolkit', 'redux-thunk', 'redux-saga']
 
-  const vueSteps = ['Atomic Design', 'Vuetify', 'Vue-Router', 'Vuex', 'Vue 3.x Features']
+  const vueSteps = ['Atomic Design', 'Vuetify', 'Vue-Router', 'Vuex', 'Composition API']
 
-  const nodeSteps = ['Connect DB', 'CRUD', 'OAuth', 'NPM Version Management', 'GraphQL', 'Apollo']
+  const nodeSteps = ['Connect DB', 'CRUD', 'File Operations', 'OAuth', 'NPM Version Management', 'GraphQL', 'Apollo']
 
   const openApiSteps = ['API Design', 'operationId Definition', 'OpenAPI Extensions']
 
@@ -32,7 +32,7 @@ export const skillTableData = () => {
     {
       name: 'React Hooks',
       steps: hooksSteps,
-      activeStep: 5,
+      activeStep: 6,
     },
     {
       name: 'Redux',
@@ -42,7 +42,7 @@ export const skillTableData = () => {
     {
       name: 'Vue.js',
       steps: vueSteps,
-      activeStep: 4,
+      activeStep: 5,
     },
   ]
 
@@ -50,7 +50,7 @@ export const skillTableData = () => {
     {
       name: 'Node.js',
       steps: nodeSteps,
-      activeStep: 2,
+      activeStep: 3,
     },
     {
       name: 'OpenAPI',

@@ -59,13 +59,19 @@ const Header: React.FC = () => {
           variant="h6"
           noWrap
           component="div"
-          sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+          sx={{
+            mr: 2,
+            display: { xs: 'none', md: 'flex' },
+            fontFamily: 'BreakingBadFont',
+            fontSize: '2.5rem',
+            color: '#06D8D7',
+          }}
           style={{ cursor: 'pointer' }}
           onClick={() => {
             history.push('/')
           }}
         >
-          MyPortfolio
+          MY PORTFOLIO
         </Typography>
 
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -109,13 +115,19 @@ const Header: React.FC = () => {
           variant="h6"
           noWrap
           component="div"
-          sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+          sx={{
+            flexGrow: 1,
+            display: { xs: 'flex', md: 'none' },
+            fontFamily: 'CyberTechFont',
+            color: '#06D8D7',
+            fontSize: '2rem',
+          }}
           style={{ cursor: 'pointer' }}
           onClick={() => {
             history.push('/')
           }}
         >
-          My Portfolio
+          MYPORTFOLIO
         </Typography>
         {/* Display: PC */}
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
