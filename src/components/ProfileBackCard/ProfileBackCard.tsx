@@ -13,7 +13,7 @@ const ProfileBackCard: React.FC<Props> = (props: Props) => {
   const { width, height } = props
 
   return (
-    <Card style={{ width: width, height: height, backgroundColor: rgba(0, 0, 0, 0.3), color: 'white' }}>
+    <Card style={{ width: width, height: height, backgroundColor: rgba(0, 0, 0, 0.3), color: 'white', border: '1px solid #06D8D7', borderRadius: '15px' }}>
       <CardContent>
         <Typography sx={{ textAlign: 'center' }} gutterBottom variant="h4" component="div">
           Skill

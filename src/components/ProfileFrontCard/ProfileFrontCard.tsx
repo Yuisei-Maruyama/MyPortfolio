@@ -19,6 +19,8 @@ const ProfileFrontCard: React.FC<Props> = (props: Props) => {
           height: height,
           backgroundColor: rgba(0, 0, 0, 0.3),
           color: '#06D8D7',
+          border: '1px solid #06D8D7',
+          borderRadius: '15px'
         }}
       >
         <CardMedia style={{ borderRadius: '15px', width: '100%', height: '280px' }} component="img" image={imageSrc} />
