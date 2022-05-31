@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardContent, CardMedia, Typography } from '@material-ui/core'
 import { rgba } from 'polished'
+import classes from './ProfileFrontCard.module.scss'
 
 type Props = {
   width?: string
@@ -25,7 +26,7 @@ const ProfileFrontCard: React.FC<Props> = (props: Props) => {
       >
         <CardMedia style={{ borderRadius: '15px', width: '100%', height: '280px' }} component="img" image={imageSrc} />
         <CardContent>
-          <Typography gutterBottom style={{ fontSize: '30px' }} component="div">
+          <Typography gutterBottom style={{ fontSize: '30px' }} component="div" className={classes.neonText}>
             Yuisei Maruyama
           </Typography>
           <Typography variant="body1">Job: Front-End Engineer</Typography>
