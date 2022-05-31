@@ -76,7 +76,7 @@ const Main = () => {
         </Grid>
         <Grid lg={1} xl={1} />
       </Grid>
-      <Box sx={{ display: 'flex', width: '90%', margin: '30px auto 0' }}>
+      <Box sx={{ display: 'flex', width: '90%', margin: '50px auto 0' }}>
         <Grid container>
           <SkillTables>
             <Grid item sm={12} xs={12} md={12} lg={12} xl={6}>

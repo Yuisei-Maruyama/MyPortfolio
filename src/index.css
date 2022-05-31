@@ -16,6 +16,12 @@
     url("./fonts/cyberfont-Regular.otf") format("truetype");
 }
 
+@font-face {
+  font-family: "TronFont";
+  src: local("Tron"),
+    url("./fonts/tron.ttf") format("truetype");
+}
+
 body {
   margin: 0;
   padding: 0;
