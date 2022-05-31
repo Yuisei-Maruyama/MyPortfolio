@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "NewCircusFont";
+  src: local("NewCircus"),
+    url("./fonts/newcircus-regular-webfont.woff") format("woff");
+}
+
+@font-face {
+  font-family: "BreakingBadFont";
+  src: local("BreakingBad"),
+    url("./fonts/breaking-bad.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "CyberTechFont";
+  src: local("CyberTech"),
+    url("./fonts/cyberfont-Regular.otf") format("truetype");
+}
+
 body {
   margin: 0;
   padding: 0;
