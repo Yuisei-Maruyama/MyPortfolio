@@ -8,7 +8,7 @@ import { ThemeProvider, Header, Footer, MarkdownPreviewer, ComponentPreviewTabs 
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <div className="App" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#021114'}}>
       <Router>
         <ThemeProvider mode="dark">
           <Header></Header>
