@@ -225,7 +225,7 @@ const BoardBase: React.FC = () => {
   return (
     <div className={classes.area}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <h1 style={{ flexGrow: 1, color: 'white' }}>TaskBoard of GitHub Issue</h1>
+        <h1 style={{ flexGrow: 1, color: '#06D8D7' }}>TaskBoard of GitHub Issue</h1>
         <IconSwitch {...switchProps} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -233,7 +233,7 @@ const BoardBase: React.FC = () => {
           onClick={() => window.open('https://docs.github.com/ja/rest/reference/users', '_blank')}
           style={{ cursor: 'pointer' }}
         >
-          <p style={{ color: '#C38FFF', display: 'contents' }}>GitHub API</p>
+          <p style={{ color: '#06D8D7', display: 'contents' }}>GitHub API</p>
         </a>
         <a
           onClick={() =>
@@ -241,7 +241,7 @@ const BoardBase: React.FC = () => {
           }
           style={{ cursor: 'pointer' }}
         >
-          <p style={{ color: '#C38FFF', display: 'contents' }}>react-beautiful-dnd</p>
+          <p style={{ color: '#06D8D7', display: 'contents' }}>react-beautiful-dnd</p>
         </a>
       </div>
       <div style={{ display: 'flex' }}>
