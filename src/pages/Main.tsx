@@ -9,6 +9,7 @@ import {
   SkillTables,
 } from '@/components'
 import { Box } from '@material-ui/core'
+import { Grid } from '@mui/material'
 import { Issues } from '@/types'
 import axios from 'axios'
 import { useFlipped } from '@/customHooks'
@@ -52,10 +53,15 @@ const Main = () => {
   return (
     <div>
       <SliderContext.Provider value={contextValue}>
-        <Circular items={todoItems} length={todoItems.length} value={0} />
+      <Grid container>
+        <Grid item sm={12} xs={12} md={12} lg={12} xl={12}>
+          <Circular items={todoItems} length={todoItems.length} value={0} />
+        </Grid>
+      </Grid>
       </SliderContext.Provider>
-      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
-        <Box sx={{ width: '20%' }}>
+      <Grid container gap={10} sx={{ mt: 5 }}>
+        <Grid lg={1} xl={1} />
+        <Grid item sm={6} xs={5} md={4} lg={3} xl={2}>
           <FlippedCard isFlipped={isFlipped} setFlipped={handleSetFlipped}>
             <ProfileFrontCard
               width="100%"
@@ -64,11 +70,12 @@ const Main = () => {
             />
             <ProfileBackCard width="100%" height="450px" />
           </FlippedCard>
-        </Box>
-        <Box sx={{ ml: 12, width: '40%' }}>
+        </Grid>
+        <Grid item sm={10} xs={8} md={7} lg={5} xl={5}>
           <MessageArea message={message} speed={50} />
-        </Box>
-      </Box>
+        </Grid>
+        <Grid lg={1} xl={1} />
+      </Grid>
       <Box sx={{ display: 'flex', width: '90%', margin: '30px auto 0' }}>
         <SkillTables>
           <SkillTable
