@@ -77,24 +77,24 @@ const Main = () => {
         <Grid lg={1} xl={1} />
       </Grid>
       <Box sx={{ display: 'flex', width: '90%', margin: '30px auto 0' }}>
-      <Grid container>
-        <SkillTables>
-        <Grid item sm={12} xs={12} md={12} lg={12} xl={6}>
-          <SkillTable
-            title="Front-End Goal Image"
-            link="https://github.com/Yuisei-Maruyama/MyPortfolio"
-            frontEndProps={frontEndProps}
-          />
+        <Grid container>
+          <SkillTables>
+            <Grid item sm={12} xs={12} md={12} lg={12} xl={6}>
+              <SkillTable
+                title="Front-End Goal Image"
+                link="https://github.com/Yuisei-Maruyama/MyPortfolio"
+                frontEndProps={frontEndProps}
+              />
+            </Grid>
+            <Grid item sm={12} xs={12} md={12} lg={12} xl={6}>
+              <SkillTable
+                title="Back-End Goal Image"
+                link="https://github.com/Yuisei-Maruyama/MyPortfolio_Backend"
+                backEndProps={backEndProps}
+              />
+            </Grid>
+          </SkillTables>
         </Grid>
-        <Grid item sm={12} xs={12} md={12} lg={12} xl={6}>
-          <SkillTable
-            title="Back-End Goal Image"
-            link="https://github.com/Yuisei-Maruyama/MyPortfolio_Backend"
-            backEndProps={backEndProps}
-          />
-        </Grid>
-        </SkillTables>
-      </Grid>
       </Box>
     </div>
   )
