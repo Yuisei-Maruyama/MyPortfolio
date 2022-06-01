@@ -31,6 +31,7 @@
 /*スクロールバーの軌道*/
 ::-webkit-scrollbar-track {
 border-radius: 5px;
+border: 1px solid #06D8D7;
 box-shadow: inset 0 0 6px #021114;
 }
 
