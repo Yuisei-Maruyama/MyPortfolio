@@ -12,7 +12,7 @@ https://yuisei-maruyama.work/
 
 下記の 2 点の経緯からタスク管理画面の作成を行った。
 
-- 当初、タスクの管理として `GitHub Projects` のかんばん機能を利用していたが、  
+- 当初、タスクの管理として `GitHub Projects` のかんばん機能を利用していたが、
   Issue に付与されたラベルごとの管理がしづらいことや対象となる`Issue`を編集やコメント記入する際のアクションが多かった点
 
 - Issue の管理を行う為に毎回、`GitHub`のページに移動しなければいけないのは億劫であると感じた点
@@ -35,7 +35,7 @@ https://yuisei-maruyama.work/
 
 > GitHub Issue の Todo ラベル内容閲覧機能
 >
-> > GitHub Issue に付与された Todo ラベルの内容からタイトルと詳細内容が閲覧可能  
+> > GitHub Issue に付与された Todo ラベルの内容からタイトルと詳細内容が閲覧可能
 > > Issue タイトルをクリックすることで該当 Issue に遷移可能
 
 <!--rehype:style=color: white;-->
@@ -95,6 +95,7 @@ ex.) Doing -> Closed ラベルに変更
 | husky                                                                                             | 4.3.8   | Git コマンドフックに別のコマンドを呼び出せる                                                        |
 | lint-staged                                                                                       | 11.1.2  | commit したファイル(Staging にあるファイル)に lint を実行する                                       |
 | [react-icons](https://react-icons.github.io/react-icons)                                          | 4.2.0   | `Ant Design` や `Material Design`などを集めたアイコンの宝庫                                         |
+| [react-hot-keys](https://www.npmjs.com/package/react-hot-keys)                                    | 2.7.2   | キーイベントを取得して、そのイベントに対する処理を行えるライブラリ                                                                                                 |
 | [dts-gen](https://github.com/microsoft/dts-gen)                                                   | 0.6.0   | ライブラリで型定義ファイルがない場合に `XXX.d.ts` を生成する                                        |
 |                                                                                                   |         |                                                                                                     |
 |                                                                                                   |         |                                                                                                     |

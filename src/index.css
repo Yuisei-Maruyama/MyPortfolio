@@ -22,6 +22,36 @@
     url("./fonts/tron.ttf") format("truetype");
 }
 
+/*スクロールバー全体*/
+::-webkit-scrollbar {
+  width: 15px;
+  background-color: #021114;
+}
+
+/*スクロールバーの軌道*/
+::-webkit-scrollbar-track {
+border-radius: 5px;
+border: 1px solid #06D8D7;
+box-shadow: inset 0 0 6px #021114;
+}
+
+/*スクロールバーの稼働部分*/
+::-webkit-scrollbar-thumb {
+background-color: #021114;
+border-radius: 25px;
+box-shadow:
+  -1px -1px #06D8D7,
+    1px -1px #06D8D7,
+    1px  1px #06D8D7,
+  -1px  1px #06D8D7,
+  0 0 .1em #06D8D7,
+  0 0 .1em #06D8D7 inset,
+  0 0 .5em #06D8D7,
+  0 0 .5em #06D8D7 inset,
+  0 0 1em #06D8D7,
+  0 0 1em #06D8D7 inset;
+}
+
 body {
   margin: 0;
   padding: 0;

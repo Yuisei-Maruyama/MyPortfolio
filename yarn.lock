@@ -1033,7 +1033,7 @@
     "core-js-pure" "^3.16.0"
     "regenerator-runtime" "^0.13.4"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.14.0", "@babel/runtime@^7.14.6", "@babel/runtime@^7.14.8", "@babel/runtime@^7.15.4", "@babel/runtime@^7.16.3", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.14.0", "@babel/runtime@^7.14.6", "@babel/runtime@^7.14.8", "@babel/runtime@^7.15.4", "@babel/runtime@^7.16.3", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2", "@babel/runtime@>=7.10.0":
   "integrity" "sha512-38Y8f7YUhce/K7RMwTp7m0uCumpv9hZkitCbBClqQIow1qSbCvGkcegKOXpEWCQLfWmevgRiWokZ1GkpfhbZug=="
   "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.18.3.tgz"
   "version" "7.18.3"
@@ -6492,6 +6492,11 @@
   "resolved" "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.9.tgz"
   "version" "2.8.9"
 
+"hotkeys-js@^3.8.1":
+  "integrity" "sha512-2zuLt85Ta+gIyvs4N88pCYskNrxf1TFv3LR9t5mdAZIX8BcgQQ48F2opUptvHa6m8zsy5v/a0i9mWzTrlNWU0Q=="
+  "resolved" "https://registry.npmjs.org/hotkeys-js/-/hotkeys-js-3.9.4.tgz"
+  "version" "3.9.4"
+
 "hpack.js@^2.1.6":
   "integrity" "sha1-h3dMCUnlE/QuhFdbPEVoH63ioLI="
   "resolved" "https://registry.npmjs.org/hpack.js/-/hpack.js-2.1.6.tgz"
@@ -9423,41 +9428,6 @@
   "resolved" "https://registry.npmjs.org/popper.js/-/popper.js-1.16.1-lts.tgz"
   "version" "1.16.1-lts"
 
-"portfolio@file:scope-my-portfolio-client-0.0.1.tgz":
-  "integrity" "sha512-pbjguq+xQTdhFwFIbDpWNkF0mmACPd0DrUiszd5ZhBGDBB7AvcYIEBTnFX4lVBUEx1bHIV6OP4cad5xOvVzWwQ=="
-  "resolved" "file:scope-my-portfolio-client-0.0.1.tgz"
-  "version" "0.0.1"
-  dependencies:
-    "@emotion/react" "^11.4.1"
-    "@emotion/styled" "^11.3.0"
-    "@mui/icons-material" "^5.2.1"
-    "@mui/lab" "^5.0.0-alpha.63"
-    "@mui/material" "^5.0.0-rc.1"
-    "@testing-library/jest-dom" "^5.11.4"
-    "@testing-library/react" "^11.1.0"
-    "@testing-library/user-event" "^12.1.10"
-    "@types/jest" "^26.0.15"
-    "@types/node" "^12.0.0"
-    "@types/react-dom" "^17.0.0"
-    "@uiw/react-md-editor" "^3.9.1"
-    "@use-it/interval" "^1.0.0"
-    "baffle" "^0.3.6"
-    "react" "^17.0.2"
-    "react-beautiful-dnd" "^13.1.0"
-    "react-dom" "^17.0.2"
-    "react-icons" "^4.2.0"
-    "react-particle-effect-button" "^1.0.1"
-    "react-router-dom" "^5.2.0"
-    "react-scripts" "^5.0.1"
-    "react-vertical-timeline-component" "^3.5.2"
-    "sass" "^1.45.1"
-    "sass-loader" "^12.4.0"
-    "shelljs" "^0.8.5"
-    "tslib" "^2.3.1"
-    "typescript" "^4.1.2"
-    "uuid" "^8.3.2"
-    "web-vitals" "^1.0.1"
-
 "postcss-attribute-case-insensitive@^5.0.0":
   "integrity" "sha512-b4g9eagFGq9T5SWX4+USfVyjIb3liPnjhHHRMP7FMB2kFVpYyfEscV0wP3eaXhKlcHKUut8lt5BGoeylWA/dBQ=="
   "resolved" "https://registry.npmjs.org/postcss-attribute-case-insensitive/-/postcss-attribute-case-insensitive-5.0.0.tgz"
@@ -10285,7 +10255,7 @@
     "strip-ansi" "^6.0.1"
     "text-table" "^0.2.0"
 
-"react-dom@*", "react-dom@^15.0.0 || ^16.0.0", "react-dom@^16.8.0 || ^17.0.0", "react-dom@^16.8.5 || ^17.0.0", "react-dom@^17.0.2", "react-dom@>=16.6.0", "react-dom@>=16.8.0":
+"react-dom@*", "react-dom@^15.0.0 || ^16.0.0", "react-dom@^16.8.0 || ^17.0.0", "react-dom@^16.8.5 || ^17.0.0", "react-dom@^17.0.2", "react-dom@>=16.6.0", "react-dom@>=16.8.0", "react-dom@>=16.9.0":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -10298,6 +10268,14 @@
   "integrity" "sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg=="
   "resolved" "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.11.tgz"
   "version" "6.0.11"
+
+"react-hot-keys@^2.7.2":
+  "integrity" "sha512-Z7eSh7SU6s52+zP+vkfFoNk0x4kgEmnwqDiyACKv53crK2AZ7FUaBLnf+vxLor3dvtId9murLmKOsrJeYgeHWw=="
+  "resolved" "https://registry.npmjs.org/react-hot-keys/-/react-hot-keys-2.7.2.tgz"
+  "version" "2.7.2"
+  dependencies:
+    "hotkeys-js" "^3.8.1"
+    "prop-types" "^15.7.2"
 
 "react-icons@^4.2.0":
   "integrity" "sha512-rmzEDFt+AVXRzD7zDE21gcxyBizD/3NqjbX6cmViAgdqfJ2UiLer8927/QhhrXQV7dEj/1EGuOTPp7JnLYVJKQ=="
@@ -10483,7 +10461,7 @@
     "prop-types" "^15.7.2"
     "react-intersection-observer" "^8.26.2"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.0.0 || ^16.0.0", "react@^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@^16.8.5 || ^17.0.0", "react@^17.0.2", "react@>= 16", "react@>=15", "react@>=16", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@17.0.2":
+"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.0.0 || ^16.0.0", "react@^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@^16.8.5 || ^17.0.0", "react@^17.0.2", "react@>= 16", "react@>=15", "react@>=16", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.9.0", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
