@@ -11,10 +11,23 @@
   }
   &::-webkit-scrollbar-track {
     background-color: rgba(0,0,0,0.5);
+    border: 1px solid #06D8D7;
+    border-radius: 10px;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: lightgrey;
-    border-radius: 5px;
+    background-color: #021114;
+    border-radius: 10px;
+    box-shadow:
+      -1px -1px #06D8D7,
+        1px -1px #06D8D7,
+        1px  1px #06D8D7,
+      -1px  1px #06D8D7,
+      0 0 .1em #06D8D7,
+      0 0 .1em #06D8D7 inset,
+      0 0 .5em #06D8D7,
+      0 0 .5em #06D8D7 inset,
+      0 0 1em #06D8D7,
+      0 0 1em #06D8D7 inset;
   }
 }
 
