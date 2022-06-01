@@ -10,6 +10,8 @@ type Props = {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
+      '& .MuiStepIcon-root.Mui-completed': { color: '#06D8D7' },
+      '& .MuiStepIcon-root.Mui-active': { border: '1px solid #06D8D7', borderRadius: '15px' },
       '& .MuiStepLabel-label.Mui-active': { color: 'white' },
       '& .MuiStepLabel-label.Mui-completed': { color: 'white' },
       '& .Mui-disabled': { color: 'dimgray' },
