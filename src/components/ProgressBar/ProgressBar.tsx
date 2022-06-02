@@ -12,7 +12,6 @@ const ProgressBar: React.FC<Props> = ({ style }) => {
     margin: 0 auto;
     border: 1px solid #06d8d7;
     background-color: '#fff';
-    border-radious: 50px !important;
   `
 
   const $PropsProgress = styled(_Progress)`

@@ -213,7 +213,7 @@ import React from 'react'
 import { ProgressBar } from './ProgressBar'
 
 const Parent: React.FC<Props> = () => {
-<ProgressBar style={{ marginTop: '30px', borderRadious: '15px' }} />
+<ProgressBar style={{ marginTop: '30px', borderRadius: '15px' }} />
 }
 
 export default Parent
@@ -236,7 +236,6 @@ const ProgressBar: React.FC<Props> = ({ style }) => {
     margin: 0 auto;
     border: 1px solid #06d8d7;
     background-color: '#fff';
-    border-radious: 50px !important;
   `
 
   const $PropsProgress = styled(_Progress)`
