@@ -69,8 +69,8 @@ const DocumentList: React.FC<Props> = (props: Props) => {
                 label="useContext"
                 onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
               />
-              <TreeItem nodeId="10" label="useReducer" />
-              <TreeItem nodeId="11" label="useRef" />
+              {/* <TreeItem nodeId="10" label="useReducer" />
+              <TreeItem nodeId="11" label="useRef" /> */}
               <TreeItem
                 nodeId="12"
                 label="useCallback"
@@ -92,9 +92,9 @@ const DocumentList: React.FC<Props> = (props: Props) => {
               label="styled-components"
               onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
             />
-            <TreeItem nodeId="16" label="Suspense" />
+            {/* <TreeItem nodeId="16" label="Suspense" />
             <TreeItem nodeId="17" label="OAuth" />
-            <TreeItem nodeId="18" label="Apollo-Client" />
+            <TreeItem nodeId="18" label="Apollo-Client" /> */}
             <TreeItem
               nodeId="19"
               label="MaterialUI"
