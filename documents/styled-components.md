@@ -152,3 +152,109 @@ export default function Home() {
   );
 }
 ```
+
+## `styled-components` を使用する時の命名について
+
+簡単なprefix をつけて見やすくしようという方針である。
+styled.div のような通常のスタイルと、 styled(FooComponent) のような既存コンポーネントにCSSをオーバーライドするタイプのものを区別して  命名する(別々の prefix ( `_` と `$` を接頭字に付与する)ことで変数名を見るだけで、どのような意味合いを持つ変数か見分けやすくなる。
+
+上記のメリットとしては下記3点が挙げられる。
+
+1. jsx上で、通常のスタイルと、拡張スタイルの見分けやすい
+2. 命名にかけるコストが減る
+3. 命名が短くなる
+
+- 良いとされる命名
+
+```ts
+const _TitleDiv = styled.div`
+  height: 32px;
+`
+
+const $FooComponent = styled(FooComponent)`
+  display: flex;
+`
+```
+
+- 駄目な命名
+
+```ts
+const StyledTitleDiv = styled.div`
+  height: 32px;
+`
+
+const StyledFooComponent = styled(FooComponent)`
+  display: flex;
+`
+```
+
+以下の例だと $Desc が Desc コンポーネントを拡張スタイルしたものだとひと目でわかる！！
+
+```tsx
+const App = () => {
+  return (
+    <_RootDiv>
+      <_Title>foo title</_Title>
+      <$Desc>
+        <div>bar content</div>
+      </$Desc>
+    </_RootDiv>
+  )
+}
+```
+
+## UIフレームワークのコンポーネントっぽくする
+
+良く見るスタイルを親コンポーネントから子コンポーネントに渡して、適用する方法！！
+
+(親コンポーネント)
+```tsx
+import React from 'react'
+import { ProgressBar } from './ProgressBar'
+
+const Parent: React.FC<Props> = () => {
+<ProgressBar style={{ marginTop: '30px', borderRadious: '15px' }} />
+}
+
+export default Parent
+
+```
+
+(子コンポーネント)
+```tsx
+import React from 'react'
+import styled from '@emotion/styled'
+
+type Props = {
+  style: Record<string, string | number>
+}
+
+const ProgressBar: React.FC<Props> = ({ style }) => {
+  const _Progress = styled.div`
+    width: 75%;
+    height: 50px;
+    margin: 0 auto;
+    border: 1px solid #06d8d7;
+    background-color: '#fff';
+    border-radious: 50px !important;
+  `
+
+  const $PropsProgress = styled(_Progress)`
+    ${style}
+  `
+
+  return (
+    <div>
+      <$PropsProgress />
+    </div>
+  )
+}
+
+export default ProgressBar
+```
+
+## 便利プラグイン
+
+- [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components) : VS Code で styled-components を扱うときの snippets
+- [eslint-plugin-styled-components-varname](https://github.com/macinjoke/eslint-plugin-styled-components-varname) : styled-componentsのコード検証ツール
+
