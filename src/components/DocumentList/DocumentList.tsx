@@ -87,7 +87,11 @@ const DocumentList: React.FC<Props> = (props: Props) => {
               label="react-router-dom"
               onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
             />
-            <TreeItem nodeId="15" label="styled-components" onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)} />
+            <TreeItem
+              nodeId="15"
+              label="styled-components"
+              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
+            />
             <TreeItem nodeId="16" label="Suspense" />
             <TreeItem nodeId="17" label="OAuth" />
             <TreeItem nodeId="18" label="Apollo-Client" />
