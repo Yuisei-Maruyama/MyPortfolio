@@ -2,7 +2,8 @@
 
 ## styled-components とは？
 
-`styled-components` とは CSS in JSのライブラリの一つであり、本ライブラリを使用することでコンポーネント単位での管理がスタイルにおいても可能になる。
+`styled-components` とは CSS in JSのライブラリの一つであり、  
+本ライブラリを使用することでコンポーネント単位での管理がスタイルにおいても可能になる。  
 よって、従来はJSとCSSで分けられていたものが全てReactのコンポーネント内で完結することができ、ファイルの横断をしなくて済むようになる。
 
 また、`styled-components` は Github で`36.7k`のStarを誇るスタイリングライブラリーである。(2022/06/02 現在)
@@ -10,13 +11,14 @@
 ## styled-componentsを使うメリット
 
 1. パフォーマンスの向上
-2. ミスに明瞭化
+2. ミスの明瞭化
 3. 保守性の高さ
 
 ### 1. パフォーマンスの向上
 
-上記で述べた通り、`styled-components` は CSS in JS のライブラリであるため、スタイルを全てReactのコンポーネント内で完結することができる。
-それによって、レンダリングされたコンポーネントだけのスタイルを取りこむことで使用していないスタイルをインポートする必要がなくなるため、パフォーマンスの向上に繋がるといえる。
+上記で述べた通り、`styled-components` は CSS in JS のライブラリであるため、スタイルを全てReactのコンポーネント内で完結することができる。  
+それによって、レンダリングされたコンポーネントだけのスタイルを取りこむことで使用していないスタイルをインポートする必要がなくなるため、  
+パフォーマンスの向上に繋がるといえる。
 
 ### 2. ミスに明瞭化
 
@@ -44,7 +46,8 @@
 }
 ```
 
-`styled-components` ではクラス名を作る必要が無くなる代わりにコンポーネントを作る必要があるが、コンポーネント名が間違っているとエラーとして指摘してくれるため事前にミスに気がつく事ができる。
+`styled-components` ではクラス名を作る必要が無くなる代わりにコンポーネントを作る必要があるが、  
+コンポーネント名が間違っているとエラーとして指摘してくれるため事前にミスに気がつく事ができる。
 
 ```ts
 import styled from "styled-components"
@@ -74,39 +77,46 @@ export default function Home() {
 
 ### 3. 保守性の高さ
 
-css-moduleを使用していた場合であると、適応されているスタイルを見つけるのに色んなファイルをたどる必要があるが、
+css-moduleを使用していた場合であると、適応されているスタイルを見つけるのに色んなファイルをたどる必要があるが、  
 `styled-components` はスタイリングがコンポーネントに関連付けられるため、変更が容易になる。
 
-## styled-comnponents で引数を使う
+## styled-comnponents で引数(props)を使う
 
-propsに引数が渡されるのでテンプレートリテラルでその属性を使うだけ!!!
+propsに引数が渡されるのでテンプレートリテラルでその属性を使うだけ!!!  
+TypeScriptで実装する場合、interfaceを以下の様に定義してあげることでエラーを解決できる！  
+コンポーネントの定義内で styled-components の変数定義をしてしまうと、下記のような Warning が発生してしまう。
+
+```ts
+The component styled.div with the id of "sc-fnykZs" has been created dynamically. You may see this warning because you've called styled inside another component.
+```
+
+<img src='https://user-images.githubusercontent.com/76277215/171798857-c621cb06-f7b9-498b-8723-c04a2a68fc7f.png' />
+
+それを防ぐために、コンポーネントの定義の外側に styled-components の変数定義を行う必要がある。
+> 良い記述
+
+```ts
+import styled from 'styled-components'
+
+const StyledSpan = styled.span`
+    color: blue;
+`
+const MyExampleComponent = () =>{
+    return <StyledSpan>Test</StyledSpan>
+}
+```
+
+> 駄目な記述
 
 ```tsx
-import styled from "styled-components"
+import styled from 'styled-components'
 
-export default function Home() {
-  //タイトル
-  const Title = styled.h1`
-    font-size: 1.5em;
-    text-align: center;
+const MyExampleComponent = () =>{
 
-    //引数に色が渡されれば設定
-    color: ${props => props.color ? props.color : "#000"};
-  `;
-
-  //ラッパー
-  const Wrapper= styled.section`
-    padding: 4em;
-    background: papayawhip;
-  `;
-
-  return (
-    <Wrapper>
-      <Title color="red">Hello!</Title>     {/*赤*/}
-      <Title color="#4169e1">World</Title>  {/*青*/}
-      <Title>styled-components</Title>      {/*ピンク*/}
-    </Wrapper>
-  );
+    const StyledSpan = styled.span`
+        color: blue;
+    `
+    return <StyledSpan>Test</StyledSpan>
 }
 ```
 
@@ -155,8 +165,9 @@ export default function Home() {
 
 ## `styled-components` を使用する時の命名について
 
-簡単なprefix をつけて見やすくしようという方針である。
-styled.div のような通常のスタイルと、 styled(FooComponent) のような既存コンポーネントにCSSをオーバーライドするタイプのものを区別して  命名する(別々の prefix ( `_` と `$` を接頭字に付与する)ことで変数名を見るだけで、どのような意味合いを持つ変数か見分けやすくなる。
+簡単なprefix をつけて見やすくしようという方針である。  
+styled.div のような通常のスタイルと、 styled(FooComponent) のような既存コンポーネントにCSSをオーバーライドするタイプのものを区別して  
+ 命名する(別々の prefix ( `_` と `$` を接頭字に付与する)ことで変数名を見るだけで、どのような意味合いを持つ変数か見分けやすくなる。
 
 上記のメリットとしては下記3点が挙げられる。
 
@@ -164,7 +175,7 @@ styled.div のような通常のスタイルと、 styled(FooComponent) のよ�
 2. 命名にかけるコストが減る
 3. 命名が短くなる
 
-- 良いとされる命名
+> 良いとされる命名
 
 ```ts
 const _TitleDiv = styled.div`
@@ -176,7 +187,7 @@ const $FooComponent = styled(FooComponent)`
 `
 ```
 
-- 駄目な命名
+> 駄目な命名
 
 ```ts
 const StyledTitleDiv = styled.div`
@@ -226,7 +237,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 type Props = {
-  style: Record<string, string | number>
+  style?: Record<string, string | number>
 }
 
 const ProgressBar: React.FC<Props> = ({ style }) => {

@@ -7,6 +7,7 @@ import {
   MessageArea,
   SkillTable,
   SkillTables,
+  ProgressArea,
 } from '@/components'
 import { Box } from '@material-ui/core'
 import { Grid } from '@mui/material'
@@ -28,7 +29,11 @@ export type SliderContextType = {
   specify?: string
 }
 
+export type LanguagesContextType = Record<string, number>
+
 export const SliderContext = createContext<SliderContextType>({})
+
+export const LanguageContext = createContext<LanguagesContextType>({})
 
 const contextValue = {
   specify: 'github-todo',
@@ -36,6 +41,7 @@ const contextValue = {
 
 const Main = () => {
   const [todoItems, setTodo] = useState<Issues>([])
+  const [languages, setLanguages] = useState<Record<string, number>>({})
   const { isFlipped, handleSetFlipped } = useFlipped()
   const { frontEndProps, backEndProps } = skillTableData()
 
@@ -45,8 +51,14 @@ const Main = () => {
     setTodo(data)
   }
 
+  const fetchRepoLanguageList = async () => {
+    const { data } = await request.get(`/repos/${owner}/${repo}/languages`)
+    setLanguages(data)
+  }
+
   useEffect(() => {
     fetchTodo()
+    fetchRepoLanguageList()
     // eslint-disable-next-line
   }, [])
 
@@ -96,6 +108,9 @@ const Main = () => {
           </SkillTables>
         </Grid>
       </Box>
+      <LanguageContext.Provider value={languages}>
+        <ProgressArea style={{ margin: '50px auto 0', width: '90%' }} />
+      </LanguageContext.Provider>
     </div>
   )
 }

@@ -1,26 +1,35 @@
+// import React, { useContext } from 'react'
 import React from 'react'
 import styled from '@emotion/styled'
+// import { LanguageContext } from '@/pages/Main'
 
 type Props = {
+  style?: Record<string, string | number>
+}
+
+interface StyleProps {
   style: Record<string, string | number>
 }
 
-const ProgressBar: React.FC<Props> = ({ style }) => {
-  const _Progress = styled.div`
-    width: 75%;
-    height: 50px;
+const _Progress = styled.div`
+    width: 100%;
     margin: 0 auto;
     border: 1px solid #06d8d7;
-    background-color: '#fff';
   `
 
-  const $PropsProgress = styled(_Progress)`
-    ${style}
+const $PropsProgress = styled(_Progress)<StyleProps>`
+    ${props => props.style}
   `
+
+const ProgressBar: React.FC<Props> = ({ style }) => {
+
+  // const languages = useContext(LanguageContext)
+
+  // console.log(languages);
 
   return (
     <div>
-      <$PropsProgress />
+      <$PropsProgress style={style || {}} />
     </div>
   )
 }
