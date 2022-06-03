@@ -12,17 +12,16 @@ interface StyleProps {
 }
 
 const _Progress = styled.div`
-    width: 100%;
-    margin: 0 auto;
-    border: 1px solid #06d8d7;
-  `
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #06d8d7;
+`
 
 const $PropsProgress = styled(_Progress)<StyleProps>`
-    ${props => props.style}
-  `
+  ${(props) => props.style}
+`
 
 const ProgressBar: React.FC<Props> = ({ style }) => {
-
   // const languages = useContext(LanguageContext)
 
   // console.log(languages);

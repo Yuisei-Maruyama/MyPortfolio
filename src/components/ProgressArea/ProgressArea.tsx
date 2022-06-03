@@ -5,11 +5,11 @@ import styled from 'styled-components'
 import { LanguageContext } from '@/pages/Main'
 
 type Props = {
-  style?: Record<string, string | number>,
+  style?: Record<string, string | number>
 }
 
 interface BgProps {
-  bgColor: string;
+  bgColor: string
 }
 
 interface StyleProps {
@@ -37,53 +37,54 @@ export const getBgColor = (languageName: string) => {
 }
 
 const _LanguageNameWrapper = styled.div`
-    display: flex;
-    width: 75%;
-    margin: 30px auto 0;
-    justify-content: space-around;
-    align-items: center;
-  `
+  display: flex;
+  width: 75%;
+  margin: 30px auto 0;
+  justify-content: space-around;
+  align-items: center;
+`
 
 const _ColorRound = styled.div<BgProps>`
-    width: 30px;
-    height: 30px;
-    border-radius: 16px;
-    background-color: ${({bgColor}) => (bgColor || '#fff')};
-    border: 1px solid #06D8D7;
-  `
+  width: 30px;
+  height: 30px;
+  border-radius: 16px;
+  background-color: ${({ bgColor }) => bgColor || '#fff'};
+  border: 1px solid #06d8d7;
+`
 const _Progress = styled.div`
-    width: 100%;
-    text-align: center;
-    `
+  width: 100%;
+  text-align: center;
+`
 
 const $ProgressWrapper = styled(_Progress)<StyleProps>`
-    ${props => props.style}
-  `
+  ${(props) => props.style}
+`
 
-const ProgressArea: React.FC<Props> = ({style}) => {
-
+const ProgressArea: React.FC<Props> = ({ style }) => {
   const languages = useContext(LanguageContext)
 
   return (
-    <$ProgressWrapper  style={style || {}}>
-      <Typography style={{ lineHeight: 2, fontSize: '30px', color: '#06D8D7' }}>GitHub Repository Language Stats</Typography>
+    <$ProgressWrapper style={style || {}}>
+      <Typography style={{ lineHeight: 2, fontSize: '30px', color: '#06D8D7' }}>
+        GitHub Repository Language Stats
+      </Typography>
       <ProgressBar style={{ width: '75%', height: '30px', borderRadius: '15px' }} />
       <_LanguageNameWrapper>
-        {
-          languages ?
-          Object.keys(languages).map((languageName, index) => {
-            return (
-              <div key={index} style={{ display: 'flex'}}>
-                <_ColorRound bgColor={getBgColor(languageName)}></_ColorRound>
-                <Typography sx={{ fontSize: '20px', color: '#06D8D7', marginLeft: '10px' }} component='p'>{languageName}</Typography>
-              </div>
-            )
-          })
-          : ''
-        }
+        {languages
+          ? Object.keys(languages).map((languageName, index) => {
+              return (
+                <div key={index} style={{ display: 'flex' }}>
+                  <_ColorRound bgColor={getBgColor(languageName)}></_ColorRound>
+                  <Typography sx={{ fontSize: '20px', color: '#06D8D7', marginLeft: '10px' }} component="p">
+                    {languageName}
+                  </Typography>
+                </div>
+              )
+            })
+          : ''}
       </_LanguageNameWrapper>
     </$ProgressWrapper>
-  );
+  )
 }
 
-export default ProgressArea;
+export default ProgressArea
