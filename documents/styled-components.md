@@ -214,6 +214,67 @@ const App = () => {
 }
 ```
 
+## styleは一緒でタグだけ変えたい場合
+
+これまではstyledの適用をする際にラップするHTML要素を決めなれけばならず、  
+cssは同じだけどタグだけ変更したいとかpropsによって動的にHTMLの属性を変更したいというケースでは対応が難しい状態であった。  
+しかし、 `as props` を利用することでHTMLの属性をrenderする際に決めることができる。  
+
+```ts
+// as propsを利用した例:
+import styled from "styled-components";
+
+const Component = styled.div`
+  color: red;
+`;
+
+render(
+  <Component
+    as="button"
+  >
+    Hello World!
+  </Component>
+)
+```
+
+上記の結果
+```ts
+// render されたHTML
+<button class="sc-bqyKva ehfErK">Hello World!</button>
+```
+
+## transient props
+
+styled-composentで既存コンポーネントのスタイリングをpropsを利用して行う場合に、  
+propsが意図せず伝播してしまうことがある。  
+
+下記のように普通にスタイリングを行うと、  
+`Container`コンポーネントにのみ props.color を適用させたい場合でも`Text`にまで props.color が伝播されてしまう。  
+
+```ts
+// 普通にスタイリングした場合
+import styled from "styled-components";
+const Text = props => <p {...props} />;
+const Container = styled(Text)`
+  color: ${p => p.color};
+`;
+// colorがTextにまで伝播してしまう
+<Container color="blue">Hello world!</Container>
+```
+
+このような場合には、対象のpropsに `$` を利用することでpropsを伝播させなくするのが `transient props` の機能である。  
+
+```ts
+// 普通にスタイリングした場合
+import styled from "styled-components";
+const Text = props => <p {...props} />;
+const Container = styled(Text)`
+  color: ${p => p.$color};
+`;
+// colorはContainer
+<Container $color="blue">Hello world!</Container>
+```
+
 ## UIフレームワークのコンポーネントっぽくする
 
 良く見るスタイルを親コンポーネントから子コンポーネントに渡して、適用する方法！！
