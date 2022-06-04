@@ -69,8 +69,8 @@ const DocumentList: React.FC<Props> = (props: Props) => {
                 label="useContext"
                 onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
               />
-              <TreeItem nodeId="10" label="useReducer" />
-              <TreeItem nodeId="11" label="useRef" />
+              {/* <TreeItem nodeId="10" label="useReducer" />
+              <TreeItem nodeId="11" label="useRef" /> */}
               <TreeItem
                 nodeId="12"
                 label="useCallback"
@@ -87,10 +87,14 @@ const DocumentList: React.FC<Props> = (props: Props) => {
               label="react-router-dom"
               onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
             />
-            <TreeItem nodeId="15" label="styled-components" />
-            <TreeItem nodeId="16" label="Suspense" />
+            <TreeItem
+              nodeId="15"
+              label="styled-components"
+              onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
+            />
+            {/* <TreeItem nodeId="16" label="Suspense" />
             <TreeItem nodeId="17" label="OAuth" />
-            <TreeItem nodeId="18" label="Apollo-Client" />
+            <TreeItem nodeId="18" label="Apollo-Client" /> */}
             <TreeItem
               nodeId="19"
               label="MaterialUI"
@@ -103,7 +107,7 @@ const DocumentList: React.FC<Props> = (props: Props) => {
             ></TreeItem>
             <TreeItem
               nodeId="81"
-              label="SSG/SSR"
+              label="SSG&SSR"
               onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
             ></TreeItem>
           </TreeItem>

@@ -32,6 +32,8 @@ export { default as ComponentPreviewTabs } from './ComponentPreviewTabs/Componen
 export { default as MatrixRain } from './MatrixRain/MatrixRain'
 export { default as MatrixArea } from './MatrixArea/MatrixArea'
 export { default as InstructionsArea } from './InstructionsArea/InstructionsArea'
+export { default as ProgressBar } from './ProgressBar/ProgressBar'
+export { default as ProgressArea } from './ProgressArea/ProgressArea'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`

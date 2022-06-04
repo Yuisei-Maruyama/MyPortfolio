@@ -7,6 +7,7 @@ import {
   MessageArea,
   SkillTable,
   SkillTables,
+  ProgressArea,
 } from '@/components'
 import { Box } from '@material-ui/core'
 import { Grid } from '@mui/material'
@@ -28,7 +29,11 @@ export type SliderContextType = {
   specify?: string
 }
 
+export type LanguagesContextType = Record<string, number>
+
 export const SliderContext = createContext<SliderContextType>({})
+
+export const LanguageContext = createContext<LanguagesContextType>({})
 
 const contextValue = {
   specify: 'github-todo',
@@ -36,6 +41,7 @@ const contextValue = {
 
 const Main = () => {
   const [todoItems, setTodo] = useState<Issues>([])
+  const [languages, setLanguages] = useState<Record<string, number>>({})
   const { isFlipped, handleSetFlipped } = useFlipped()
   const { frontEndProps, backEndProps } = skillTableData()
 
@@ -45,8 +51,14 @@ const Main = () => {
     setTodo(data)
   }
 
+  const fetchRepoLanguageList = async () => {
+    const { data } = await request.get(`/repos/${owner}/${repo}/languages`)
+    setLanguages(data)
+  }
+
   useEffect(() => {
     fetchTodo()
+    fetchRepoLanguageList()
     // eslint-disable-next-line
   }, [])
 
@@ -60,7 +72,7 @@ const Main = () => {
         </Grid>
       </SliderContext.Provider>
       <Grid container gap={12} sx={{ mt: 6 }}>
-        <Grid lg={1} xl={1} />
+        <Grid item lg={1} xl={1} />
         <Grid item sm={6} xs={5} md={4} lg={3} xl={2}>
           <FlippedCard isFlipped={isFlipped} setFlipped={handleSetFlipped}>
             <ProfileFrontCard
@@ -74,7 +86,7 @@ const Main = () => {
         <Grid item sm={10} xs={8} md={7} lg={5} xl={5}>
           <MessageArea message={message} speed={50} />
         </Grid>
-        <Grid lg={1} xl={1} />
+        <Grid item lg={1} xl={1} />
       </Grid>
       <Box sx={{ display: 'flex', width: '90%', margin: '50px auto 0' }}>
         <Grid container>
@@ -96,6 +108,9 @@ const Main = () => {
           </SkillTables>
         </Grid>
       </Box>
+      <LanguageContext.Provider value={languages}>
+        <ProgressArea style={{ margin: '50px auto 0', width: '90%' }} />
+      </LanguageContext.Provider>
     </div>
   )
 }

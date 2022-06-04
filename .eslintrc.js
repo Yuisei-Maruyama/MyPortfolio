@@ -22,6 +22,7 @@ module.exports = {
     'react',
     '@typescript-eslint',
     'react-hooks',
+    'styled-components-varname'
   ],
   rules: {
     'no-use-before-define': 'off', // import React from 'react' のエラー回避
@@ -30,7 +31,18 @@ module.exports = {
     'space-before-function-paren': 'off',
     'react/react-in-jsx-scope': 'off',
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
+    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+    "styled-components-varname/varname": [
+      2,
+      {
+        "tagStyle": { // tagStyle defines a naming convention that applies to things like styled.foo.
+          "prefix": '_',
+        },
+        "extendedStyle": { // extendedStyle defines a naming convention that applies to things like styled(Foo).
+          "prefix": '$',
+        },
+      },
+    ],
   },
   settings: {
     react: {
