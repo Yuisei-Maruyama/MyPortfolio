@@ -63,7 +63,7 @@ const $ProgressWrapper = styled(_Progress)<StyleProps>`
 const $TitleTypography = styled(Typography)`
   line-height: 2;
   font-size: 30px;
-  color: #06D8D7;
+  color: #06d8d7;
 `
 
 // const $ProgressBar = styled(ProgressBar)`
@@ -77,9 +77,7 @@ const ProgressArea: React.FC<Props> = ({ style }) => {
 
   return (
     <$ProgressWrapper style={style || {}}>
-      <$TitleTypography>
-        GitHub Repository Language Stats
-      </$TitleTypography>
+      <$TitleTypography>GitHub Repository Language Stats</$TitleTypography>
       <ProgressBar style={{ width: '75%', height: '30px' }} />
       <_LanguageNameWrapper>
         {languages

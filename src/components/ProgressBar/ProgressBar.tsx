@@ -12,7 +12,7 @@ interface StyleProps {
 }
 
 interface ProgressBarProps {
-  width: number | string,
+  width: number | string
   bgColor: string
 }
 
@@ -26,30 +26,24 @@ const $ProgressWrapper = styled(_ProgressWrapper)<StyleProps>`
 `
 
 const _ProgressBar = styled.span<ProgressBarProps>`
-  width: ${p => p.width}%;
-  background-color: ${p => p.bgColor};
+  width: ${(p) => p.width}%;
+  background-color: ${(p) => p.bgColor};
 `
 
 const ProgressBar: React.FC<Props> = ({ style }) => {
-
   const languages = useContext(LanguageContext)
 
-  let sum = 0;
+  let sum = 0
 
   Object.entries(languages).forEach(([_, value]) => {
     sum += value
-  });
-
+  })
 
   return (
     <$ProgressWrapper style={style || {}}>
-      {
-        Object.entries(languages).map(([key, value], index) => {
-          return (
-            <_ProgressBar width={value / sum * 100} bgColor={getBgColor(key)} key={index} />
-          )
-        })
-      }
+      {Object.entries(languages).map(([key, value], index) => {
+        return <_ProgressBar width={(value / sum) * 100} bgColor={getBgColor(key)} key={index} />
+      })}
     </$ProgressWrapper>
   )
 }
