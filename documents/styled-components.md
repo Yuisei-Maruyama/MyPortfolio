@@ -20,7 +20,7 @@
 それによって、レンダリングされたコンポーネントだけのスタイルを取りこむことで使用していないスタイルをインポートする必要がなくなるため、  
 パフォーマンスの向上に繋がるといえる。
 
-### 2. ミスに明瞭化
+### 2. ミスの明瞭化
 
 もし、css-moduleを使用していた場合、個々に当てたいUI要素に対してクラス名を作成し、設定する必要があった。
 
@@ -122,7 +122,12 @@ const MyExampleComponent = () =>{
 
 ## スタイルの拡張
 
-styledメソッドの引数にコンポーネントを渡してテンプレートリテラルに上書きするスタイルを追記するだけ!!!
+スタイルの拡張にはの2パターンある。
+
+- styled-componentsを継承する場合
+- 普通のReactのコンポーネントを継承する場合
+
+> styled-componentsを継承する場合
 
 ```tsx
 import styled from "styled-components"
@@ -162,6 +167,19 @@ export default function Home() {
   );
 }
 ```
+
+> 普通のReactのコンポーネントを継承する場合
+
+このパターンはコンポーネントにちょっとした細工をする必要がある。
+
+```ts
+const Button = ({className}) => {
+	return <button className={className}>ボタン<button>
+}
+```
+
+styled-components では `className` を使ってスタイルを継承させるので,このように `classNameプロパティ` がないと反映されない.
+
 
 ## `styled-components` を使用する時の命名について
 
