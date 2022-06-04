@@ -72,7 +72,7 @@ const Main = () => {
         </Grid>
       </SliderContext.Provider>
       <Grid container gap={12} sx={{ mt: 6 }}>
-        <Grid lg={1} xl={1} />
+        <Grid item lg={1} xl={1} />
         <Grid item sm={6} xs={5} md={4} lg={3} xl={2}>
           <FlippedCard isFlipped={isFlipped} setFlipped={handleSetFlipped}>
             <ProfileFrontCard
@@ -86,7 +86,7 @@ const Main = () => {
         <Grid item sm={10} xs={8} md={7} lg={5} xl={5}>
           <MessageArea message={message} speed={50} />
         </Grid>
-        <Grid lg={1} xl={1} />
+        <Grid item lg={1} xl={1} />
       </Grid>
       <Box sx={{ display: 'flex', width: '90%', margin: '50px auto 0' }}>
         <Grid container>

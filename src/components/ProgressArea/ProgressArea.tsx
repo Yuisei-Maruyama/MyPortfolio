@@ -60,15 +60,27 @@ const $ProgressWrapper = styled(_Progress)<StyleProps>`
   ${(props) => props.style}
 `
 
+const $TitleTypography = styled(Typography)`
+  line-height: 2;
+  font-size: 30px;
+  color: #06D8D7;
+`
+
+// const $ProgressBar = styled(ProgressBar)`
+//   width: 75%;
+//   height: 30px;
+//   border-radius: 15px;
+// `
+
 const ProgressArea: React.FC<Props> = ({ style }) => {
   const languages = useContext(LanguageContext)
 
   return (
     <$ProgressWrapper style={style || {}}>
-      <Typography style={{ lineHeight: 2, fontSize: '30px', color: '#06D8D7' }}>
+      <$TitleTypography>
         GitHub Repository Language Stats
-      </Typography>
-      <ProgressBar style={{ width: '75%', height: '30px', borderRadius: '15px' }} />
+      </$TitleTypography>
+      <ProgressBar style={{ width: '75%', height: '30px' }} />
       <_LanguageNameWrapper>
         {languages
           ? Object.keys(languages).map((languageName, index) => {
