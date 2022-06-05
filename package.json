@@ -17,7 +17,6 @@
     "@types/styled-components": "^5.1.25",
     "@uiw/react-md-editor": "^3.9.1",
     "@use-it/interval": "^1.0.0",
-    "baffle": "^0.3.6",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
@@ -39,7 +38,8 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build && node build-lib",
-    "lint-fix": "eslint --fix './src/**/*.{js,ts,tsx}' && prettier --write './src/**/*.{js,ts,tsx}' && ts-node tools/duplicateReadme.ts",
+    "lint-commit": "eslint --fix './src/**/*.{js,ts,tsx}' && eslint --fix './tools/**/*.{js,ts,tsx}' && prettier --write './src/**/*.{js,ts,tsx}' && prettier --write './tools/**/*.{js,ts,tsx}'",
+    "lint-fix": "npm run lint-commit && npx ts-node tools/updateReadmeTable.ts && git add README.md && ts-node tools/duplicateReadme.ts && git add documents/README.md",
     "test": "react-app-rewired test",
     "prepare": "husky install"
   },
