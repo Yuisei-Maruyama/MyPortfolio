@@ -65,10 +65,23 @@ const getDesc = (packageName: string) => {
       return 'アプリケーションの初期表示時に JS の読み込み処理を行う'
     case 'polished':
       return 'JavaScript で rgba を使用できるようにする'
-    case '':
-      return ''
+    case 'babel-plugin-styled-components':
+      return 'styled-componentsで出力されるクラス属性にファイル名やdisplayNameを表示する'
+    case 'eslint-config-standard':
+      return 'JavaScript Standard Styleのルールをeslintに適用する'
+    case 'eslint-plugin-import':
+      return 'importの順番をルール化して自動で整列させる'
+    case 'eslint-plugin-react':
+      return 'React のルールを設定する'
+    case 'eslint-plugin-react-hooks':
+      return 'React Hooksのルールを設定する'
+    case 'eslint-plugin-styled-components-varname':
+      return 'styled-components の変数名の命名ルールを設定する'
     default:
       break
+  }
+  if (packageName.startsWith('@types')) {
+    return `${packageName.split('@types/')[1]}の型定義ファイル`
   }
   return ''
 }

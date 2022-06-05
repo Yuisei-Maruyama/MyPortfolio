@@ -80,10 +80,10 @@ ex.) Doing -> Closed ラベルに変更
 | [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom) | ^5.11.4 |  |
 | [@testing-library/react](https://www.npmjs.com/package/@testing-library/react) | ^11.1.0 |  |
 | [@testing-library/user-event](https://www.npmjs.com/package/@testing-library/user-event) | ^12.1.10 |  |
-| [@types/jest](https://www.npmjs.com/package/@types/jest) | ^26.0.15 |  |
-| [@types/node](https://www.npmjs.com/package/@types/node) | ^12.0.0 |  |
-| [@types/react-dom](https://www.npmjs.com/package/@types/react-dom) | ^17.0.0 |  |
-| [@types/styled-components](https://www.npmjs.com/package/@types/styled-components) | ^5.1.25 |  |
+| [@types/jest](https://www.npmjs.com/package/@types/jest) | ^26.0.15 | jestの型定義ファイル |
+| [@types/node](https://www.npmjs.com/package/@types/node) | ^12.0.0 | nodeの型定義ファイル |
+| [@types/react-dom](https://www.npmjs.com/package/@types/react-dom) | ^17.0.0 | react-domの型定義ファイル |
+| [@types/styled-components](https://www.npmjs.com/package/@types/styled-components) | ^5.1.25 | styled-componentsの型定義ファイル |
 | [@uiw/react-md-editor](https://www.npmjs.com/package/@uiw/react-md-editor) | ^3.9.1 | React で Markdown を表示できるようにする |
 | [@use-it/interval](https://www.npmjs.com/package/@use-it/interval) | ^1.0.0 | setInterval を提供するカスタム React フック |
 | [react](https://www.npmjs.com/package/react) | ^17.0.2 | ユーザインタフェース構築のための JavaScript |
@@ -105,24 +105,24 @@ ex.) Doing -> Closed ラベルに変更
 | [web-vitals](https://www.npmjs.com/package/web-vitals) | ^1.0.1 |  |
 | [@material-ui/core](https://www.npmjs.com/package/@material-ui/core) | ^4.12.3 |  |
 | [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) | ^4.11.2 |  |
-| [@types/react](https://www.npmjs.com/package/@types/react) | ^17.0.19 |  |
-| [@types/react-beautiful-dnd](https://www.npmjs.com/package/@types/react-beautiful-dnd) | ^13.1.2 |  |
-| [@types/react-router-dom](https://www.npmjs.com/package/@types/react-router-dom) | ^5.1.8 |  |
-| [@types/react-vertical-timeline-component](https://www.npmjs.com/package/@types/react-vertical-timeline-component) | ^3.0.1 |  |
-| [@types/uuid](https://www.npmjs.com/package/@types/uuid) | ^8.3.3 |  |
+| [@types/react](https://www.npmjs.com/package/@types/react) | ^17.0.19 | reactの型定義ファイル |
+| [@types/react-beautiful-dnd](https://www.npmjs.com/package/@types/react-beautiful-dnd) | ^13.1.2 | react-beautiful-dndの型定義ファイル |
+| [@types/react-router-dom](https://www.npmjs.com/package/@types/react-router-dom) | ^5.1.8 | react-router-domの型定義ファイル |
+| [@types/react-vertical-timeline-component](https://www.npmjs.com/package/@types/react-vertical-timeline-component) | ^3.0.1 | react-vertical-timeline-componentの型定義ファイル |
+| [@types/uuid](https://www.npmjs.com/package/@types/uuid) | ^8.3.3 | uuidの型定義ファイル |
 | [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) | ^4.31.1 | ESLint で Typescript のチェックを行う |
 | [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser) | ^4.31.1 | ESLint を Typescript で解析できるようにする |
 | [axios](https://www.npmjs.com/package/axios) | ^0.24.0 | Promise ベースの HTTP Client  |
-| [babel-plugin-styled-components](https://www.npmjs.com/package/babel-plugin-styled-components) | ^2.0.7 |  |
+| [babel-plugin-styled-components](https://www.npmjs.com/package/babel-plugin-styled-components) | ^2.0.7 | styled-componentsで出力されるクラス属性にファイル名やdisplayNameを表示する |
 | [eslint](https://www.npmjs.com/package/eslint) | ^7.32.0 | コードの解析 |
 | [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier) | ^8.3.0 | ESLint と Prettier を併用する |
-| [eslint-config-standard](https://www.npmjs.com/package/eslint-config-standard) | ^16.0.3 |  |
-| [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) | ^2.24.2 |  |
+| [eslint-config-standard](https://www.npmjs.com/package/eslint-config-standard) | ^16.0.3 | JavaScript Standard Styleのルールをeslintに適用する |
+| [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) | ^2.24.2 | importの順番をルール化して自動で整列させる |
 | [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node) | ^11.1.0 |  |
 | [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise) | ^5.1.0 |  |
-| [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) | ^7.25.2 |  |
-| [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) | ^4.3.0 |  |
-| [eslint-plugin-styled-components-varname](https://www.npmjs.com/package/eslint-plugin-styled-components-varname) | ^1.0.1 |  |
+| [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) | ^7.25.2 | React のルールを設定する |
+| [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) | ^4.3.0 | React Hooksのルールを設定する |
+| [eslint-plugin-styled-components-varname](https://www.npmjs.com/package/eslint-plugin-styled-components-varname) | ^1.0.1 | styled-components の変数名の命名ルールを設定する |
 | [husky](https://www.npmjs.com/package/husky) | ^7.0.0 | Git コマンドフックに指定したコマンドを呼び出せる |
 | [lint-staged](https://www.npmjs.com/package/lint-staged) | ^11.1.2 | commit したファイル(ステージングにあるファイル)に lint を実行する  |
 | [polished](https://www.npmjs.com/package/polished) | ^4.1.3 | JavaScript で rgba を使用できるようにする |
