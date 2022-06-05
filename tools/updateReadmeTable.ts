@@ -93,10 +93,7 @@ for (let i = 0; i < name.length; i++) {
 
 writeFile(
   'README.md',
-  readme.replace(
-    readme.match(/### 使用技術・バージョン\n\n([\s\S]*)\n### 動作環境/)?.[1] || '',
-    tableBody
-  ),
+  readme.replace(readme.match(/### 使用技術・バージョン\n\n([\s\S]*)\n### 動作環境/)?.[1] || '', tableBody),
   (err) => {
     if (err) throw err
     console.log('正常に書き込みが完了しました')

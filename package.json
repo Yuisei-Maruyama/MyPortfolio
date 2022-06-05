@@ -39,7 +39,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build && node build-lib",
     "lint-commit": "eslint --fix './src/**/*.{js,ts,tsx}' && eslint --fix './tools/**/*.{js,ts,tsx}' && prettier --write './src/**/*.{js,ts,tsx}' && prettier --write './tools/**/*.{js,ts,tsx}'",
-    "lint-fix": "npm run lint-commit && npx ts-node tools/updateReadmeTable.ts && git add README.md && ts-node tools/duplicateReadme.ts",
+    "lint-fix": "npm run lint-commit && npx ts-node tools/updateReadmeTable.ts && git add README.md && ts-node tools/duplicateReadme.ts && git add documents/README.md",
     "test": "react-app-rewired test",
     "prepare": "husky install"
   },
