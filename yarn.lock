@@ -3597,11 +3597,6 @@
     "babel-plugin-macros" "^3.1.0"
     "babel-plugin-transform-react-remove-prop-types" "^0.4.24"
 
-"baffle@^0.3.6":
-  "integrity" "sha1-mJ2KY2OhnmMNqFo0gEIog/C9pNA="
-  "resolved" "https://registry.npmjs.org/baffle/-/baffle-0.3.6.tgz"
-  "version" "0.3.6"
-
 "bail@^2.0.0":
   "integrity" "sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw=="
   "resolved" "https://registry.npmjs.org/bail/-/bail-2.0.2.tgz"
