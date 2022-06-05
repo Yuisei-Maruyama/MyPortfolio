@@ -80,10 +80,10 @@ ex.) Doing -> Closed ラベルに変更
 | [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom) | ^5.11.4 |  |
 | [@testing-library/react](https://www.npmjs.com/package/@testing-library/react) | ^11.1.0 |  |
 | [@testing-library/user-event](https://www.npmjs.com/package/@testing-library/user-event) | ^12.1.10 |  |
-| [@types/jest](https://www.npmjs.com/package/@types/jest) | ^26.0.15 |  |
-| [@types/node](https://www.npmjs.com/package/@types/node) | ^12.0.0 |  |
-| [@types/react-dom](https://www.npmjs.com/package/@types/react-dom) | ^17.0.0 |  |
-| [@types/styled-components](https://www.npmjs.com/package/@types/styled-components) | ^5.1.25 |  |
+| [@types/jest](https://www.npmjs.com/package/@types/jest) | ^26.0.15 | jestの型定義ファイル |
+| [@types/node](https://www.npmjs.com/package/@types/node) | ^12.0.0 | nodeの型定義ファイル |
+| [@types/react-dom](https://www.npmjs.com/package/@types/react-dom) | ^17.0.0 | react-domの型定義ファイル |
+| [@types/styled-components](https://www.npmjs.com/package/@types/styled-components) | ^5.1.25 | styled-componentsの型定義ファイル |
 | [@uiw/react-md-editor](https://www.npmjs.com/package/@uiw/react-md-editor) | ^3.9.1 | React で Markdown を表示できるようにする |
 | [@use-it/interval](https://www.npmjs.com/package/@use-it/interval) | ^1.0.0 | setInterval を提供するカスタム React フック |
 | [react](https://www.npmjs.com/package/react) | ^17.0.2 | ユーザインタフェース構築のための JavaScript |
@@ -105,11 +105,11 @@ ex.) Doing -> Closed ラベルに変更
 | [web-vitals](https://www.npmjs.com/package/web-vitals) | ^1.0.1 |  |
 | [@material-ui/core](https://www.npmjs.com/package/@material-ui/core) | ^4.12.3 |  |
 | [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) | ^4.11.2 |  |
-| [@types/react](https://www.npmjs.com/package/@types/react) | ^17.0.19 |  |
-| [@types/react-beautiful-dnd](https://www.npmjs.com/package/@types/react-beautiful-dnd) | ^13.1.2 |  |
-| [@types/react-router-dom](https://www.npmjs.com/package/@types/react-router-dom) | ^5.1.8 |  |
-| [@types/react-vertical-timeline-component](https://www.npmjs.com/package/@types/react-vertical-timeline-component) | ^3.0.1 |  |
-| [@types/uuid](https://www.npmjs.com/package/@types/uuid) | ^8.3.3 |  |
+| [@types/react](https://www.npmjs.com/package/@types/react) | ^17.0.19 | reactの型定義ファイル |
+| [@types/react-beautiful-dnd](https://www.npmjs.com/package/@types/react-beautiful-dnd) | ^13.1.2 | react-beautiful-dndの型定義ファイル |
+| [@types/react-router-dom](https://www.npmjs.com/package/@types/react-router-dom) | ^5.1.8 | react-router-domの型定義ファイル |
+| [@types/react-vertical-timeline-component](https://www.npmjs.com/package/@types/react-vertical-timeline-component) | ^3.0.1 | react-vertical-timeline-componentの型定義ファイル |
+| [@types/uuid](https://www.npmjs.com/package/@types/uuid) | ^8.3.3 | uuidの型定義ファイル |
 | [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) | ^4.31.1 | ESLint で Typescript のチェックを行う |
 | [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser) | ^4.31.1 | ESLint を Typescript で解析できるようにする |
 | [axios](https://www.npmjs.com/package/axios) | ^0.24.0 | Promise ベースの HTTP Client  |

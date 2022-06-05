@@ -77,22 +77,11 @@ const getDesc = (packageName: string) => {
       return 'React Hooksのルールを設定する'
     case 'eslint-plugin-styled-components-varname':
       return 'styled-components の変数名の命名ルールを設定する'
-    // case `${packageName.match('@types')}`:
-    //   return `${packageName}の型定義ファイル`
-    // case '':
-    //   return ''
-    // case '':
-    //   return ''
-    // case '':
-    //   return ''
-    // case '':
-    //   return ''
-    // case '':
-    //   return ''
-    // case '':
-    //   return ''
     default:
       break
+  }
+  if (packageName.startsWith('@types')) {
+    return `${packageName.split('@types/')[1]}の型定義ファイル`
   }
   return ''
 }
