@@ -113,16 +113,16 @@ ex.) Doing -> Closed ラベルに変更
 | [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) | ^4.31.1 | ESLint で Typescript のチェックを行う |
 | [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser) | ^4.31.1 | ESLint を Typescript で解析できるようにする |
 | [axios](https://www.npmjs.com/package/axios) | ^0.24.0 | Promise ベースの HTTP Client  |
-| [babel-plugin-styled-components](https://www.npmjs.com/package/babel-plugin-styled-components) | ^2.0.7 |  |
+| [babel-plugin-styled-components](https://www.npmjs.com/package/babel-plugin-styled-components) | ^2.0.7 | styled-componentsで出力されるクラス属性にファイル名やdisplayNameを表示する |
 | [eslint](https://www.npmjs.com/package/eslint) | ^7.32.0 | コードの解析 |
 | [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier) | ^8.3.0 | ESLint と Prettier を併用する |
-| [eslint-config-standard](https://www.npmjs.com/package/eslint-config-standard) | ^16.0.3 |  |
-| [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) | ^2.24.2 |  |
+| [eslint-config-standard](https://www.npmjs.com/package/eslint-config-standard) | ^16.0.3 | JavaScript Standard Styleのルールをeslintに適用する |
+| [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) | ^2.24.2 | importの順番をルール化して自動で整列させる |
 | [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node) | ^11.1.0 |  |
 | [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise) | ^5.1.0 |  |
-| [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) | ^7.25.2 |  |
-| [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) | ^4.3.0 |  |
-| [eslint-plugin-styled-components-varname](https://www.npmjs.com/package/eslint-plugin-styled-components-varname) | ^1.0.1 |  |
+| [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) | ^7.25.2 | React のルールを設定する |
+| [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) | ^4.3.0 | React Hooksのルールを設定する |
+| [eslint-plugin-styled-components-varname](https://www.npmjs.com/package/eslint-plugin-styled-components-varname) | ^1.0.1 | styled-components の変数名の命名ルールを設定する |
 | [husky](https://www.npmjs.com/package/husky) | ^7.0.0 | Git コマンドフックに指定したコマンドを呼び出せる |
 | [lint-staged](https://www.npmjs.com/package/lint-staged) | ^11.1.2 | commit したファイル(ステージングにあるファイル)に lint を実行する  |
 | [polished](https://www.npmjs.com/package/polished) | ^4.1.3 | JavaScript で rgba を使用できるようにする |
