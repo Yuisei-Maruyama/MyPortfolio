@@ -1,28 +1,35 @@
 import React, { memo } from 'react'
 import { Card, CardContent, Typography, List, ListItem, ListItemText } from '@mui/material'
-import { rgba } from 'polished'
 import { FaVuejs } from 'react-icons/fa'
 import { SiHtml5, SiCss3, SiJavascript, SiTypescript, SiReact } from 'react-icons/si'
+import { styled } from '@mui/system'
 
 type Props = {
   width?: string
   height?: string
 }
 
+interface CardSize {
+  width?: string
+  height?: string
+}
+
+const $neonBorderCard = styled(Card)<CardSize>`
+  width: ${(p) => p.width};
+  height: ${(p) => p.height};
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: 1px solid #06d8d7;
+  border-radius: 15px;
+  box-shadow: -1px -1px #06d8d7, 1px -1px #06d8d7, 1px 1px #06d8d7, -1px 1px #06d8d7, 0 0 0.1em #06d8d7,
+    0 0 0.1em #06d8d7 inset, 0 0 0.5em #06d8d7, 0 0 0.5em #06d8d7 inset, 0 0 1em #06d8d7, 0 0 1em #06d8d7 inset;
+`
+
 const ProfileBackCard: React.FC<Props> = (props: Props) => {
   const { width, height } = props
 
   return (
-    <Card
-      style={{
-        width: width,
-        height: height,
-        backgroundColor: rgba(0, 0, 0, 0.3),
-        color: 'white',
-        border: '1px solid #06D8D7',
-        borderRadius: '15px',
-      }}
-    >
+    <$neonBorderCard width={width} height={height}>
       <CardContent>
         <Typography sx={{ textAlign: 'center' }} gutterBottom variant="h4" component="div">
           Skill
@@ -54,7 +61,7 @@ const ProfileBackCard: React.FC<Props> = (props: Props) => {
           </ListItem>
         </List>
       </CardContent>
-    </Card>
+    </$neonBorderCard>
   )
 }
 
