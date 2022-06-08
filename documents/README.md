@@ -28,6 +28,9 @@ https://yuisei-maruyama.work/
 | GitHub Issue に付与されたラベルごとの管理機能 |
 | コンポーネントのプレビュー機能                |
 | ドキュメントのプレビュー機能                  |
+| https://github.com/Yuisei-Maruyama/MyPortfolio#%E4%BD%BF%E7%94%A8%E6%8A%80%E8%A1%93%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3 の自動更新機能                 |
+
+(※使用パッケージに記載されているテーブルはコミット時に [updateReadmeTable.ts](https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/tools/updateReadmeTable.ts) によって自動更新されます。）
 
 <!--rehype:style=color: black;-->
 
