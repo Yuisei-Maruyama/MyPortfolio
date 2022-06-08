@@ -1,4 +1,5 @@
-import React, { useState, memo } from 'react'
+import React, { memo } from 'react'
+import styled from 'styled-components'
 
 type Props = {
   children?: React.ReactNodeArray
@@ -7,33 +8,36 @@ type Props = {
   setFlipped: (isFlipped: boolean) => void
 }
 
+const _FlippedCard = styled.div`
+  perspective: 500px;
+  transform-style: preserve-3d;
+  transition: 1.25s ease;
+  &:hover {
+    transform: rotateY(180deg);
+  }
+`
+
+const _scaleX = styled.div`
+  transform: scaleX(-1);
+`
+
 const FlippedCard: React.FC<Props> = (props: Props) => {
   const { children, isFlipped, setFlipped } = props
 
-  const [rotation, setRotation] = useState(0)
-
   const handleHover = () => {
-    if (isFlipped) {
-      setRotation((c) => c + 180)
-    }
-    setRotation((c) => c - 180)
     setFlipped(!isFlipped)
   }
 
   return (
     <>
       {Array.isArray(children) && children?.length === 2 ? (
-        <>
+        <_FlippedCard>
           {!isFlipped ? (
-            <div style={{ transform: `rotateY(${rotation})` }} onMouseEnter={handleHover}>
-              {children[0]}
-            </div>
+            <div onMouseEnter={handleHover}>{children[0]}</div>
           ) : (
-            <div style={{ transform: `rotateY(${rotation})` }} onMouseLeave={handleHover}>
-              {children[1]}
-            </div>
+            <_scaleX onMouseLeave={handleHover}>{children[1]}</_scaleX>
           )}
-        </>
+        </_FlippedCard>
       ) : (
         <p>FlippedCard need two elements!!</p>
       )}
