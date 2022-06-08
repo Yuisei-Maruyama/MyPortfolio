@@ -33,13 +33,9 @@ const FlippedCard: React.FC<Props> = (props: Props) => {
       {Array.isArray(children) && children?.length === 2 ? (
         <_FlippedCard>
           {!isFlipped ? (
-            <div onMouseEnter={handleHover}>
-              {children[0]}
-            </div>
+            <div onMouseEnter={handleHover}>{children[0]}</div>
           ) : (
-            <_scaleX onMouseLeave={handleHover}>
-              {children[1]}
-            </_scaleX>
+            <_scaleX onMouseLeave={handleHover}>{children[1]}</_scaleX>
           )}
         </_FlippedCard>
       ) : (
