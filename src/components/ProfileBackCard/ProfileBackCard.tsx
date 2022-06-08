@@ -1,7 +1,16 @@
 import React, { memo } from 'react'
 import { Card, CardContent, Typography, List } from '@mui/material'
 import { FaVuejs, FaSass, FaNode } from 'react-icons/fa'
-import { SiHtml5, SiCss3, SiJavascript, SiTypescript, SiWebpack, SiReact, SiMaterialUi, SiVuetify } from 'react-icons/si'
+import {
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiTypescript,
+  SiWebpack,
+  SiReact,
+  SiMaterialUi,
+  SiVuetify,
+} from 'react-icons/si'
 import { DiMarkdown, DiIllustrator, DiPhotoshop } from 'react-icons/di'
 import { styled } from '@mui/system'
 
@@ -32,7 +41,7 @@ const $IconList = styled(List)`
   grid-template-columns: 100px 100px 100px;
   grid-template-rows: 50px 50px;
   row-gap: 13.5px;
-  color: #06D8D7;
+  color: #06d8d7;
 `
 
 const ProfileBackCard: React.FC<Props> = (props: Props) => {
