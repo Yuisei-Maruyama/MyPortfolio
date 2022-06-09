@@ -43,7 +43,7 @@ https://yuisei-maruyama.work/
 
 <!--rehype:style=color: white;-->
 
-<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/ReadmeGifs/slider.gif?raw=true" width="100%">
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/update-readme/public/assets/ReadmeGifs/slider_vol.2.gif?raw=true" width="100%">
 
 ---
 
@@ -51,7 +51,7 @@ https://yuisei-maruyama.work/
 
 <!--rehype:style=color: white;-->
 
-<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/ReadmeGifs/Add-Issue.gif?raw=true" width="100%">
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/update-readme/public/assets/ReadmeGifs/Add-Issue_vol.2.gif?raw=true" width="100%">
 
 ---
 
@@ -63,11 +63,11 @@ https://yuisei-maruyama.work/
 
 ex.) Todo -> Doing ラベルに変更
 
-<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/ReadmeGifs/Update-Issue.gif?raw=true" width="100%">
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/update-readme/public/assets/ReadmeGifs/Update-Issue_vol.2.gif?raw=true" width="100%">
 
 ex.) Doing -> Closed ラベルに変更
 
-<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/ReadmeGifs/Closed-Issue.gif?raw=true" width="100%">
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/update-readme/public/assets/ReadmeGifs/Closed-Issue_vol.2.gif?raw=true" width="100%">
 
 ---
 
