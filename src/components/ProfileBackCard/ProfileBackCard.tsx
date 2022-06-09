@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Card, CardContent, Typography, List } from '@mui/material'
-import { FaVuejs, FaSass, FaNode } from 'react-icons/fa'
+import { FaVuejs, FaSass, FaNode, FaGit } from 'react-icons/fa'
 import {
   SiHtml5,
   SiCss3,
@@ -66,6 +66,7 @@ const ProfileBackCard: React.FC<Props> = (props: Props) => {
           <DiMarkdown size={55} />
           <SiMaterialUi size={55} />
           <SiVuetify size={55} />
+          <FaGit size={55} />
           <DiIllustrator size={55} />
           <DiPhotoshop size={55} />
         </$IconList>
