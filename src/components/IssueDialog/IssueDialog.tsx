@@ -10,12 +10,14 @@ import {
   Button,
   TextField,
 } from '@mui/material'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { AiOutlineClose } from 'react-icons/ai'
 import axios from 'axios'
 import MDEditor from '@uiw/react-md-editor'
 import { getHeaders, convertIssueId } from '@/components'
 import { IssueContext } from '@/components/BoardBase/BoardBase'
 import { Issue } from '@/types'
+import styled from 'styled-components'
 
 const request = axios.create({
   baseURL: 'https://api.github.com',
@@ -33,8 +35,61 @@ type Props = {
   dialogDesc: string | Array<string | ElementType>
 }
 
+interface Disable {
+  disable: boolean;
+}
+
+const $IssueDialogContent = styled(DialogContent)`
+  background-color: #021114;
+`
+
+const $MDEditor = styled(MDEditor)`
+  margin-top: 25px;
+  border: 1px solid #06D8D7;
+  background-color: #021114;
+  color: #06D8D7;
+  & .w-md-editor-toolbar {
+    background-color: #021114;
+    border-bottom: 1px solid #06D8D7;
+    & svg {
+      color: #06D8D7;
+    }
+    & li.active > button {
+      border: 1px solid #06D8D7;
+      background-color: #021114;
+    }
+  }
+  & .w-md-editor-preview {
+    box-shadow: inset 1px 0 0 0 #06D8D7;
+  }
+  & .wmde-markdown-color code[class*='language-'] {
+    color: #06D8D7;
+  }
+`
+
+const $DialogActions = styled(DialogActions)<Disable>`
+  background-color: #021114;
+  border-top: 1px solid #06D8D7;
+  & button {
+    color: #06D8D7;
+    border: ${(p) => p.disable ? 'none' : '1px solid #06D8D7' };
+    background-color: #021114;
+  }
+`
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '& .MuiPaper-root': { border: '1px solid #06D8D7' },
+      '& .MuiInput-input.MuiInputBase-input': { color: '#06D8D7', borderBottom: '1px solid #06D8D7'},
+    },
+  })
+)
+
 const IssueDialog: React.FC<Props> = (props: Props) => {
   const { dialogTitle, dialogDesc } = props
+
+  const classes = useStyles()
 
   const {
     todoItems,
@@ -52,6 +107,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
   } = useContext(IssueContext)
 
   const [inputError, setInputError] = useState(false)
+  const [title, setTitle] = useState<string | undefined>('')
   const [desc, setDesc] = useState<string | undefined>('')
 
   const inputTitleRef = useRef<any>(null)
@@ -65,6 +121,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
 
   const handleInputTitle = () => {
     if (inputTitleRef.current) {
+      setTitle(inputTitleRef.current.value)
       inputTitleRef.current.value === '' ? setInputError(true) : setInputError(false)
     }
   }
@@ -124,52 +181,54 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
       {!open || !selectedLabel ? (
         <></>
       ) : (
-        <Dialog open={open} onClose={handleClickClose} fullWidth maxWidth="md">
+        <Dialog open={open} onClose={handleClickClose} fullWidth maxWidth="md" className={classes.root}>
           <DialogTitle
             style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
               paddingRight: 13,
-              backgroundColor: '#3F51B5',
+              backgroundColor: '#021114',
+              borderBottom: '1px solid #06D8D7'
             }}
           >
-            <Typography sx={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>{dialogTitle}</Typography>
+            <Typography sx={{ fontSize: 20, fontWeight: 'bold', color: '#06D8D7' }}>{dialogTitle}</Typography>
             <IconButton onClick={handleClickClose} sx={{ color: 'white' }}>
               <AiOutlineClose />
             </IconButton>
           </DialogTitle>
-          <DialogContent dividers>
+          <$IssueDialogContent dividers>
             {issueNumber ? (
-              <DialogContentText>{dialogDesc}</DialogContentText>
+              <DialogContentText color='#06D8D7'>{dialogDesc}</DialogContentText>
             ) : (
               <>
-                <DialogContentText>{dialogDesc}</DialogContentText>
+                <DialogContentText color='#06D8D7'>{dialogDesc}</DialogContentText>
                 <TextField
                   autoFocus
                   margin="dense"
                   id="title"
                   label="Title"
                   type="text"
-                  color="primary"
                   error={inputError}
                   helperText={inputError ? 'Title is required.' : ''}
                   inputRef={inputTitleRef}
+                  InputLabelProps={{
+                    style: { color: '#06D8D7' },
+                  }}
                   fullWidth
                   variant="standard"
                   onChange={handleInputTitle}
                 />
-                <MDEditor
+                <$MDEditor
                   placeholder="Description"
-                  style={{ marginTop: 25 }}
                   value={desc}
                   height={400}
                   onChange={setDesc}
                 />
               </>
             )}
-          </DialogContent>
-          <DialogActions>
+          </$IssueDialogContent>
+          <$DialogActions disable={!title}>
             {issueNumber ? (
               <Button disabled onClick={() => handleClickDelete(issueNumber, convertToUpperCase(selectedLabel))}>
                 Delete
@@ -177,12 +236,12 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
             ) : (
               <Button
                 onClick={() => handleClickSubmit(convertToUpperCase(selectedLabel))}
-                style={{ backgroundColor: '#3F51B5', color: 'white' }}
+                disabled={!title}
               >
                 Submit
               </Button>
             )}
-          </DialogActions>
+          </$DialogActions>
         </Dialog>
       )}
     </>
