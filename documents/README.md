@@ -30,9 +30,9 @@ https://yuisei-maruyama.work/
 | ドキュメントのプレビュー機能                  |
 | https://github.com/Yuisei-Maruyama/MyPortfolio#%E4%BD%BF%E7%94%A8%E6%8A%80%E8%A1%93%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3 の自動更新機能                 |
 
-(※使用パッケージに記載されているテーブルはコミット時に [updateReadmeTable.ts](https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/tools/updateReadmeTable.ts) によって自動更新されます。）
-
 <!--rehype:style=color: black;-->
+
+(※使用パッケージに記載されているテーブルはコミット時に [updateReadmeTable.ts](https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/tools/updateReadmeTable.ts) によって自動更新されます。）
 
 ---
 
@@ -132,6 +132,8 @@ ex.) Doing -> Closed ラベルに変更
 | [prettier](https://www.npmjs.com/package/prettier) | ^2.4.1 | コードの整形 |
 | [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) | ^2.1.8 | webpack の設定を上書きしてエイリアス設定しているパスの解決を行う |
 | [ts-node](https://www.npmjs.com/package/ts-node) | ^10.5.0 | typescript のファイルを単体で実行できるモジュール |
+
+<!--rehype:style=color: black;-->
 
 ### 動作環境
 

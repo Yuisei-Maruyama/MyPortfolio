@@ -104,6 +104,8 @@ for (let i = 0; i < name.length; i++) {
   )
 }
 
+tableBody = tableBody.concat('\n<!--rehype:style=color: black;-->\n')
+
 writeFile(
   'README.md',
   readme.replace(readme.match(/### 使用技術・バージョン\n\n([\s\S]*)\n### 動作環境/)?.[1] || '', tableBody),
