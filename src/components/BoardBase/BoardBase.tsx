@@ -50,7 +50,7 @@ const BoardBase: React.FC = () => {
   const fetchIssues = async () => {
     const { data } = await request.get(`/repos/${owner}/${repo}/issues?state=all`)
     const open = await request.get(`/repos/${owner}/${repo}/issues?state=open`)
-    const closed = await request.get(`/repos/${owner}/${repo}/issues?state=closed&labels=closed`)
+    const closed = await request.get(`/repos/${owner}/${repo}/issues?state=closed&labels=closed&per_page=100`)
     const openData = open.data
     const closedData = closed.data
     const payloadOpenIssues = convertIssueId(openData)
