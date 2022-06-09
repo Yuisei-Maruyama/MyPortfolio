@@ -59,6 +59,12 @@ const $MDEditor = styled(MDEditor)`
       background-color: #021114;
     }
   }
+  & .w-md-editor-text-pre .title, .w-md-editor-text-pre .bold {
+    color: #06d8d7 !important;
+  }
+  & .wmde-markdown-color code[class*='language-'] .token.punctuation {
+    color: #06d8d7;
+  }
   & .w-md-editor-preview {
     box-shadow: inset 1px 0 0 0 #06d8d7;
   }
