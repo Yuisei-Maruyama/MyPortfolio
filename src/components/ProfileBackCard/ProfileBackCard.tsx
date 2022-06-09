@@ -61,8 +61,8 @@ const ProfileBackCard: React.FC<Props> = (props: Props) => {
           <SiTypescript size={55} />
           <SiWebpack size={55} />
           <FaVuejs style={{ marginTop: 10 }} size={55} />
-          <SiReact size={55} />
-          <FaNode size={55} />
+          <SiReact style={{ marginTop: 10 }} size={55} />
+          <FaNode style={{ marginTop: 10 }} size={55} />
           <DiMarkdown size={55} />
           <SiMaterialUi size={55} />
           <SiVuetify size={55} />
