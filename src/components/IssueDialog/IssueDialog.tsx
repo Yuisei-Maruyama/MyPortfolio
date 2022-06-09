@@ -36,7 +36,7 @@ type Props = {
 }
 
 interface Disable {
-  disable: boolean;
+  disable: boolean
 }
 
 const $IssueDialogContent = styled(DialogContent)`
@@ -45,34 +45,34 @@ const $IssueDialogContent = styled(DialogContent)`
 
 const $MDEditor = styled(MDEditor)`
   margin-top: 25px;
-  border: 1px solid #06D8D7;
+  border: 1px solid #06d8d7;
   background-color: #021114;
-  color: #06D8D7;
+  color: #06d8d7;
   & .w-md-editor-toolbar {
     background-color: #021114;
-    border-bottom: 1px solid #06D8D7;
+    border-bottom: 1px solid #06d8d7;
     & svg {
-      color: #06D8D7;
+      color: #06d8d7;
     }
     & li.active > button {
-      border: 1px solid #06D8D7;
+      border: 1px solid #06d8d7;
       background-color: #021114;
     }
   }
   & .w-md-editor-preview {
-    box-shadow: inset 1px 0 0 0 #06D8D7;
+    box-shadow: inset 1px 0 0 0 #06d8d7;
   }
   & .wmde-markdown-color code[class*='language-'] {
-    color: #06D8D7;
+    color: #06d8d7;
   }
 `
 
 const $DialogActions = styled(DialogActions)<Disable>`
   background-color: #021114;
-  border-top: 1px solid #06D8D7;
+  border-top: 1px solid #06d8d7;
   & button {
-    color: #06D8D7;
-    border: ${(p) => p.disable ? 'none' : '1px solid #06D8D7' };
+    color: #06d8d7;
+    border: ${(p) => (p.disable ? 'none' : '1px solid #06D8D7')};
     background-color: #021114;
   }
 `
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       '& .MuiPaper-root': { border: '1px solid #06D8D7' },
-      '& .MuiInput-input.MuiInputBase-input': { color: '#06D8D7', borderBottom: '1px solid #06D8D7'},
+      '& .MuiInput-input.MuiInputBase-input': { color: '#06D8D7', borderBottom: '1px solid #06D8D7' },
     },
   })
 )
@@ -189,7 +189,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
               justifyContent: 'space-between',
               paddingRight: 13,
               backgroundColor: '#021114',
-              borderBottom: '1px solid #06D8D7'
+              borderBottom: '1px solid #06D8D7',
             }}
           >
             <Typography sx={{ fontSize: 20, fontWeight: 'bold', color: '#06D8D7' }}>{dialogTitle}</Typography>
@@ -199,10 +199,10 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
           </DialogTitle>
           <$IssueDialogContent dividers>
             {issueNumber ? (
-              <DialogContentText color='#06D8D7'>{dialogDesc}</DialogContentText>
+              <DialogContentText color="#06D8D7">{dialogDesc}</DialogContentText>
             ) : (
               <>
-                <DialogContentText color='#06D8D7'>{dialogDesc}</DialogContentText>
+                <DialogContentText color="#06D8D7">{dialogDesc}</DialogContentText>
                 <TextField
                   autoFocus
                   margin="dense"
@@ -219,12 +219,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
                   variant="standard"
                   onChange={handleInputTitle}
                 />
-                <$MDEditor
-                  placeholder="Description"
-                  value={desc}
-                  height={400}
-                  onChange={setDesc}
-                />
+                <$MDEditor placeholder="Description" value={desc} height={400} onChange={setDesc} />
               </>
             )}
           </$IssueDialogContent>
@@ -234,10 +229,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
                 Delete
               </Button>
             ) : (
-              <Button
-                onClick={() => handleClickSubmit(convertToUpperCase(selectedLabel))}
-                disabled={!title}
-              >
+              <Button onClick={() => handleClickSubmit(convertToUpperCase(selectedLabel))} disabled={!title}>
                 Submit
               </Button>
             )}
