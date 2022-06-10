@@ -75,23 +75,23 @@ ex.) Doing -> Closed ラベルに変更
 
 | 技術 | version | 備考 |
 | ---- | ------- | ---- |
-| [@emotion/react](https://www.npmjs.com/package/@emotion/react) | ^11.4.1 |  |
-| [@emotion/styled](https://www.npmjs.com/package/@emotion/styled) | ^11.3.0 |  |
-| [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) | ^5.2.1 |  |
-| [@mui/lab](https://www.npmjs.com/package/@mui/lab) | ^5.0.0-alpha.63 |  |
-| [@mui/material](https://www.npmjs.com/package/@mui/material) | ^5.0.0-rc.1 |  |
-| [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom) | ^5.11.4 |  |
-| [@testing-library/react](https://www.npmjs.com/package/@testing-library/react) | ^11.1.0 |  |
-| [@testing-library/user-event](https://www.npmjs.com/package/@testing-library/user-event) | ^12.1.10 |  |
-| [@types/jest](https://www.npmjs.com/package/@types/jest) | ^26.0.15 | jestの型定義ファイル |
-| [@types/node](https://www.npmjs.com/package/@types/node) | ^12.0.0 | nodeの型定義ファイル |
-| [@types/react-dom](https://www.npmjs.com/package/@types/react-dom) | ^17.0.0 | react-domの型定義ファイル |
-| [@types/styled-components](https://www.npmjs.com/package/@types/styled-components) | ^5.1.25 | styled-componentsの型定義ファイル |
+| [@emotion/react](https://www.npmjs.com/package/@emotion/react) | ^11.4.1 | CSS in JS を使用するためのパッケージ |
+| [@emotion/styled](https://www.npmjs.com/package/@emotion/styled) | ^11.3.0 | CSS in JS を使用するためのパッケージ |
+| [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) | ^5.2.1 | CSSフレームワーク Material-UI を使用するためのパッケージ |
+| [@mui/lab](https://www.npmjs.com/package/@mui/lab) | ^5.0.0-alpha.63 | CSSフレームワーク Material-UI を使用するためのパッケージ |
+| [@mui/material](https://www.npmjs.com/package/@mui/material) | ^5.0.0-rc.1 | CSSフレームワーク Material-UI を使用するためのパッケージ |
+| [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom) | ^5.11.4 | React で Unit テストを行うためのパッケージ |
+| [@testing-library/react](https://www.npmjs.com/package/@testing-library/react) | ^11.1.0 | React で Unit テストを行うためのパッケージ |
+| [@testing-library/user-event](https://www.npmjs.com/package/@testing-library/user-event) | ^12.1.10 | React で Unit テストを行うためのパッケージ |
+| [@types/jest](https://www.npmjs.com/package/@types/jest) | ^26.0.15 | jestの型定義ファイルのパッケージ |
+| [@types/node](https://www.npmjs.com/package/@types/node) | ^12.0.0 | nodeの型定義ファイルのパッケージ |
+| [@types/react-dom](https://www.npmjs.com/package/@types/react-dom) | ^17.0.0 | react-domの型定義ファイルのパッケージ |
+| [@types/styled-components](https://www.npmjs.com/package/@types/styled-components) | ^5.1.25 | styled-componentsの型定義ファイルのパッケージ |
 | [@uiw/react-md-editor](https://www.npmjs.com/package/@uiw/react-md-editor) | ^3.9.1 | React で Markdown を表示できるようにする |
 | [@use-it/interval](https://www.npmjs.com/package/@use-it/interval) | ^1.0.0 | setInterval を提供するカスタム React フック |
 | [react](https://www.npmjs.com/package/react) | ^17.0.2 | ユーザインタフェース構築のための JavaScript |
 | [react-beautiful-dnd](https://www.npmjs.com/package/react-beautiful-dnd) | ^13.1.0 | ドロップ&ドラッグを実現できる |
-| [react-dom](https://www.npmjs.com/package/react-dom) | ^17.0.2 |  |
+| [react-dom](https://www.npmjs.com/package/react-dom) | ^17.0.2 | Javascript のオブジェクトでリアルDOMを仮想的に作り、変更箇所だけ差分検知し更新することを React で行えるようにする |
 | [react-hot-keys](https://www.npmjs.com/package/react-hot-keys) | ^2.7.2 | キーイベントを取得して、そのイベントに対する処理を行える |
 | [react-icons](https://www.npmjs.com/package/react-icons) | ^4.2.0 | `Ant Design` や `Material Design`などを集めたアイコンの宝庫 |
 | [react-particle-effect-button](https://www.npmjs.com/package/react-particle-effect-button) | ^1.0.1 | particleアニメーションが付いたボタンを表現できる |
@@ -104,15 +104,15 @@ ex.) Doing -> Closed ラベルに変更
 | [styled-components](https://www.npmjs.com/package/styled-components) | ^5.3.5 | React思想のコンポーネント単位での管理がスタイルにも可能になる |
 | [tslib](https://www.npmjs.com/package/tslib) | ^2.3.1 | コンパイル後の js ファイルが大きくなるのを防ぐ  |
 | [typescript](https://www.npmjs.com/package/typescript) | ^4.1.2 | JavaScript に対して、静的型付けとクラスベースオブジェクト指向を加えた言語 |
-| [uuid](https://www.npmjs.com/package/uuid) | ^8.3.2 | uuid を付与する  |
-| [web-vitals](https://www.npmjs.com/package/web-vitals) | ^1.0.1 |  |
-| [@material-ui/core](https://www.npmjs.com/package/@material-ui/core) | ^4.12.3 |  |
-| [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) | ^4.11.2 |  |
-| [@types/react](https://www.npmjs.com/package/@types/react) | ^17.0.19 | reactの型定義ファイル |
-| [@types/react-beautiful-dnd](https://www.npmjs.com/package/@types/react-beautiful-dnd) | ^13.1.2 | react-beautiful-dndの型定義ファイル |
-| [@types/react-router-dom](https://www.npmjs.com/package/@types/react-router-dom) | ^5.1.8 | react-router-domの型定義ファイル |
-| [@types/react-vertical-timeline-component](https://www.npmjs.com/package/@types/react-vertical-timeline-component) | ^3.0.1 | react-vertical-timeline-componentの型定義ファイル |
-| [@types/uuid](https://www.npmjs.com/package/@types/uuid) | ^8.3.3 | uuidの型定義ファイル |
+| [uuid](https://www.npmjs.com/package/uuid) | ^8.3.2 | uuid を付与する |
+| [web-vitals](https://www.npmjs.com/package/web-vitals) | ^1.0.1 | サイトの健全性を示す重要指標を計測できる |
+| [@material-ui/core](https://www.npmjs.com/package/@material-ui/core) | ^4.12.3 | CSSフレームワーク Material-UI を使用するパッケージ(旧) -> [@mui/material](https://www.npmjs.com/package/@mui/material) に変更された |
+| [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) | ^4.11.2 | CSSフレームワーク Material-UI のアイコンを使用するパッケージ(旧) -> [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) |
+| [@types/react](https://www.npmjs.com/package/@types/react) | ^17.0.19 | reactの型定義ファイルのパッケージ |
+| [@types/react-beautiful-dnd](https://www.npmjs.com/package/@types/react-beautiful-dnd) | ^13.1.2 | react-beautiful-dndの型定義ファイルのパッケージ |
+| [@types/react-router-dom](https://www.npmjs.com/package/@types/react-router-dom) | ^5.1.8 | react-router-domの型定義ファイルのパッケージ |
+| [@types/react-vertical-timeline-component](https://www.npmjs.com/package/@types/react-vertical-timeline-component) | ^3.0.1 | react-vertical-timeline-componentの型定義ファイルのパッケージ |
+| [@types/uuid](https://www.npmjs.com/package/@types/uuid) | ^8.3.3 | uuidの型定義ファイルのパッケージ |
 | [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) | ^4.31.1 | ESLint で Typescript のチェックを行う |
 | [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser) | ^4.31.1 | ESLint を Typescript で解析できるようにする |
 | [axios](https://www.npmjs.com/package/axios) | ^0.24.0 | Promise ベースの HTTP Client  |
@@ -121,8 +121,8 @@ ex.) Doing -> Closed ラベルに変更
 | [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier) | ^8.3.0 | ESLint と Prettier を併用する |
 | [eslint-config-standard](https://www.npmjs.com/package/eslint-config-standard) | ^16.0.3 | JavaScript Standard Styleのルールをeslintに適用する |
 | [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) | ^2.24.2 | importの順番をルール化して自動で整列させる |
-| [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node) | ^11.1.0 |  |
-| [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise) | ^5.1.0 |  |
+| [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node) | ^11.1.0 | Node.js の記述に対するルールを設定する |
+| [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise) | ^5.1.0 | 非同期処理に対するルールを設定する |
 | [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) | ^7.25.2 | React のルールを設定する |
 | [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) | ^4.3.0 | React Hooksのルールを設定する |
 | [eslint-plugin-styled-components-varname](https://www.npmjs.com/package/eslint-plugin-styled-components-varname) | ^1.0.1 | styled-components の変数名の命名ルールを設定する |
