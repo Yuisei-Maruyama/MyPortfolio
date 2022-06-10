@@ -1,11 +1,10 @@
 import React, { memo } from 'react'
 import styled from 'styled-components'
+import { useFlipped } from '@/customHooks'
 
 type Props = {
   children?: React.ReactNodeArray
   flipDirection?: 'horizontal' | 'vertical'
-  isFlipped: boolean
-  setFlipped: (isFlipped: boolean) => void
 }
 
 const _FlippedCard = styled.div`
@@ -22,10 +21,12 @@ const _scaleX = styled.div`
 `
 
 const FlippedCard: React.FC<Props> = (props: Props) => {
-  const { children, isFlipped, setFlipped } = props
+  const { children } = props
+
+  const { isFlipped, handleSetFlipped } = useFlipped()
 
   const handleHover = () => {
-    setFlipped(!isFlipped)
+    handleSetFlipped(!isFlipped)
   }
 
   return (
