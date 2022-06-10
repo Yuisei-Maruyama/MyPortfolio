@@ -41,7 +41,6 @@ const contextValue = {
 const Main = () => {
   const [todoItems, setTodo] = useState<Issues>([])
   const [languages, setLanguages] = useState<Record<string, number>>({})
-  // const { isFlipped, handleSetFlipped } = useFlipped()
   const { frontEndProps, backEndProps } = skillTableData()
 
   const fetchTodo = async () => {
