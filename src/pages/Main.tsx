@@ -13,7 +13,6 @@ import { Box } from '@material-ui/core'
 import { Grid } from '@mui/material'
 import { Issues } from '@/types'
 import axios from 'axios'
-import { useFlipped } from '@/customHooks'
 import { skillTableData } from '@/data/skillTableData'
 import { message } from '@/data/message'
 
@@ -42,7 +41,7 @@ const contextValue = {
 const Main = () => {
   const [todoItems, setTodo] = useState<Issues>([])
   const [languages, setLanguages] = useState<Record<string, number>>({})
-  const { isFlipped, handleSetFlipped } = useFlipped()
+  // const { isFlipped, handleSetFlipped } = useFlipped()
   const { frontEndProps, backEndProps } = skillTableData()
 
   const fetchTodo = async () => {
@@ -74,7 +73,7 @@ const Main = () => {
       <Grid container gap={12} sx={{ mt: 6 }}>
         <Grid item lg={1} xl={1} />
         <Grid item sm={6} xs={5} md={4} lg={3} xl={2}>
-          <FlippedCard isFlipped={isFlipped} setFlipped={handleSetFlipped}>
+          <FlippedCard>
             <ProfileFrontCard
               width="100%"
               height="450px"
