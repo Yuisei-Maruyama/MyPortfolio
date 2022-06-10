@@ -107,7 +107,7 @@ ex.) Doing -> Closed ラベルに変更
 | [uuid](https://www.npmjs.com/package/uuid) | ^8.3.2 | uuid を付与する |
 | [web-vitals](https://www.npmjs.com/package/web-vitals) | ^1.0.1 | サイトの健全性を示す重要指標を計測できる |
 | [@material-ui/core](https://www.npmjs.com/package/@material-ui/core) | ^4.12.3 | CSSフレームワーク Material-UI を使用するパッケージ(旧) -> [@mui/material](https://www.npmjs.com/package/@mui/material) に変更された |
-| [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) | ^4.11.2 | CSSフレームワーク Material-UI のアイコンを使用するパッケージ(旧) -> [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) |
+| [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) | ^4.11.2 | CSSフレームワーク Material-UI のアイコンを使用するパッケージ(旧) -> [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) に変更された |
 | [@types/react](https://www.npmjs.com/package/@types/react) | ^17.0.19 | reactの型定義ファイルのパッケージ |
 | [@types/react-beautiful-dnd](https://www.npmjs.com/package/@types/react-beautiful-dnd) | ^13.1.2 | react-beautiful-dndの型定義ファイルのパッケージ |
 | [@types/react-router-dom](https://www.npmjs.com/package/@types/react-router-dom) | ^5.1.8 | react-router-domの型定義ファイルのパッケージ |

@@ -36,7 +36,7 @@ const getDesc = (packageName: string) => {
     case '@material-ui/core':
       return 'CSSフレームワーク Material-UI を使用するパッケージ(旧) -> [@mui/material](https://www.npmjs.com/package/@mui/material) に変更された'
     case '@material-ui/icons':
-      return 'CSSフレームワーク Material-UI のアイコンを使用するパッケージ(旧) -> [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)'
+      return 'CSSフレームワーク Material-UI のアイコンを使用するパッケージ(旧) -> [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) に変更された'
     case 'ts-node':
       return 'typescript のファイルを単体で実行できるモジュール'
     case 'shelljs':
