@@ -34,6 +34,9 @@ export { default as MatrixArea } from './MatrixArea/MatrixArea'
 export { default as InstructionsArea } from './InstructionsArea/InstructionsArea'
 export { default as ProgressBar } from './ProgressBar/ProgressBar'
 export { default as ProgressArea } from './ProgressArea/ProgressArea'
+export { default as Alert } from './Alert/Alert'
+export { default as CommandList } from './CommandList/CommandList'
+export { default as CommandListProvider } from './CommandListArea/CommandListArea'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`
