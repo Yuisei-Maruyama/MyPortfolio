@@ -6,11 +6,12 @@ import { CommandList } from '@/components'
 type Props = {
   commandList: Command[]
   children: React.ReactNode[]
+  setComponent: React.Dispatch<React.SetStateAction<React.ReactNode>>
 }
 
 export const CommandListContext = createContext<Command[]>([])
 
-const CommandListArea: React.FC<Props> = ({ commandList, children }) => {
+const CommandListArea: React.FC<Props> = ({ commandList, children, setComponent }) => {
   const [isRunning, setIsRunning] = useState(false)
 
   const handleKeyDown: OnKeyFun = (_, e) => {
@@ -21,7 +22,7 @@ const CommandListArea: React.FC<Props> = ({ commandList, children }) => {
   return (
     <CommandListContext.Provider value={commandList}>
       <Hotkeys keyName="command+shift+p" onKeyDown={(_, evn: KeyboardEvent, $) => handleKeyDown(_, evn, $)}>
-        {isRunning ? <CommandList setIsRunning={setIsRunning} /> : <></>}
+        {isRunning ? <CommandList setIsRunning={setIsRunning} setComponent={setComponent} /> : <></>}
       </Hotkeys>
       {children}
     </CommandListContext.Provider>

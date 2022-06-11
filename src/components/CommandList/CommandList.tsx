@@ -1,13 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, ReactNode } from 'react'
 import { TextField, InputAdornment, Typography } from '@mui/material'
 import styled from 'styled-components'
 import { CommandListContext } from '@/components/CommandListArea/CommandListArea'
 
 type Props = {
   setIsRunning: (value: React.SetStateAction<boolean>) => void
+  setComponent: React.Dispatch<React.SetStateAction<React.ReactNode>>
 }
 
-const CommandList: React.FC<Props> = ({ setIsRunning }) => {
+const CommandList: React.FC<Props> = ({ setIsRunning, setComponent }) => {
   const commandList = useContext(CommandListContext)
   const [seachCommand, setSearchCommand] = useState<string>('')
 
@@ -15,8 +16,9 @@ const CommandList: React.FC<Props> = ({ setIsRunning }) => {
     setSearchCommand(value)
   }
 
-  const handleClickCommand = () => {
+  const handleClickCommand = (component: ReactNode) => {
     setIsRunning(false)
+    setComponent(component)
   }
 
   return (
@@ -32,7 +34,7 @@ const CommandList: React.FC<Props> = ({ setIsRunning }) => {
       <_CommandOptions>
         {!seachCommand
           ? commandList.map((command, index) => (
-              <_CommandOption key={index} onClick={handleClickCommand}>
+              <_CommandOption key={index} onClick={() =>handleClickCommand(command.component)}>
                 <$CommandTitle variant="h6">{command.title}</$CommandTitle>
                 <Typography>{command.desc}</Typography>
               </_CommandOption>
@@ -40,7 +42,7 @@ const CommandList: React.FC<Props> = ({ setIsRunning }) => {
           : commandList
               .filter((command) => command.name.includes(seachCommand))
               .map((command, index) => (
-                <_CommandOption key={index}>
+                <_CommandOption key={index} onClick={() => handleClickCommand(command.component)}>
                   <$CommandTitle variant="h6">{command.title}</$CommandTitle>
                   <Typography>{command.desc}</Typography>
                 </_CommandOption>

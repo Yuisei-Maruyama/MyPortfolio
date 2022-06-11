@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, ReactNode } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from '@material-ui/core'
 import { Box } from '@mui/material'
@@ -15,6 +15,7 @@ import {
 import { commandList } from './data/commandList'
 
 const App: React.FC = () => {
+  const [component, setComponent] = useState<ReactNode>()
   return (
     <div
       className="App"
@@ -22,7 +23,8 @@ const App: React.FC = () => {
     >
       <Router>
         <ThemeProvider mode="dark">
-          <CommandListProvider commandList={commandList}>
+          <CommandListProvider commandList={commandList} setComponent={setComponent}>
+            {component}
             <Header></Header>
             <Container maxWidth="xl" style={{ padding: '0 0 70px 0' }}>
               <Switch>

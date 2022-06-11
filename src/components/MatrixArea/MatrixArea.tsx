@@ -1,5 +1,6 @@
 import React from 'react'
 import { MatrixRain } from '@/components'
+import styled from 'styled-components'
 
 type Props = {
   width?: number
@@ -11,27 +12,30 @@ const MatrixArea: React.FC<Props> = (props: Props) => {
   const streamCount = Math.floor(window.innerWidth / 26)
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        position: 'fixed',
-        top: '10%',
-        left: 0,
-        bottom: 0,
-        right: 0,
-        overflow: 'ignore',
-        width: width,
-        height: height,
-      }}
+    <_MatrixWrapper
+      width={width}
+      height={height}
     >
-      ちょっと待つとここに文字が流れます！
       {new Array(streamCount).fill(undefined).map((_, index) => (
         <MatrixRain key={index} />
       ))}
-    </div>
+    </_MatrixWrapper>
   )
 }
+
+const _MatrixWrapper = styled.div<Props>`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: fixed;
+  top: 10%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: ignore;
+  width: ${({width}) => width};
+  height: ${({height}) => height};;
+  z-index: 1000;
+`
 
 export default MatrixArea
