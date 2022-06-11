@@ -34,7 +34,7 @@ const CommandList: React.FC<Props> = ({ setIsRunning, setComponent }) => {
       <_CommandOptions>
         {!seachCommand
           ? commandList.map((command, index) => (
-              <_CommandOption key={index} onClick={() =>handleClickCommand(command.component)}>
+              <_CommandOption key={index} onClick={() => handleClickCommand(command.component)}>
                 <$CommandTitle variant="h6">{command.title}</$CommandTitle>
                 <Typography>{command.desc}</Typography>
               </_CommandOption>
@@ -95,9 +95,9 @@ const _CommandOptions = styled.div`
   margin-top: 30px;
 `
 const _CommandOption = styled.div`
-  padding: 10px 25px;
+  padding: 25px;
   width: 100%;
-  height: 80px;
+  height: 100px;
   border-top: 1px solid #06d8d7;
   border-bottom: 1px solid #06d8d7;
   cursor: pointer;

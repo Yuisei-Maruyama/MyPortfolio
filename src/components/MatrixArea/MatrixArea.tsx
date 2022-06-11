@@ -12,10 +12,7 @@ const MatrixArea: React.FC<Props> = (props: Props) => {
   const streamCount = Math.floor(window.innerWidth / 26)
 
   return (
-    <_MatrixWrapper
-      width={width}
-      height={height}
-    >
+    <_MatrixWrapper width={width} height={height}>
       {new Array(streamCount).fill(undefined).map((_, index) => (
         <MatrixRain key={index} />
       ))}
@@ -33,8 +30,8 @@ const _MatrixWrapper = styled.div<Props>`
   bottom: 0;
   right: 0;
   overflow: ignore;
-  width: ${({width}) => width};
-  height: ${({height}) => height};;
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
   z-index: 1000;
 `
 

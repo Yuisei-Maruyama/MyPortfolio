@@ -1,4 +1,4 @@
-import React, {useState, ReactNode } from 'react'
+import React, { useState, ReactNode } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from '@material-ui/core'
 import { Box } from '@mui/material'

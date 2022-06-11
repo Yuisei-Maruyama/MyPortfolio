@@ -5,13 +5,13 @@ export const commandList: Command[] = [
   {
     name: 'alert',
     component: <Alert />,
-    title: 'アラートコマンド',
-    desc: 'アラートを発火させるコマンド',
+    title: 'Alert',
+    desc: 'Command to fire an alert',
   },
   {
     name: 'matrix',
     component: <MatrixArea />,
-    title: 'マトリックスコマンド',
-    desc: 'マトリックスレインを降らせるコマンド',
+    title: 'MatrixRain',
+    desc: 'Command to drop Matrix Rain',
   },
 ]
