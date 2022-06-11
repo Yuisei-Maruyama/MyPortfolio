@@ -1,4 +1,4 @@
-import React, { useState, useRef, ElementType, useContext } from 'react'
+import React, { useState, useRef, ElementType, useContext, useEffect } from 'react'
 import {
   IconButton,
   Typography,
@@ -116,6 +116,13 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
   const [inputError, setInputError] = useState(false)
   const [title, setTitle] = useState<string | undefined>('')
   const [desc, setDesc] = useState<string | undefined>('')
+
+  useEffect(() => {
+    if (!open) {
+      setTitle('')
+      setDesc('')
+    }
+  }, [open])
 
   const inputTitleRef = useRef<any>(null)
   // const inputDeskRef = useRef<any>(null)
