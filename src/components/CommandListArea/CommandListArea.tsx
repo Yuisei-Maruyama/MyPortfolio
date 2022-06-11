@@ -21,7 +21,7 @@ const CommandListArea: React.FC<Props> = ({ commandList, children }) => {
   return (
     <CommandListContext.Provider value={commandList}>
       <Hotkeys keyName="command+shift+p" onKeyDown={(_, evn: KeyboardEvent, $) => handleKeyDown(_, evn, $)}>
-        {isRunning ? <CommandList /> : <></>}
+        {isRunning ? <CommandList setIsRunning={setIsRunning} /> : <></>}
       </Hotkeys>
       {children}
     </CommandListContext.Provider>

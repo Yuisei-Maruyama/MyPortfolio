@@ -1,7 +1,54 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { TextField, InputAdornment, Typography } from '@mui/material'
 import styled from 'styled-components'
 import { CommandListContext } from '@/components/CommandListArea/CommandListArea'
+
+type Props = {
+  setIsRunning: (value: React.SetStateAction<boolean>) => void
+}
+
+const CommandList: React.FC<Props> = ({ setIsRunning }) => {
+  const commandList = useContext(CommandListContext)
+  const [seachCommand, setSearchCommand] = useState<string>('')
+
+  const handleChangeText = (value: string) => {
+    setSearchCommand(value)
+  }
+
+  const handleClickCommand = () => {
+    setIsRunning(false)
+  }
+
+  return (
+    <_ActiveCommandWrapper>
+      <$CommandTextField
+        variant="outlined"
+        InputProps={{
+          startAdornment: <$InputAdornment position="start">&gt;</$InputAdornment>,
+        }}
+        value={seachCommand}
+        onChange={(e) => handleChangeText(e.target.value)}
+      />
+      <_CommandOptions>
+        {!seachCommand
+          ? commandList.map((command, index) => (
+              <_CommandOption key={index} onClick={handleClickCommand}>
+                <$CommandTitle variant="h6">{command.title}</$CommandTitle>
+                <Typography>{command.desc}</Typography>
+              </_CommandOption>
+            ))
+          : commandList
+              .filter((command) => command.name.includes(seachCommand))
+              .map((command, index) => (
+                <_CommandOption key={index}>
+                  <$CommandTitle variant="h6">{command.title}</$CommandTitle>
+                  <Typography>{command.desc}</Typography>
+                </_CommandOption>
+              ))}
+      </_CommandOptions>
+    </_ActiveCommandWrapper>
+  )
+}
 
 const _ActiveCommandWrapper = styled.div`
   position: fixed;
@@ -61,30 +108,5 @@ const _CommandOption = styled.div`
 const $CommandTitle = styled(Typography)`
   font-weight: bold;
 `
-
-const CommandList: React.FC = () => {
-  const commandList = useContext(CommandListContext)
-
-  console.log(commandList)
-
-  return (
-    <_ActiveCommandWrapper>
-      <$CommandTextField
-        variant="outlined"
-        InputProps={{
-          startAdornment: <$InputAdornment position="start">&gt;</$InputAdornment>,
-        }}
-      />
-      <_CommandOptions>
-        {commandList.map((command, index) => (
-          <_CommandOption key={index}>
-            <$CommandTitle variant="h6">{command.title}</$CommandTitle>
-            <Typography>{command.desc}</Typography>
-          </_CommandOption>
-        ))}
-      </_CommandOptions>
-    </_ActiveCommandWrapper>
-  )
-}
 
 export default CommandList
