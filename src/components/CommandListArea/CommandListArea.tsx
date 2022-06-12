@@ -22,7 +22,7 @@ const CommandListArea: React.FC<Props> = ({ commandList, children, setComponent 
 
   const handleClose = () => {
     setIsRunning(false)
-    document.removeEventListener('click',handleClose)
+    document.removeEventListener('click', handleClose)
   }
 
   return (
