@@ -18,7 +18,7 @@ import { BiTask } from 'react-icons/bi'
 import { useHistory, withRouter } from 'react-router-dom'
 import { rgba } from 'polished'
 
-const pages = ['Components', 'Documents', 'Matrix', 'Instructions']
+const pages = ['Components', 'Documents', 'Instructions']
 const settings = ['Login', 'Account']
 
 const Header: React.FC = () => {

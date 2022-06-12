@@ -22,6 +22,12 @@
     url("./fonts/tron.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "HachiMaruPopFont";
+  src: local("HachiMaruPop"),
+    url("./fonts/HachiMaruPop-Regular.ttf") format("truetype");
+}
+
 /*スクロールバー全体*/
 ::-webkit-scrollbar {
   width: 15px;

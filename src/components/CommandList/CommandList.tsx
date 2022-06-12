@@ -32,7 +32,7 @@ const CommandList: React.FC<Props> = ({ setIsRunning, setComponent }) => {
         onChange={(e) => handleChangeText(e.target.value)}
       />
       <_CommandOptions>
-        {!seachCommand
+        {seachCommand && seachCommand === 'all'
           ? commandList.map((command, index) => (
               <_CommandOption key={index} onClick={() => handleClickCommand(command.component)}>
                 <$CommandTitle variant="h6">{command.title}</$CommandTitle>
@@ -58,7 +58,7 @@ const _ActiveCommandWrapper = styled.div`
   left: 50%;
   transform: translateX(-50%);
   width: 800px;
-  height: 500px;
+  /* height: 500px; */
   color: #06d8d7;
   background-color: rgba(0, 0, 0, 0.7);
   border: 1px solid #06d8d7;
@@ -68,7 +68,7 @@ const _ActiveCommandWrapper = styled.div`
 const $CommandTextField = styled(TextField)`
   width: 96%;
   display: block;
-  margin: 0 auto;
+  margin: 20px auto 0;
   background-color: rgba(0, 0, 0, 0.9);
   box-shadow: -1px -1px #06d8d7, 1px -1px #06d8d7, 1px 1px #06d8d7, -1px 1px #06d8d7, 0 0 0.1em #06d8d7,
     0 0 0.1em #06d8d7 inset, 0 0 1em #06d8d7, 0 0 1em #06d8d7 inset;

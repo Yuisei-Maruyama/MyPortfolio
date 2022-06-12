@@ -1,9 +1,9 @@
-import React, { useState, ReactNode } from 'react'
+import React, { useState, ReactNode, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from '@material-ui/core'
 import { Box } from '@mui/material'
 import { rgba } from 'polished'
-import { Main, Board, History, Matrix, Travel, Instructions, DocumentsPreviewer, ComponentsPreviewer } from '@/pages'
+import { Main, Board, History, Travel, Instructions, DocumentsPreviewer, ComponentsPreviewer } from '@/pages'
 import {
   ThemeProvider,
   Header,
@@ -13,9 +13,20 @@ import {
   CommandListProvider,
 } from '@/components'
 import { commandList } from './data/commandList'
+import useInterval from '@use-it/interval'
 
 const App: React.FC = () => {
   const [component, setComponent] = useState<ReactNode>()
+  const [isDelete, setDeleteComponents] = useState<boolean>(true)
+
+  useInterval(() => {
+    setDeleteComponents(true)
+  }, 40000)
+
+  useEffect(() => {
+    setDeleteComponents(false)
+  }, [component])
+
   return (
     <div
       className="App"
@@ -24,14 +35,14 @@ const App: React.FC = () => {
       <Router>
         <ThemeProvider mode="dark">
           <CommandListProvider commandList={commandList} setComponent={setComponent}>
-            {component}
+              {!isDelete && component}
             <Header></Header>
             <Container maxWidth="xl" style={{ padding: '0 0 70px 0' }}>
               <Switch>
                 <Route exact path="/" component={Main} />
                 <Route exact path="/board" component={Board} />
                 <Route exact path="/history" component={History} />
-                <Route exact path="/matrix" component={Matrix} />
+                {/* <Route exact path="/matrix" component={Matrix} /> */}
                 <Route exact path="/travel" component={Travel} />
                 <Route exact path="/instructions" component={Instructions} />
                 <Route path="/documents" component={DocumentsPreviewer} />

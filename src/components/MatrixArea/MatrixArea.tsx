@@ -32,7 +32,7 @@ const _MatrixWrapper = styled.div<Props>`
   overflow: ignore;
   width: ${({ width }) => width};
   height: ${({ height }) => height};
-  z-index: 1000;
+  /* z-index: 1000; */
 `
 
 export default MatrixArea
