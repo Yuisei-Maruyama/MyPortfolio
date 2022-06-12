@@ -15,6 +15,7 @@ import { Issues } from '@/types'
 import axios from 'axios'
 import { skillTableData } from '@/data/skillTableData'
 import { message } from '@/data/message'
+import { dummyIssue } from '@/data/dummy'
 
 const request = axios.create({
   baseURL: 'https://api.github.com',
@@ -59,6 +60,10 @@ const Main = () => {
     fetchRepoLanguageList()
     // eslint-disable-next-line
   }, [])
+
+  if (todoItems.length < 7) {
+    todoItems.push(dummyIssue)
+  }
 
   return (
     <div>
