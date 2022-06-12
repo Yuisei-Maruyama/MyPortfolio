@@ -21,7 +21,8 @@ const App: React.FC = () => {
 
   useInterval(() => {
     setDeleteComponents(true)
-  }, 40000)
+    setComponent(undefined)
+  }, 37000)
 
   useEffect(() => {
     setDeleteComponents(false)
