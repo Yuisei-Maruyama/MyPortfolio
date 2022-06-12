@@ -4,7 +4,7 @@ import { rgba } from 'polished'
 import { Header } from '@/types/index'
 import { Stepper } from '@/components'
 
-type TableData = {
+export type TableData = {
   name: string
   steps: string[]
   activeStep: number
