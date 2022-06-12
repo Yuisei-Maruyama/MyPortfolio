@@ -35,7 +35,7 @@ const App: React.FC = () => {
       <Router>
         <ThemeProvider mode="dark">
           <CommandListProvider commandList={commandList} setComponent={setComponent}>
-              {!isDelete && component}
+            {!isDelete && component}
             <Header></Header>
             <Container maxWidth="xl" style={{ padding: '0 0 70px 0' }}>
               <Switch>

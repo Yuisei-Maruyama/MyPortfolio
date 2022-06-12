@@ -51,29 +51,24 @@ const MatrixRain: React.FC = () => {
 
   return (
     <>
-        <div
-          style={{
-            marginTop: marginTop,
-            color: '#00F8F8',
-            writingMode: 'vertical-rl',
-            textOrientation: 'upright',
-            userSelect: 'none',
-            whiteSpace: 'nowrap',
-            textShadow: '0px 0px 8px rgba(32, 194, 14, 0.8)',
-            fontSize: 15,
-          }}
-        >
-          {stream.map((char, index) => (
-            <_MatrixRainChars
-              key={index}
-              index={index}
-              stream={stream}
-              getRandomInt={() => getRandomInt(10, 30)}
-            >
-              {char}
-            </_MatrixRainChars>
-          ))}
-        </div>
+      <div
+        style={{
+          marginTop: marginTop,
+          color: '#00F8F8',
+          writingMode: 'vertical-rl',
+          textOrientation: 'upright',
+          userSelect: 'none',
+          whiteSpace: 'nowrap',
+          textShadow: '0px 0px 8px rgba(32, 194, 14, 0.8)',
+          fontSize: 15,
+        }}
+      >
+        {stream.map((char, index) => (
+          <_MatrixRainChars key={index} index={index} stream={stream} getRandomInt={() => getRandomInt(10, 30)}>
+            {char}
+          </_MatrixRainChars>
+        ))}
+      </div>
     </>
   )
 }
@@ -91,9 +86,10 @@ const MatrixRain: React.FC = () => {
 // `
 
 const _MatrixRainChars = styled.a<MatrixRainChars>`
-  color: ${({stream, index}) => (index === stream.length - 1) ? '#00F8F8' : undefined};
-  opacity: ${({getRandomInt, index}) => (index < getRandomInt(10, 30)) ? 0.1 + 0.15 : 1};
-  text-shadow: ${({stream, index}) => (index === stream.length - 1) ? '0px 0px 20px rgba(255, 255, 255, 1)' : undefined};
+  color: ${({ stream, index }) => (index === stream.length - 1 ? '#00F8F8' : undefined)};
+  opacity: ${({ getRandomInt, index }) => (index < getRandomInt(10, 30) ? 0.1 + 0.15 : 1)};
+  text-shadow: ${({ stream, index }) =>
+    index === stream.length - 1 ? '0px 0px 20px rgba(255, 255, 255, 1)' : undefined};
 `
 
 export default MatrixRain
