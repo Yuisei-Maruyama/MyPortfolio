@@ -22,7 +22,7 @@ const App: React.FC = () => {
   useInterval(async () => {
     await setDeleteComponents(true)
     await setComponent(undefined)
-  }, 40000)
+  }, 20000)
 
   useEffect(() => {
     setDeleteComponents(false)
