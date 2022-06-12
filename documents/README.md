@@ -79,6 +79,8 @@ ex.) Doing -> Closed ラベルに変更
 VSCode でも親しみのある `「command + shift + p」` を押下することで、コマンドリストが表示されます。  
 コマンド入力ボックスに下記のワードを入力することによって、指定したコンポーネントを表示することが可能になります。  
 
+<img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/public/assets/commandList.png?raw=true" width="100%">
+
 | コマンド名 | 説明 |
 | ---- | ------- |
 | all |  全てのコマンドを表示します。 |
