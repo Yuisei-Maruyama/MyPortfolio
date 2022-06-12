@@ -19,10 +19,10 @@ const App: React.FC = () => {
   const [component, setComponent] = useState<ReactNode>()
   const [isDelete, setDeleteComponents] = useState<boolean>(true)
 
-  useInterval(() => {
-    setDeleteComponents(true)
-    setComponent(undefined)
-  }, 37000)
+  useInterval(async() => {
+    await setDeleteComponents(true)
+    await setComponent(undefined)
+  }, 60000)
 
   useEffect(() => {
     setDeleteComponents(false)
