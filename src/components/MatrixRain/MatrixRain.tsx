@@ -1,8 +1,17 @@
 import React, { useState } from 'react'
 import { getRandomInt } from '@/data/utils'
 import useInterval from '@use-it/interval'
-import { createTheme } from '@material-ui/core'
-import { ThemeProvider } from '@/components'
+import styled from 'styled-components'
+
+// type MatrixRainWrapper = {
+//   marginTop: number | string
+// }
+
+type MatrixRainChars = {
+  stream: string[]
+  index: number
+  getRandomInt: (min: number, max: number) => number
+}
 
 const validChar =
   'abcdefghijklmnopqrstuvwxyz0123456789$+-*/=モジレツリアクトジャバスクリプトサイバーパンクネオトウキョウサイバーブレードランナーコウカクキドウタイマトリックストロンアキラゴーストインザシェル'
@@ -28,15 +37,6 @@ const getMutatedStream = (stream: string[]) => {
   return newStream
 }
 
-const hachiMaruPopFont = createTheme({
-  typography: {
-    fontFamily: ['Hachi Maru Pop'].join(','),
-  },
-  palette: {
-    type: 'dark',
-  },
-})
-
 const MatrixRain: React.FC = () => {
   const [stream, setStream] = useState(getRandomStream())
   const [marginTop, setMarginTop] = useState(stream.length * -50)
@@ -51,36 +51,45 @@ const MatrixRain: React.FC = () => {
 
   return (
     <>
-      <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet" />
-      <ThemeProvider theme={hachiMaruPopFont}>
-        <div
-          style={{
-            marginTop: marginTop,
-            color: '#00F8F8',
-            writingMode: 'vertical-rl',
-            textOrientation: 'upright',
-            userSelect: 'none',
-            whiteSpace: 'nowrap',
-            textShadow: '0px 0px 8px rgba(32, 194, 14, 0.8)',
-            fontSize: 15,
-          }}
-        >
-          {stream.map((char, index) => (
-            <a
-              key={index}
-              style={{
-                color: index === stream.length - 1 ? '#00F8F8' : undefined,
-                opacity: index < getRandomInt(10, 30) ? 0.1 + 0.15 : 1,
-                textShadow: index === stream.length - 1 ? '0px 0px 20px rgba(255, 255, 255, 1)' : undefined,
-              }}
-            >
-              {char}
-            </a>
-          ))}
-        </div>
-      </ThemeProvider>
+      <div
+        style={{
+          marginTop: marginTop,
+          color: '#00F8F8',
+          writingMode: 'vertical-rl',
+          textOrientation: 'upright',
+          userSelect: 'none',
+          whiteSpace: 'nowrap',
+          textShadow: '0px 0px 8px rgba(32, 194, 14, 0.8)',
+          fontSize: 15,
+        }}
+      >
+        {stream.map((char, index) => (
+          <_MatrixRainChars key={index} index={index} stream={stream} getRandomInt={() => getRandomInt(10, 30)}>
+            {char}
+          </_MatrixRainChars>
+        ))}
+      </div>
     </>
   )
 }
+
+// const _MatrixRainWrapper = styled.div<MatrixRainWrapper>`
+//   margin-top: ${({marginTop}) => marginTop};
+//   color: #00F8F8;
+//   writing-mode: vertical-rl;
+//   text-orientation: upright;
+//   user-select: none;
+//   white-space: nowrap;
+//   text-shadow: 0px 0px 8px rgba(32, 194, 14, 0.8);
+//   font-size: 15;
+//   font-family: 'HachiMaruPopFont';
+// `
+
+const _MatrixRainChars = styled.a<MatrixRainChars>`
+  color: ${({ stream, index }) => (index === stream.length - 1 ? '#00F8F8' : undefined)};
+  opacity: ${({ getRandomInt, index }) => (index < getRandomInt(10, 30) ? 0.1 + 0.15 : 1)};
+  text-shadow: ${({ stream, index }) =>
+    index === stream.length - 1 ? '0px 0px 20px rgba(255, 255, 255, 1)' : undefined};
+`
 
 export default MatrixRain

@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 export interface Label {
   color?: string
   description?: string
@@ -43,3 +45,10 @@ export type SkillTableContents = {
   steps: string[]
   activeStep: number
 }[]
+
+export type Command = {
+  name: string
+  component: ReactNode
+  title: string
+  desc: string
+}
