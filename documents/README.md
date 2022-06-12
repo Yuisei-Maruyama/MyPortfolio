@@ -28,6 +28,7 @@ https://yuisei-maruyama.work/
 | GitHub Issue に付与されたラベルごとの管理機能 |
 | コンポーネントのプレビュー機能                |
 | ドキュメントのプレビュー機能                  |
+| 特定コマンドによるアニメーション表示機能                  |
 | https://github.com/Yuisei-Maruyama/MyPortfolio#%E4%BD%BF%E7%94%A8%E6%8A%80%E8%A1%93%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3 の自動更新機能                 |
 
 <!--rehype:style=color: black;-->
@@ -70,6 +71,25 @@ ex.) Doing -> Closed ラベルに変更
 <img src="https://github.com/Yuisei-Maruyama/MyPortfolio/blob/update-readme/public/assets/ReadmeGifs/Closed-Issue_vol.2.gif?raw=true" width="100%">
 
 ---
+
+> 特定コマンドによるアニメーション表示機能
+
+<!--rehype:style=color: white;-->
+
+VSCode でも親しみのある `「command + shift + p」` を押下することで、コマンドリストが表示されます。  
+コマンド入力ボックスに下記のワードを入力することによって、指定したコンポーネントを表示することが可能になります。  
+
+| コマンド名 | 説明 |
+| ---- | ------- |
+| all |  全てのコマンドを表示します。 |
+| alert | ウィンドウ上部にアラートを表示します。 |
+| matrix | ウィンドウ内にマトリックスでお馴染みのあのアニメーションが流れます。 |
+<!--rehype:style=color: black;-->
+
+ex.) matrix
+
+<img src="https://user-images.githubusercontent.com/76277215/173228277-2f323b32-e22f-488b-869a-d9bd32977443.gif" width="100%">
+
 
 ### 使用技術・バージョン
 
