@@ -1,4 +1,4 @@
-import { Issue } from "@/types";
+import { Issue } from '@/types'
 
 export const dummyIssue: Issue = {
   id: '',
@@ -13,5 +13,5 @@ export const dummyIssue: Issue = {
     login: 'Yuisei-Maruyama',
     avatar_url: 'https://avatars.githubusercontent.com/u/76277215?v=4',
   },
-  labels: []
+  labels: [],
 }
