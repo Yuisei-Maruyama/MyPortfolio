@@ -89,7 +89,20 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
   const componentList: ComponentPreviewListType[] = []
 
   if (typeof params === 'string' && componentsFileNameList?.length) {
-    componentList.push(...dummyData(params, componentsFileNameList, getParams, isFlipped, handleSetFlipped, toggleDelete, handleClickToggle, frontEndProps, backEndProps, demoSteps))
+    componentList.push(
+      ...dummyData(
+        params,
+        componentsFileNameList,
+        getParams,
+        isFlipped,
+        handleSetFlipped,
+        toggleDelete,
+        handleClickToggle,
+        frontEndProps,
+        backEndProps,
+        demoSteps
+      )
+    )
   }
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {

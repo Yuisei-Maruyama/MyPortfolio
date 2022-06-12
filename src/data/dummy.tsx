@@ -18,7 +18,7 @@ import {
   SkillTables,
   Stepper,
 } from '@/components'
-import {IconButton } from '@mui/material'
+import { IconButton } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
 import { GrTooltip } from 'react-icons/gr'
 import { Issue, SkillTableContents } from '@/types'
@@ -124,11 +124,11 @@ export const componentList = (
   isFlipped: boolean,
   handleSetFlipped: (isFlipped: boolean) => void,
   toggleDelete: boolean,
-  handleClickToggle: (event: React.MouseEvent<HTMLElement, MouseEvent> ) => void,
+  handleClickToggle: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void,
   frontEndProps: TableData[],
   backEndProps: TableData[],
   demoSteps: string[]
-):ComponentPreviewListType[] => {
+): ComponentPreviewListType[] => {
   return [
     {
       name: 'Circular',
