@@ -17,6 +17,12 @@ const CommandListArea: React.FC<Props> = ({ commandList, children, setComponent 
   const handleKeyDown: OnKeyFun = (_, e) => {
     e.preventDefault()
     setIsRunning(true)
+    document.addEventListener('click', handleClose)
+  }
+
+  const handleClose = () => {
+    setIsRunning(false)
+    document.removeEventListener('click',handleClose)
   }
 
   return (
