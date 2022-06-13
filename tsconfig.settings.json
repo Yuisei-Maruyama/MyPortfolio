@@ -17,7 +17,7 @@
     },
     "typeRoots" : [
       "./node_modules/@types",
-      "src/types"
+      "./src/types",
     ],
     "sourceMap": true,  // ← ソースマップを出力する
     "declaration": true, // ← コンパイルしたtsファイルの中でexportしているもの全ての型定義ファイルを出力する

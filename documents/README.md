@@ -99,7 +99,7 @@ ex.) matrix
 | [@emotion/styled](https://www.npmjs.com/package/@emotion/styled) | ^11.3.0 | CSS in JS を使用するためのパッケージ |
 | [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) | ^5.2.1 | CSSフレームワーク Material-UI を使用するためのパッケージ |
 | [@mui/lab](https://www.npmjs.com/package/@mui/lab) | ^5.0.0-alpha.63 | CSSフレームワーク Material-UI を使用するためのパッケージ |
-| [@mui/material](https://www.npmjs.com/package/@mui/material) | ^5.0.0-rc.1 | CSSフレームワーク Material-UI を使用するためのパッケージ |
+| [@mui/material](https://www.npmjs.com/package/@mui/material) | ^5.8.3 | CSSフレームワーク Material-UI を使用するためのパッケージ |
 | [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom) | ^5.11.4 | React で Unit テストを行うためのパッケージ |
 | [@testing-library/react](https://www.npmjs.com/package/@testing-library/react) | ^11.1.0 | React で Unit テストを行うためのパッケージ |
 | [@testing-library/user-event](https://www.npmjs.com/package/@testing-library/user-event) | ^12.1.10 | React で Unit テストを行うためのパッケージ |
@@ -109,12 +109,11 @@ ex.) matrix
 | [@types/styled-components](https://www.npmjs.com/package/@types/styled-components) | ^5.1.25 | styled-componentsの型定義ファイルのパッケージ |
 | [@uiw/react-md-editor](https://www.npmjs.com/package/@uiw/react-md-editor) | ^3.9.1 | React で Markdown を表示できるようにする |
 | [@use-it/interval](https://www.npmjs.com/package/@use-it/interval) | ^1.0.0 | setInterval を提供するカスタム React フック |
-| [react](https://www.npmjs.com/package/react) | ^17.0.2 | ユーザインタフェース構築のための JavaScript |
+| [react](https://www.npmjs.com/package/react) | ^18.1.0 | ユーザインタフェース構築のための JavaScript |
 | [react-beautiful-dnd](https://www.npmjs.com/package/react-beautiful-dnd) | ^13.1.0 | ドロップ&ドラッグを実現できる |
-| [react-dom](https://www.npmjs.com/package/react-dom) | ^17.0.2 | Javascript のオブジェクトでリアルDOMを仮想的に作り、変更箇所だけ差分検知し更新することを React で行えるようにする |
+| [react-dom](https://www.npmjs.com/package/react-dom) | ^18.1.0 | Javascript のオブジェクトでリアルDOMを仮想的に作り、変更箇所だけ差分検知し更新することを React で行えるようにする |
 | [react-hot-keys](https://www.npmjs.com/package/react-hot-keys) | ^2.7.2 | キーイベントを取得して、そのイベントに対する処理を行える |
 | [react-icons](https://www.npmjs.com/package/react-icons) | ^4.2.0 | `Ant Design` や `Material Design`などを集めたアイコンの宝庫 |
-| [react-particle-effect-button](https://www.npmjs.com/package/react-particle-effect-button) | ^1.0.1 | particleアニメーションが付いたボタンを表現できる |
 | [react-router-dom](https://www.npmjs.com/package/react-router-dom) | ^5.2.0 | ルーティングを定義できる |
 | [react-scripts](https://www.npmjs.com/package/react-scripts) | ^5.0.1 | アプリケーションの初期表示時に JS の読み込み処理を行う |
 | [react-vertical-timeline-component](https://www.npmjs.com/package/react-vertical-timeline-component) | ^3.5.2 | タイムラインの表示 |
