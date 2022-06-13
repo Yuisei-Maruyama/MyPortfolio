@@ -49,7 +49,7 @@ const CommandList: React.FC<Props> = ({ setIsRunning, setComponent }) => {
           ))
         ) : (
           commandList
-            .filter((command) => command.name.startsWith(seachCommand))
+            .filter((command) => command.name === seachCommand)
             .map((command, index) => (
               <$CommandOption key={index} onClick={() => handleClickCommand(command.component)}>
                 <$CommandTitle variant="h6">{command.title}</$CommandTitle>
@@ -57,21 +57,6 @@ const CommandList: React.FC<Props> = ({ setIsRunning, setComponent }) => {
               </$CommandOption>
             ))
         )}
-        {/* {seachCommand === 'all'
-          ? commandList.map((command, index) => (
-              <_CommandOption key={index} onClick={() => handleClickCommand(command.component)}>
-                <$CommandTitle variant="h6">{command.title}</$CommandTitle>
-                <Typography>{command.desc}</Typography>
-              </_CommandOption>
-            ))
-          : commandList
-              .filter((command) => command.name.includes(seachCommand))
-              .map((command, index) => (
-                <_CommandOption key={index} onClick={() => handleClickCommand(command.component)}>
-                  <$CommandTitle variant="h6">{command.title}</$CommandTitle>
-                  <Typography>{command.desc}</Typography>
-                </_CommandOption>
-              ))} */}
       </_CommandOptions>
     </_ActiveCommandWrapper>
   )
