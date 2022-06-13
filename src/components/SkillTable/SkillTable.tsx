@@ -3,6 +3,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { rgba } from 'polished'
 import { Header } from '@/types/index'
 import { Stepper } from '@/components'
+import styled from 'styled-components'
 
 export type TableData = {
   name: string
@@ -67,38 +68,26 @@ const SkillTable: React.FC<Props> = (props: Props) => {
   }
 
   return (
-    <Paper sx={{ width: '100%', backgroundColor: rgba(0, 0, 0, 0.3), border: '1px solid #06D8D7' }}>
+    <$TableWrapper>
       <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell
+              <$TableCell
                 onClick={() => {
                   window.open(link, '_blank')
                 }}
                 align="center"
                 colSpan={12}
-                sx={{
-                  cursor: 'pointer',
-                  color: '#06D8D7',
-                  backgroundColor: rgba(8, 55, 54, 0.7),
-                  fontSize: '2rem',
-                  fontFamily: 'TronFont',
-                }}
               >
                 {title}
-              </TableCell>
+              </$TableCell>
             </TableRow>
             <TableRow>
               {headers.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ top: 57, minWidth: column.minWidth }}
-                  sx={{ color: '#06D8D7', backgroundColor: rgba(0, 26, 26, 1) }}
-                >
+                <$TableCellContent key={column.id} align={column.align} style={{ top: 57, minWidth: column.minWidth }}>
                   {column.label}
-                </TableCell>
+                </$TableCellContent>
               ))}
             </TableRow>
           </TableHead>
@@ -110,9 +99,9 @@ const SkillTable: React.FC<Props> = (props: Props) => {
                       {headers.map((column) => {
                         const value = row[column.id]
                         return (
-                          <TableCell key={column.id} align={column.align} sx={{ color: 'white' }}>
+                          <$TableCellContent key={column.id} align={column.align} sx={{ color: 'white' }}>
                             {column.format && typeof value === 'number' ? column.format(value) : value}
-                          </TableCell>
+                          </$TableCellContent>
                         )
                       })}
                     </TableRow>
@@ -124,9 +113,9 @@ const SkillTable: React.FC<Props> = (props: Props) => {
                       {headers.map((column) => {
                         const value = row[column.id]
                         return (
-                          <TableCell key={column.id} align={column.align} sx={{ color: 'white' }}>
+                          <$TableCellContent key={column.id} align={column.align} sx={{ color: 'white' }}>
                             {column.format && typeof value === 'number' ? column.format(value) : value}
-                          </TableCell>
+                          </$TableCellContent>
                         )
                       })}
                     </TableRow>
@@ -137,9 +126,9 @@ const SkillTable: React.FC<Props> = (props: Props) => {
       </TableContainer>
       {frontEndProps && frontEndRows.length ? (
         <TablePagination
-          sx={{ color: 'white' }}
-          rowsPerPageOptions={[5, 10, 100]}
           component="div"
+          sx={{ color: 'white', backgroundColor: rgba(0, 26, 26, 1) }}
+          rowsPerPageOptions={[5, 10, 100]}
           count={frontEndRows.length}
           rowsPerPage={rowsPerPage}
           page={page}
@@ -151,9 +140,9 @@ const SkillTable: React.FC<Props> = (props: Props) => {
       )}
       {backEndProps && backEndRows.length ? (
         <TablePagination
-          sx={{ color: 'white' }}
-          rowsPerPageOptions={[5, 10, 100]}
           component="div"
+          sx={{ color: 'white', backgroundColor: rgba(0, 26, 26, 1) }}
+          rowsPerPageOptions={[5, 10, 100]}
           count={backEndRows.length}
           rowsPerPage={rowsPerPage}
           page={page}
@@ -163,8 +152,36 @@ const SkillTable: React.FC<Props> = (props: Props) => {
       ) : (
         <></>
       )}
-    </Paper>
+    </$TableWrapper>
   )
 }
+
+const $TableWrapper = styled(Paper)`
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #06d8d7;
+`
+
+const $TableCell = styled(TableCell)`
+  cursor: pointer;
+  color: #06d8d7;
+  background-color: rgba(8, 55, 54, 1);
+  font-size: 2rem;
+  font-family: 'TronFont';
+`
+
+const $TableCellContent = styled(TableCell)`
+  color: #06d8d7;
+  background-color: rgba(0, 26, 26, 1);
+`
+
+// const $TablePagination = styled(TablePagination)`
+//   color: white;
+//   background-color: rgba(0, 26, 26, 1);
+//   & > ul {
+//     display: flex;
+//     flex-direction: column;
+//   }
+// `
 
 export default SkillTable

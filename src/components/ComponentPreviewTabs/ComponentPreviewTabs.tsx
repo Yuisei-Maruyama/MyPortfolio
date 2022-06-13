@@ -17,11 +17,11 @@ import {
   Paper,
 } from '@mui/material'
 import { rgba } from 'polished'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { isObject } from '@/data/utils'
 import { useSetParams, useFlipped, useDelete } from '@/customHooks'
 import { skillTableData } from '@/data/skillTableData'
 import { ComponentPreviewListType, componentList as dummyData } from '@/data/dummy'
+import styled from 'styled-components'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -35,14 +35,6 @@ type Props = {
   input?: React.FC
   componentsFileNameList?: string[]
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiTab-root': { backgroundColor: '#06D8D7' },
-    },
-  })
-)
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
@@ -73,8 +65,6 @@ function a11yProps(index: number) {
 
 const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
   const { params, input, componentsFileNameList } = props
-
-  const classes = useStyles()
 
   const [value, setValue] = useState(0)
 
@@ -122,10 +112,10 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
         >
           <Tab sx={{ backgroundColor: rgba(0, 26, 26, 1) }} label="Usage" {...a11yProps(0)} />
           <Tab sx={{ backgroundColor: rgba(0, 26, 26, 1) }} label="Props" {...a11yProps(1)} />
-          <Tab sx={{ backgroundColor: rgba(0, 26, 26, 1) }} className={classes.root} label="Events" {...a11yProps(2)} />
+          <Tab sx={{ backgroundColor: rgba(0, 26, 26, 1) }} label="Events" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
+      <$TabPanel value={value} index={0}>
         <List dense={true} sx={{ marginBottom: 3 }}>
           <ListItem>
             <ListItemText>
@@ -178,8 +168,8 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
               )
             })}
         </>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
+      </$TabPanel>
+      <$TabPanel value={value} index={1}>
         <List dense={true} sx={{ marginBottom: 3 }}>
           <ListItem>
             <TableContainer component={Paper}>
@@ -242,8 +232,8 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
             </TableContainer>
           </ListItem>
         </List>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
+      </$TabPanel>
+      <$TabPanel value={value} index={2}>
         <List dense={true} sx={{ marginBottom: 3 }}>
           <ListItem>
             <TableContainer component={Paper}>
@@ -286,9 +276,13 @@ const ComponentPreviewTabs: React.FC<Props> = (props: Props) => {
             </TableContainer>
           </ListItem>
         </List>
-      </TabPanel>
+      </$TabPanel>
     </Box>
   )
 }
+
+const $TabPanel = styled(TabPanel)`
+  background-color: rgba(5, 33, 35, 0.7);
+`
 
 export default ComponentPreviewTabs

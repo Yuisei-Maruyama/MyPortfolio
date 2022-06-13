@@ -16,6 +16,7 @@ const MaterialUISwitch = styled(Switch)(
     checkedsvg: string
     unchecksvg: string
   }) => ({
+    margin: '3px',
     width: 60,
     height: 34,
     padding: 7,
@@ -83,7 +84,6 @@ const IconSwitch: React.FC<Props> = (props: Props) => {
   return (
     <>
       <MaterialUISwitch
-        sx={{ m: 3 }}
         checked={checked}
         checkedcolor={checkedcolor}
         uncheckcolor={uncheckcolor}

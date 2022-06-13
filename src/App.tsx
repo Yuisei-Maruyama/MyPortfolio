@@ -1,8 +1,6 @@
 import React, { useState, ReactNode, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Container } from '@material-ui/core'
-import { Box } from '@mui/material'
-import { rgba } from 'polished'
+import { Box, Container } from '@mui/material'
 import { Main, Board, History, Travel, Instructions, DocumentsPreviewer, ComponentsPreviewer } from '@/pages'
 import {
   ThemeProvider,
@@ -14,6 +12,7 @@ import {
 } from '@/components'
 import { commandList } from './data/commandList'
 import useInterval from '@use-it/interval'
+import { rgba } from 'polished'
 
 const App: React.FC = () => {
   const [component, setComponent] = useState<ReactNode>()
@@ -37,7 +36,9 @@ const App: React.FC = () => {
         <ThemeProvider mode="dark">
           <CommandListProvider commandList={commandList} setComponent={setComponent}>
             {!isDelete && component}
-            <Header></Header>
+            <Box>
+              <Header></Header>
+            </Box>
             <Container maxWidth="xl" style={{ padding: '0 0 70px 0' }}>
               <Switch>
                 <Route exact path="/" component={Main} />

@@ -24,26 +24,6 @@ interface CardSize {
   height?: string
 }
 
-const $neonBorderCard = styled(Card)<CardSize>`
-  width: ${(p) => p.width};
-  height: ${(p) => p.height};
-  background-color: rgba(0, 0, 0, 0.3);
-  color: white;
-  border: 1px solid #06d8d7;
-  border-radius: 15px;
-  box-shadow: -1px -1px #06d8d7, 1px -1px #06d8d7, 1px 1px #06d8d7, -1px 1px #06d8d7, 0 0 0.1em #06d8d7,
-    0 0 0.1em #06d8d7 inset, 0 0 0.5em #06d8d7, 0 0 0.5em #06d8d7 inset, 0 0 1em #06d8d7, 0 0 1em #06d8d7 inset;
-`
-
-const $IconList = styled(List)`
-  display: grid;
-  text-align: center;
-  grid-template-columns: 100px 100px 100px;
-  grid-template-rows: 50px 50px;
-  row-gap: 13.5px;
-  color: #06d8d7;
-`
-
 const ProfileBackCard: React.FC<Props> = (props: Props) => {
   const { width, height } = props
 
@@ -74,5 +54,27 @@ const ProfileBackCard: React.FC<Props> = (props: Props) => {
     </$neonBorderCard>
   )
 }
+
+const $neonBorderCard = styled(Card)<CardSize>`
+  width: ${(p) => p.width};
+  height: ${(p) => p.height};
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  color: white !important;
+  border: 1px solid #06d8d7;
+  border-radius: 15px !important;
+  box-shadow: -1px -1px #06d8d7, 1px -1px #06d8d7, 1px 1px #06d8d7, -1px 1px #06d8d7, 0 0 0.1em #06d8d7,
+    0 0 0.1em #06d8d7 inset, 0 0 0.5em #06d8d7, 0 0 0.5em #06d8d7 inset, 0 0 1em #06d8d7, 0 0 1em #06d8d7 inset;
+`
+
+const $IconList = styled(List)`
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  color: #06d8d7;
+  margin-left: 15px;
+  &:nth-child(3n) {
+    margin-left: 0;
+  }
+`
 
 export default memo(ProfileBackCard)

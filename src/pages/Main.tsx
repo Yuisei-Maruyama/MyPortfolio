@@ -9,8 +9,7 @@ import {
   SkillTables,
   ProgressArea,
 } from '@/components'
-import { Box } from '@material-ui/core'
-import { Grid } from '@mui/material'
+import { Grid, Box } from '@mui/material'
 import { Issues } from '@/types'
 import axios from 'axios'
 import { skillTableData } from '@/data/skillTableData'
@@ -76,7 +75,7 @@ const Main = () => {
       </SliderContext.Provider>
       <Grid container gap={12} sx={{ mt: 6 }}>
         <Grid item lg={1} xl={1} />
-        <Grid item sm={6} xs={5} md={4} lg={3} xl={2}>
+        <Grid item sm={6} xs={5} md={4} lg={3} xl={3}>
           <FlippedCard>
             <ProfileFrontCard
               width="100%"

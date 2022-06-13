@@ -53,20 +53,21 @@ const Header: React.FC = () => {
     <AppBar position="static" sx={{ zIndex: 2 }}>
       <Toolbar
         disableGutters
-        sx={{ paddingLeft: 3, paddingRight: 1, backgroundColor: rgba(0, 26, 26, 1), border: 'solid 1px #06D8D7' }}
+        sx={{ paddingLeft: 2, paddingRight: 2, backgroundColor: rgba(0, 26, 26, 1), border: 'solid 1px #06D8D7' }}
       >
         <Typography
           variant="h6"
           noWrap
           component="div"
           sx={{
-            mr: 2,
             display: { xs: 'none', md: 'flex' },
+          }}
+          style={{
             fontFamily: 'BreakingBadFont',
             fontSize: '2.5rem',
             color: '#06D8D7',
+            cursor: 'pointer',
           }}
-          style={{ cursor: 'pointer' }}
           onClick={() => {
             history.push('/')
           }}
@@ -118,11 +119,13 @@ const Header: React.FC = () => {
           sx={{
             flexGrow: 1,
             display: { xs: 'flex', md: 'none' },
+          }}
+          style={{
+            cursor: 'pointer',
             fontFamily: 'CyberTechFont',
             color: '#06D8D7',
             fontSize: '2rem',
           }}
-          style={{ cursor: 'pointer' }}
           onClick={() => {
             history.push('/')
           }}
@@ -135,7 +138,8 @@ const Header: React.FC = () => {
             <Button
               key={page}
               onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => handleToPage(e)}
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              sx={{ my: 2 }}
+              style={{ color: 'white', display: 'block' }}
             >
               {page}
             </Button>
@@ -148,6 +152,7 @@ const Header: React.FC = () => {
               edge="start"
               color="inherit"
               aria-label="github tasks"
+              style={{ color: 'white' }}
               onClick={() => {
                 history.push('/board')
               }}
@@ -160,7 +165,7 @@ const Header: React.FC = () => {
               edge="start"
               color="inherit"
               aria-label="github"
-              sx={{ marginLeft: 0.1 }}
+              style={{ marginLeft: '15px', color: 'white' }}
               onClick={() => {
                 window.open('https://github.com/Yuisei-Maruyama/MyPortfolio', '_blank')
               }}
@@ -173,7 +178,7 @@ const Header: React.FC = () => {
               edge="start"
               color="inherit"
               aria-label="github tasks"
-              sx={{ marginLeft: 0.1 }}
+              style={{ marginLeft: '15px', color: 'white' }}
               onClick={() => {
                 window.open('https://app.netlify.com/sites/silly-goodall-7bfc72/deploys?filter=main', '_blank')
               }}
@@ -186,7 +191,7 @@ const Header: React.FC = () => {
               edge="start"
               color="inherit"
               aria-label="instagram"
-              sx={{ marginLeft: 0.1 }}
+              style={{ marginLeft: '15px', color: 'white' }}
               onClick={() => {
                 window.open('https://www.instagram.com/y_metro/', '_blank')
               }}
@@ -197,7 +202,10 @@ const Header: React.FC = () => {
           {/* <ModeSwitch darkMode={darkMode} setDarkMode={setDarkMode}></ModeSwitch> */}
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu}>
-              <Avatar sx={{ width: 35, height: 35 }} alt="Yuisei Maruyama" />
+              <Avatar
+                style={{ width: '35px', height: '35px', marginLeft: '15px', color: 'white' }}
+                alt="Yuisei Maruyama"
+              />
             </IconButton>
           </Tooltip>
           <DefaultMenu
