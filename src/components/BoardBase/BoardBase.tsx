@@ -230,12 +230,14 @@ const BoardBase: React.FC = () => {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <a
+          href="####"
           onClick={() => window.open('https://docs.github.com/ja/rest/reference/users', '_blank')}
           style={{ cursor: 'pointer' }}
         >
           <p style={{ color: '#06D8D7', display: 'contents' }}>GitHub API</p>
         </a>
         <a
+          href="####"
           onClick={() =>
             window.open('https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md', '_blank')
           }

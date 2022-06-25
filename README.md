@@ -141,6 +141,7 @@ ex.) matrix
 | [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier) | ^8.3.0 | ESLint と Prettier を併用する |
 | [eslint-config-standard](https://www.npmjs.com/package/eslint-config-standard) | ^16.0.3 | JavaScript Standard Styleのルールをeslintに適用する |
 | [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) | ^2.24.2 | importの順番をルール化して自動で整列させる |
+| [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y) | ^6.6.0 |  |
 | [eslint-plugin-node](https://www.npmjs.com/package/eslint-plugin-node) | ^11.1.0 | Node.js の記述に対するルールを設定する |
 | [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise) | ^5.1.0 | 非同期処理に対するルールを設定する |
 | [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) | ^7.25.2 | React のルールを設定する |
