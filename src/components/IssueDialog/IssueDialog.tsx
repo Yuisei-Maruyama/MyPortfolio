@@ -218,7 +218,6 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
               <>
                 <DialogContentText color="#06D8D7">{dialogDesc}</DialogContentText>
                 <TextField
-                  autoFocus
                   margin="dense"
                   id="title"
                   label="Title"
