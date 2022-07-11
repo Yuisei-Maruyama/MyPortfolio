@@ -89,6 +89,8 @@ const getDesc = (packageName: string) => {
       return 'React Hooksのルールを設定する'
     case 'eslint-plugin-styled-components-varname':
       return 'styled-components の変数名の命名ルールを設定する'
+    case 'eslint-plugin-jsx-a11y':
+      return 'jsx(tsx) にアクセシビリティのルールを追加する'
     default:
       break
   }
