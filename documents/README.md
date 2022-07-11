@@ -33,7 +33,7 @@ https://yuisei-maruyama.work/
 
 <!--rehype:style=color: black;-->
 
-(※使用パッケージに記載されているテーブルはコミット時に [updateReadmeTable.ts](https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/tools/updateReadmeTable.ts) によって自動更新されます。）
+(※「使用技術・バージョン」に記載されているテーブルはコミット時に [updateReadmeTable.ts](https://github.com/Yuisei-Maruyama/MyPortfolio/blob/main/tools/updateReadmeTable.ts) によって自動更新されます。）
 
 ---
 
