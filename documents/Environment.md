@@ -65,7 +65,7 @@ $ npm uni husky
     "start": "react-scripts start",
 ```
 
-### 方針
+### 手順
 1. extends を使って別ファイルから paths のオプションを読み込ませる
 2. webpack の設定を上書きしてパスの解決を行う。
 
