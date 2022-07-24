@@ -25,7 +25,10 @@ const componentsFileNameList: string[] = Object.keys(componentsExports)
       exportItem !== 'ModeSwitch' &&
       exportItem !== 'ThemeProvider' &&
       exportItem !== 'SliderContents' &&
-      exportItem !== 'TypeWriter'
+      exportItem !== 'TypeWriter' &&
+      exportItem !== 'Alert' &&
+      exportItem !== 'CommandList' &&
+      exportItem !== 'CommandListProvider'
   )
   .sort()
 
