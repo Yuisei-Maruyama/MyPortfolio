@@ -27,7 +27,7 @@ export const skillTableData = () => {
     {
       name: 'React.js',
       steps: reactSteps,
-      activeStep: 5,
+      activeStep: 6,
     },
     {
       name: 'React Hooks',
