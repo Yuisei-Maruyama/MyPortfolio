@@ -6,6 +6,7 @@ import {
   ComponentList,
   DocumentList,
   FlippedCard,
+  FileUploadButton,
   ProfileFrontCard,
   ProfileBackCard,
   Footer,
@@ -40,10 +41,13 @@ export type ComponentPreviewListType = {
     isFlipped?: boolean
     setFlipped?: (isFlipped: boolean) => void
     checked?: boolean
-    color?: {
-      checkedcolor: string
-      uncheckcolor: string
-    }
+    color?:
+      | {
+          checkedcolor: string
+          uncheckcolor: string
+        }
+      | string
+    variant?: 'text' | 'outlined' | 'contained' | undefined
     svg?: {
       checkedsvg: string
       unchecksvg: string
@@ -84,6 +88,8 @@ export const dummyIssue: Issue = {
   },
   labels: [],
 }
+
+const fileUploadEvents = [{ name: 'click', desc: 'ファイル選択モーダルが開く', target: 'Button' }]
 
 const headerEvents = [
   { name: 'click', desc: '/ に遷移', target: 'MyPortfolio' },
@@ -187,6 +193,16 @@ export const componentList = (
         ],
       },
       events: flippedCardEvents,
+    },
+    {
+      name: 'FileUploadButton',
+      desc: 'アップロードするファイルを選択できるボタンコンポーネント\nCSV がアップロードされた際には、配列に変換して返すことが可能',
+      tag: FileUploadButton,
+      props: {
+        color: '#06D8D7',
+        variant: 'outlined',
+      },
+      events: fileUploadEvents,
     },
     {
       name: 'Header',
