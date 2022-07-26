@@ -20,7 +20,6 @@ type Props = {
 }
 
 const SelectableTable: FC<Props> = ({ tableContents, tableHeadCells, children }) => {
-
   const {
     selectedRowIds,
     getSelectedRows,
@@ -29,7 +28,7 @@ const SelectableTable: FC<Props> = ({ tableContents, tableHeadCells, children })
     isIndeterminate,
     toggleSelected,
     toggleSelectedAll,
-  } = useTableRowSelect(tableContents.map((tableContent) => tableContent.id));
+  } = useTableRowSelect(tableContents.map((tableContent) => tableContent.id))
 
   return (
     <>
@@ -42,53 +41,46 @@ const SelectableTable: FC<Props> = ({ tableContents, tableHeadCells, children })
             indeterminate={isIndeterminate}
           />
           <TableBody>
-              {tableContents.map((tableContent) => {
-                const isItemSelected = isSelectedIds(tableContent.id);
+            {tableContents.map((tableContent) => {
+              const isItemSelected = isSelectedIds(tableContent.id)
 
-                return (
-                  <TableRow
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={tableContent.id}
-                    onClick={() => toggleSelected(tableContent.id)}
-                    selected={isItemSelected}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox checked={isItemSelected} />
-                    </TableCell>
-                    {
-                      Object.values(tableContent).map(tableContentKey => {
-                        return (
-                          <TableCell key={tableContentKey}>{tableContentKey}</TableCell>
-                        )
-                      })
-                    }
-                  </TableRow>
-                );
-              })}
-            </TableBody>
+              return (
+                <TableRow
+                  hover
+                  role="checkbox"
+                  tabIndex={-1}
+                  key={tableContent.id}
+                  onClick={() => toggleSelected(tableContent.id)}
+                  selected={isItemSelected}
+                >
+                  <TableCell padding="checkbox">
+                    <Checkbox checked={isItemSelected} />
+                  </TableCell>
+                  {Object.values(tableContent).map((tableContentKey) => {
+                    return <TableCell key={tableContentKey}>{tableContentKey}</TableCell>
+                  })}
+                </TableRow>
+              )
+            })}
+          </TableBody>
         </Table>
       </TableContainer>
-      { children
-        ? (
+      {children ? (
         <>
-          <Box sx={{ marginTop: '25px'}}>
-            { children[0] }
-            <Typography sx={{ marginTop: '10px'}}>{JSON.stringify(selectedRowIds)}</Typography>
+          <Box sx={{ marginTop: '25px' }}>
+            {children[0]}
+            <Typography sx={{ marginTop: '10px' }}>{JSON.stringify(selectedRowIds)}</Typography>
           </Box>
-          <Box sx={{ marginTop: '25px'}}>
-            { children[1] }
-            <Typography sx={{ marginTop: '10px'}}>{JSON.stringify(getSelectedRows(tableContents))}</Typography>
+          <Box sx={{ marginTop: '25px' }}>
+            {children[1]}
+            <Typography sx={{ marginTop: '10px' }}>{JSON.stringify(getSelectedRows(tableContents))}</Typography>
           </Box>
         </>
-        )
-        : (
-          <></>
-        )
-      }
+      ) : (
+        <></>
+      )}
     </>
-  );
+  )
 }
 
-export default SelectableTable;
+export default SelectableTable

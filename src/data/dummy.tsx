@@ -70,7 +70,7 @@ export type ComponentPreviewListType = {
     frontEndProps?: SkillTableContents
     backEndProps?: SkillTableContents
     steps?: string[]
-    activeStep?: number,
+    activeStep?: number
     tableHeadCells?: TableHeadCell[]
     tableContents?: TableContent[]
   }
@@ -167,7 +167,7 @@ export const componentList = (
   handleClickToggle: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void,
   frontEndProps: TableData[],
   backEndProps: TableData[],
-  demoSteps: string[],
+  demoSteps: string[]
 ): ComponentPreviewListType[] => {
   return [
     {
@@ -379,9 +379,13 @@ export const componentList = (
         tableHeadCells: tableHeadCells,
         tableContents: selectableTableContents,
         children: [
-          <Typography sx={{ fontWeight: 'bold'}} key='SelectedRowsIDs'>SelectedRowsIDs</Typography>,
-          <Typography sx={{ fontWeight: 'bold'}} key='SelectedRowsInfo'>SelectedRowsInfo</Typography>,
-        ]
+          <Typography sx={{ fontWeight: 'bold' }} key="SelectedRowsIDs">
+            SelectedRowsIDs
+          </Typography>,
+          <Typography sx={{ fontWeight: 'bold' }} key="SelectedRowsInfo">
+            SelectedRowsInfo
+          </Typography>,
+        ],
       },
     },
     {
