@@ -1,5 +1,6 @@
 import React, { FC, useRef } from 'react'
 import { Button } from '@mui/material'
+import { MdFileUpload } from 'react-icons/md'
 import { onFileInputToArray } from '@/components/FileUploadButton/loadCsv'
 
 type Props = {
@@ -22,7 +23,7 @@ const FileUploadButton: FC<Props> = ({ color, variant }) => {
 
   return (
     <div>
-      <Button onClick={fileUpload} variant={variant} sx={{ color: color }}>
+      <Button onClick={fileUpload} variant={variant} startIcon={<MdFileUpload />} sx={{ color: color }}>
         ファイルアップロード
       </Button>
       <input

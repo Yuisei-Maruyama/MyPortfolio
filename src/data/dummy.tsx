@@ -4,6 +4,7 @@ import {
   Header,
   Circular,
   ComponentList,
+  CsvDownloadButton,
   DocumentList,
   FlippedCard,
   FileUploadButton,
@@ -22,6 +23,7 @@ import {
 import { IconButton } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
 import { GrTooltip } from 'react-icons/gr'
+import { Headers, Data } from 'react-csv/components/CommonPropTypes'
 import { Issue, SkillTableContents } from '@/types'
 import { TableData } from '@/components/SkillTable/SkillTable'
 
@@ -53,6 +55,8 @@ export type ComponentPreviewListType = {
       unchecksvg: string
     }
     onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
+    csvHeaders?: Headers
+    csvData?: string | Data | (() => string | Data)
     fileName?: string
     message?: string
     speed?: number
@@ -89,6 +93,14 @@ export const dummyIssue: Issue = {
   labels: [],
 }
 
+const csvDownloadEvents = [
+  {
+    name: 'click',
+    desc: 'データ構造をCSV形式に変換してダウンロードさせる',
+    target: 'Button',
+  },
+]
+
 const fileUploadEvents = [{ name: 'click', desc: 'ファイル選択モーダルが開く', target: 'Button' }]
 
 const headerEvents = [
@@ -122,6 +134,23 @@ const flippedCardEvents = [
 const svgIconSwitchEvents = [
   { name: 'click', desc: 'toggleの真偽値を入れ替え、アイコンと色の表示を切り替える', target: 'Switch Button' },
 ]
+
+const csvData = [
+  {
+    name: 'Maruyama',
+    location: 'Tokyo',
+    country: 'Japan',
+    job: 'Front-End Engineer',
+  },
+  {
+    name: 'Yuisei',
+    location: 'Tokyo',
+    country: 'Japan',
+    job: 'Front-End Engineer',
+  },
+]
+
+const csvHeaders = Object.keys(csvData[0]).map((key) => ({ key, label: key }))
 
 export const componentList = (
   params: string,
@@ -193,6 +222,19 @@ export const componentList = (
         ],
       },
       events: flippedCardEvents,
+    },
+    {
+      name: 'CsvDownloadButton',
+      desc: '設定されたデータをCSV形式に変換してダウンロードできるボタンコンポーネント',
+      tag: CsvDownloadButton,
+      props: {
+        csvHeaders: csvHeaders,
+        csvData: csvData,
+        fileName: 'xxxx.csv',
+        color: '#06D8D7',
+        variant: 'outlined',
+      },
+      events: csvDownloadEvents,
     },
     {
       name: 'FileUploadButton',
