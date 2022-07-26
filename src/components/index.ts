@@ -38,6 +38,7 @@ export { default as Alert } from './Alert/Alert'
 export { default as CommandList } from './CommandList/CommandList'
 export { default as CommandListProvider } from './CommandListArea/CommandListArea'
 export { default as FileUploadButton } from './FileUploadButton/FileUploadButton'
+export { default as CsvDownloadButton } from './CsvDownloadButton/CsvDownloadButton'
 
 export const getHeaders = async (token: string): Promise<{ authorization?: string }> => {
   const authorization = `bearer ${token}`

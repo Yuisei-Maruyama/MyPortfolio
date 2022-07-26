@@ -19,6 +19,8 @@ const getDesc = (packageName: string) => {
       return 'webpack の設定を上書きしてエイリアス設定しているパスの解決を行う'
     case 'react-beautiful-dnd':
       return 'ドロップ&ドラッグを実現できる'
+    case 'react-csv':
+      return 'React上で簡単にcsvエクスポート機能を実装できるライブラリ'
     case 'react-dom':
       return 'Javascript のオブジェクトでリアルDOMを仮想的に作り、変更箇所だけ差分検知し更新することを React で行えるようにする'
     case 'react-vertical-timeline-component':
