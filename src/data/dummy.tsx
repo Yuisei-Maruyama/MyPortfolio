@@ -140,6 +140,12 @@ const svgIconSwitchEvents = [
   { name: 'click', desc: 'toggleの真偽値を入れ替え、アイコンと色の表示を切り替える', target: 'Switch Button' },
 ]
 
+const selectableTableEvents = [
+  { name: 'click', desc: 'テーブルから選択されたレコード情報を取得する', target: 'Checkbox' },
+  { name: 'click', desc: 'テーブルのレコードを指定した数で表示する', target: 'Selectbox' },
+  { name: 'click', desc: 'テーブルのページネーションを行う', target: 'Arrow Icon' },
+]
+
 const csvData = [
   {
     name: 'Maruyama',
@@ -373,7 +379,8 @@ export const componentList = (
     },
     {
       name: 'SelectableTable',
-      desc: `Tableの複数レコード選択を可能にするコンポーネント`,
+      desc: `Tableの複数レコード選択を可能にするコンポーネント\n- 選択されたレコードが１つであれば、「オブジェクト形式」 でレコード１件の情報を返却する。\n
+      -  選択されたレコードが複数であれば、「配列形式」 でレコード情報を返却する。`,
       tag: SelectableTable,
       props: {
         tableHeadCells: tableHeadCells,
@@ -387,6 +394,7 @@ export const componentList = (
           </Typography>,
         ],
       },
+      events: selectableTableEvents,
     },
     {
       name: 'Tooltip',
