@@ -18,14 +18,17 @@ import {
   ResumeTable,
   SkillTable,
   SkillTables,
+  SelectableTable,
   Stepper,
 } from '@/components'
-import { IconButton } from '@mui/material'
+import { IconButton, Typography } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
 import { GrTooltip } from 'react-icons/gr'
 import { Headers, Data } from 'react-csv/components/CommonPropTypes'
 import { Issue, SkillTableContents } from '@/types'
 import { TableData } from '@/components/SkillTable/SkillTable'
+import { selectableTableContents, tableHeadCells } from '@/data/selectableTableData'
+import { TableHeadCell, TableContent } from '@/components/SelectableTable/SelectableTable'
 
 export type ComponentPreviewListType = {
   name: string
@@ -67,7 +70,9 @@ export type ComponentPreviewListType = {
     frontEndProps?: SkillTableContents
     backEndProps?: SkillTableContents
     steps?: string[]
-    activeStep?: number
+    activeStep?: number,
+    tableHeadCells?: TableHeadCell[]
+    tableContents?: TableContent[]
   }
   events?: {
     name: string
@@ -162,7 +167,7 @@ export const componentList = (
   handleClickToggle: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void,
   frontEndProps: TableData[],
   backEndProps: TableData[],
-  demoSteps: string[]
+  demoSteps: string[],
 ): ComponentPreviewListType[] => {
   return [
     {
@@ -364,6 +369,19 @@ export const componentList = (
       props: {
         steps: demoSteps,
         activeStep: 3,
+      },
+    },
+    {
+      name: 'SelectableTable',
+      desc: `Tableの複数レコード選択を可能にするコンポーネント`,
+      tag: SelectableTable,
+      props: {
+        tableHeadCells: tableHeadCells,
+        tableContents: selectableTableContents,
+        children: [
+          <Typography sx={{ fontWeight: 'bold'}} key='SelectedRowsIDs'>SelectedRowsIDs</Typography>,
+          <Typography sx={{ fontWeight: 'bold'}} key='SelectedRowsInfo'>SelectedRowsInfo</Typography>,
+        ]
       },
     },
     {
