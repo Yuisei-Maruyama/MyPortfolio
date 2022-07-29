@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import MarkdownPreview from '@uiw/react-markdown-preview'
+// import MarkdownPreview from '@uiw/react-markdown-preview'
+import MarkdownPreview from './MarkdownPreview'
 
 type Props = {
   fileName: string
@@ -20,7 +21,7 @@ const MarkdownPreviewer: React.FC<Props> = (props: Props) => {
       .catch((err) => console.log(err))
   }, [fileName])
 
-  return <MarkdownPreview source={text} />
+  return <MarkdownPreview text={text} />
 }
 
 export default MarkdownPreviewer
