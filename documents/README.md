@@ -134,9 +134,9 @@ ex.) matrix
 | [@types/styled-components](https://www.npmjs.com/package/@types/styled-components) | ^5.1.25 | styled-componentsの型定義ファイルのパッケージ |
 | [@uiw/react-md-editor](https://www.npmjs.com/package/@uiw/react-md-editor) | ^3.9.1 | React で Markdown を表示できるようにする |
 | [@use-it/interval](https://www.npmjs.com/package/@use-it/interval) | ^1.0.0 | setInterval を提供するカスタム React フック |
-| [highlight.js](https://www.npmjs.com/package/highlight.js) | ^11.6.0 |  |
-| [marked](https://www.npmjs.com/package/marked) | ^4.0.18 |  |
-| [mermaid](https://www.npmjs.com/package/mermaid) | ^9.1.3 |  |
+| [highlight.js](https://www.npmjs.com/package/highlight.js) | ^11.6.0 | Webページ上に表示したプログラミングコードなどに色を付けるライブラリ |
+| [marked](https://www.npmjs.com/package/marked) | ^4.0.18 | markdownをhtmlに変換するライブラリ |
+| [mermaid](https://www.npmjs.com/package/mermaid) | ^9.1.3 | テキストとコードを使用して図と視覚化をマークダウンで実現できるライブラリ |
 | [react](https://www.npmjs.com/package/react) | ^17.0.2 | ユーザインタフェース構築のための JavaScript |
 | [react-beautiful-dnd](https://www.npmjs.com/package/react-beautiful-dnd) | ^13.1.0 | ドロップ&ドラッグを実現できる |
 | [react-csv](https://www.npmjs.com/package/react-csv) | ^2.2.2 | React上で簡単にcsvエクスポート機能を実装できるライブラリ |

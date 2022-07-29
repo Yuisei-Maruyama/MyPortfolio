@@ -93,6 +93,12 @@ const getDesc = (packageName: string) => {
       return 'styled-components の変数名の命名ルールを設定する'
     case 'eslint-plugin-jsx-a11y':
       return 'jsx(tsx) にアクセシビリティのルールを追加する'
+    case 'highlight.js':
+      return 'Webページ上に表示したプログラミングコードなどに色を付けるライブラリ'
+    case 'marked':
+      return 'markdownをhtmlに変換するライブラリ'
+    case 'mermaid':
+      return 'テキストとコードを使用して図と視覚化をマークダウンで実現できるライブラリ'
     default:
       break
   }
