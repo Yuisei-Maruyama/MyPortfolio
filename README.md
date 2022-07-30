@@ -134,6 +134,9 @@ ex.) matrix
 | [@types/styled-components](https://www.npmjs.com/package/@types/styled-components) | ^5.1.25 | styled-componentsの型定義ファイルのパッケージ |
 | [@uiw/react-md-editor](https://www.npmjs.com/package/@uiw/react-md-editor) | ^3.9.1 | React で Markdown を表示できるようにする |
 | [@use-it/interval](https://www.npmjs.com/package/@use-it/interval) | ^1.0.0 | setInterval を提供するカスタム React フック |
+| [highlight.js](https://www.npmjs.com/package/highlight.js) | ^11.6.0 | Webページ上に表示したプログラミングコードなどに色を付けるライブラリ |
+| [marked](https://www.npmjs.com/package/marked) | ^4.0.18 | markdownをhtmlに変換するライブラリ |
+| [mermaid](https://www.npmjs.com/package/mermaid) | ^9.1.3 | テキストとコードを使用して図と視覚化をマークダウンで実現できるライブラリ |
 | [react](https://www.npmjs.com/package/react) | ^17.0.2 | ユーザインタフェース構築のための JavaScript |
 | [react-beautiful-dnd](https://www.npmjs.com/package/react-beautiful-dnd) | ^13.1.0 | ドロップ&ドラッグを実現できる |
 | [react-csv](https://www.npmjs.com/package/react-csv) | ^2.2.2 | React上で簡単にcsvエクスポート機能を実装できるライブラリ |
@@ -154,6 +157,8 @@ ex.) matrix
 | [web-vitals](https://www.npmjs.com/package/web-vitals) | ^1.0.1 | サイトの健全性を示す重要指標を計測できる |
 | [@material-ui/core](https://www.npmjs.com/package/@material-ui/core) | ^4.12.3 | CSSフレームワーク Material-UI を使用するパッケージ(旧) -> [@mui/material](https://www.npmjs.com/package/@mui/material) に変更された |
 | [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) | ^4.11.2 | CSSフレームワーク Material-UI のアイコンを使用するパッケージ(旧) -> [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) に変更された |
+| [@types/marked](https://www.npmjs.com/package/@types/marked) | ^4.0.3 | markedの型定義ファイルのパッケージ |
+| [@types/mermaid](https://www.npmjs.com/package/@types/mermaid) | ^8.2.9 | mermaidの型定義ファイルのパッケージ |
 | [@types/react](https://www.npmjs.com/package/@types/react) | ^17.0.19 | reactの型定義ファイルのパッケージ |
 | [@types/react-beautiful-dnd](https://www.npmjs.com/package/@types/react-beautiful-dnd) | ^13.1.2 | react-beautiful-dndの型定義ファイルのパッケージ |
 | [@types/react-csv](https://www.npmjs.com/package/@types/react-csv) | ^1.1.3 | react-csvの型定義ファイルのパッケージ |

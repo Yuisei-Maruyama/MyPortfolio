@@ -180,6 +180,11 @@ const DocumentList: React.FC<Props> = (props: Props) => {
           />
           <TreeItem
             nodeId="104"
+            label="Mermaid"
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
+          />
+          <TreeItem
+            nodeId="105"
             label="Web-View"
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e)}
           />
