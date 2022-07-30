@@ -33,9 +33,8 @@ const MarkdownPreview: FC<Props> = ({ text }) => {
           return ['<div class="mermaid">', code, '</div>'].join('')
         }
         return code
-      }
-    }
-    )
+      },
+    })
     mermaid.init('.mermaid')
   }, [text])
 
@@ -49,21 +48,21 @@ const MarkdownPreview: FC<Props> = ({ text }) => {
 const _MarkdownBase = styled.div`
   font-size: 18px;
   p > a {
-    color: #06D8D7;
+    color: #06d8d7;
   }
   code {
     padding: 0.2em 0.4em;
     margin: 0;
     font-size: 85%;
-    color: #06D8D7;
+    color: #06d8d7;
     /* background-color: rgba(110,118,129,0.4); */
     border-radius: 6px;
   }
   blockquote {
     margin-left: 0;
     padding: 0 1em;
-    color: #06D8D7;
-    border-left: 0.25em solid #06D8D7;
+    color: #06d8d7;
+    border-left: 0.25em solid #06d8d7;
   }
   table {
     border-spacing: 0;
@@ -73,17 +72,17 @@ const _MarkdownBase = styled.div`
   }
   thead {
     padding: 10px auto;
-    border: 1px solid #06D8D7;
+    border: 1px solid #06d8d7;
     font-size: 16px;
     font-weight: 600;
   }
-  th, td {
+  th,
+  td {
     padding: 6px 13px;
-    border: 1px solid #06D8D7;
+    border: 1px solid #06d8d7;
   }
   td > a {
-    color: #06D8D7;
-
+    color: #06d8d7;
   }
 `
 
