@@ -84,6 +84,10 @@ const _MarkdownBase = styled.div`
   td > a {
     color: #06d8d7;
   }
+  svg[id*="mermaid"] {
+    padding: 10px;
+    background-color: white;
+  }
 `
 
 export default MarkdownPreview
