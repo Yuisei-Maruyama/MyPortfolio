@@ -1,5 +1,6 @@
 # Mermaid
 
+[公式ドキュメント](https://mermaid-js.github.io/mermaid/#/)
 ## Mermaid とは?
 
 **Mermaid とは、テキストとコードを使用して図と視覚化をマークダウンで実現できるツール。**
