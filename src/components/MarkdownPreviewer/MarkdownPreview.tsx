@@ -57,6 +57,10 @@ const _MarkdownBase = styled.div`
     color: #06d8d7;
     /* background-color: rgba(110,118,129,0.4); */
     border-radius: 6px;
+    display: contents;
+  }
+  pre {
+    margin: 0;
   }
   blockquote {
     margin-left: 0;
