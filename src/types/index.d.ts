@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 export interface Label {
   color?: string
@@ -51,4 +51,11 @@ export type Command = {
   component: ReactNode
   title: string
   desc: string
+}
+
+export type DocumentItem = {
+  id: string
+  label: string
+  onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
+  children?: DocumentItem[]
 }

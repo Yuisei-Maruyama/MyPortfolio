@@ -5,7 +5,7 @@ import {
   Circular,
   ComponentList,
   CsvDownloadButton,
-  DocumentList,
+  DocumentListTree,
   FlippedCard,
   FileUploadButton,
   ProfileFrontCard,
@@ -207,9 +207,9 @@ export const componentList = (
       events: componentListEvents,
     },
     {
-      name: 'DocumentList',
-      desc: `DocumentListを構成するコンポーネント`,
-      tag: DocumentList,
+      name: 'DocumentListTree',
+      desc: `DocumentListTreeを構成するコンポーネント`,
+      tag: DocumentListTree,
       props: {
         getParams: () => getParams(typeof params === 'string' ? params : ''),
       },
