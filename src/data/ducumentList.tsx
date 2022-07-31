@@ -162,6 +162,11 @@ export const ducumentList = (
       children: [
         {
           id: uuid(),
+          label: 'Tips(JavaScript)',
+          onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e),
+        },
+        {
+          id: uuid(),
           label: 'types-cheat-sheet',
           onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e),
         },
