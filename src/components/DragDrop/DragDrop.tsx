@@ -62,11 +62,13 @@ const DragDrop: React.FC<Props> = (props: Props) => {
                 <IssueDialog
                   dialogTitle="Delete a GitHub Issue"
                   dialogDesc={["I gave up because GitHub doesn't provide DELETE API about Issue."]}
+                  maxWidth="lg"
                 />
               ) : (
                 <IssueDialog
                   dialogTitle="Create a new GitHub Issue"
                   dialogDesc={['Create a new issue with Todo label.']}
+                  maxWidth="xl"
                 />
               )}
             </div>

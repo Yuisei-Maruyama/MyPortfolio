@@ -9,6 +9,7 @@ import {
   DialogTitle,
   Button,
   TextField,
+  Breakpoint
 } from '@mui/material'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { AiOutlineClose } from 'react-icons/ai'
@@ -33,6 +34,7 @@ type Props = {
   issueNumber?: number
   dialogTitle: string
   dialogDesc: string | Array<string | ElementType>
+  maxWidth: false | Breakpoint | undefined
 }
 
 interface Disable {
@@ -94,7 +96,7 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 const IssueDialog: React.FC<Props> = (props: Props) => {
-  const { dialogTitle, dialogDesc } = props
+  const { dialogTitle, dialogDesc, maxWidth } = props
 
   const classes = useStyles()
 
@@ -195,7 +197,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
       {!open || !selectedLabel ? (
         <></>
       ) : (
-        <Dialog open={open} onClose={handleClickClose} fullWidth maxWidth="md" className={classes.root}>
+        <Dialog open={open} onClose={handleClickClose} fullWidth maxWidth={maxWidth} className={classes.root}>
           <DialogTitle
             style={{
               display: 'flex',
