@@ -71,6 +71,8 @@ const getDesc = (packageName: string) => {
       return 'particleアニメーションが付いたボタンを表現できる'
     case 'react-hot-keys':
       return 'キーイベントを取得して、そのイベントに対する処理を行える'
+    case 'react-hook-form':
+      return 'フォームの入力データを検証まで含めて、簡単に扱えるライブラリ'
     case 'react-scripts':
       return 'アプリケーションの初期表示時に JS の読み込み処理を行う'
     case 'polished':
