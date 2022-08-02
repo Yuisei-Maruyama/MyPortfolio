@@ -141,7 +141,7 @@ ex.) matrix
 | [react-beautiful-dnd](https://www.npmjs.com/package/react-beautiful-dnd) | ^13.1.0 | ドロップ&ドラッグを実現できる |
 | [react-csv](https://www.npmjs.com/package/react-csv) | ^2.2.2 | React上で簡単にcsvエクスポート機能を実装できるライブラリ |
 | [react-dom](https://www.npmjs.com/package/react-dom) | ^17.0.2 | Javascript のオブジェクトでリアルDOMを仮想的に作り、変更箇所だけ差分検知し更新することを React で行えるようにする |
-| [react-hook-form](https://www.npmjs.com/package/react-hook-form) | ^7.34.0 |  |
+| [react-hook-form](https://www.npmjs.com/package/react-hook-form) | ^7.34.0 | フォームの入力データを検証まで含めて、簡単に扱えるライブラリ |
 | [react-hot-keys](https://www.npmjs.com/package/react-hot-keys) | ^2.7.2 | キーイベントを取得して、そのイベントに対する処理を行える |
 | [react-icons](https://www.npmjs.com/package/react-icons) | ^4.2.0 | `Ant Design` や `Material Design`などを集めたアイコンの宝庫 |
 | [react-particle-effect-button](https://www.npmjs.com/package/react-particle-effect-button) | ^1.0.1 | particleアニメーションが付いたボタンを表現できる |
