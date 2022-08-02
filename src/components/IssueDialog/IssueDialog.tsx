@@ -86,7 +86,7 @@ const IssueDialog: React.FC<Props> = (props: Props) => {
     if (!open) {
       reset()
     }
-  }, [open])
+  }, [open, reset])
 
   const handleClickClose = () => {
     if (!setOpen || !setNumber) return
