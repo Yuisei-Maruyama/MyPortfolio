@@ -4,6 +4,7 @@ import javascript from 'highlight.js/lib/languages/javascript'
 import typescript from 'highlight.js/lib/languages/typescript'
 import bash from 'highlight.js/lib/languages/bash'
 import json from 'highlight.js/lib/languages/json'
+import css from 'highlight.js/lib/languages/css'
 import { marked } from 'marked'
 import mermaid from 'mermaid'
 import styled from 'styled-components'
@@ -13,6 +14,7 @@ hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('typescript', typescript)
 hljs.registerLanguage('bash', bash)
 hljs.registerLanguage('json', json)
+hljs.registerLanguage('css', css)
 
 type Props = {
   text: string
@@ -91,6 +93,67 @@ const _MarkdownBase = styled.div`
   svg[id*='mermaid'] {
     padding: 10px;
     background-color: white;
+  }
+  .mt-0 {
+    margin-top: 0;
+  }
+  .flex-block-center {
+    display: flex;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    border-radius: 5px;
+  }
+  .flex-content {
+    padding: 10px;
+    height: fit-content;
+    background-color: #06d8d7;
+  }
+  .grid-block-center {
+    display: grid;
+    place-items: center;
+    height: 150px;
+    background-color: #333;
+    border-radius: 5px;
+  }
+  .grid-content {
+    padding: 10px;
+    height: fit-content;
+    background-color: #06d8d7;
+  }
+  .bg {
+    height: 300px;
+    display: grid;
+    gap: 24px;
+    border-radius: 12px;
+    justify-items: center;
+    align-content: center;
+    background-size: cover;
+    background-position: center;
+    background-color: #0e354bff;
+    background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1788&q=80');
+  }
+  .backdrop-filter {
+    width: min(500px, 100%);
+    border-radius: 12px;
+    -webkit-backdrop-filter: blur(8px) saturate(180%);
+    backdrop-filter: blur(8px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .backdrop-filter h2 {
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 12px 12px 0 0;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 8px 14px;
+    color: #333;
+  }
+  .backdrop-filter p {
+    margin: 0;
+    padding: 14px;
+    color: #000;
   }
 `
 

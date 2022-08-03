@@ -17,6 +17,11 @@ export const ducumentList = (
         },
         {
           id: uuid(),
+          label: 'CSS(Tips)',
+          onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e),
+        },
+        {
+          id: uuid(),
           label: 'React',
           children: [
             {
@@ -174,7 +179,7 @@ export const ducumentList = (
     },
     {
       id: uuid(),
-      label: 'Utils',
+      label: 'Knowledge',
       children: [
         {
           id: uuid(),
@@ -194,6 +199,17 @@ export const ducumentList = (
         {
           id: uuid(),
           label: 'Web-View',
+          onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e),
+        },
+      ],
+    },
+    {
+      id: uuid(),
+      label: 'Web3',
+      children: [
+        {
+          id: uuid(),
+          label: 'Metaverse',
           onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e),
         },
       ],
