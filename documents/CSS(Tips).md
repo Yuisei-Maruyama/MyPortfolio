@@ -45,10 +45,9 @@
   .bg {
     height: 300px;
     display: grid;
+    place-items: center;
     gap: 24px;
     border-radius: 12px;
-    justify-items: center;
-    align-content: center;
     background-size: cover;
     background-position: center;
     background-color: #0e354bff;
@@ -84,3 +83,5 @@
     <p>磨りガラス風の表現ができるよ👨‍💻</p>
   </div>
 </div>
+
+## scroll-behavior

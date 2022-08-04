@@ -52,6 +52,9 @@ const _MarkdownBase = styled.div`
   p > a {
     color: #06d8d7;
   }
+  pre {
+    margin: 0;
+  }
   code {
     padding: 0.2em 0.4em;
     margin: 0;
@@ -60,9 +63,6 @@ const _MarkdownBase = styled.div`
     /* background-color: rgba(110,118,129,0.4); */
     border-radius: 6px;
     display: contents;
-  }
-  pre {
-    margin: 0;
   }
   blockquote {
     margin-left: 0;
@@ -125,10 +125,9 @@ const _MarkdownBase = styled.div`
   .bg {
     height: 300px;
     display: grid;
+    place-items: center;
     gap: 24px;
     border-radius: 12px;
-    justify-items: center;
-    align-content: center;
     background-size: cover;
     background-position: center;
     background-color: #0e354bff;
