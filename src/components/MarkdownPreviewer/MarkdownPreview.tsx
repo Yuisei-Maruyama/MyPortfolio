@@ -130,12 +130,21 @@ const _MarkdownBase = styled.div`
     height: 150px;
     font-size: 23px;
     font-weight: bold;
-    color: #fff;
     border-radius: 12px;
     cursor: pointer;
+    :hover {
+      box-shadow: -1px -1px #06d8d7, 1px -1px #06d8d7, 1px 1px #06d8d7, -1px 1px #06d8d7, 0 0 0.1em #06d8d7,
+      0 0 0.1em #06d8d7 inset, 0 0 0.5em #06d8d7, 0 0 0.5em #06d8d7 inset, 0 0 1em #06d8d7, 0 0 1em #06d8d7 inset;
+    }
   }
   hr {
     margin: 50px auto;
+  }
+  .cyber-color {
+    color: #06d8d7;
+  }
+  .fw-bold {
+    font-weight: bold;
   }
   .mt-0 {
     margin-top: 0;
@@ -164,6 +173,11 @@ const _MarkdownBase = styled.div`
     padding: 10px;
     height: fit-content;
     background-color: #06d8d7;
+  }
+  .cyber-btn {
+    color: #fff;
+    background-color: #0e3333;
+    border: 1px solid #06d8d7;
   }
   .backdrop-filter-bg {
     height: 300px;
