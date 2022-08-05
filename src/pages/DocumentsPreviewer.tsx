@@ -8,7 +8,7 @@ const DocumentsPreviewer: React.FC = () => {
 
   return (
     <Box sx={{ margin: '2% 2% 5% 2%', display: 'flex' }}>
-      <Box sx={{ padding: 3, border: 'solid 1px #06D8D7', borderRadius: 3 }}>
+      <Box sx={{ height: 'fit-content', marginTop: '30px', padding: 3, border: 'solid 1px #06D8D7', borderRadius: 3 }}>
         <DocumentListTree getParams={getParams} />
       </Box>
       <>
