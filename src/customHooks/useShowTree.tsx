@@ -1,12 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-const useShowTree = (getParams: (params: string) => void) => {
+const useShowTree = () => {
   const history = useHistory()
   const handleShowItem = async (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    if (!getParams) return
     const param = (event.target as unknown as { textContent: string }).textContent
-    getParams(param)
     history.push(`/documents/${param}`)
   }
 

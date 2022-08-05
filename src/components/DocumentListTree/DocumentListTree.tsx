@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { TreeView, TreeItem } from '@mui/lab'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
@@ -6,12 +6,8 @@ import { ducumentList } from '@/data/ducumentList'
 import { DocumentItem } from '@/types'
 import { useShowTree } from '@/customHooks/'
 
-type Props = {
-  getParams: (params: string) => void
-}
-
-const DocumentListTree: React.FC<Props> = ({ getParams }) => {
-  const { previewTree } = useShowTree(getParams)
+const DocumentListTree: React.FC = () => {
+  const { previewTree } = useShowTree()
 
   const documentListData = ducumentList(previewTree)
 
@@ -37,4 +33,4 @@ const DocumentListTree: React.FC<Props> = ({ getParams }) => {
   )
 }
 
-export default DocumentListTree
+export default memo(DocumentListTree)
