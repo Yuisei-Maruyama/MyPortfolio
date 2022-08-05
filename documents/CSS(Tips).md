@@ -42,7 +42,7 @@
 下記の例では背景色を設定し、`backdrop-filter: blur(20px);` でぼかし、磨りガラスの効果を与え、さらに、 `saturate(180%)` で背景の彩度も調整している。
 
 ```ts
-  .bg {
+  .backdrop-filter-bg {
     height: 300px;
     display: grid;
     place-items: center;
@@ -77,7 +77,7 @@
 ```
 
 <p class="mt-0">(表示)</p>
-<div class="bg">
+<div class="backdrop-filter-bg">
   <div class="backdrop-filter">
     <h2>メッセージ</h2>
     <p>磨りガラス風の表現ができるよ👨‍💻</p>
