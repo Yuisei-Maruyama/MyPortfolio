@@ -49,6 +49,37 @@ const MarkdownPreview: FC<Props> = ({ text }) => {
 
 const _MarkdownBase = styled.div`
   font-size: 18px;
+  h3 {
+    position: relative;
+    line-height: 1.4;
+    padding: 0.25em 1em;
+    display: inline-block;
+    background-color: #0e3333;
+    top: 0;
+  }
+
+  h3:before,
+  h3:after {
+    position: absolute;
+    top: 0;
+    content: '';
+    width: 8px;
+    height: 100%;
+    display: inline-block;
+  }
+  h3:before {
+    border-left: solid 1px #06d8d7;
+    border-top: solid 1px #06d8d7;
+    border-bottom: solid 1px #06d8d7;
+    left: 0;
+  }
+  h3:after {
+    content: '';
+    border-top: solid 1px #06d8d7;
+    border-right: solid 1px #06d8d7;
+    border-bottom: solid 1px #06d8d7;
+    right: 0;
+  }
   p > a {
     color: #06d8d7;
   }
@@ -94,6 +125,18 @@ const _MarkdownBase = styled.div`
     padding: 10px;
     background-color: white;
   }
+  button {
+    width: 150px;
+    height: 150px;
+    font-size: 23px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  hr {
+    margin: 50px auto;
+  }
   .mt-0 {
     margin-top: 0;
   }
@@ -122,7 +165,7 @@ const _MarkdownBase = styled.div`
     height: fit-content;
     background-color: #06d8d7;
   }
-  .bg {
+  .backdrop-filter-bg {
     height: 300px;
     display: grid;
     place-items: center;
