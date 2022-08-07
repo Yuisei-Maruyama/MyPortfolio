@@ -118,3 +118,5 @@ NestJSの基本的な開発の流れとしては、下記のようになる。
 - <p class="fw-bold">実装したものをFeatureモジュールに登録する</p>
 - <p class="fw-bold">Featureモジュールをルートモジュールに登録する</p>
 
+![NestJsArchitecture](https://raw.githubusercontent.com/Yuisei-Maruyama/MyPortfolio/main/documents/NestJsArchitecture.webp)
+
