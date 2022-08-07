@@ -157,7 +157,17 @@ export const ducumentList = (
       children: [
         {
           id: uuid(),
-          label: 'NodeJs',
+          label: 'NodeJS',
+          onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e),
+        },
+        {
+          id: uuid(),
+          label: 'NestJS',
+          onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e),
+        },
+        {
+          id: uuid(),
+          label: 'MVC',
           onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e),
         },
         {
