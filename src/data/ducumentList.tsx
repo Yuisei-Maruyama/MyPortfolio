@@ -195,6 +195,11 @@ export const ducumentList = (
           label: 'types-cheat-sheet',
           onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e),
         },
+        {
+          id: uuid(),
+          label: 'Overload',
+          onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e),
+        },
       ],
     },
     {
