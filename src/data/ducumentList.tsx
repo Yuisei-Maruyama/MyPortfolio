@@ -27,6 +27,11 @@ export const ducumentList = (
         },
         {
           id: uuid(),
+          label: 'ComponentDesign',
+          onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e),
+        },
+        {
+          id: uuid(),
           label: 'E2ETest',
           onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => previewDocument(e),
         },
