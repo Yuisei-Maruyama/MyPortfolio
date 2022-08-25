@@ -2,17 +2,11 @@
 
 ## UI コンポーネントの作成手順
 
-- <p class="fw-bold cyber-color">Functional Componentで実装する</p>
-
 - <p class="fw-bold cyber-color">各コンポーネントの関心ごとによってファイルを分割する</p>
 
 - <p class="fw-bold cyber-color">Props を定義する</p>
 
 - <p class="fw-bold cyber-color">DOM要素をマークアップする</p>
-
-### Functional Componentで実装する
-
-Hooks の登場によりClass Component でなければならないケースがなくなったため、`Functional Component` で実装を行う。
 
 ### 各コンポーネントの関心ごとによってファイルを分割する
 
