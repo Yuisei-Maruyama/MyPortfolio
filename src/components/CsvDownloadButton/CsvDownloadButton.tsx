@@ -15,7 +15,12 @@ type Props = {
 const CsvDownloadButton: FC<Props> = ({ csvHeaders, csvData, fileName, color, variant }) => {
   return (
     <CSVLink headers={csvHeaders} data={csvData} filename={fileName} style={{ textDecoration: 'none' }}>
-      <Button aria-label='CSVがダウンロードできるボタン' variant={variant} startIcon={<IoMdDownload />} sx={{ color: color }}>
+      <Button
+        aria-label="CSVがダウンロードできるボタン"
+        variant={variant}
+        startIcon={<IoMdDownload />}
+        sx={{ color: color }}
+      >
         CSVダウンロード
       </Button>
     </CSVLink>
