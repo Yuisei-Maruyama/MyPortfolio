@@ -52,7 +52,10 @@ const DragDrop: React.FC<Props> = (props: Props) => {
               </Avatar>
               <h3 style={{ flexGrow: 1, color: '#06D8D7' }}>{column.title}</h3>
               {label === 'todo' ? (
-                <IconButton onClick={() => handleClickOpen(label)}>
+                <IconButton
+                  onClick={() => handleClickOpen(label)}
+                  aria-label="Issueを発行するモーダルを表示するプラスボタン"
+                >
                   <AiOutlinePlus style={{ color: 'white', width: '30px' }}></AiOutlinePlus>
                 </IconButton>
               ) : (

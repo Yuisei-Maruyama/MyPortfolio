@@ -29,6 +29,7 @@ const Circular: React.FC<Props> = (props: Props) => {
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Button
         className={classes.button}
+        aria-label="右のIssueカードを中央に表示する"
         style={{ color: 'white' }}
         onClick={() => {
           prev(selected, length, setSelect)
@@ -59,6 +60,7 @@ const Circular: React.FC<Props> = (props: Props) => {
       </Box>
       <Button
         className={classes.button}
+        aria-label="左のIssueカードを中央に表示する"
         style={{ color: 'white' }}
         onClick={() => {
           next(selected, props.length, setSelect)

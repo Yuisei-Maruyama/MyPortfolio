@@ -147,7 +147,7 @@ const Header: React.FC = () => {
             <IconButton
               edge="start"
               color="inherit"
-              aria-label="github tasks"
+              aria-label="GitHubタスクボードを表示するアイコン"
               onClick={() => {
                 history.push('/board')
               }}
@@ -159,7 +159,7 @@ const Header: React.FC = () => {
             <IconButton
               edge="start"
               color="inherit"
-              aria-label="github"
+              aria-label="GitHubのリポジトリを表示するアイコン"
               sx={{ marginLeft: 0.1 }}
               onClick={() => {
                 window.open('https://github.com/Yuisei-Maruyama/MyPortfolio', '_blank')
@@ -172,7 +172,7 @@ const Header: React.FC = () => {
             <IconButton
               edge="start"
               color="inherit"
-              aria-label="github tasks"
+              aria-label="Netlifyの設定画面を表示するアイコン"
               sx={{ marginLeft: 0.1 }}
               onClick={() => {
                 window.open('https://app.netlify.com/sites/silly-goodall-7bfc72/deploys?filter=main', '_blank')
@@ -185,7 +185,7 @@ const Header: React.FC = () => {
             <IconButton
               edge="start"
               color="inherit"
-              aria-label="instagram"
+              aria-label="Instagramのマルヤマユイセイのページを表示するアイコン"
               sx={{ marginLeft: 0.1 }}
               onClick={() => {
                 window.open('https://www.instagram.com/y_metro/', '_blank')
