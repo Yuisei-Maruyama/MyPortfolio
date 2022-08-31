@@ -129,7 +129,6 @@ ex.) matrix
 | [@testing-library/react](https://www.npmjs.com/package/@testing-library/react) | ^11.1.0 | React で Unit テストを行うためのパッケージ |
 | [@testing-library/user-event](https://www.npmjs.com/package/@testing-library/user-event) | ^12.1.10 | React で Unit テストを行うためのパッケージ |
 | [@types/jest](https://www.npmjs.com/package/@types/jest) | ^26.0.15 | jestの型定義ファイルのパッケージ |
-| [@types/node](https://www.npmjs.com/package/@types/node) | ^12.0.0 | nodeの型定義ファイルのパッケージ |
 | [@types/react-dom](https://www.npmjs.com/package/@types/react-dom) | ^17.0.0 | react-domの型定義ファイルのパッケージ |
 | [@types/styled-components](https://www.npmjs.com/package/@types/styled-components) | ^5.1.25 | styled-componentsの型定義ファイルのパッケージ |
 | [@uiw/react-md-editor](https://www.npmjs.com/package/@uiw/react-md-editor) | ^3.9.1 | React で Markdown を表示できるようにする |
@@ -160,6 +159,7 @@ ex.) matrix
 | [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) | ^4.11.2 | CSSフレームワーク Material-UI のアイコンを使用するパッケージ(旧) -> [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) に変更された |
 | [@types/marked](https://www.npmjs.com/package/@types/marked) | ^4.0.3 | markedの型定義ファイルのパッケージ |
 | [@types/mermaid](https://www.npmjs.com/package/@types/mermaid) | ^8.2.9 | mermaidの型定義ファイルのパッケージ |
+| [@types/node](https://www.npmjs.com/package/@types/node) | ^17.0.29 | nodeの型定義ファイルのパッケージ |
 | [@types/react](https://www.npmjs.com/package/@types/react) | ^17.0.19 | reactの型定義ファイルのパッケージ |
 | [@types/react-beautiful-dnd](https://www.npmjs.com/package/@types/react-beautiful-dnd) | ^13.1.2 | react-beautiful-dndの型定義ファイルのパッケージ |
 | [@types/react-csv](https://www.npmjs.com/package/@types/react-csv) | ^1.1.3 | react-csvの型定義ファイルのパッケージ |
