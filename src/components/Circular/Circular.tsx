@@ -46,9 +46,9 @@ const Circular: React.FC<Props> = (props: Props) => {
           {items.map((item: unknown, position: number) => {
             return (
               <div
-                key={position - 1}
+                key={position}
                 style={{
-                  transform: `translateX(-50%) rotateY(${(360 / length) * (position - 1)}deg) translateZ(760px)`,
+                  transform: `translateX(-50%) rotateY(${(360 / length) * (position)}deg) translateZ(760px)`,
                 }}
                 className={classes.item}
               >
