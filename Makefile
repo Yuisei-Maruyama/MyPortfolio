@@ -6,6 +6,7 @@ help:
 	@echo 'start            -- dev-serverを起動します。'
 	@echo 'build            -- buildを実行します。'
 	@echo 'test             -- testを実行します。'
+	@echo 'check            -- tools/check.ts で簡易的にTSの振る舞いを確認できます。'
 	@echo ''
 	@echo '---------- Gitに関するコマンド ----------'
 	@echo 'git-setup      -- Gitのローカル環境のuser.nameとuser.emailを設定します'
@@ -25,6 +26,9 @@ start:
 
 build:
 	react-app-rewired build && node build-lib
+
+check:
+	npx ts-node tools/check.ts
 
 test:
 	react-app-rewired test
