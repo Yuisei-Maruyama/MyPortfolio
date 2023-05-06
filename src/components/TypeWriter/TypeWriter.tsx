@@ -25,7 +25,7 @@ const TypeWriter: React.FC<Props> = (props: Props) => {
         return
       }
       setText((prevState) => prevState + nextChar.value)
-      timerId = setTimeout(showChar, speed)
+      timerId = window.setTimeout(showChar, speed)
     })()
 
     return () => clearTimeout(timerId)
