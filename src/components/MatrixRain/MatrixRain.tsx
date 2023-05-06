@@ -15,7 +15,6 @@ type MatrixRainChars = {
 
 const validChar =
   'abcdefghijklmnopqrstuvwxyz0123456789$+-*/=モジレツリアクトジャバスクリプトサイバーパンクネオトウキョウサイバーブレードランナーコウカクキドウタイマトリックストロンアキラゴーストインザシェル'
-const streamOdds = 0.02
 
 const minStreamChar = 15
 const maxStreamChar = 70
@@ -28,9 +27,6 @@ const getRandomStream = () =>
 const getMutatedStream = (stream: string[]) => {
   const newStream = []
   for (let i = 1; i < stream.length; i++) {
-    if (Math.random() < streamOdds) {
-      newStream.push(getRandomChar())
-    }
     newStream.push(stream[i])
   }
   newStream.push(getRandomChar())
