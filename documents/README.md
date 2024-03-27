@@ -149,6 +149,7 @@ ex.) matrix
 | [react-vertical-timeline-component](https://www.npmjs.com/package/react-vertical-timeline-component) | ^3.5.2 | タイムラインの表示 |
 | [sass](https://www.npmjs.com/package/sass) | ^1.45.1 | Sass をコンパイルするためのモジュール |
 | [sass-loader](https://www.npmjs.com/package/sass-loader) | ^12.4.0 | Sass を CSS へ変換するためのモジュール |
+| [sharp](https://www.npmjs.com/package/sharp) | ^0.30.7 | 画像を Webp形式に変換できるライブラリ |
 | [shelljs](https://www.npmjs.com/package/shelljs) | ^0.8.5 | 移植可能な（Windows / Linux / OS X）の Unix シェルコマンドを Node.js API の上に実装できるモジュール |
 | [styled-components](https://www.npmjs.com/package/styled-components) | ^5.3.5 | React思想のコンポーネント単位での管理がスタイルにも可能になる |
 | [tslib](https://www.npmjs.com/package/tslib) | ^2.3.1 | コンパイル後の js ファイルが大きくなるのを防ぐ  |
@@ -165,6 +166,7 @@ ex.) matrix
 | [@types/react-csv](https://www.npmjs.com/package/@types/react-csv) | ^1.1.3 | react-csvの型定義ファイルのパッケージ |
 | [@types/react-router-dom](https://www.npmjs.com/package/@types/react-router-dom) | ^5.1.8 | react-router-domの型定義ファイルのパッケージ |
 | [@types/react-vertical-timeline-component](https://www.npmjs.com/package/@types/react-vertical-timeline-component) | ^3.0.1 | react-vertical-timeline-componentの型定義ファイルのパッケージ |
+| [@types/sharp](https://www.npmjs.com/package/@types/sharp) | ^0.30.5 | sharpの型定義ファイルのパッケージ |
 | [@types/uuid](https://www.npmjs.com/package/@types/uuid) | ^8.3.3 | uuidの型定義ファイルのパッケージ |
 | [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) | ^4.31.1 | ESLint で Typescript のチェックを行う |
 | [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser) | ^4.31.1 | ESLint を Typescript で解析できるようにする |

@@ -101,6 +101,8 @@ const getDesc = (packageName: string) => {
       return 'markdownをhtmlに変換するライブラリ'
     case 'mermaid':
       return 'テキストとコードを使用して図と視覚化をマークダウンで実現できるライブラリ'
+    case 'sharp':
+      return '画像を Webp形式に変換できるライブラリ'
     default:
       break
   }
